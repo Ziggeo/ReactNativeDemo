@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NativeEventEmitter, NativeModules } from 'react-native';
-import Ziggeo from 'react-native-ziggeo-library';
+import Ziggeo from 'ReactNativeSDK';
 
 export default class App extends React.Component {
     async record() {
