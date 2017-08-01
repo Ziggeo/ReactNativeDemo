@@ -5,8 +5,7 @@ import Ziggeo from 'ReactNativeSDK';
 
 export default class App extends React.Component {
     async record() {
-        //TODO token
-        var appToken = "60c0d757c31f5002f75f5e2b7fe96e83";
+        var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
         Ziggeo.setCameraSwitchEnabled(true);
         Ziggeo.setCoverSelectorEnabled(true);
