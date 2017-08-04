@@ -1,17 +1,17 @@
 # ReactNativeSDK
 
 ## Getting started
-`$ npm install ReactNativeSDK --save`
+`$ npm install react-native-ziggeo-library --save`
 
 ### Mostly automatic installation
-`$ react-native link ReactNativeSDK`
+`$ react-native link react-native-ziggeo-library`
 
 ### Manual installation
 #### Android
 1. Append the following lines to `android/settings.gradle`:
   	```
-  	include ':ReactNativeSDK'
-  	project(':ReactNativeSDK').projectDir = new File(rootProject.projectDir, 	'../node_modules/ReactNativeSDK/android')
+  	include ':react-native-ziggeo-library'
+  	project(':react-native-ziggeo-library').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-ziggeo-library/android')
   	```
 
 2. Open up `android/build.gradle`
@@ -24,7 +24,7 @@
 	- Update `compileSdkVersion`, `buildToolsVersion`, `targetSdkVersion` and all libs from `com.android.support` package to latest versions.
 	- Insert the following line inside the `dependencies` block:
 	```
-	compile project(':ReactNativeSDK')
+	compile project(':react-native-ziggeo-library')
 	```
 
 4. Open up `android/app/AndroidManifest.xml` 
@@ -44,5 +44,5 @@
 
 ## Usage
 ```javascript
-import Ziggeo from 'ReactNativeSDK';
+import Ziggeo from 'react-native-ziggeo-library';
 ```
