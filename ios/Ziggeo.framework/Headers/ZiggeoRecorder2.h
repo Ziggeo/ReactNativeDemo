@@ -26,6 +26,7 @@
 @property (nonatomic) bool useLiveStreaming;
 @property (nonatomic) UIImagePickerControllerCameraDevice cameraDevice;
 @property (nonatomic) id<ZiggeoRecorder2Delegate> recorderDelegate;
+@property (nonatomic) NSDictionary* extraArgsForCreateVideo;
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo;
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo videoToken:(NSString*)videoToken;
 
