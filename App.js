@@ -27,6 +27,49 @@ export default class App extends React.Component {
             alert(e);
         }
     }
+
+    async upload() {
+        var appToken = "ZIGGEO_APP_TOKEN";
+        Ziggeo.setAppToken(appToken);
+        const recorderEmitter = Ziggeo.recorderEmitter();
+        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log("uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try
+        {
+            //select and upload the video and return its token
+            var token = await Ziggeo.upload();
+            console.log("Token:"+token);
+            if (token !== 'null'){
+                Ziggeo.play(token);
+            }
+        }
+        catch(e)
+        {
+            //uploading error or upload was cancelled by user
+            alert(e);
+        }
+    }
+
+    async uploadFile() {
+        var appToken = "ZIGGEO_APP_TOKEN";
+        Ziggeo.setAppToken(appToken);
+        const recorderEmitter = Ziggeo.recorderEmitter();
+        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log("uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try
+        {
+            //upload some file by its name and return its token
+            var token = await Ziggeo.upload("FILE_NAME");
+            console.log("Token:"+token);
+            if (token !== 'null'){
+                Ziggeo.play(token);
+            }
+        }
+        catch(e)
+        {
+            //uploading error or upload was cancelled by user
+            alert(e);
+        }
+    }
+
     
     
     render() {
@@ -36,6 +79,16 @@ export default class App extends React.Component {
             onPress={this.record}
             title="Record"
             accessibilityLabel="Record"
+            />
+            <Button
+            onPress={this.upload}
+            title="Upload from library"
+            accessibilityLabel="Upload"
+            />
+            <Button
+            onPress={this.uploadFile}
+            title="Upload file"
+            accessibilityLabel="Upload file"
             />
           </View>
     );
