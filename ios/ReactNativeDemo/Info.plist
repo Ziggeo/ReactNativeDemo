@@ -55,5 +55,7 @@
 	<string>Apllication will be able to record video</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Application will be able to record audio</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Application will have access to photo library</string>
 </dict>
 </plist>
