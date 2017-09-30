@@ -11,7 +11,7 @@ export default class App extends React.Component {
         Ziggeo.setCoverSelectorEnabled(true);
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log("uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
         {
             //record and upload the video and return its token
@@ -32,7 +32,7 @@ export default class App extends React.Component {
         var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log("uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
         {
             //select and upload the video and return its token
@@ -53,7 +53,7 @@ export default class App extends React.Component {
         var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log("uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
         {
             //upload some file by its name and return its token
