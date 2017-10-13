@@ -17,7 +17,7 @@ export default class App extends React.Component {
             //record and upload the video and return its token
             var token = await Ziggeo.record();
             console.log("Token:"+token);
-            if (token !== 'null'){
+            if (token){
                 Ziggeo.play(token);
             }
         }
@@ -38,7 +38,7 @@ export default class App extends React.Component {
             //select and upload the video and return its token
             var token = await Ziggeo.upload();
             console.log("Token:"+token);
-            if (token !== 'null'){
+            if (token){
                 Ziggeo.play(token);
             }
         }
@@ -59,7 +59,7 @@ export default class App extends React.Component {
             //upload some file by its name and return its token
             var token = await Ziggeo.upload("FILE_NAME");
             console.log("Token:"+token);
-            if (token !== 'null'){
+            if (token){
                 Ziggeo.play(token);
             }
         }
