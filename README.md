@@ -40,6 +40,8 @@
 5. Open up `android/app/src/main/java/[...]/MainActivity.java`
   	- Change `extends ReactActivity` to `extends ReactFragmentActivity`
   	- Add `import com.ziggeo.ZiggeoPackage;` to the imports at the top of the file
+
+6. Open up `android/app/src/main/java/[...]/MainApplication.java`
   	- Add `new ZiggeoPackage()` to the list returned by the `getPackages()` method
 
 ## Usage
