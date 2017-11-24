@@ -1,10 +1,7 @@
 # ReactNativeSDK
 
-## Getting started
+### Automatic installation
 `$ npm install react-native-ziggeo-library --save`
-
-### Mostly automatic installation
-`$ react-native link react-native-ziggeo-library`
 
 ### Manual installation
 #### Android
