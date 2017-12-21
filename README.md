@@ -1,9 +1,9 @@
-# ReactNativeSDK
+# Ziggeo ReactNativeSDK Demo
 
-### Automatic installation
+### Automatic Installation
 `$ npm install react-native-ziggeo-library --save`
 
-### Manual installation
+### Manual Installation
 #### Android
 1. Append the following lines to `android/settings.gradle`:
   	```
