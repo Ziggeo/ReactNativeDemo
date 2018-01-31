@@ -23,6 +23,7 @@ export default class App extends React.Component {
         }
         catch(e)
         {
+            console.log("Error:"+e);
             //recorder error or recording was cancelled by user
             alert(e);
         }
@@ -36,7 +37,9 @@ export default class App extends React.Component {
         try
         {
             //select and upload the video and return its token
-            var token = await Ziggeo.upload();
+            var maxDuration = 15; // seconds
+            var enforceDuration = false; // will cut the video on the server
+            var token = await Ziggeo.uploadFromFileSelectorWithDurationLimit(maxDuration, enforceDuration);
             console.log("Token:"+token);
             if (token){
                 Ziggeo.play(token);
@@ -44,6 +47,7 @@ export default class App extends React.Component {
         }
         catch(e)
         {
+            console.log("Error:"+e);
             //uploading error or upload was cancelled by user
             alert(e);
         }
@@ -56,8 +60,9 @@ export default class App extends React.Component {
         const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
         {
-            //upload some file by its name and return its token
-            var token = await Ziggeo.upload("FILE_NAME");
+            //upload some file by its path and return its token
+            var filePath = "/sdcard/Ziggeo/Recorder/big.mp4"
+            var token = await Ziggeo.uploadFromPath(filePath); 
             console.log("Token:"+token);
             if (token){
                 Ziggeo.play(token);
@@ -65,6 +70,7 @@ export default class App extends React.Component {
         }
         catch(e)
         {
+            console.log("Error:"+e);
             //uploading error or upload was cancelled by user
             alert(e);
         }
