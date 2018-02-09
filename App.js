@@ -61,7 +61,7 @@ export default class App extends React.Component {
         try
         {
             //upload some file by its path and return its token
-            var filePath = "/sdcard/Ziggeo/Recorder/big.mp4"
+            var filePath = ""
             var token = await Ziggeo.uploadFromPath(filePath); 
             console.log("Token:"+token);
             if (token){

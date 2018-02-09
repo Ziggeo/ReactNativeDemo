@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- We are declaring our resource calls at this location -->
+        <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v2-stable/ziggeo.css" />
+        <script src="//assets-cdn.ziggeo.com/v2-stable/ziggeo.js"></script>
+        <script>
+
+        	var ziggeoApp = new ZiggeoApi.V2.Application({
+				token: "APPLICATION TOKEN",
+				auth: true //default is false, and then the auth tokens would not work.
+			});
+
+        	//List videos - default 50, up to 100
+        	ziggeoApp.videos.index( /* empty or search object */ ).success(
+				function(videos) {
+					//you will get all found videos here
+					console.log(videos);
+				}
+			);
+
+			//remove video
+			ziggeoApp.videos.destroy( videoToken ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+
+			//create video
+			ziggeoApp.videos.create( createObject ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+
+			//we do not really advertise this, however it is something you will likely need for mobile devices (created for the same purpose - for Cordova)
+			ziggeoApp.videos.createByUpload( createObject ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+        	
+        	//update video
+        	ziggeoApp.videos.update( updateObject ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+			
+			//get video
+			ziggeoApp.videos.get( videoToken ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+        	
+			//get image
+			ziggeoApp.videos.imageUrl( videoToken ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+			
+			//get video URL
+			ziggeoApp.videos.videoUrl( videoToken ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+
+			/* *********************** STREAMS *********************** */
+
+			//remove stream
+			ziggeoApp.streams.destroy( videoToken, streamToken ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+			
+			//create stream
+			ziggeoApp.streams.create( videoToken, createObject ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+
+			//accept stream
+			ziggeoApp.streams.accept( videoToken, streamToken ).success(
+				function(result) {
+					//object
+					console.log(result);
+				}
+			);
+        </script>
+    </head>
+    <body>
+        <div id="recorder"></div>
+    </body>
+</html>
