@@ -91,7 +91,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.reactnativedemo"
@@ -102,6 +102,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -113,6 +114,14 @@ android {
     }
     dexOptions {
         javaMaxHeapSize "4g"
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/notice'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license'
+        exclude 'META-INF/license.txt'
     }
     signingConfigs{
         release {
@@ -151,7 +160,7 @@ android {
 dependencies {
     implementation project(':react-native-ziggeo-library')
     implementation  fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:27.0.2"
+    implementation "com.android.support:appcompat-v7:27.1.1"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 }
 
