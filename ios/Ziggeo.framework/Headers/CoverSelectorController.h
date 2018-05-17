@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 -(id) initWithSourceVideoPath:(NSString*)path;
++(void) getDefaultCoverForPath:(NSString*)path handler:(void (^)(UIImage* image))handler;
 
 @end

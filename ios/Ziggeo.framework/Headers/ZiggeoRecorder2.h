@@ -12,8 +12,17 @@
 @import AVFoundation;
 
 @protocol ZiggeoRecorder2Delegate <NSObject>
+@optional
 -(void) ziggeoRecorderDidCancel;
+@optional
+-(void) ziggeoRecorderCurrentRecordedDurationSeconds:(double)seconds;
 @end
+
+typedef enum : NSUInteger {
+    LowQuality,
+    MediumQuality,
+    HighestQuality,
+} RecordingQuality;
 
 @interface ZiggeoRecorder2 : UIViewController <VideoPreviewDelegate>
 
@@ -25,8 +34,11 @@
 @property (nonatomic) bool cameraFlipButtonVisible;
 @property (nonatomic) bool useLiveStreaming;
 @property (nonatomic) UIImagePickerControllerCameraDevice cameraDevice;
+@property (nonatomic) RecordingQuality recordingQuality;
 @property (nonatomic) id<ZiggeoRecorder2Delegate> recorderDelegate;
 @property (nonatomic) NSDictionary* extraArgsForCreateVideo;
+@property (nonatomic) double maxRecordedDurationSeconds;
+
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo;
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo videoToken:(NSString*)videoToken;
 
