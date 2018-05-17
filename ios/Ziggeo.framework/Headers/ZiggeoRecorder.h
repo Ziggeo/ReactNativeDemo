@@ -21,6 +21,7 @@
 @property (nonatomic) bool coverSelectorEnabled;
 @property (nonatomic) bool cameraFlipButtonVisible;
 @property (nonatomic) id<ZiggeoRecorderDelegate> recorderDelegate;
+@property (nonatomic) NSDictionary* extraArgsForCreateVideo;
 -(void) selectExistingVideo;
 
 @end

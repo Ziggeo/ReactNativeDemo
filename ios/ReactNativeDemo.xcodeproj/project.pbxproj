@@ -469,6 +469,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNativeDemoTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				FA37CCC62027517800B0EEC1 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -480,6 +481,14 @@
 				13B07F961A680F5B00A75B9A /* ReactNativeDemo.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FA37CCC62027517800B0EEC1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				83F155EB428F49DCAA51CEAA /* libRNReactNativeZiggeoLibrary.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		FA468A811F2E4A74001F95D5 /* Products */ = {
