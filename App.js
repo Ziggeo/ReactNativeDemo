@@ -37,9 +37,8 @@ export default class App extends React.Component {
         try
         {
             //select and upload the video and return its token
-            var maxDuration = 15; // seconds
-            var enforceDuration = false; // will cut the video on the server
-            var token = await Ziggeo.uploadFromFileSelectorWithDurationLimit(maxDuration, enforceDuration);
+            var argsMap = {"max_duration":15,"enforce_duration":true, 'tags': 'TEST_TAG'}
+            var token = await Ziggeo.uploadFromFileSelector(argsMap);
             console.log("Token:"+token);
             if (token){
                 Ziggeo.play(token);
@@ -62,7 +61,8 @@ export default class App extends React.Component {
         {
             //upload some file by its path and return its token
             var filePath = ""
-            var token = await Ziggeo.uploadFromPath(filePath); 
+            var argsMap = {"max_duration":15,"enforce_duration":true, 'tags': 'TEST_TAG'}
+            var token = await Ziggeo.uploadFromPath(filePath, argsMap); 
             console.log("Token:"+token);
             if (token){
                 Ziggeo.play(token);
