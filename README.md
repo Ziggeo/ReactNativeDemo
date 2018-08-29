@@ -1,7 +1,12 @@
 # Ziggeo ReactNativeSDK Demo
 
 ### Automatic Installation
-`$ npm install react-native-ziggeo-library --save`
+```
+$ npm install react-native-ziggeo-library --save
+$ react-native link
+```
+
+iOS project will require additional steps mentioned at the Manual Installation section below 
 
 ### Manual Installation
 #### Android
@@ -40,6 +45,22 @@
 
 6. Open up `android/app/src/main/java/[...]/MainApplication.java`
   	- Add `new ZiggeoPackage()` to the list returned by the `getPackages()` method
+
+#### iOS
+1. `$ npm install react-native-ziggeo-library --save`
+2. `$ react-native link`
+3. download `Ziggeo.framework` from `Ziggeo-Client-SDK` repository: https://github.com/Ziggeo/iOS-Client-SDK/tree/master/Ziggeo/Output/
+
+There are two framework versions: release and universal. Use universal framework for development and debugging purposes and switch to Release framework to build the application for App Store
+
+4. open the iOS project in XCode and add the Ziggeo.framework into embedded and linked frameworks at the project settings
+
+Sometimes iOS project compilation may raise analyzer issues. Use these commands to clean and build the project from scratch:
+```
+$ cd ios
+$ rm -rf build
+$ xcodebuild clean
+```
 
 ## Usage
 ```javascript
