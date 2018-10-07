@@ -1,21 +1,21 @@
 {
   "name": "ReactNativeDemo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.3.1",
-    "react-native": "0.55.4",
+    "react": "16.5.0",
+    "react-native": "0.57.1",
     "react-native-ziggeo-library": "git+https://github.com/Ziggeo/ReactNativeSDK.git"
   },
   "devDependencies": {
-    "babel-jest": "22.4.3",
-    "babel-preset-react-native": "4.0.0",
+    "babel-jest": "23.2.0",
+    "babel-preset-react-native": "^5",
     "jest": "22.4.3",
-    "react-test-renderer": "16.3.1"
+    "react-test-renderer": "16.5.0"
   },
   "jest": {
     "preset": "react-native"

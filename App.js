@@ -10,6 +10,7 @@ export default class App extends React.Component {
         Ziggeo.setCameraSwitchEnabled(true);
         Ziggeo.setCoverSelectorEnabled(true);
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
+        Ziggeo.setMaxRecordingDuration(600);
         const recorderEmitter = Ziggeo.recorderEmitter();
         const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
