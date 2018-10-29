@@ -6,7 +6,8 @@ $ npm install react-native-ziggeo-library --save
 $ react-native link
 ```
 
-iOS project will require additional steps mentioned at the Manual Installation section below 
+iOS project will require additional steps mentioned at the Manual Installation section below  
+Android project also requires to follow point 2 and point 3(the first part) mentioned at the Manual Installation section below  
 
 ### Manual Installation
 #### Android
