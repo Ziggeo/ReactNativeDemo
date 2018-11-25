@@ -87,15 +87,12 @@ export default class App extends React.Component {
         Ziggeo.setAppToken(appToken);
         try
         {
-            //select and upload the video and return its token
-            var argsMap = {"max_duration":15,"enforce_duration":true, 'tags': 'TEST_TAG'}
             Ziggeo.setExtraArgsForPlayer({"hidePlayerControls":"false"});
             Ziggeo.play(videoToken);
         }
         catch(e)
         {
             console.log("Error:"+e);
-            //uploading error or upload was cancelled by user
             alert(e);
         }
     }
@@ -106,15 +103,12 @@ export default class App extends React.Component {
         Ziggeo.setAppToken(appToken);
         try
         {
-            //select and upload the video and return its token
-            var argsMap = {"max_duration":15,"enforce_duration":true, 'tags': 'TEST_TAG'}
             Ziggeo.setExtraArgsForPlayer({"hidePlayerControls":""});
             Ziggeo.play(videoToken);
         }
         catch(e)
         {
             console.log("Error:"+e);
-            //uploading error or upload was cancelled by user
             alert(e);
         }
     }
