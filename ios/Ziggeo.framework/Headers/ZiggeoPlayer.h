@@ -12,6 +12,7 @@
 @interface ZiggeoPlayer : AVPlayer
 
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo videoToken:(NSString*)token;
+@property (nonatomic, copy) void (^didFinishPlaying)(NSString* videoToken, NSError* error);
 
 +(void)createPlayerWithAdditionalParams:(Ziggeo*)ziggeo videoToken:(NSString*)token params:(NSDictionary*)params callback:(void (^)(ZiggeoPlayer* player))callback;
 +(void)createPlayerWithServerAuthToken:(Ziggeo*)ziggeo videoToken:(NSString*)token authToken:(NSString*)authToken callback:(void (^)(ZiggeoPlayer* player))callback;

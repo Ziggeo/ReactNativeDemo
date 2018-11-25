@@ -31,13 +31,16 @@ typedef enum : NSUInteger {
 
 @property (nonatomic) UIViewController<VideoPreviewProtocol>* videoPreview;
 @property (nonatomic) bool coverSelectorEnabled;
+@property (nonatomic) bool sendImmediately;
 @property (nonatomic) bool cameraFlipButtonVisible;
 @property (nonatomic) bool useLiveStreaming;
+@property (nonatomic) bool controlsVisible;
 @property (nonatomic) UIImagePickerControllerCameraDevice cameraDevice;
 @property (nonatomic) RecordingQuality recordingQuality;
 @property (nonatomic) id<ZiggeoRecorder2Delegate> recorderDelegate;
 @property (nonatomic) NSDictionary* extraArgsForCreateVideo;
 @property (nonatomic) double maxRecordedDurationSeconds;
+@property (nonatomic) double autostartRecordingAfterSeconds;
 
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo;
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo videoToken:(NSString*)videoToken;
