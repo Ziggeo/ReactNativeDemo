@@ -16,9 +16,11 @@
 }
     
 @property (strong, nonatomic) NSString *token;
+@property (nonatomic) bool enableDebugLogs;
 
 - (id)initWithToken:(NSString *)token_;
-
+- (void)log:(NSString*)message;
+- (void)logError:(NSString*)message;
 
 - (ZiggeoConfig*)config;
 

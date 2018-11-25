@@ -11,6 +11,7 @@ export default class App extends React.Component {
         Ziggeo.setCoverSelectorEnabled(true);
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
         Ziggeo.setMaxRecordingDuration(600);
+        Ziggeo.setExtraArgsForRecorder({"hideRecorderControls":"false"});
         const recorderEmitter = Ziggeo.recorderEmitter();
         const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
@@ -30,6 +31,33 @@ export default class App extends React.Component {
         }
     }
 
+    async recordNoControls() {
+        var appToken = "ZIGGEO_APP_TOKEN";
+        Ziggeo.setAppToken(appToken);
+        Ziggeo.setCameraSwitchEnabled(true);
+        Ziggeo.setCoverSelectorEnabled(true);
+        Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
+        Ziggeo.setMaxRecordingDuration(10);
+        Ziggeo.setExtraArgsForRecorder({"hideRecorderControls":""});
+        const recorderEmitter = Ziggeo.recorderEmitter();
+        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try
+        {
+            //record and upload the video and return its token
+            var token = await Ziggeo.record();
+            console.log("Token:"+token);
+            if (token){
+                Ziggeo.play(token);
+            }
+        }
+        catch(e)
+        {
+            console.log("Error:"+e);
+            //recorder error or recording was cancelled by user
+            alert(e);
+        }
+    }
+    
     async upload() {
         var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
@@ -49,6 +77,38 @@ export default class App extends React.Component {
         {
             console.log("Error:"+e);
             //uploading error or upload was cancelled by user
+            alert(e);
+        }
+    }
+    
+    async play() {
+        var appToken = "ZIGGEO_APP_TOKEN";
+        var videoToken = "ZIGGEO_VIDEO_TOKEN";
+        Ziggeo.setAppToken(appToken);
+        try
+        {
+            Ziggeo.setExtraArgsForPlayer({"hidePlayerControls":"false"});
+            Ziggeo.play(videoToken);
+        }
+        catch(e)
+        {
+            console.log("Error:"+e);
+            alert(e);
+        }
+    }
+
+    async playNoControls() {
+        var appToken = "ZIGGEO_APP_TOKEN";
+        var videoToken = "ZIGGEO_VIDEO_TOKEN";
+        Ziggeo.setAppToken(appToken);
+        try
+        {
+            Ziggeo.setExtraArgsForPlayer({"hidePlayerControls":""});
+            Ziggeo.play(videoToken);
+        }
+        catch(e)
+        {
+            console.log("Error:"+e);
             alert(e);
         }
     }
@@ -88,6 +148,11 @@ export default class App extends React.Component {
             accessibilityLabel="Record"
             />
             <Button
+            onPress={this.recordNoControls}
+            title="Record without controls"
+            accessibilityLabel="Record (10 sec, no controls)"
+            />
+            <Button
             onPress={this.upload}
             title="Upload from library"
             accessibilityLabel="Upload"
@@ -96,6 +161,16 @@ export default class App extends React.Component {
             onPress={this.uploadFile}
             title="Upload file"
             accessibilityLabel="Upload file"
+            />
+            <Button
+            onPress={this.play}
+            title="Play video"
+            accessibilityLabel="Play video"
+            />
+            <Button
+            onPress={this.playNoControls}
+            title="Play video without controls"
+            accessibilityLabel="Play video without controls"
             />
           </View>
     );
