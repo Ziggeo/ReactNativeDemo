@@ -11,7 +11,7 @@ export default class App extends React.Component {
         Ziggeo.setCoverSelectorEnabled(true);
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
         Ziggeo.setMaxRecordingDuration(600);
-        Ziggeo.setExtraArgsForRecorder({"hideRecorderControls":"false"});
+        Ziggeo.setThemeArgsForRecorder({"hideRecorderControls":"false"});
         const recorderEmitter = Ziggeo.recorderEmitter();
         const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
@@ -38,7 +38,7 @@ export default class App extends React.Component {
         Ziggeo.setCoverSelectorEnabled(true);
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
         Ziggeo.setMaxRecordingDuration(10);
-        Ziggeo.setExtraArgsForRecorder({"hideRecorderControls":""});
+        Ziggeo.setThemeArgsForRecorder({"hideRecorderControls":""});
         const recorderEmitter = Ziggeo.recorderEmitter();
         const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try
@@ -87,7 +87,7 @@ export default class App extends React.Component {
         Ziggeo.setAppToken(appToken);
         try
         {
-            Ziggeo.setExtraArgsForPlayer({"hidePlayerControls":"false"});
+            Ziggeo.setThemeArgsForPlayer({"hidePlayerControls":"false"});
             Ziggeo.play(videoToken);
         }
         catch(e)
@@ -103,7 +103,7 @@ export default class App extends React.Component {
         Ziggeo.setAppToken(appToken);
         try
         {
-            Ziggeo.setExtraArgsForPlayer({"hidePlayerControls":""});
+            Ziggeo.setThemeArgsForPlayer({"hidePlayerControls":""});
             Ziggeo.play(videoToken);
         }
         catch(e)
