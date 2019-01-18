@@ -1,9 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { NativeEventEmitter, NativeModules } from 'react-native';
+import {StyleSheet, Text, View, Button, NativeEventEmitter, NativeModules} from 'react-native';
+
+import {
+    createAppContainer,
+    createStackNavigator,
+    StackActions,
+    NavigationActions
+} from 'react-navigation'; // Version can be specified in package.json
 import Ziggeo from 'react-native-ziggeo-library';
 
-export default class App extends React.Component {
+var CameraView = require('react-native-ziggeo-library');
+
+class HomeScreen extends React.Component {
     async record() {
         var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
@@ -12,19 +20,16 @@ export default class App extends React.Component {
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
         Ziggeo.setMaxRecordingDuration(600);
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
-        try
-        {
+        const subscription = recorderEmitter.addListener('UploadProgress', (progress) => console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try {
             //record and upload the video and return its token
             var token = await Ziggeo.record();
-            console.log("Token:"+token);
-            if (token){
+            console.log("Token:" + token);
+            if (token) {
                 Ziggeo.play(token);
             }
-        }
-        catch(e)
-        {
-            console.log("Error:"+e);
+        } catch (e) {
+            console.log("Error:" + e);
             //recorder error or recording was cancelled by user
             alert(e);
         }
@@ -39,58 +44,49 @@ export default class App extends React.Component {
         Ziggeo.setMaxRecordingDuration(10);
         Ziggeo.setThemeArgsForRecorder({"hideRecorderControls":true});
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
-        try
-        {
+        const subscription = recorderEmitter.addListener('UploadProgress', (progress) => console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try {
             //record and upload the video and return its token
             var token = await Ziggeo.record();
-            console.log("Token:"+token);
-            if (token){
+            console.log("Token:" + token);
+            if (token) {
                 Ziggeo.play(token);
             }
-        }
-        catch(e)
-        {
-            console.log("Error:"+e);
+        } catch (e) {
+            console.log("Error:" + e);
             //recorder error or recording was cancelled by user
             alert(e);
         }
     }
-    
+
     async upload() {
         var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
-        try
-        {
+        const subscription = recorderEmitter.addListener('UploadProgress', (progress) => console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try {
             //select and upload the video and return its token
-            var argsMap = {"max_duration":15,"enforce_duration":true, 'tags': 'TEST_TAG'}
+            var argsMap = {'tags': 'TEST_TAG'};
             var token = await Ziggeo.uploadFromFileSelector(argsMap);
-            console.log("Token:"+token);
-            if (token){
+            console.log("Token:" + token);
+            if (token) {
                 Ziggeo.play(token);
             }
-        }
-        catch(e)
-        {
-            console.log("Error:"+e);
+        } catch (e) {
+            console.log("Error:" + e);
             //uploading error or upload was cancelled by user
             alert(e);
         }
     }
-    
+
     async play() {
         var appToken = "ZIGGEO_APP_TOKEN";
         var videoToken = "ZIGGEO_VIDEO_TOKEN";
         Ziggeo.setAppToken(appToken);
-        try
-        {
+        try {
             Ziggeo.play(videoToken);
-        }
-        catch(e)
-        {
-            console.log("Error:"+e);
+        } catch (e) {
+            console.log("Error:" + e);
             alert(e);
         }
     }
@@ -99,14 +95,11 @@ export default class App extends React.Component {
         var appToken = "ZIGGEO_APP_TOKEN";
         var videoToken = "ZIGGEO_VIDEO_TOKEN";
         Ziggeo.setAppToken(appToken);
-        try
-        {
-            Ziggeo.setThemeArgsForPlayer({"hidePlayerControls":true});
+        try {
+            Ziggeo.setThemeArgsForPlayer({"hidePlayerControls": true});
             Ziggeo.play(videoToken);
-        }
-        catch(e)
-        {
-            console.log("Error:"+e);
+        } catch (e) {
+            console.log("Error:" + e);
             alert(e);
         }
     }
@@ -115,71 +108,101 @@ export default class App extends React.Component {
         var appToken = "ZIGGEO_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
-        try
-        {
+        const subscription = recorderEmitter.addListener('UploadProgress', (progress) => console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
+        try {
             //upload some file by its path and return its token
-            var filePath = ""
-            var argsMap = {"max_duration":15,"enforce_duration":true, 'tags': 'TEST_TAG'}
-            var token = await Ziggeo.uploadFromPath(filePath, argsMap); 
-            console.log("Token:"+token);
-            if (token){
+            var filePath = "";
+            var argsMap = {"max_duration": 15, "enforce_duration": true, 'tags': 'TEST_TAG'};
+            var token = await Ziggeo.uploadFromPath(filePath, argsMap);
+            console.log("Token:" + token);
+            if (token) {
                 Ziggeo.play(token);
             }
-        }
-        catch(e)
-        {
-            console.log("Error:"+e);
+        } catch (e) {
+            console.log("Error:" + e);
             //uploading error or upload was cancelled by user
             alert(e);
         }
     }
 
-    
-    
     render() {
         return (
-          <View style={styles.container}>
-            <Button
-            onPress={this.record}
-            title="Record"
-            accessibilityLabel="Record"
-            />
-            <Button
-            onPress={this.recordNoControls}
-            title="Record without controls"
-            accessibilityLabel="Record (10 sec, no controls)"
-            />
-            <Button
-            onPress={this.upload}
-            title="Upload from library"
-            accessibilityLabel="Upload"
-            />
-            <Button
-            onPress={this.uploadFile}
-            title="Upload file"
-            accessibilityLabel="Upload file"
-            />
-            <Button
-            onPress={this.play}
-            title="Play video"
-            accessibilityLabel="Play video"
-            />
-            <Button
-            onPress={this.playNoControls}
-            title="Play video without controls"
-            accessibilityLabel="Play video without controls"
-            />
-          </View>
-    );
-  }
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+
+                <Button
+                    onPress={this.record}
+                    title="Record"
+                    accessibilityLabel="Record"
+                />
+                <Button
+                    onPress={this.recordNoControls}
+                    title="Record without controls"
+                    accessibilityLabel="Record (10 sec, no controls)"
+                />
+                <Button
+                    onPress={this.upload}
+                    title="Upload from library"
+                    accessibilityLabel="Upload"
+                />
+                <Button
+                    onPress={this.uploadFile}
+                    title="Upload file"
+                    accessibilityLabel="Upload file"
+                />
+                <Button
+                    onPress={this.play}
+                    title="Play video"
+                    accessibilityLabel="Play video"
+                />
+                <Button
+                    onPress={this.playNoControls}
+                    title="Play video without controls"
+                    accessibilityLabel="Play video without controls"
+                />
+                <Button
+                    onPress={() => {
+                        this.props.navigation.dispatch(StackActions.reset({
+                            index: 0,
+                            actions: [
+                                NavigationActions.navigate({routeName: 'Details'})
+                            ],
+                        }))
+                    }}
+                    title="Custom UI for recorder"
+                    accessibilityLabel="Custom UI for recorder"
+                />
+            </View>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+class DetailsScreen extends React.Component {
+    cameraView;
+
+    startRecording = () => {
+        // this.cameraView.startRecording("testPath", 10)
+    };
+
+    render() {
+        return (
+            <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <CameraView ref={(viewRef) => this.cameraView = viewRef}
+                            style={{width: '100%', height: '100%'}}/>
+                <Button title={"Start recording"} onPress={this.startRecording}/>
+            </View>
+        );
+    }
+}
+
+const AppNavigator = createStackNavigator({
+    Home: {
+        screen: HomeScreen,
+    },
+    Details: {
+        screen: DetailsScreen,
+    },
+}, {
+    initialRouteName: 'Home',
 });
+
+export default createAppContainer(AppNavigator);
