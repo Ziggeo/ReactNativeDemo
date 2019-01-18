@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "16.5.0",
     "react-native": "0.57.1",
-    "react-native-ziggeo-library": "git+https://github.com/Ziggeo/ReactNativeSDK.git"
+    "react-native-ziggeo-library": "git+https://github.com/Ziggeo/ReactNativeSDK.git",
+    "react-navigation": "^3.0.9"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",
