@@ -29,6 +29,13 @@ Android project also requires to follow point 2 and point 3(the first part) ment
 	```
 	compile project(':react-native-ziggeo-library')
 	```
+	- Insert the following line inside the `android` block:
+    ``` 
+                   compileOptions {
+                       sourceCompatibility JavaVersion.VERSION_1_8
+                       targetCompatibility JavaVersion.VERSION_1_8
+                   }
+    ```
 
 4. Open up `android/app/AndroidManifest.xml` 
 	- Insert the following line inside the `manifest` block:
