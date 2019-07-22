@@ -16,6 +16,12 @@
 -(void) ziggeoRecorderDidCancel;
 @optional
 -(void) ziggeoRecorderCurrentRecordedDurationSeconds:(double)seconds;
+@optional
+-(void) luxMeter:(double)luminousity;
+@optional
+-(void) audioMeter:(double)audioLevel;
+@optional
+-(void) faceDetected:(int)faceID rect:(CGRect)rect;
 @end
 
 typedef enum : NSUInteger {
@@ -35,12 +41,16 @@ typedef enum : NSUInteger {
 @property (nonatomic) bool cameraFlipButtonVisible;
 @property (nonatomic) bool useLiveStreaming;
 @property (nonatomic) bool controlsVisible;
+@property (nonatomic) bool showFaceOutline;
+@property (nonatomic) bool showLightIndicator;
+@property (nonatomic) bool showSoundIndicator;
 @property (nonatomic) UIImagePickerControllerCameraDevice cameraDevice;
 @property (nonatomic) RecordingQuality recordingQuality;
 @property (nonatomic) id<ZiggeoRecorder2Delegate> recorderDelegate;
 @property (nonatomic) NSDictionary* extraArgsForCreateVideo;
 @property (nonatomic) double maxRecordedDurationSeconds;
 @property (nonatomic) double autostartRecordingAfterSeconds;
+@property (nonatomic) AVLayerVideoGravity videoGravity;
 
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo;
 -(id) initWithZiggeoApplication:(Ziggeo*)ziggeo videoToken:(NSString*)videoToken;
