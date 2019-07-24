@@ -1,4 +1,7 @@
-# Ziggeo ReactNativeSDK Demo
+Ziggeo ReactNativeSDK Demo
+
+## Demo
+For those that like to start off with a demo, you can simply go to [demo repo](https://github.com/Ziggeo/ReactNativeDemo) and follow the steps found in the readme file there.
 
 ### Automatic Installation
 ```
@@ -6,8 +9,8 @@ $ npm install react-native-ziggeo-library --save
 $ react-native link
 ```
 
-iOS project will require additional steps mentioned at the Manual Installation section below  
-Android project also requires to follow point 2 and point 3(the first part) mentioned at the Manual Installation section below  
+iOS project will require additional steps mentioned at the Manual Installation section below   
+Android project also requires to follow point 2 and point 3(the first part) mentioned at the Manual Installation section below
 
 ### Manual Installation
 #### Android
@@ -23,9 +26,9 @@ Android project also requires to follow point 2 and point 3(the first part) ment
 	maven { url 'https://jitpack.io' }
 	```
   	
-3. Open up `android/app/build.gradle`
-	- Update `compileSdkVersion`, `buildToolsVersion`, `targetSdkVersion` and all libs from `com.android.support` package to latest versions.
-	- Insert the following line inside the `dependencies` block:
+3. Open up `android/app/build.gradle`  
+	- Set `compileSdkVersion` and `targetSdkVersion` = `28`, `minSdkVersion` >= `16`, `buildToolsVersion` = `28.0.3`,  all libs from `com.android.support` package to `28.0.0`.  
+	- Insert the following line inside the `dependencies` block:  
 	```
 	compile project(':react-native-ziggeo-library')
 	```
@@ -40,11 +43,8 @@ Android project also requires to follow point 2 and point 3(the first part) ment
 	tools:replace="android:name"
 	```
 
-5. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  	- Change `extends ReactActivity` to `extends ReactFragmentActivity`
-  	- Add `import com.ziggeo.ZiggeoPackage;` to the imports at the top of the file
-
-6. Open up `android/app/src/main/java/[...]/MainApplication.java`
+5. Open up `android/app/src/main/java/[...]/MainApplication.java`
+  	- Add `import com.ziggeo.ZiggeoPackage;` to the imports at the top of the file below `package`
   	- Add `new ZiggeoPackage()` to the list returned by the `getPackages()` method
 
 #### iOS
@@ -67,3 +67,20 @@ $ xcodebuild clean
 ```javascript
 import Ziggeo from 'react-native-ziggeo-library';
 ```
+#### Recoder Sample
+https://github.com/Ziggeo/ReactNativeDemo/blob/233de22ce4bd12e34c6c2d5bdb2dbaad80e63012/App.js#L18
+
+#### Player Sample
+https://github.com/Ziggeo/ReactNativeDemo/blob/233de22ce4bd12e34c6c2d5bdb2dbaad80e63012/App.js#L21
+
+## Extend Functionality
+Need to brush up on React Native? See [here](https://facebook.github.io/react-native/docs/getting-started.html):
+
+Select tab `Building Projects with Native Code` to find:
+1. Setting up React Native project for `Windows` / `Mac` / `Linux`
+2. Setting up `xCode`
+3. Setting up `Android Studio`
+
+For more information on how to use natives modules via React Native, see here:
+1. [iOs](https://facebook.github.io/react-native/docs/native-modules-ios.html)
+2. [Android](https://facebook.github.io/react-native/docs/native-modules-android.html)
