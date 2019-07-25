@@ -5,12 +5,21 @@ import Ziggeo from 'react-native-ziggeo-library';
 
 export default class App extends React.Component {
     async record() {
-        var appToken = "ZIGGEO_APP_TOKEN";
+        var appToken = "ZIGGEP_APP_TOKEN";
         Ziggeo.setAppToken(appToken);
         Ziggeo.setCameraSwitchEnabled(true);
-        Ziggeo.setCoverSelectorEnabled(true);
+        Ziggeo.setCoverSelectorEnabled(false);
         Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
+        Ziggeo.setQuality(Ziggeo.HIGH_QUALITY);
         Ziggeo.setMaxRecordingDuration(600);
+        var argsMap = {
+            tags: "test",
+            expiration_days: 1,
+            video_profile: "_video_profile_lightweight",
+            auto_pad: true,
+            data: '{"source":"app"}'
+        };
+        Ziggeo.setExtraArgsForRecorder(argsMap);
         const recorderEmitter = Ziggeo.recorderEmitter();
         const subscription = recorderEmitter.addListener('UploadProgress',(progress)=>console.log(progress.fileName + " uploaded " + progress.bytesSent + " from " + progress.totalBytes + " total bytes"));
         try

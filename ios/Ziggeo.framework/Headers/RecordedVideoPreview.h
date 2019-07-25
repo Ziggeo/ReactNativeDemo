@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVKit/AVKit.h>
 
 @protocol VideoPreviewDelegate
 - (void)retake;
@@ -15,6 +16,7 @@
 
 @protocol VideoPreviewProtocol
 @property (nonatomic) NSURL* videoURL;
+@property (nonatomic) AVLayerVideoGravity videoGravity;
 @property (nonatomic) id<VideoPreviewDelegate> previewDelegate;
 @end
 
@@ -23,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (weak, nonatomic) IBOutlet UIView *videoPlaceholder;
 @property (nonatomic) NSURL* videoURL;
+@property (nonatomic) AVLayerVideoGravity videoGravity;
 @property (nonatomic) id<VideoPreviewDelegate> previewDelegate;
 @end

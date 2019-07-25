@@ -45,7 +45,11 @@
 
 -(NSURLSessionTask*) getDefaultStreamForVideoByToken:(NSString*)token callback:(void (^)(NSString* streamToken, NSURLResponse* response, NSError* error))callback;
 
+-(NSURLSessionTask*) getOriginalStreamDescriptionForVideoByToken:(NSString*)token callback:(void (^)(NSDictionary* jsonObject, NSURLResponse* response, NSError* error))callback;
+
 -(NSURLSessionTask*) createEmptyVideoWithData:(NSDictionary*)data callback:(void (^)(NSDictionary* jsonObject, NSURLResponse* response, NSError* error))callback;
+
+-(NSURLSessionTask*) createLiveVideoWithData:(NSDictionary*)data callback:(void (^)(NSDictionary* jsonObject, NSURLResponse* response, NSError* error))callback;
 
 -(NSURLSessionTask*) recorderSubmitWithVideoToken:(NSString*)videoToken streamToken:(NSString*)streamToken data:(NSDictionary*)data callback:(void (^)(NSDictionary* jsonObject, NSURLResponse* response, NSError* error))callback;
 
