@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.8",
-    "react-native-ziggeo-library": "^1.3.11"
+    "react-native-ziggeo-library": "^1.3.13"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",
