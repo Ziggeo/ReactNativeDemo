@@ -1,86 +1,38 @@
 Ziggeo ReactNativeSDK Demo
 
-## Demo
-For those that like to start off with a demo, you can simply go to [demo repo](https://github.com/Ziggeo/ReactNativeDemo) and follow the steps found in the readme file there.
+## Info
+This demo is based on the [Ziggeo React Native SDK](https://github.com/Ziggeo/ReactNativeSDK/)
 
-### Automatic Installation
-```
-$ npm install react-native-ziggeo-library --save
-$ react-native link
-```
+## How to use
+To use this SDK demo, there are few simple steps
 
-iOS project will require additional steps mentioned at the Manual Installation section below   
-Android project also requires to follow point 2 and point 3(the first part) mentioned at the Manual Installation section below
-
-### Manual Installation
-#### Android
-1. Append the following lines to `android/settings.gradle`:
+1. Go to directory where the demo will be hosted with your console
+2. Once you do, clone the demo
   	```
-  	include ':react-native-ziggeo-library'
-  	project(':react-native-ziggeo-library').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-ziggeo-library/android')
+	git clone https://github.com/Ziggeo/ReactNativeDemo
+	```
+3. Once the repo is cloned, make sure that all dependencies are installed by running
   	```
-
-2. Open up `android/build.gradle`
-	- Insert the following line inside the `allprojects/repositories` block:
+	npm install
 	```
-	maven { url 'https://jitpack.io' }
-	```
-  	
-3. Open up `android/app/build.gradle`  
-	- Set `compileSdkVersion` and `targetSdkVersion` = `28`, `minSdkVersion` >= `16`, `buildToolsVersion` = `28.0.3`,  all libs from `com.android.support` package to `28.0.0`.  
-	- Insert the following line inside the `dependencies` block:  
-	```
-	compile project(':react-native-ziggeo-library')
-	```
+4. (Optional) Make your changes to the demo app
+5. Modify App.js by replacing all entries of `ZIGGEP_APP_TOKEN` with your application token.
+6. Modify App.js by replacing all entries of `ZIGGEO_VIDEO_TOKEN` with your video token from same application.
 
-4. Open up `android/app/AndroidManifest.xml` 
-	- Insert the following line inside the `manifest` block:
-	```
-	xmlns:tools="http://schemas.android.com/tools"
-	```
-	- Insert the following line inside the `application` block:
-	```
-	tools:replace="android:name"
-	```
+That is it for global requirements.
 
-5. Open up `android/app/src/main/java/[...]/MainApplication.java`
-  	- Add `import com.ziggeo.ZiggeoPackage;` to the imports at the top of the file below `package`
-  	- Add `new ZiggeoPackage()` to the list returned by the `getPackages()` method
+## Make the Android app
 
-#### iOS
-1. `$ npm install react-native-ziggeo-library --save`
-2. `$ react-native link`
-3. download `Ziggeo.framework` from `Ziggeo-Client-SDK` repository: https://github.com/Ziggeo/iOS-Client-SDK/tree/master/Ziggeo/Output/
+Once the above steps are finished, you would just run the following command for Android
 
-There are two framework versions: release and universal. Use universal framework for development and debugging purposes and switch to Release framework to build the application for App Store
+```react-native run-android```
 
-4. open the iOS project in XCode and add the Ziggeo.framework into embedded and linked frameworks at the project settings
+## Make the iOS app
 
-Sometimes iOS project compilation may raise analyzer issues. Use these commands to clean and build the project from scratch:
-```
-$ cd ios
-$ rm -rf build
-$ xcodebuild clean
-```
+Once the above steps are finished, you would just run the following command for iOS
 
-## Usage
-```javascript
-import Ziggeo from 'react-native-ziggeo-library';
-```
-#### Recoder Sample
-https://github.com/Ziggeo/ReactNativeDemo/blob/233de22ce4bd12e34c6c2d5bdb2dbaad80e63012/App.js#L18
+```react-native run-ios```
 
-#### Player Sample
-https://github.com/Ziggeo/ReactNativeDemo/blob/233de22ce4bd12e34c6c2d5bdb2dbaad80e63012/App.js#L21
+## Have questions?
 
-## Extend Functionality
-Need to brush up on React Native? See [here](https://facebook.github.io/react-native/docs/getting-started.html):
-
-Select tab `Building Projects with Native Code` to find:
-1. Setting up React Native project for `Windows` / `Mac` / `Linux`
-2. Setting up `xCode`
-3. Setting up `Android Studio`
-
-For more information on how to use natives modules via React Native, see here:
-1. [iOs](https://facebook.github.io/react-native/docs/native-modules-ios.html)
-2. [Android](https://facebook.github.io/react-native/docs/native-modules-android.html)
+Let us know on our [forum](https://support.ziggeo.com/hc/en-us/community/topics) or over email to support@ziggeo.com
