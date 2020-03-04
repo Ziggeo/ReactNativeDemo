@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { View, StyleSheet, UIManager } from 'react-native';
-import { loadUserIntoRedux, logOutUser } from '../actions';
-import { stGetUser } from '../utils/storage';
-import RouteNames from '../RouteNames';
-import Config from '../Config';
-import Theme from '../Theme';
+import { loadUserIntoRedux, logOutUser } from '../../actions';
+import { stGetUser } from '../../utils/storage';
+import RouteNames from '../../RouteNames';
+import Config from '../../Config';
+import Theme from '../../Theme';
 
 class Splash extends React.Component {
   componentDidMount() {

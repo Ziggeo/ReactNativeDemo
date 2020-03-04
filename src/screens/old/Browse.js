@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 import { View, FlatList, StyleSheet, PanResponder } from 'react-native';
-import SearchBlock from '../components/SearchBlock';
-import MoviesHorizontalScroll from '../components/MovieComponents/MoviesHorizontalScroll';
-import MovieSearchResults from '../components/MovieComponents/MovieSearchResults';
-import withRefetch from '../components/hoc/withRefetch';
-import withDelayedLoading from '../components/hoc/withDelayedLoading';
+import SearchBlock from '../../components/SearchBlock';
+import MoviesHorizontalScroll from '../../components/MovieComponents/MoviesHorizontalScroll';
+import MovieSearchResults from '../../components/MovieComponents/MovieSearchResults';
+import withRefetch from '../../components/hoc/withRefetch';
+import withDelayedLoading from '../../components/hoc/withDelayedLoading';
 import {
   getSectionFetchFunctionFromUrlGetter as getFetchFunction,
   getSearchFetchFunctionFromQuery
-} from '../api/movies';
+} from '../../api/movies';
 import {
   getTrendingDailyMoviesUrl,
   getTrendingWeeklyMoviesUrl,
   getPopularMoviesUrl,
   getTopRatedMoviesUrl
-} from '../api/urls';
-import Theme from '../Theme';
+} from '../../api/urls';
+import Theme from '../../Theme';
 
 const BROWSE_SECTIONS = [
   { title: 'Trending Daily', fetchFunction: getFetchFunction(getTrendingDailyMoviesUrl) },

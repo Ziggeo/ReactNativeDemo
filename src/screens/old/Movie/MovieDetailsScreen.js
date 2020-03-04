@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import { View, StyleSheet, Animated } from 'react-native';
-import MovieDetails from '../../components/MovieComponents/MovieDetails';
-import OpacityHeader from '../../components/OpacityHeader';
-import withDelayedLoading from '../../components/hoc/withDelayedLoading';
-import Theme from '../../Theme';
+import MovieDetails from '../../../components/MovieComponents/MovieDetails';
+import OpacityHeader from '../../../components/OpacityHeader';
+import withDelayedLoading from '../../../components/hoc/withDelayedLoading';
+import Theme from '../../../Theme';
 
 let id = 0;
 

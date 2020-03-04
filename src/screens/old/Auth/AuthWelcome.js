@@ -3,24 +3,24 @@ import { connect } from 'react-redux';
 import { NavigationEvents } from 'react-navigation';
 import FastImage from 'react-native-fast-image';
 import { View, StyleSheet } from 'react-native';
-import AppToast from '../../components/AppToast';
-import PageSpinner from '../../components/common/PageSpinner';
-import ImageOpacityCycler from '../../components/ImageOpacityCycler';
-import { AppButton, AppText } from '../../components/common';
-import withDelayedLoading from '../../components/hoc/withDelayedLoading';
-import { clearLoginFields, createGuestSession } from '../../actions';
-import { safeOpenURL } from '../../utils/network';
-import { REGISTRATION_URL } from '../../api/urls';
-import RouteNames from '../../RouteNames';
-import Theme from '../../Theme';
+import AppToast from '../../../components/AppToast';
+import PageSpinner from '../../../components/common/PageSpinner';
+import ImageOpacityCycler from '../../../components/ImageOpacityCycler';
+import { AppButton, AppText } from '../../../components/common';
+import withDelayedLoading from '../../../components/hoc/withDelayedLoading';
+import { clearLoginFields, createGuestSession } from '../../../actions';
+import { safeOpenURL } from '../../../utils/network';
+import { REGISTRATION_URL } from '../../../api/urls';
+import RouteNames from '../../../RouteNames';
+import Theme from '../../../Theme';
 
 const WELCOME_IMAGES = [
-  require('../../assets/img/welcome_background_images/jurassic_world.jpg'),
-  require('../../assets/img/welcome_background_images/spider_man.jpg'),
-  require('../../assets/img/welcome_background_images/shutter_island.jpg'),
-  require('../../assets/img/welcome_background_images/bumblebee.jpg'),
-  require('../../assets/img/welcome_background_images/the_godfather.jpg'),
-  require('../../assets/img/welcome_background_images/the_sixth_sense.jpg')
+  require('../../../assets/img/welcome_background_images/jurassic_world.jpg'),
+  require('../../../assets/img/welcome_background_images/spider_man.jpg'),
+  require('../../../assets/img/welcome_background_images/shutter_island.jpg'),
+  require('../../../assets/img/welcome_background_images/bumblebee.jpg'),
+  require('../../../assets/img/welcome_background_images/the_godfather.jpg'),
+  require('../../../assets/img/welcome_background_images/the_sixth_sense.jpg')
 ];
 
 class AuthWelcome extends React.Component {
@@ -55,7 +55,7 @@ class AuthWelcome extends React.Component {
           <View>
             <FastImage
               style={styles.tmdbLogo}
-              source={require('../../assets/img/tmdb.png')}
+              source={require('../../../assets/img/tmdb.png')}
               resizeMode="contain"
             />
             <AppText style={styles.welcomeText} type="title1">

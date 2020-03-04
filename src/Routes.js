@@ -7,15 +7,15 @@ import {
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import Splash from './screens/Splash';
-import AuthWelcome from './screens/Auth/AuthWelcome';
-import AuthLogin from './screens/Auth/AuthLogin';
-import Browse from './screens/Browse';
-import Explore from './screens/Explore';
-import Library from './screens/Library';
-import Settings from './screens/Settings';
-import MoviesListScreen from './screens/Movie/MoviesListScreen';
-import MovieDetailsScreen from './screens/Movie/MovieDetailsScreen';
+import Splash from './screens/old/Splash';
+import AuthWelcome from './screens/old/Auth/AuthWelcome';
+import AuthLogin from './screens/old/Auth/AuthLogin';
+import Browse from './screens/old/Browse';
+import Explore from './screens/old/Explore';
+import Library from './screens/old/Library';
+import Settings from './screens/old/Settings';
+import MoviesListScreen from './screens/old/Movie/MoviesListScreen';
+import MovieDetailsScreen from './screens/old/Movie/MovieDetailsScreen';
 
 import NavbarWrapper from './components/NavbarWrapper';
 import NavbarButtonWrapper from './components/NavbarButtonWrapper';
