@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomTabBar } from 'react-navigation';
+import { BottomTabBar } from 'react-navigation-tabs';
 import { NetworkConsumer } from 'react-native-offline';
 import { View, StyleSheet, Animated } from 'react-native';
 import { AppText } from './common';
