@@ -3,8 +3,7 @@ export default {
   AuthStack: 'AuthStack',
   HomeStack: 'HomeStack',
 
-  AuthWelcome: 'AuthWelcome',
-  AuthLogin: 'AuthLogin',
+  Auth: 'Auth',
 
   Settings: 'Settings',
   MovieListScreen: 'MoviesListScreen',

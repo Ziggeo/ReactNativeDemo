@@ -18,8 +18,6 @@ import RecordingDetails from './screens/recordings/RecordingDetails';
 import Recordings from './screens/recordings/Recordings';
 
 //TODO old screens, should be removed before release
-import AuthWelcome from './screens/old/Auth/AuthWelcome';
-import AuthLogin from './screens/old/Auth/AuthLogin';
 import Browse from './screens/old/Browse';
 import Explore from './screens/old/Explore';
 import Library from './screens/old/Library';
@@ -122,8 +120,7 @@ const BottomTabs = createBottomTabNavigator(
 );
 
 const AuthStack = createDefaultStackNavigator({
-  [RouteNames.AuthWelcome]: {screen: AuthWelcome},
-  [RouteNames.AuthLogin]: {screen: AuthLogin},
+  [RouteNames.Auth]: {screen: Auth},
 });
 
 const HomeStack = createStackNavigator(
