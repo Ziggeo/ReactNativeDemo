@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
-import { IconButton } from '../common';
+import {connect} from 'react-redux';
+import {View, StyleSheet} from 'react-native';
+import {IconButton} from '../common';
 import withRefetch from '../hoc/withRefetch';
-import { getImdbLink } from '../../api/urls';
-import { safeOpenURL } from '../../utils/network';
-import { getAddToWatchlistIcon, getAddToFavoritesIcon, getOpenImdbIcon } from '../../utils/icons';
+import {getImdbLink} from '../../api/urls';
+import {safeOpenURL} from '../../utils/network';
+import {
+  getAddToWatchlistIcon,
+  getAddToFavoritesIcon,
+  getOpenImdbIcon,
+} from '../../utils/icons';
 import {
   fetchMovieAccountState,
   changeMovieFavoriteStatus,
-  changeMovieWatchlistStatus
+  changeMovieWatchlistStatus,
 } from '../../api/movies';
 import Theme from '../../Theme';
 
@@ -19,7 +23,7 @@ class MovieDetailsButtons extends React.PureComponent {
     inWatchlist: false,
     isWatchlistFetching: false,
     inFavorite: false,
-    isFavoriteFetching: false
+    isFavoriteFetching: false,
   };
 
   componentDidMount() {
@@ -28,54 +32,65 @@ class MovieDetailsButtons extends React.PureComponent {
   }
 
   onAddToWatchlist = async () => {
-    const { movie, refetch } = this.props;
-    const { inWatchlist } = this.state;
+    const {movie, refetch} = this.props;
+    const {inWatchlist} = this.state;
 
-    this.setState({ inWatchlist: !inWatchlist, isWatchlistFetching: true });
+    this.setState({inWatchlist: !inWatchlist, isWatchlistFetching: true});
     try {
-      await refetch.fetchSafe(() => changeMovieWatchlistStatus({ movie, watchlist: !inWatchlist }));
-      this.setState({ inWatchlist: !inWatchlist });
+      await refetch.fetchSafe(() =>
+        changeMovieWatchlistStatus({movie, watchlist: !inWatchlist}),
+      );
+      this.setState({inWatchlist: !inWatchlist});
     } catch (e) {
-      this.setState({ inWatchlist });
+      this.setState({inWatchlist});
     } finally {
-      this.setState({ isWatchlistFetching: false });
+      this.setState({isWatchlistFetching: false});
     }
   };
 
   onAddToFavorites = async () => {
-    const { movie, refetch } = this.props;
-    const { inFavorite } = this.state;
+    const {movie, refetch} = this.props;
+    const {inFavorite} = this.state;
 
-    this.setState({ inFavorite: !inFavorite, isFavoriteFetching: true });
+    this.setState({inFavorite: !inFavorite, isFavoriteFetching: true});
     try {
-      await refetch.fetchSafe(() => changeMovieFavoriteStatus({ movie, favorite: !inFavorite }));
-      this.setState({ inFavorite: !inFavorite });
+      await refetch.fetchSafe(() =>
+        changeMovieFavoriteStatus({movie, favorite: !inFavorite}),
+      );
+      this.setState({inFavorite: !inFavorite});
     } catch (e) {
-      this.setState({ inFavorite });
+      this.setState({inFavorite});
     } finally {
-      this.setState({ isFavoriteFetching: false });
+      this.setState({isFavoriteFetching: false});
     }
   };
 
   initialMovieFetch() {
-    const { movie, user, refetch } = this.props;
-    if (user.isGuest) return;
+    const {movie, user, refetch} = this.props;
+    if (user.isGuest) {
+      return;
+    }
 
     refetch
-      .fetchUntilSuccess(() => fetchMovieAccountState({ movie }))
-      .then(({ favorite, watchlist }) => {
-        this.setState({ inWatchlist: watchlist, inFavorite: favorite });
+      .fetchUntilSuccess(() => fetchMovieAccountState({movie}))
+      .then(({favorite, watchlist}) => {
+        this.setState({inWatchlist: watchlist, inFavorite: favorite});
       });
   }
 
   openImdb = () => {
-    const { detailedMovie } = this.props;
+    const {detailedMovie} = this.props;
     safeOpenURL(getImdbLink(detailedMovie.imdb_id));
   };
 
   render() {
-    const { detailedMovie, user } = this.props;
-    const { inWatchlist, inFavorite, isFavoriteFetching, isWatchlistFetching } = this.state;
+    const {detailedMovie, user} = this.props;
+    const {
+      inWatchlist,
+      inFavorite,
+      isFavoriteFetching,
+      isWatchlistFetching,
+    } = this.state;
     const isAuthenticated = !user.isGuest;
     const imdbDisabled = !detailedMovie;
 
@@ -86,7 +101,7 @@ class MovieDetailsButtons extends React.PureComponent {
             disabled={isWatchlistFetching}
             style={styles.iconButton}
             onPress={this.onAddToWatchlist}
-            Icon={getAddToWatchlistIcon({ inWatchlist, disabled: imdbDisabled })}
+            Icon={getAddToWatchlistIcon({inWatchlist, disabled: imdbDisabled})}
             text="Save"
           />
         )}
@@ -95,7 +110,7 @@ class MovieDetailsButtons extends React.PureComponent {
             disabled={isFavoriteFetching}
             style={styles.iconButton}
             onPress={this.onAddToFavorites}
-            Icon={getAddToFavoritesIcon({ inFavorite, disabled: imdbDisabled })}
+            Icon={getAddToFavoritesIcon({inFavorite, disabled: imdbDisabled})}
             text="Favorite"
           />
         )}
@@ -103,7 +118,7 @@ class MovieDetailsButtons extends React.PureComponent {
           disabled={imdbDisabled}
           style={styles.iconButton}
           onPress={this.openImdb}
-          Icon={getOpenImdbIcon({ disabled: imdbDisabled })}
+          Icon={getOpenImdbIcon({disabled: imdbDisabled})}
           text="Open Imdb"
         />
       </View>
@@ -116,23 +131,23 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     backgroundColor: Theme.colors.background,
-    marginVertical: Theme.spacing.tiny
+    marginVertical: Theme.spacing.tiny,
   },
   iconButton: {
     height: 78,
     width: '25%',
-    marginVertical: Theme.spacing.xTiny
-  }
+    marginVertical: Theme.spacing.xTiny,
+  },
 });
 
 MovieDetailsButtons.propTypes = {
   movie: PropTypes.object.isRequired,
-  detailedMovie: PropTypes.object
+  detailedMovie: PropTypes.object,
 };
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
+const mapStateToProps = ({auth: {user}}) => ({user});
 
 export default connect(
   mapStateToProps,
-  {}
+  {},
 )(withRefetch(MovieDetailsButtons));

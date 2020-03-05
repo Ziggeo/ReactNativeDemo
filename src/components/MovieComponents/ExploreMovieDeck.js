@@ -4,22 +4,25 @@ import withRefetch from '../hoc/withRefetch';
 import {
   fetchMovieToExplore,
   changeMovieWatchlistStatus,
-  changeMovieFavoriteStatus
+  changeMovieFavoriteStatus,
 } from '../../api/movies';
-import { getCurrentUsersAccountId, getCurrentUsersSessionId } from '../../utils/store';
+import {
+  getCurrentUsersAccountId,
+  getCurrentUsersSessionId,
+} from '../../utils/store';
 import {
   stGetExploredMovies,
   stGetCurrentMovies,
   stGetRequests,
   stSaveRequests,
   stSaveCurrentMovies,
-  stSaveExploredMovies
+  stSaveExploredMovies,
 } from '../../utils/storage';
-import { movieKeyExtractor } from '../../utils/movies';
+import {movieKeyExtractor} from '../../utils/movies';
 
 class ExploreMovieDeck extends React.PureComponent {
   state = {
-    movies: []
+    movies: [],
   };
 
   componentDidMount = async () => {
@@ -31,14 +34,14 @@ class ExploreMovieDeck extends React.PureComponent {
     [moviesToExplore, this.exploredMovies, this.requests] = await Promise.all([
       stGetCurrentMovies(),
       stGetExploredMovies(),
-      stGetRequests()
+      stGetRequests(),
     ]);
 
     moviesToExplore = moviesToExplore || [];
     this.exploredMovies = this.exploredMovies || {};
     this.requests = this.requests || [];
 
-    this.setState({ movies: moviesToExplore });
+    this.setState({movies: moviesToExplore});
     this.runtimeLaunch(this.checkMoviesFullness);
     this.checkRequests();
   };
@@ -64,8 +67,10 @@ class ExploreMovieDeck extends React.PureComponent {
 
   skipTopMovie = () => {
     this.setState(
-      prevState => ({ movies: prevState.movies.slice(1, prevState.movies.length) }),
-      () => stSaveCurrentMovies(this.state.movies)
+      prevState => ({
+        movies: prevState.movies.slice(1, prevState.movies.length),
+      }),
+      () => stSaveCurrentMovies(this.state.movies),
     );
   };
 
@@ -74,7 +79,7 @@ class ExploreMovieDeck extends React.PureComponent {
       type,
       movie,
       accountId: getCurrentUsersAccountId(),
-      sessionId: getCurrentUsersSessionId()
+      sessionId: getCurrentUsersSessionId(),
     });
 
     await stSaveRequests(this.requests);
@@ -89,10 +94,14 @@ class ExploreMovieDeck extends React.PureComponent {
     });
 
   isMovieSeen = movie => {
-    const { movies } = this.state;
+    const {movies} = this.state;
     const key = movieKeyExtractor(movie);
-    const isInCurrentMovies = !!movies.find(cMovie => movieKeyExtractor(cMovie) === key);
-    const isInRequests = !!this.requests.find(({ rqMovie }) => movieKeyExtractor(rqMovie) === key);
+    const isInCurrentMovies = !!movies.find(
+      cMovie => movieKeyExtractor(cMovie) === key,
+    );
+    const isInRequests = !!this.requests.find(
+      ({rqMovie}) => movieKeyExtractor(rqMovie) === key,
+    );
     const wasExplored = this.exploredMovies[key];
     return isInCurrentMovies || isInRequests || wasExplored;
   };
@@ -106,7 +115,7 @@ class ExploreMovieDeck extends React.PureComponent {
 
   recursiveResolve = request => {
     const {
-      refetch: { fetchUntilSuccess }
+      refetch: {fetchUntilSuccess},
     } = this.props;
 
     fetchUntilSuccess(() => this.resolveRequest(request)).then(async () => {
@@ -123,11 +132,19 @@ class ExploreMovieDeck extends React.PureComponent {
   };
 
   resolveRequest = request => {
-    const { type, movie, accountId, sessionId } = request;
+    const {type, movie, accountId, sessionId} = request;
     const rqFunction =
-      type === 'watchlist' ? changeMovieWatchlistStatus : changeMovieFavoriteStatus;
+      type === 'watchlist'
+        ? changeMovieWatchlistStatus
+        : changeMovieFavoriteStatus;
 
-    return rqFunction({ movie, watchlist: true, favorite: true, accountId, sessionId });
+    return rqFunction({
+      movie,
+      watchlist: true,
+      favorite: true,
+      accountId,
+      sessionId,
+    });
   };
 
   checkMoviesFullness = () => {
@@ -135,17 +152,21 @@ class ExploreMovieDeck extends React.PureComponent {
   };
 
   fillMoviesToExplore = async () => {
-    if (this.isFillingExploreMovies) return;
+    if (this.isFillingExploreMovies) {
+      return;
+    }
     this.isFillingExploreMovies = true;
 
     const {
-      refetch: { fetchUntilSuccess }
+      refetch: {fetchUntilSuccess},
     } = this.props;
 
-    const toAddMovies = await fetchUntilSuccess(() => fetchMovieToExplore(this.isMovieSeen));
+    const toAddMovies = await fetchUntilSuccess(() =>
+      fetchMovieToExplore(this.isMovieSeen),
+    );
     this.setState(
-      prevState => ({ movies: [...prevState.movies, ...toAddMovies] }),
-      () => stSaveCurrentMovies(this.state.movies)
+      prevState => ({movies: [...prevState.movies, ...toAddMovies]}),
+      () => stSaveCurrentMovies(this.state.movies),
     );
     this.isFillingExploreMovies = false;
   };
@@ -156,7 +177,7 @@ class ExploreMovieDeck extends React.PureComponent {
   }
 
   render() {
-    const { movies } = this.state;
+    const {movies} = this.state;
 
     return (
       <MovieDeck

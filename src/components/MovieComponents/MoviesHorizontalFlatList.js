@@ -1,18 +1,23 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import {View, FlatList} from 'react-native';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import MoviePreview from './MoviePreview';
-import { movieKeyExtractor } from '../../utils/movies';
+import {movieKeyExtractor} from '../../utils/movies';
 import Theme from '../../Theme';
 
 class MoviesHorizontalList extends React.PureComponent {
-  renderPreview = ({ item, index }) => <MoviePreview movie={item} highPriority={index < 5} />;
-  renderEmptyContainer = () => _.times(4).map((r, i) => <MoviePreview key={i} />);
-  renderHeader = () => <View style={{ width: this.props.paddingLeft - Theme.spacing.tiny }} />;
+  renderPreview = ({item, index}) => (
+    <MoviePreview movie={item} highPriority={index < 5} />
+  );
+  renderEmptyContainer = () =>
+    _.times(4).map((r, i) => <MoviePreview key={i} />);
+  renderHeader = () => (
+    <View style={{width: this.props.paddingLeft - Theme.spacing.tiny}} />
+  );
 
   render() {
-    const { movies, paddingLeft } = this.props;
+    const {movies, paddingLeft} = this.props;
     const isEmpty = movies.length === 0;
 
     return (
@@ -33,7 +38,7 @@ class MoviesHorizontalList extends React.PureComponent {
 
 MoviesHorizontalList.propTypes = {
   movies: PropTypes.array.isRequired,
-  paddingLeft: PropTypes.number
+  paddingLeft: PropTypes.number,
 };
 
 export default MoviesHorizontalList;

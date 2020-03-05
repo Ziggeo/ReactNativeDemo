@@ -1,68 +1,73 @@
 import React from 'react';
-import { Animated, TouchableWithoutFeedback } from 'react-native';
+import {Animated, TouchableWithoutFeedback} from 'react-native';
 import PropTypes from 'prop-types';
 
 class TouchableScale extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const { initialScale, scaleFactor } = props;
+    const {initialScale, scaleFactor} = props;
     this.state = {
       buttonAnimatedValue: new Animated.Value(initialScale),
-      isPressed: false
+      isPressed: false,
     };
 
     this.scaleToValue = initialScale * scaleFactor;
   }
 
   onPressIn = () => {
-    const { animationTime, onPressIn } = this.props;
-    const { buttonAnimatedValue } = this.state;
+    const {animationTime, onPressIn} = this.props;
+    const {buttonAnimatedValue} = this.state;
 
-    this.setState({ isPressed: true });
+    this.setState({isPressed: true});
     Animated.timing(buttonAnimatedValue, {
       toValue: this.scaleToValue,
-      duration: animationTime
+      duration: animationTime,
     }).start();
 
     onPressIn();
   };
 
   onPressOut = () => {
-    const { animationTime, initialScale, onPressOut } = this.props;
-    const { buttonAnimatedValue } = this.state;
+    const {animationTime, initialScale, onPressOut} = this.props;
+    const {buttonAnimatedValue} = this.state;
 
-    this.setState({ isPressed: false });
+    this.setState({isPressed: false});
 
     Animated.timing(buttonAnimatedValue, {
       toValue: initialScale,
-      duration: animationTime
+      duration: animationTime,
     }).start();
 
     onPressOut();
   };
 
   getAnimatedStyle = () => {
-    const { activeOpacity, initialScale, toScale } = this.props;
-    const { buttonAnimatedValue } = this.state;
+    const {activeOpacity, initialScale, toScale} = this.props;
+    const {buttonAnimatedValue} = this.state;
 
     const opacity = buttonAnimatedValue.interpolate({
       inputRange: [this.scaleToValue, initialScale],
-      outputRange: [activeOpacity, 1]
+      outputRange: [activeOpacity, 1],
     });
 
     return {
-      transform: toScale ? [{ scale: buttonAnimatedValue }] : [],
-      opacity
+      transform: toScale ? [{scale: buttonAnimatedValue}] : [],
+      opacity,
     };
   };
 
   render() {
-    const { children, style, ...props } = this.props;
+    const {children, style, ...props} = this.props;
 
     return (
-      <TouchableWithoutFeedback {...props} onPressIn={this.onPressIn} onPressOut={this.onPressOut}>
-        <Animated.View style={[style, this.getAnimatedStyle()]}>{children}</Animated.View>
+      <TouchableWithoutFeedback
+        {...props}
+        onPressIn={this.onPressIn}
+        onPressOut={this.onPressOut}>
+        <Animated.View style={[style, this.getAnimatedStyle()]}>
+          {children}
+        </Animated.View>
       </TouchableWithoutFeedback>
     );
   }
@@ -75,7 +80,7 @@ TouchableScale.propTypes = {
   scaleFactor: PropTypes.number,
   toScale: PropTypes.bool,
   children: PropTypes.any,
-  style: PropTypes.any
+  style: PropTypes.any,
 };
 
 TouchableScale.defaultProps = {
@@ -86,7 +91,7 @@ TouchableScale.defaultProps = {
   toScale: true,
 
   onPressIn: () => {},
-  onPressOut: () => {}
+  onPressOut: () => {},
 };
 
 export default TouchableScale;

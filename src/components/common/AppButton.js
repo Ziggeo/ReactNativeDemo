@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import AppText from './AppText';
 import TouchableScale from './TouchableScale';
 import Theme from '../../Theme';
@@ -18,21 +18,21 @@ class AppButton extends React.PureComponent {
       textStyle,
       ...props
     } = this.props;
-    
+
     const buttonStyles = [
       styles.defaultButton,
-      { backgroundColor: color, borderColor: color },
+      {backgroundColor: color, borderColor: color},
       onlyText && styles.onlyTextButton,
       outline && styles.outlineButton,
       rounded && styles.roundedButton,
       solid && styles.solidButton,
-      style
+      style,
     ];
 
     const textStyles = [
       onlyText ? styles.onlyTextText : styles.defaultText,
-      (onlyText || outline) && { color },
-      textStyle
+      (onlyText || outline) && {color},
+      textStyle,
     ];
 
     return (
@@ -50,32 +50,32 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingVertical: 12,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   solidButton: {
-    borderRadius: 0
+    borderRadius: 0,
   },
   outlineButton: {
     backgroundColor: undefined,
-    borderWidth: 1
+    borderWidth: 1,
   },
   roundedButton: {
-    borderRadius: 999
+    borderRadius: 999,
   },
   onlyTextButton: {
     borderRadius: undefined,
     backgroundColor: undefined,
     minWidth: undefined,
-    paddingVertical: undefined
+    paddingVertical: undefined,
   },
   defaultText: {
     ...Theme.typography.button,
     paddingHorizontal: Theme.spacing.small,
-    color: Theme.gray.lightest
+    color: Theme.gray.lightest,
   },
   onlyTextText: {
-    ...Theme.typography.onlyTextButton
-  }
+    ...Theme.typography.onlyTextButton,
+  },
 });
 
 AppButton.propTypes = {
@@ -86,11 +86,11 @@ AppButton.propTypes = {
   solid: PropTypes.bool,
   children: PropTypes.any,
   style: PropTypes.any,
-  textStyle: PropTypes.any
+  textStyle: PropTypes.any,
 };
 
 AppButton.defaultProps = {
-  color: Theme.colors.primary
+  color: Theme.colors.primary,
 };
 
 export default AppButton;

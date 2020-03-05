@@ -10,7 +10,7 @@ export const validateUsername = username => {
     isValid = true;
   }
 
-  return { isValid, message };
+  return {isValid, message};
 };
 
 export const validatePassword = password => {
@@ -25,5 +25,5 @@ export const validatePassword = password => {
     isValid = true;
   }
 
-  return { isValid, message };
+  return {isValid, message};
 };

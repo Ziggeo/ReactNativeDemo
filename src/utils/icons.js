@@ -8,20 +8,25 @@ import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Theme from '../Theme';
 
-const { smallIconSize, iconSize, largeIconSize, hugeIconSize } = Theme.specifications;
-const { primary: primaryColor } = Theme.colors;
+const {
+  smallIconSize,
+  iconSize,
+  largeIconSize,
+  hugeIconSize,
+} = Theme.specifications;
+const {primary: primaryColor} = Theme.colors;
 const {
   lightest: lightestColor,
   lighter: lighterColor,
   light: lightColor,
-  darkest: darkestColor
+  darkest: darkestColor,
 } = Theme.gray;
-const { tiny } = Theme.spacing;
+const {tiny} = Theme.spacing;
 
 // ------------------------------------------------------
 // MovieDetailsButtons
 // ------------------------------------------------------
-export const getAddToWatchlistIcon = ({ inWatchlist }) => (
+export const getAddToWatchlistIcon = ({inWatchlist}) => (
   <IconMaterialIcons
     name={inWatchlist ? 'playlist-add-check' : 'playlist-add'}
     color={inWatchlist ? primaryColor : lightestColor}
@@ -29,7 +34,7 @@ export const getAddToWatchlistIcon = ({ inWatchlist }) => (
   />
 );
 
-export const getAddToFavoritesIcon = ({ inFavorite }) => (
+export const getAddToFavoritesIcon = ({inFavorite}) => (
   <IconMaterialIcons
     name={inFavorite ? 'favorite' : 'favorite-border'}
     color={inFavorite ? primaryColor : lightestColor}
@@ -37,7 +42,7 @@ export const getAddToFavoritesIcon = ({ inFavorite }) => (
   />
 );
 
-export const getOpenImdbIcon = ({ disabled }) => (
+export const getOpenImdbIcon = ({disabled}) => (
   <IconMaterialCommunityIcons
     name="movie-roll"
     color={disabled ? lightColor : lightestColor}
@@ -66,8 +71,13 @@ export const getGuestInfoIcon = () => (
 // ------------------------------------------------------
 // SearchInput
 // ------------------------------------------------------
-export const getSearchInputBackIcon = ({ style }) => (
-  <IconEntypo name="chevron-thin-left" size={smallIconSize} color={darkestColor} style={style} />
+export const getSearchInputBackIcon = ({style}) => (
+  <IconEntypo
+    name="chevron-thin-left"
+    size={smallIconSize}
+    color={darkestColor}
+    style={style}
+  />
 );
 
 export const getSearchInputLabelIcon = () => (
@@ -75,7 +85,7 @@ export const getSearchInputLabelIcon = () => (
     name="search"
     color={darkestColor}
     size={smallIconSize * 1.1}
-    style={{ paddingHorizontal: tiny }}
+    style={{paddingHorizontal: tiny}}
   />
 );
 
@@ -109,16 +119,24 @@ export const getLibrarySettingsIcon = () => (
     name="cog"
     color={lightestColor}
     size={iconSize * 0.9}
-    style={{ padding: tiny }}
+    style={{padding: tiny}}
   />
 );
 
 export const getLibraryWatchlistIcon = () => (
-  <IconMaterialIcons name="watch-later" color={lightColor} size={iconSize * 0.8} />
+  <IconMaterialIcons
+    name="watch-later"
+    color={lightColor}
+    size={iconSize * 0.8}
+  />
 );
 
 export const getLibraryFavoriteIcon = () => (
-  <IconMaterialCommunityIcons name="heart-multiple" color={lightColor} size={iconSize * 0.8} />
+  <IconMaterialCommunityIcons
+    name="heart-multiple"
+    color={lightColor}
+    size={iconSize * 0.8}
+  />
 );
 
 // ------------------------------------------------------
@@ -129,21 +147,25 @@ export const getHeaderBackIcon = () => (
     name="chevron-left"
     color={lightestColor}
     size={iconSize}
-    style={{ padding: Theme.spacing.tiny }}
+    style={{padding: Theme.spacing.tiny}}
   />
 );
 
 // ------------------------------------------------------
 // Routes
 // ------------------------------------------------------
-export const getNavbarBrowseIcon = ({ tintColor }) => (
+export const getNavbarBrowseIcon = ({tintColor}) => (
   <IconEntypo name="home" color={tintColor} size={iconSize * 0.9} />
 );
 
-export const getNavbarExploreIcon = ({ tintColor }) => (
-  <IconMaterialIcons name="photo-library" color={tintColor} size={iconSize * 0.9} />
+export const getNavbarExploreIcon = ({tintColor}) => (
+  <IconMaterialIcons
+    name="photo-library"
+    color={tintColor}
+    size={iconSize * 0.9}
+  />
 );
 
-export const getNavbarLibraryIcon = ({ tintColor }) => (
+export const getNavbarLibraryIcon = ({tintColor}) => (
   <IconEntypo name="folder-video" color={tintColor} size={iconSize * 0.85} />
 );

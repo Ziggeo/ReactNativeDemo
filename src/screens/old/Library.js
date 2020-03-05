@@ -1,50 +1,49 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
-import { TouchableScale } from '../../components/common';
+import {connect} from 'react-redux';
+import {View, StyleSheet} from 'react-native';
+import {TouchableScale} from '../../components/common';
 import BlockButton from '../../components/BlockButton';
 import GuestInfo from '../../components/GuestInfo';
 import withDelayedLoading from '../../components/hoc/withDelayedLoading';
 import RouteNames from '../../RouteNames';
-import { fetchFavoriteMovies, fetchWatchlistMovies } from '../../api/movies';
+import {fetchFavoriteMovies, fetchWatchlistMovies} from '../../api/movies';
 import {
   getLibrarySettingsIcon,
   getLibraryWatchlistIcon,
-  getLibraryFavoriteIcon
+  getLibraryFavoriteIcon,
 } from '../../utils/icons';
 import Theme from '../../Theme';
 
 class Library extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({navigation}) => ({
     headerRight: () => (
       <TouchableScale
         onPress={() => {
           navigation.navigate(RouteNames.Settings);
-        }}
-      >
+        }}>
         {getLibrarySettingsIcon()}
       </TouchableScale>
-    )
+    ),
   });
 
   onWatchlistPressed = () => {
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     navigation.navigate(RouteNames.MovieListScreen, {
       title: 'Watchlist',
-      fetchFunction: fetchWatchlistMovies
+      fetchFunction: fetchWatchlistMovies,
     });
   };
 
   onFavoritesPressed = () => {
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     navigation.navigate(RouteNames.MovieListScreen, {
       title: 'Favorite Movies',
-      fetchFunction: fetchFavoriteMovies
+      fetchFunction: fetchFavoriteMovies,
     });
   };
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
 
     return (
       <View style={styles.container}>
@@ -74,16 +73,16 @@ class Library extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.background
+    backgroundColor: Theme.colors.background,
   },
   button: {
-    height: 64
-  }
+    height: 64,
+  },
 });
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
+const mapStateToProps = ({auth: {user}}) => ({user});
 
 export default connect(
   mapStateToProps,
-  {}
+  {},
 )(withDelayedLoading(Library));

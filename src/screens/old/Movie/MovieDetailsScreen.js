@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { View, StyleSheet, Animated } from 'react-native';
+import {View, StyleSheet, Animated} from 'react-native';
 import MovieDetails from '../../../components/MovieComponents/MovieDetails';
 import OpacityHeader from '../../../components/OpacityHeader';
 import withDelayedLoading from '../../../components/hoc/withDelayedLoading';
@@ -9,11 +9,14 @@ import Theme from '../../../Theme';
 let id = 0;
 
 class MovieDetailsScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    header: ({ scene }) => (
-      <OpacityHeader scene={scene} opacity={navigation.getParam('headerOpacity', 0)} />
+  static navigationOptions = ({navigation}) => ({
+    header: ({scene}) => (
+      <OpacityHeader
+        scene={scene}
+        opacity={navigation.getParam('headerOpacity', 0)}
+      />
     ),
-    title: ' '
+    title: ' ',
   });
 
   static getId = () => {
@@ -22,7 +25,7 @@ class MovieDetailsScreen extends React.Component {
   };
 
   state = {
-    yScrollOffset: new Animated.Value(0)
+    yScrollOffset: new Animated.Value(0),
   };
 
   componentDidMount() {
@@ -32,9 +35,9 @@ class MovieDetailsScreen extends React.Component {
     requestAnimationFrame(() => this.linkHeaderOpacity());
   }
 
-  onScrollLayout = ({ nativeEvent }) => {
+  onScrollLayout = ({nativeEvent}) => {
     const {
-      layout: { height }
+      layout: {height},
     } = nativeEvent;
     this.scrollViewHeight = height;
     this.linkHeaderOpacity();
@@ -46,28 +49,28 @@ class MovieDetailsScreen extends React.Component {
   };
 
   linkHeaderOpacity() {
-    const { navigation } = this.props;
-    const { yScrollOffset } = this.state;
-    const { headerHeight } = Theme.specifications;
+    const {navigation} = this.props;
+    const {yScrollOffset} = this.state;
+    const {headerHeight} = Theme.specifications;
 
     const offsetOpacity = _.clamp(
       this.scrollContentHeight - this.scrollViewHeight,
       0.01,
-      headerHeight * 2
+      headerHeight * 2,
     );
     const outOpacity = +(offsetOpacity > headerHeight * 0.4);
 
     const headerOpacity = yScrollOffset.interpolate({
       inputRange: [0, offsetOpacity],
       outputRange: [0, outOpacity],
-      extrapolate: 'clamp'
+      extrapolate: 'clamp',
     });
-    navigation.setParams({ headerOpacity });
+    navigation.setParams({headerOpacity});
   }
 
   render() {
-    const { navigation } = this.props;
-    const { yScrollOffset } = this.state;
+    const {navigation} = this.props;
+    const {yScrollOffset} = this.state;
     const movie = navigation.getParam('movie');
 
     return (
@@ -77,10 +80,12 @@ class MovieDetailsScreen extends React.Component {
           onContentSizeChange={this.onScrollContentSizeChange}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={1}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: yScrollOffset } } }], {
-            useNativeDriver: true
-          })}
-        >
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {y: yScrollOffset}}}],
+            {
+              useNativeDriver: true,
+            },
+          )}>
           <MovieDetails movie={movie} />
         </Animated.ScrollView>
       </View>
@@ -91,8 +96,8 @@ class MovieDetailsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.background
-  }
+    backgroundColor: Theme.colors.background,
+  },
 });
 
 export default withDelayedLoading(MovieDetailsScreen);

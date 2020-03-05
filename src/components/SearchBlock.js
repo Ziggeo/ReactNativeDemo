@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withNavigation } from 'react-navigation';
-import { TextInput, StyleSheet, View, BackHandler } from 'react-native';
-import { AppText, TouchableScale } from './common';
-import { getFontStyleObject } from '../utils/font';
+import {withNavigation} from 'react-navigation';
+import {TextInput, StyleSheet, View, BackHandler} from 'react-native';
+import {AppText, TouchableScale} from './common';
+import {getFontStyleObject} from '../utils/font';
 import {
   getSearchInputBackIcon,
   getSearchInputCloseIcon,
-  getSearchInputLabelIcon
+  getSearchInputLabelIcon,
 } from '../utils/icons';
 import Theme from '../Theme';
 import Config from '../Config';
 
 class SearchBlock extends React.PureComponent {
   state = {
-    focused: false
+    focused: false,
   };
 
   componentWillMount() {
@@ -23,35 +23,40 @@ class SearchBlock extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { focused } = this.state;
+    const {focused} = this.state;
     if (focused !== prevState.focused) {
-      const { onBlockBlur, onBlockFocus } = this.props;
+      const {onBlockBlur, onBlockFocus} = this.props;
       const focusFunction = focused ? onBlockFocus : onBlockBlur;
       focusFunction && focusFunction();
     }
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onHardwareBackPress);
+    BackHandler.removeEventListener(
+      'hardwareBackPress',
+      this.onHardwareBackPress,
+    );
     clearTimeout(this.timerId);
   }
 
   onFocus = () => {
-    const { onFocus } = this.props;
-    this.setState({ focused: true });
+    const {onFocus} = this.props;
+    this.setState({focused: true});
     onFocus && onFocus();
   };
 
   onBlur = () => {
-    const { onBlur } = this.props;
+    const {onBlur} = this.props;
     onBlur && onBlur();
   };
 
   onSearchTextChange = text => {
-    const { onChangeText, onDelayedInput, delayTime } = this.props;
+    const {onChangeText, onDelayedInput, delayTime} = this.props;
     onChangeText(text);
 
-    if (!onDelayedInput) return;
+    if (!onDelayedInput) {
+      return;
+    }
 
     clearTimeout(this.timerId);
     if (text.length > 0) {
@@ -62,13 +67,13 @@ class SearchBlock extends React.PureComponent {
   };
 
   onSearchLabelPress = () => {
-    this.setState({ focused: true });
+    this.setState({focused: true});
     // eslint-disable-next-line
     requestAnimationFrame(() => this.textInput.focus());
   };
 
   onBackPress = () => {
-    this.setState({ focused: false }, () => {
+    this.setState({focused: false}, () => {
       this.textInput.blur();
       clearTimeout(this.timerId);
       // eslint-disable-next-line
@@ -77,8 +82,8 @@ class SearchBlock extends React.PureComponent {
   };
 
   onHardwareBackPress = () => {
-    const { navigation } = this.props;
-    const { focused } = this.state;
+    const {navigation} = this.props;
+    const {focused} = this.state;
 
     if (navigation.isFocused() && focused) {
       this.onBackPress();
@@ -91,7 +96,7 @@ class SearchBlock extends React.PureComponent {
   };
 
   onRef = ref => {
-    const { inputRef } = this.props;
+    const {inputRef} = this.props;
     this.textInput = ref;
     inputRef && inputRef(ref);
   };
@@ -102,15 +107,19 @@ class SearchBlock extends React.PureComponent {
   };
 
   render() {
-    const { value, style, ...props } = this.props;
-    const { focused } = this.state;
+    const {value, style, ...props} = this.props;
+    const {focused} = this.state;
     const showSearchHelpLabel = !focused && value.length === 0;
 
     return (
       <View style={[styles.container, style]}>
         <View style={styles.inputContainer}>
-          <TouchableScale onPress={this.onBackPress} style={styles.touchableInputIcon}>
-            {getSearchInputBackIcon({ style: { opacity: showSearchHelpLabel ? 0 : 1 } })}
+          <TouchableScale
+            onPress={this.onBackPress}
+            style={styles.touchableInputIcon}>
+            {getSearchInputBackIcon({
+              style: {opacity: showSearchHelpLabel ? 0 : 1},
+            })}
           </TouchableScale>
           <TextInput
             selectionColor={Theme.colors.textInputSelection}
@@ -124,7 +133,9 @@ class SearchBlock extends React.PureComponent {
             onChangeText={this.onSearchTextChange}
           />
           {value.length > 0 && (
-            <TouchableScale onPress={this.onClearPress} style={styles.touchableInputIcon}>
+            <TouchableScale
+              onPress={this.onClearPress}
+              style={styles.touchableInputIcon}>
               {getSearchInputCloseIcon()}
             </TouchableScale>
           )}
@@ -134,8 +145,7 @@ class SearchBlock extends React.PureComponent {
           <TouchableScale
             onPress={this.onSearchLabelPress}
             style={styles.labelTouchable}
-            scaleFactor={0.98}
-          >
+            scaleFactor={0.98}>
             <View style={styles.labelWrapper}>
               {getSearchInputLabelIcon()}
               <AppText style={styles.labelText} type="headline">
@@ -151,40 +161,40 @@ class SearchBlock extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%'
+    width: '100%',
   },
   inputContainer: {
     flexDirection: 'row',
     borderRadius: 4,
     marginHorizontal: Theme.spacing.small,
-    backgroundColor: Theme.gray.lightest
+    backgroundColor: Theme.gray.lightest,
   },
   touchableInputIcon: {
     paddingHorizontal: Theme.spacing.tiny,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   input: {
     flex: 1,
     color: Theme.gray.darkest,
     paddingVertical: Config.isAndroid ? 0 : 12,
     ...Theme.typography.body,
-    ...getFontStyleObject()
+    ...getFontStyleObject(),
   },
   labelTouchable: {
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   labelWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   labelText: {
     color: Theme.gray.darkest,
-    ...getFontStyleObject({ weight: 'Bold' })
-  }
+    ...getFontStyleObject({weight: 'Bold'}),
+  },
 });
 
 SearchBlock.propTypes = {
@@ -194,13 +204,13 @@ SearchBlock.propTypes = {
   onBlockFocus: PropTypes.func,
   inputRef: PropTypes.func,
   delayTime: PropTypes.number,
-  onDelayedInput: PropTypes.func
+  onDelayedInput: PropTypes.func,
 };
 
 SearchBlock.defaultProps = {
   delayTime: 200,
 
-  onDelayedInput: () => {}
+  onDelayedInput: () => {},
 };
 
 export default withNavigation(SearchBlock);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AppText } from '../common';
+import {AppText} from '../common';
 import Theme from '../../Theme';
 
 class MovieGenres extends React.PureComponent {
@@ -13,13 +13,13 @@ class MovieGenres extends React.PureComponent {
   render() {
     const {
       style,
-      detailedMovie: { genres }
+      detailedMovie: {genres},
     } = this.props;
 
     return (
       genres &&
       genres.length > 0 && (
-        <AppText style={[style, { color: Theme.gray.lighter }]}>
+        <AppText style={[style, {color: Theme.gray.lighter}]}>
           {this.generateGenresText(genres)}
         </AppText>
       )
@@ -29,7 +29,7 @@ class MovieGenres extends React.PureComponent {
 
 MovieGenres.propTypes = {
   detailedMovie: PropTypes.object,
-  style: PropTypes.any
+  style: PropTypes.any,
 };
 
 export default MovieGenres;

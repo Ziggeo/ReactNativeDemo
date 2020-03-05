@@ -1,31 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FastImage from 'react-native-fast-image';
-import { StyleSheet, View, Dimensions, Animated } from 'react-native';
+import {StyleSheet, View, Dimensions, Animated} from 'react-native';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 const SHOW_TIME = 5000;
 const SCALE_VALUE = 1.2;
 const TRANSITION_DURATION = 300;
 
 class ImageSlider extends React.PureComponent {
   componentWillMount() {
-    const { images } = this.props;
+    const {images} = this.props;
     this.configureSlider(images);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { images } = nextProps;
+    const {images} = nextProps;
     if (this.props.images !== images) {
       this.configureSlider(images);
     }
   }
 
   getAnimatedSlideStyle(index) {
-    const { position, scale } = this.state;
+    const {position, scale} = this.state;
     return {
       ...position[index].getLayout(),
-      transform: [{ scale: scale[index] }]
+      transform: [{scale: scale[index]}],
     };
   }
 
@@ -36,17 +36,19 @@ class ImageSlider extends React.PureComponent {
       {
         loopedImages,
         scale: loopedImages.map(() => new Animated.Value(1)),
-        position: loopedImages.map((p, i) => new Animated.ValueXY({ x: i > 0 ? width : 0, y: 0 }))
+        position: loopedImages.map(
+          (p, i) => new Animated.ValueXY({x: i > 0 ? width : 0, y: 0}),
+        ),
       },
       () => {
         this.launchSlideAnimation(0);
-      }
+      },
     );
   }
 
   launchSlideAnimation(index) {
-    const { zooming } = this.props;
-    const { position, scale, loopedImages } = this.state;
+    const {zooming} = this.props;
+    const {position, scale, loopedImages} = this.state;
     const isLastLoopedImage = index === loopedImages.length - 1;
     const nextIndex = isLastLoopedImage ? 0 : index + 1;
 
@@ -59,14 +61,14 @@ class ImageSlider extends React.PureComponent {
     if (zooming) {
       Animated.timing(scale[index], {
         toValue: SCALE_VALUE,
-        duration: SHOW_TIME + TRANSITION_DURATION
+        duration: SHOW_TIME + TRANSITION_DURATION,
       }).start();
     }
 
     Animated.timing(position[nextIndex], {
-      toValue: { x: 0, y: 0 },
+      toValue: {x: 0, y: 0},
       delay: SHOW_TIME,
-      duration: TRANSITION_DURATION
+      duration: TRANSITION_DURATION,
     }).start(() => {
       this.resetAnimationValues(index);
       this.launchSlideAnimation(nextIndex);
@@ -74,18 +76,20 @@ class ImageSlider extends React.PureComponent {
   }
 
   resetAnimationValues(index) {
-    const { scale, position } = this.state;
+    const {scale, position} = this.state;
     const isInitialImage = index === 0;
     scale[index].setValue(1);
-    position[index].setValue({ x: isInitialImage ? 0 : width, y: 0 });
+    position[index].setValue({x: isInitialImage ? 0 : width, y: 0});
   }
 
   renderSlides() {
-    const { loopedImages } = this.state;
+    const {loopedImages} = this.state;
     return (
       loopedImages &&
       loopedImages.map((image, index) => (
-        <Animated.View key={index} style={[styles.slide, this.getAnimatedSlideStyle(index)]}>
+        <Animated.View
+          key={index}
+          style={[styles.slide, this.getAnimatedSlideStyle(index)]}>
           <FastImage source={image} style={styles.image} resizeMode="cover" />
         </Animated.View>
       ))
@@ -93,7 +97,7 @@ class ImageSlider extends React.PureComponent {
   }
 
   render() {
-    const { style } = this.props;
+    const {style} = this.props;
     return (
       <View style={style}>
         {this.renderSlides()}
@@ -105,26 +109,26 @@ class ImageSlider extends React.PureComponent {
 
 const styles = StyleSheet.create({
   slide: {
-    ...StyleSheet.absoluteFillObject
+    ...StyleSheet.absoluteFillObject,
   },
   image: {
     height: '100%',
-    width: '100%'
+    width: '100%',
   },
   dimmer: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.8)'
-  }
+    backgroundColor: 'rgba(0,0,0,0.8)',
+  },
 });
 
 ImageSlider.propTypes = {
   images: PropTypes.array.isRequired,
   zooming: PropTypes.bool,
-  style: PropTypes.any
+  style: PropTypes.any,
 };
 
 ImageSlider.defaultProps = {
-  zooming: true
+  zooming: true,
 };
 
 export default ImageSlider;

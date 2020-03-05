@@ -1,18 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { loginUsernameChanged, loginPasswordChanged, loginUser } from '../../../actions';
-import { AppButton, PageSpinner } from '../../../components/common';
+import {connect} from 'react-redux';
+import {View, StyleSheet, ScrollView} from 'react-native';
+import {
+  loginUsernameChanged,
+  loginPasswordChanged,
+  loginUser,
+} from '../../../actions';
+import {AppButton, PageSpinner} from '../../../components/common';
 import AppToast from '../../../components/AppToast';
 import LoginInput from '../../../components/LoginInput';
-import { RESET_PASSWORD_URL } from '../../../api/urls';
-import { safeOpenURL } from '../../../utils/network';
+import {RESET_PASSWORD_URL} from '../../../api/urls';
+import {safeOpenURL} from '../../../utils/network';
 import RouteNames from '../../../RouteNames';
 import Theme from '../../../Theme';
 
 class AuthLogin extends React.Component {
   static navigationOptions = () => ({
-    title: 'Log In'
+    title: 'Log In',
   });
 
   onToastRef = ref => (this.toast = ref);
@@ -21,7 +25,7 @@ class AuthLogin extends React.Component {
   onPasswordTextChange = text => this.props.loginPasswordChanged(text);
 
   onLoginPress = () => {
-    const { loginUsername, loginPassword, navigation } = this.props;
+    const {loginUsername, loginPassword, navigation} = this.props;
 
     this.props.loginUser({
       username: loginUsername,
@@ -29,7 +33,7 @@ class AuthLogin extends React.Component {
       showToast: this.showToast,
       onSuccess: () => {
         navigation.navigate(RouteNames.HomeStack);
-      }
+      },
     });
   };
 
@@ -41,7 +45,7 @@ class AuthLogin extends React.Component {
       loginUsernameError,
       loginPassword,
       loginPasswordError,
-      loginIsLoading
+      loginIsLoading,
     } = this.props;
 
     return (
@@ -72,8 +76,7 @@ class AuthLogin extends React.Component {
             onlyText
             style={styles.forgotButton}
             color={Theme.gray.lighter}
-            onPress={this.onForgotPress}
-          >
+            onPress={this.onForgotPress}>
             Forgot the password?
           </AppButton>
         </ScrollView>
@@ -88,33 +91,33 @@ class AuthLogin extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.background
+    backgroundColor: Theme.colors.background,
   },
   scrollContentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: Theme.spacing.small
+    marginHorizontal: Theme.spacing.small,
   },
   input: {
-    marginTop: Theme.spacing.tiny
+    marginTop: Theme.spacing.tiny,
   },
   loginButton: {
     alignSelf: 'stretch',
-    marginVertical: Theme.spacing.tiny
+    marginVertical: Theme.spacing.tiny,
   },
   forgotButton: {
     paddingVertical: Theme.spacing.tiny,
-    paddingHorizontal: Theme.spacing.small
-  }
+    paddingHorizontal: Theme.spacing.small,
+  },
 });
 
-const mapStateToProps = ({ auth }) => auth;
+const mapStateToProps = ({auth}) => auth;
 
 export default connect(
   mapStateToProps,
   {
     loginUsernameChanged,
     loginPasswordChanged,
-    loginUser
-  }
+    loginUser,
+  },
 )(AuthLogin);

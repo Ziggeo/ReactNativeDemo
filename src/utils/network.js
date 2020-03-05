@@ -1,4 +1,4 @@
-import { Linking, Image } from 'react-native';
+import {Linking, Image} from 'react-native';
 import Config from '../Config';
 
 export const safeOpenURL = url => {
@@ -12,4 +12,5 @@ export const safeOpenURL = url => {
 };
 
 export const prefetchImage = url => Image.prefetch(url);
-export const prefetchImages = urls => Promise.all(urls.map(url => Image.prefetch(url)));
+export const prefetchImages = urls =>
+  Promise.all(urls.map(url => Image.prefetch(url)));

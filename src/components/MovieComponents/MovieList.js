@@ -1,28 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, StyleSheet } from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import InfoAbsoluteBlock from '../InfoAbsoluteBlock';
 import MovieInlinePreview from './MovieInlinePreview';
-import { movieKeyExtractor } from '../../utils/movies';
-import { getMovieListEmptyIcon } from '../../utils/icons';
+import {movieKeyExtractor} from '../../utils/movies';
+import {getMovieListEmptyIcon} from '../../utils/icons';
 
 class MovieList extends React.PureComponent {
   renderEmptyDefault = () => {
-    const { emptyText, emptySubtext } = this.props;
+    const {emptyText, emptySubtext} = this.props;
     return (
-      <InfoAbsoluteBlock Icon={getMovieListEmptyIcon()} text={emptyText} subtext={emptySubtext} />
+      <InfoAbsoluteBlock
+        Icon={getMovieListEmptyIcon()}
+        text={emptyText}
+        subtext={emptySubtext}
+      />
     );
   };
 
   renderEmpty = () => {
-    const { renderEmptyComponent } = this.props;
-    return renderEmptyComponent ? renderEmptyComponent() : this.renderEmptyDefault();
+    const {renderEmptyComponent} = this.props;
+    return renderEmptyComponent
+      ? renderEmptyComponent()
+      : this.renderEmptyDefault();
   };
 
-  renderMovie = ({ item: movie }) => <MovieInlinePreview movie={movie} />;
+  renderMovie = ({item: movie}) => <MovieInlinePreview movie={movie} />;
 
   renderMovieList = () => {
-    const { movies, ...props } = this.props;
+    const {movies, ...props} = this.props;
 
     return (
       <FlatList
@@ -38,7 +44,7 @@ class MovieList extends React.PureComponent {
   };
 
   render() {
-    const { movies } = this.props;
+    const {movies} = this.props;
     return movies.length === 0 ? this.renderEmpty() : this.renderMovieList();
   }
 }
@@ -46,19 +52,19 @@ class MovieList extends React.PureComponent {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-    alignSelf: 'stretch'
-  }
+    alignSelf: 'stretch',
+  },
 });
 
 MovieList.propTypes = {
   movies: PropTypes.array.isRequired,
   renderEmptyComponent: PropTypes.func,
   emptyText: PropTypes.string,
-  emptySubtext: PropTypes.string
+  emptySubtext: PropTypes.string,
 };
 
 MovieList.defaultProps = {
-  emptyText: 'This list is empty'
+  emptyText: 'This list is empty',
 };
 
 export default MovieList;

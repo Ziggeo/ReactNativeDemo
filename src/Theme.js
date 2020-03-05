@@ -1,5 +1,5 @@
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { getFontStyleObject } from './utils/font';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {getFontStyleObject} from './utils/font';
 import Config from './Config';
 
 const Theme = {};
@@ -13,7 +13,7 @@ Theme.spacing = {
   small: 16,
   base: 24,
   large: 48,
-  xLarge: 64
+  xLarge: 64,
 };
 
 Theme.specifications = {
@@ -27,10 +27,9 @@ Theme.specifications = {
   hugeIconSize: 120,
   activityIndicatorSize: Config.isAndroid ? 60 : 'large',
   activitySmallIndicatorSize: Config.isAndroid ? 30 : 'small',
-  
 
   posterAspectRation: 0.6667,
-  backdropAspectRation: 1.78
+  backdropAspectRation: 1.78,
 };
 
 // ------------------------------------------------------------
@@ -42,7 +41,7 @@ Theme.gray = {
   dark: '#353535',
   light: '#828282',
   lighter: '#cfcfcf',
-  lightest: '#f8f8f8'
+  lightest: '#f8f8f8',
 };
 
 const colors = {
@@ -53,7 +52,7 @@ const colors = {
   success: '#28a745',
   danger: '#dc3545',
   warning: '#ffc107',
-  info: '#17a2b8'
+  info: '#17a2b8',
 };
 
 Theme.colors = {
@@ -61,60 +60,60 @@ Theme.colors = {
   background: Theme.gray.darker,
   header: Theme.gray.darkest,
   bottomNavbar: Theme.gray.darkest,
-  textInputSelection: `${colors.primary}aa`
+  textInputSelection: `${colors.primary}aa`,
 };
 // ------------------------------------------------------------
 // Typography
 // ------------------------------------------------------------
 Theme.typography = {
   largeTitle: {
-    fontSize: 34
+    fontSize: 34,
   },
   title1: {
-    fontSize: 28
+    fontSize: 28,
   },
   title2: {
-    fontSize: 22
+    fontSize: 22,
   },
   title3: {
-    fontSize: 18
+    fontSize: 18,
   },
   titleCaption: {
-    fontSize: 16
+    fontSize: 16,
   },
   header: {
     fontSize: 18,
     letterSpacing: 0.5,
-    ...getFontStyleObject({ weight: 'SemiBold' })
+    ...getFontStyleObject({weight: 'SemiBold'}),
   },
   button: {
     fontSize: 18,
     letterSpacing: 0.5,
-    ...getFontStyleObject({ weight: 'Bold' })
+    ...getFontStyleObject({weight: 'Bold'}),
   },
   onlyTextButton: {
-    fontSize: 16
+    fontSize: 16,
   },
   input: {
-    fontSize: 18
+    fontSize: 18,
   },
   headline: {
     fontSize: 17,
     letterSpacing: 0.5,
-    ...getFontStyleObject({ weight: 'SemiBold' })
+    ...getFontStyleObject({weight: 'SemiBold'}),
   },
   body: {
-    fontSize: 15
+    fontSize: 15,
   },
   caption1: {
-    fontSize: 14
+    fontSize: 14,
   },
   caption2: {
-    fontSize: 12
+    fontSize: 12,
   },
   caption3: {
-    fontSize: 10
-  }
+    fontSize: 10,
+  },
 };
 
 export default Theme;

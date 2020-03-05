@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Animated, Image, TouchableWithoutFeedback } from 'react-native';
-import { AppText } from '../common';
+import {
+  View,
+  StyleSheet,
+  Animated,
+  Image,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import {AppText} from '../common';
 import InnerShadow from '../InnerShadow';
 import MovieScoreYear from './MovieScoreYear';
 import Theme from '../../Theme';
@@ -13,32 +19,34 @@ class MovieCard extends React.PureComponent {
     super(props);
     this.state = {
       isFolded: true,
-      detailsVisibleAnimatedValue: new Animated.Value(0)
+      detailsVisibleAnimatedValue: new Animated.Value(0),
     };
 
     this.isAnimating = false;
   }
 
   onCardPress = () => {
-    const { isFolded, detailsVisibleAnimatedValue } = this.state;
-    if (this.isAnimating) return;
+    const {isFolded, detailsVisibleAnimatedValue} = this.state;
+    if (this.isAnimating) {
+      return;
+    }
 
     this.isAnimating = true;
 
     if (isFolded) {
-      this.setState({ isFolded: !isFolded });
+      this.setState({isFolded: !isFolded});
       Animated.timing(detailsVisibleAnimatedValue, {
         toValue: 1,
-        duration: 300
+        duration: 300,
       }).start(() => {
         this.isAnimating = false;
       });
     } else {
       Animated.timing(detailsVisibleAnimatedValue, {
         toValue: 0,
-        duration: 300
+        duration: 300,
       }).start(() => {
-        this.setState({ isFolded: !isFolded }, () => {
+        this.setState({isFolded: !isFolded}, () => {
           this.isAnimating = false;
         });
       });
@@ -46,18 +54,18 @@ class MovieCard extends React.PureComponent {
   };
 
   getDetailsAnimatedStyle() {
-    const { detailsVisibleAnimatedValue } = this.state;
+    const {detailsVisibleAnimatedValue} = this.state;
     const marginBottom = detailsVisibleAnimatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ['-100%', '0%']
+      outputRange: ['-100%', '0%'],
     });
-    return { marginBottom };
+    return {marginBottom};
   }
 
   renderPosterImage() {
     const {
-      movie: { poster_path },
-      sourceUrlGetter
+      movie: {poster_path},
+      sourceUrlGetter,
     } = this.props;
 
     return (
@@ -65,18 +73,18 @@ class MovieCard extends React.PureComponent {
       <Image
         fadeDuration={0}
         resizeMode="cover"
-        source={{ uri: sourceUrlGetter(poster_path) }}
+        source={{uri: sourceUrlGetter(poster_path)}}
         style={styles.card}
       />
     );
   }
 
   renderMovieTitle() {
-    const { movie } = this.props;
-    const { detailsVisibleAnimatedValue } = this.state;
+    const {movie} = this.props;
+    const {detailsVisibleAnimatedValue} = this.state;
 
     return (
-      <Animated.View style={{ flex: 1, opacity: detailsVisibleAnimatedValue }}>
+      <Animated.View style={{flex: 1, opacity: detailsVisibleAnimatedValue}}>
         <AppText style={styles.title} numberOfLines={1} type="title2">
           {movie.title}
         </AppText>
@@ -85,15 +93,21 @@ class MovieCard extends React.PureComponent {
   }
 
   renderDetails() {
-    const { movie } = this.props;
+    const {movie} = this.props;
 
     return (
       <View>
         <Animated.View
-          style={[styles.detailsContainer, styles.bottomCurved, this.getDetailsAnimatedStyle()]}
-        >
-          <View style={{ padding: Theme.spacing.small }}>
-            <MovieScoreYear movie={movie} style={{ marginBottom: Theme.spacing.tiny }} />
+          style={[
+            styles.detailsContainer,
+            styles.bottomCurved,
+            this.getDetailsAnimatedStyle(),
+          ]}>
+          <View style={{padding: Theme.spacing.small}}>
+            <MovieScoreYear
+              movie={movie}
+              style={{marginBottom: Theme.spacing.tiny}}
+            />
             <AppText numberOfLines={12}>{movie.overview}</AppText>
           </View>
         </Animated.View>
@@ -102,13 +116,18 @@ class MovieCard extends React.PureComponent {
   }
 
   render() {
-    const { isFolded } = this.state;
+    const {isFolded} = this.state;
 
     return (
       <TouchableWithoutFeedback onPress={this.onCardPress}>
         <View style={styles.container}>
           {this.renderPosterImage()}
-          <InnerShadow style={styles.topCurved} startOpacity={0.5} size={80} top />
+          <InnerShadow
+            style={styles.topCurved}
+            startOpacity={0.5}
+            size={80}
+            top
+          />
           <View style={styles.bottomWrapper}>
             <View style={styles.titleContainer}>
               <InnerShadow
@@ -132,43 +151,43 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   card: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: Theme.gray.dark,
-    borderRadius: BORDER_RADIUS
+    borderRadius: BORDER_RADIUS,
   },
   topCurved: {
     borderTopLeftRadius: BORDER_RADIUS,
-    borderTopRightRadius: BORDER_RADIUS
+    borderTopRightRadius: BORDER_RADIUS,
   },
   bottomCurved: {
     borderBottomLeftRadius: BORDER_RADIUS,
-    borderBottomRightRadius: BORDER_RADIUS
+    borderBottomRightRadius: BORDER_RADIUS,
   },
   bottomWrapper: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   titleContainer: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
-    paddingLeft: Theme.spacing.tiny
+    paddingLeft: Theme.spacing.tiny,
   },
   detailsContainer: {
     width: '100%',
-    backgroundColor: `rgba(0,0,0,${DETAILS_OPACITY})`
-  }
+    backgroundColor: `rgba(0,0,0,${DETAILS_OPACITY})`,
+  },
 });
 
 MovieCard.propTypes = {
   movie: PropTypes.object.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 export default MovieCard;

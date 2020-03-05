@@ -6,13 +6,20 @@ export const parseMoviesArray = movies =>
 export const filterDuplicateMovies = movies =>
   movies.filter(
     (movie, index) =>
-      index === movies.findIndex(m => movieKeyExtractor(m) === movieKeyExtractor(movie))
+      index ===
+      movies.findIndex(m => movieKeyExtractor(m) === movieKeyExtractor(movie)),
   );
 
 // Local functions
-const parseMovie = movie => ({ ...movie, year: movie.release_date.substr(0, 4) });
+const parseMovie = movie => ({...movie, year: movie.release_date.substr(0, 4)});
 
-const movieRequiredProps = ['release_date', 'title', 'poster_path', 'backdrop_path', 'overview'];
+const movieRequiredProps = [
+  'release_date',
+  'title',
+  'poster_path',
+  'backdrop_path',
+  'overview',
+];
 const isEnoughInfo = movie => {
   let isCorrect = true;
   movieRequiredProps.forEach(prop => {

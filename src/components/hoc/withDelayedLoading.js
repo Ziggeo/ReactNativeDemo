@@ -3,7 +3,7 @@ import hoistNonReactStatic from 'hoist-non-react-statics';
 
 const withDelayedLoading = WrappedComponent => {
   class HOC extends React.Component {
-    state = { toShowComponent: false };
+    state = {toShowComponent: false};
 
     componentDidMount() {
       // eslint-disable-next-line
@@ -11,7 +11,7 @@ const withDelayedLoading = WrappedComponent => {
     }
 
     render() {
-      const { toShowComponent } = this.state;
+      const {toShowComponent} = this.state;
       return toShowComponent && <WrappedComponent {...this.props} />;
     }
   }

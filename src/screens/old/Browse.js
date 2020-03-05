@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withNavigationFocus } from 'react-navigation';
-import { View, FlatList, StyleSheet, PanResponder } from 'react-native';
+import {connect} from 'react-redux';
+import {withNavigationFocus} from 'react-navigation';
+import {View, FlatList, StyleSheet, PanResponder} from 'react-native';
 import SearchBlock from '../../components/SearchBlock';
 import MoviesHorizontalScroll from '../../components/MovieComponents/MoviesHorizontalScroll';
 import MovieSearchResults from '../../components/MovieComponents/MovieSearchResults';
@@ -9,21 +9,27 @@ import withRefetch from '../../components/hoc/withRefetch';
 import withDelayedLoading from '../../components/hoc/withDelayedLoading';
 import {
   getSectionFetchFunctionFromUrlGetter as getFetchFunction,
-  getSearchFetchFunctionFromQuery
+  getSearchFetchFunctionFromQuery,
 } from '../../api/movies';
 import {
   getTrendingDailyMoviesUrl,
   getTrendingWeeklyMoviesUrl,
   getPopularMoviesUrl,
-  getTopRatedMoviesUrl
+  getTopRatedMoviesUrl,
 } from '../../api/urls';
 import Theme from '../../Theme';
 
 const BROWSE_SECTIONS = [
-  { title: 'Trending Daily', fetchFunction: getFetchFunction(getTrendingDailyMoviesUrl) },
-  { title: 'Trending Weekly', fetchFunction: getFetchFunction(getTrendingWeeklyMoviesUrl) },
-  { title: 'Popular', fetchFunction: getFetchFunction(getPopularMoviesUrl) },
-  { title: 'Top Rated', fetchFunction: getFetchFunction(getTopRatedMoviesUrl) }
+  {
+    title: 'Trending Daily',
+    fetchFunction: getFetchFunction(getTrendingDailyMoviesUrl),
+  },
+  {
+    title: 'Trending Weekly',
+    fetchFunction: getFetchFunction(getTrendingWeeklyMoviesUrl),
+  },
+  {title: 'Popular', fetchFunction: getFetchFunction(getPopularMoviesUrl)},
+  {title: 'Top Rated', fetchFunction: getFetchFunction(getTopRatedMoviesUrl)},
 ];
 
 class Browse extends React.Component {
@@ -40,7 +46,7 @@ class Browse extends React.Component {
       isSearchBlockFocused: false,
       searchResultsFetchFunction: getSearchFetchFunctionFromQuery(''),
       searchText: '',
-      sectionsMovies
+      sectionsMovies,
     };
 
     this.createKeyboardDismissResponder();
@@ -51,20 +57,20 @@ class Browse extends React.Component {
     requestAnimationFrame(() => this.initialSectionsFetch());
   }
 
-  onSearchBlockFocus = () => this.setState({ isSearchBlockFocused: true });
-  onSearchBlockBlur = () => this.setState({ isSearchBlockFocused: false });
+  onSearchBlockFocus = () => this.setState({isSearchBlockFocused: true});
+  onSearchBlockBlur = () => this.setState({isSearchBlockFocused: false});
   onSearchTextInputRef = ref => (this.searchTextInput = ref);
 
   onSearchTextChange = text => {
-    const additionalProps = text.length === 0 ? { isInitialSearch: true } : {};
-    this.setState({ searchText: text, ...additionalProps });
+    const additionalProps = text.length === 0 ? {isInitialSearch: true} : {};
+    this.setState({searchText: text, ...additionalProps});
   };
 
   onDelayedInput = async () => {
-    const { searchText } = this.state;
+    const {searchText} = this.state;
     this.setState({
       searchResultsFetchFunction: getSearchFetchFunctionFromQuery(searchText),
-      isInitialSearch: false
+      isInitialSearch: false,
     });
   };
 
@@ -76,30 +82,30 @@ class Browse extends React.Component {
 
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: onResponder,
-      onStartShouldSetPanResponderCapture: onResponder
+      onStartShouldSetPanResponderCapture: onResponder,
     });
   }
 
   initialSectionsFetch() {
     const {
-      refetch: { fetchUntilSuccess }
+      refetch: {fetchUntilSuccess},
     } = this.props;
 
     BROWSE_SECTIONS.forEach(section =>
-      fetchUntilSuccess(() => section.fetchFunction({ page: 1 })).then(data => {
-        const { sectionsMovies } = this.state;
+      fetchUntilSuccess(() => section.fetchFunction({page: 1})).then(data => {
+        const {sectionsMovies} = this.state;
         const newSections = {
           ...sectionsMovies,
-          [section.title]: data.movies
+          [section.title]: data.movies,
         };
 
-        this.setState({ sectionsMovies: newSections });
-      })
+        this.setState({sectionsMovies: newSections});
+      }),
     );
   }
 
-  renderMoviesScrollSection = ({ item: { title, fetchFunction } }) => {
-    const { sectionsMovies } = this.state;
+  renderMoviesScrollSection = ({item: {title, fetchFunction}}) => {
+    const {sectionsMovies} = this.state;
     return (
       <MoviesHorizontalScroll
         fetchFunction={fetchFunction}
@@ -110,7 +116,7 @@ class Browse extends React.Component {
   };
 
   renderBrowseSections() {
-    const { sectionsMovies } = this.state;
+    const {sectionsMovies} = this.state;
     const keyExtractor = section => section.title;
 
     return (
@@ -129,7 +135,7 @@ class Browse extends React.Component {
       searchText,
       searchResultsFetchFunction,
       isInitialSearch,
-      isSearchBlockFocused
+      isSearchBlockFocused,
     } = this.state;
 
     return (
@@ -162,19 +168,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: Theme.colors.background
+    backgroundColor: Theme.colors.background,
   },
   search: {
-    marginVertical: Theme.spacing.tiny
+    marginVertical: Theme.spacing.tiny,
   },
   bottomContainer: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
+const mapStateToProps = ({auth: {user}}) => ({user});
 
 export default connect(
   mapStateToProps,
-  {}
+  {},
 )(withNavigationFocus(withRefetch(withDelayedLoading(Browse))));

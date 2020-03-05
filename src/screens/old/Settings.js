@@ -1,15 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { logOutUser } from '../../actions/AuthActions';
-import { AppText } from '../../components/common';
+import {connect} from 'react-redux';
+import {View, ScrollView, StyleSheet} from 'react-native';
+import {logOutUser} from '../../actions/AuthActions';
+import {AppText} from '../../components/common';
 import BlockButton from '../../components/BlockButton';
 import withDelayedLoading from '../../components/hoc/withDelayedLoading';
 import Theme from '../../Theme';
 
 class Settings extends React.Component {
   onSignOutPress = () => {
-    const { navigation, logOutUser } = this.props;
+    const {navigation, logOutUser} = this.props;
     logOutUser(navigation);
   };
 
@@ -20,7 +20,7 @@ class Settings extends React.Component {
   );
 
   render() {
-    const { user } = this.props;
+    const {user} = this.props;
 
     return (
       <View style={styles.container}>
@@ -41,18 +41,18 @@ class Settings extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.background
+    backgroundColor: Theme.colors.background,
   },
   sectionTitle: {
     marginLeft: Theme.spacing.base,
     marginVertical: Theme.spacing.tiny,
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
 
-const mapStateToProps = ({ auth }) => ({ user: auth.user });
+const mapStateToProps = ({auth}) => ({user: auth.user});
 
 export default connect(
   mapStateToProps,
-  { logOutUser }
+  {logOutUser},
 )(withDelayedLoading(Settings));

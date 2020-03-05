@@ -1,22 +1,22 @@
 import React from 'react';
-import { BottomTabBar } from 'react-navigation-tabs';
-import { NetworkConsumer } from 'react-native-offline';
-import { View, StyleSheet, Animated } from 'react-native';
-import { AppText } from './common';
+import {BottomTabBar} from 'react-navigation-tabs';
+import {NetworkConsumer} from 'react-native-offline';
+import {View, StyleSheet, Animated} from 'react-native';
+import {AppText} from './common';
 import Theme from '../Theme';
 
 const INFO_BAR_HEIGHT = 22;
 
 class NavbarWrapper extends React.Component {
   state = {
-    connectionAnimatedValue: new Animated.Value(1)
+    connectionAnimatedValue: new Animated.Value(1),
   };
 
   componentDidMount() {
     this.isConnected = true;
   }
 
-  onNetworkChange = ({ isConnected }) => {
+  onNetworkChange = ({isConnected}) => {
     if (this.isConnected !== isConnected) {
       this.isConnected = isConnected;
       this.animateNoConnectionBar();
@@ -24,28 +24,29 @@ class NavbarWrapper extends React.Component {
   };
 
   getAnimatedStyle() {
-    const { connectionAnimatedValue } = this.state;
+    const {connectionAnimatedValue} = this.state;
     const top = connectionAnimatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [-INFO_BAR_HEIGHT, 1]
+      outputRange: [-INFO_BAR_HEIGHT, 1],
     });
 
-    return { top };
+    return {top};
   }
 
   animateNoConnectionBar() {
-    const { connectionAnimatedValue } = this.state;
+    const {connectionAnimatedValue} = this.state;
 
     Animated.timing(connectionAnimatedValue, {
       toValue: +this.isConnected,
-      duration: 300
+      duration: 300,
     }).start();
   }
 
   render() {
     return (
       <View>
-        <Animated.View style={[styles.noConnectionContainer, this.getAnimatedStyle()]}>
+        <Animated.View
+          style={[styles.noConnectionContainer, this.getAnimatedStyle()]}>
           <AppText style={styles.noConnectionText} type="caption2">
             No Connection
           </AppText>
@@ -64,11 +65,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: INFO_BAR_HEIGHT,
     width: '100%',
-    backgroundColor: Theme.colors.warning
+    backgroundColor: Theme.colors.warning,
   },
   noConnectionText: {
-    color: Theme.gray.darkest
-  }
+    color: Theme.gray.darkest,
+  },
 });
 
 export default NavbarWrapper;

@@ -10,5 +10,5 @@ export default {
   MovieListScreen: 'MoviesListScreen',
   MovieDetailsScreen: 'MovieDetailsScreen',
 
-  BottomTabs: 'BottomTabs'
+  BottomTabs: 'BottomTabs',
 };

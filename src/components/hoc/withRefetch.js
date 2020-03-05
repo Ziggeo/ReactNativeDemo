@@ -8,7 +8,10 @@ const withRefetch = WrappedComponent => {
       this.refetchTimerId = null;
       this.mounted = true;
 
-      this.refetchTimerId = setInterval(() => this.refetchQueuedRequests(), this.refetchDelay);
+      this.refetchTimerId = setInterval(
+        () => this.refetchQueuedRequests(),
+        this.refetchDelay,
+      );
     }
 
     componentWillUnmount() {
@@ -20,7 +23,9 @@ const withRefetch = WrappedComponent => {
       this.fetchQueue = this.fetchQueue.filter(request => !request.completed);
 
       this.fetchQueue.forEach(async request => {
-        if (request.fetching) return;
+        if (request.fetching) {
+          return;
+        }
 
         request.fetching = true;
         try {
@@ -41,7 +46,7 @@ const withRefetch = WrappedComponent => {
         const data = await fetchFunction();
         resolveFunction(data);
       } catch (error) {
-        this.fetchQueue.push({ fetchFunction, resolveFunction });
+        this.fetchQueue.push({fetchFunction, resolveFunction});
       }
 
       return fetchPromise;
@@ -66,7 +71,7 @@ const withRefetch = WrappedComponent => {
     render() {
       const refetch = {
         fetchUntilSuccess: this.fetchUntilSuccess,
-        fetchSafe: this.fetchSafe
+        fetchSafe: this.fetchSafe,
       };
 
       return <WrappedComponent {...this.props} refetch={refetch} />;
