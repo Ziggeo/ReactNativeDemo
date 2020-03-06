@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   image: {
     width: '110%',
     aspectRatio: Theme.specifications.backdropAspectRation,
-    backgroundColor: Theme.colors.transparentBlack,
+    backgroundColor: Theme.colors.transparent,
   },
   titleWrapper: {
     bottom: 0,

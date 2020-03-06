@@ -8,12 +8,42 @@ const Theme = {};
 // Sizing
 // ------------------------------------------------------------
 Theme.spacing = {
-  xTiny: 4,
-  tiny: 8,
-  small: 16,
-  base: 24,
-  large: 48,
-  xLarge: 64,
+  //Common
+  commonHalfMargin: 8,
+  commonMargin: 16,
+  dividerHeight: 1,
+  listEmptyMessageMarginTop: 200,
+  itemElevation: 4,
+  itemCornerRadius: 4,
+
+  //Auth screen
+  logoWidth: 250,
+  logoMarginTop: 50,
+  logoMarginBottom: 24,
+  btnQrWidth: 160,
+  btnQrHeight: 55,
+  authControlsMarginTop: 80,
+
+  //Drawer
+  drawerWidth: 250,
+  drawerMenuMargin: 24,
+
+  //Recordings screen
+  smallFabSize: 40,
+  recordingItemHeight: 100,
+  iconSize: 60,
+
+  //Recording details screen
+  previewHeight: 250,
+
+  //Contact us screen
+  btnStartNowTopMargin: 70,
+
+  //Top clients screen
+  clientsItemHeight: 200,
+
+  //Video Editor screen
+  btnSelectFileMarginTop: 250,
 };
 
 Theme.specifications = {
@@ -45,9 +75,23 @@ Theme.gray = {
 };
 
 const colors = {
-  primary: '#00d474',
-  primaryVariant: '#00af60',
-  transparentBlack: 'rgba(0,0,0,0.6)',
+  primary: '#DC5163',
+  primaryDark: '#AA3E4B',
+  primaryLight: '#F0596C',
+  accent: '#607D8B',
+  primaryText: '#212121',
+  secondaryText: '#757575',
+  iconsBlack: '#FFFFFF',
+  divider: '#BDBDBD',
+  white: '#ffffffff',
+  black: '#ff000000',
+  lightGray: '#f1f1f1',
+  grayFilter: '#CC4B4B4B',
+  red: '#C20202',
+  yellow: '#FCC02C',
+  green: '#46AF0B',
+
+  transparent: 'rgba(0,0,0,0)',
 
   success: '#28a745',
   danger: '#dc3545',
@@ -114,6 +158,13 @@ Theme.typography = {
   caption3: {
     fontSize: 10,
   },
+
+  // //About screen
+  // aboutSubtitleTextSize:20sp</dimen>
+  // aboutContentTextSize:18sp</dimen>
+  //
+  // //Available SDKs screen
+  // categoryTextSize:20sp</dimen>
 };
 
 export default Theme;

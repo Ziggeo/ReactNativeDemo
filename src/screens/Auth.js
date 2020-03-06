@@ -1,30 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import Reinput from 'reinput';
+import {View, StyleSheet, ScrollView, Text, Linking} from 'react-native';
+import {Button} from 'react-native-elements';
 import {
   loginUsernameChanged,
   loginPasswordChanged,
   loginUser,
 } from '../actions';
-import {AppButton, PageSpinner} from '../components/common';
-import AppToast from '../components/AppToast';
-import LoginInput from '../components/LoginInput';
-import {RESET_PASSWORD_URL} from '../api/urls';
-import {safeOpenURL} from '../utils/network';
 import RouteNames from '../RouteNames';
 import Theme from '../Theme';
+import Strings from '../Strings';
 
 class AuthLogin extends React.Component {
-  static navigationOptions = () => ({
-    title: 'Log In',
-  });
+  constructor(props) {
+    super(props);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.state = {
+      scanQrMode: true,
+    };
+  }
 
-  onToastRef = ref => (this.toast = ref);
-  onForgotPress = () => safeOpenURL(RESET_PASSWORD_URL);
-  onUsernameTextChange = text => this.props.loginUsernameChanged(text);
-  onPasswordTextChange = text => this.props.loginPasswordChanged(text);
+  toggleVisibility() {
+    this.setState({
+      scanQrMode: !this.state.scanQrMode,
+    });
+  }
 
-  onLoginPress = () => {
+  onScanQrPress = () => {
     const {loginUsername, loginPassword, navigation} = this.props;
 
     this.props.loginUser({
@@ -39,50 +43,66 @@ class AuthLogin extends React.Component {
 
   showToast = message => this.toast.show(message, 2000);
 
-  render() {
-    const {
-      loginUsername,
-      loginUsernameError,
-      loginPassword,
-      loginPasswordError,
-      loginIsLoading,
-    } = this.props;
+  static navigationOptions = {
+    header: null,
+  };
 
+  render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-          <LoginInput
-            label="Username"
-            style={styles.input}
-            subtext={loginUsernameError}
-            error={loginUsernameError.length > 0}
-            value={loginUsername}
-            onChangeText={this.onUsernameTextChange}
+          <FastImage
+            style={styles.logo}
+            source={require('../assets/img/old/tmdb.png')}
+            resizeMode="contain"
           />
-          <LoginInput
-            secureTextEntry
-            label="Password"
-            textContentType="password"
-            style={styles.input}
-            subtext={loginPasswordError}
-            error={loginPasswordError.length > 0}
-            value={loginPassword}
-            onChangeText={this.onPasswordTextChange}
+          <Text style={styles.message}>
+            {Strings.authMessagePart1}
+            <Text
+              style={{
+                color: Theme.colors.accent,
+                textDecorationLine: 'underline',
+              }}
+              onPress={() => {
+                Linking.openURL('demo.ziggeo.com');
+              }}>
+              {Strings.authMessageLink}
+            </Text>
+            <Text>{Strings.authMessagePart2}</Text>
+          </Text>
+          <Button
+            buttonStyle={{
+              backgroundColor: Theme.colors.primary,
+              marginTop: Theme.spacing.authControlsMarginTop,
+            }}
+            title={Strings.btnScanQrText}
+            onPress={this.onScanQrPress}
           />
-          <AppButton style={styles.loginButton} onPress={this.onLoginPress}>
-            LOG IN
-          </AppButton>
-          <AppButton
-            onlyText
-            style={styles.forgotButton}
-            color={Theme.gray.lighter}
-            onPress={this.onForgotPress}>
-            Forgot the password?
-          </AppButton>
+          {this.state.scanQrMode ? (
+            <Button
+              titleStyle={{color: Theme.colors.secondaryText}}
+              buttonStyle={{backgroundColor: Theme.colors.transparent}}
+              title={Strings.enterQrManuallyText}
+              onPress={this.toggleVisibility}
+            />
+          ) : null}
+          {!this.state.scanQrMode ? (
+            <Button
+              titleStyle={{color: Theme.colors.secondaryText}}
+              buttonStyle={{backgroundColor: Theme.colors.transparent}}
+              title={Strings.useScannerText}
+              onPress={this.toggleVisibility}
+            />
+          ) : null}
+          {!this.state.scanQrMode ? (
+            <Reinput
+              label={Strings.enterManuallyHint}
+              color={Theme.colors.accent}
+              activeColor={Theme.colors.accent}
+            />
+          ) : null}
         </ScrollView>
-
-        <AppToast refProp={this.onToastRef} />
-        <PageSpinner visible={loginIsLoading} />
       </View>
     );
   }
@@ -91,23 +111,23 @@ class AuthLogin extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.background,
   },
   scrollContentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: Theme.spacing.small,
+    margin: Theme.spacing.commonMargin,
   },
-  input: {
-    marginTop: Theme.spacing.tiny,
+  logo: {
+    height: 100,
+    width: Theme.spacing.logoWidth,
+    marginTop: Theme.spacing.logoMarginTop,
+    marginBottom: Theme.spacing.logoMarginBottom,
   },
-  loginButton: {
-    alignSelf: 'stretch',
-    marginVertical: Theme.spacing.tiny,
-  },
-  forgotButton: {
-    paddingVertical: Theme.spacing.tiny,
-    paddingHorizontal: Theme.spacing.small,
+  message: {
+    color: Theme.colors.secondaryText,
+    textAlign: 'center',
+    marginTop: Theme.spacing.commonMargin,
+    marginBottom: Theme.spacing.commonMargin,
   },
 });
 

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     width: PREVIEW_WIDTH,
     aspectRatio: Theme.specifications.posterAspectRation,
     borderRadius: 8,
-    backgroundColor: Theme.colors.transparentBlack,
+    backgroundColor: Theme.colors.transparent,
   },
 });
 

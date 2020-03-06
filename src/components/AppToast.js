@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     bottom: 64,
     maxWidth: '80%',
     borderRadius: 12,
-    backgroundColor: Theme.colors.transparentBlack,
+    backgroundColor: Theme.colors.transparent,
   },
   toastText: {
     ...getFontStyleObject(),
