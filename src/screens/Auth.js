@@ -54,7 +54,7 @@ class AuthLogin extends React.Component {
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
           <FastImage
             style={styles.logo}
-            source={require('../assets/img/old/tmdb.png')}
+            source={require('../assets/img/logo.png')}
             resizeMode="contain"
           />
           <Text style={styles.message}>
