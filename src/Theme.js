@@ -7,7 +7,7 @@ const Theme = {};
 // ------------------------------------------------------------
 // Sizing
 // ------------------------------------------------------------
-Theme.spacing = {
+Theme.size = {
   //Common
   commonHalfMargin: 8,
   commonMargin: 16,
@@ -21,7 +21,7 @@ Theme.spacing = {
   logoMarginTop: 50,
   logoMarginBottom: 24,
   btnQrWidth: 160,
-  btnQrHeight: 55,
+  btnQrHeight: 45,
   authControlsMarginTop: 80,
 
   //Drawer
@@ -44,15 +44,13 @@ Theme.spacing = {
 
   //Video Editor screen
   btnSelectFileMarginTop: 250,
-};
 
-Theme.specifications = {
+  //TODO OLD
   statusBarHeight: getStatusBarHeight(),
   headerHeight: 54,
   bottomNavbarHeight: 50,
 
   smallIconSize: 20,
-  iconSize: 30,
   largeIconSize: 40,
   hugeIconSize: 120,
   activityIndicatorSize: Config.isAndroid ? 60 : 'large',
@@ -80,7 +78,7 @@ const colors = {
   primaryLight: '#F0596C',
   accent: '#607D8B',
   primaryText: '#212121',
-  secondaryText: '#757575',
+  secondaryText: '#a2a2a2',
   iconsBlack: '#FFFFFF',
   divider: '#BDBDBD',
   white: '#ffffffff',

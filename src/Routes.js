@@ -90,7 +90,7 @@ const BottomTabs = createBottomTabNavigator(
       labelStyle: {...getFontStyleObject()},
       style: {
         borderTopColor: Theme.colors.bottomNavbar,
-        height: Theme.specifications.bottomNavbarHeight,
+        height: Theme.size.bottomNavbarHeight,
         backgroundColor: Theme.colors.bottomNavbar,
       },
     },

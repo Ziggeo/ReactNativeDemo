@@ -11,7 +11,7 @@ class PageSpinner extends React.Component {
       <Modal transparent onRequestClose={onRequestClose} {...this.props}>
         <View style={styles.container}>
           <ActivityIndicator
-            size={Theme.specifications.activityIndicatorSize}
+            size={Theme.size.activityIndicatorSize}
             color={Theme.gray.lightest}
           />
         </View>

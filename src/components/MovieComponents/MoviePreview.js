@@ -14,7 +14,7 @@ const PREVIEW_WIDTH = width * 0.27;
 
 class MoviePreview extends React.PureComponent {
   static getPreviewHeight = () =>
-    PREVIEW_WIDTH / Theme.specifications.posterAspectRation;
+    PREVIEW_WIDTH / Theme.size.posterAspectRation;
 
   onPress = () => {
     const {navigation, movie} = this.props;
@@ -54,11 +54,11 @@ class MoviePreview extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: Theme.spacing.tiny,
+    paddingHorizontal: Theme.size.tiny,
   },
   image: {
     width: PREVIEW_WIDTH,
-    aspectRatio: Theme.specifications.posterAspectRation,
+    aspectRatio: Theme.size.posterAspectRation,
     borderRadius: 8,
     backgroundColor: Theme.colors.transparent,
   },

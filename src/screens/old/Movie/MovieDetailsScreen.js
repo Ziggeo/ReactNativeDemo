@@ -51,7 +51,7 @@ class MovieDetailsScreen extends React.Component {
   linkHeaderOpacity() {
     const {navigation} = this.props;
     const {yScrollOffset} = this.state;
-    const {headerHeight} = Theme.specifications;
+    const {headerHeight} = Theme.size;
 
     const offsetOpacity = _.clamp(
       this.scrollContentHeight - this.scrollViewHeight,

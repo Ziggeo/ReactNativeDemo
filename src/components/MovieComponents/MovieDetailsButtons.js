@@ -131,12 +131,12 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     backgroundColor: Theme.colors.background,
-    marginVertical: Theme.spacing.tiny,
+    marginVertical: Theme.size.tiny,
   },
   iconButton: {
     height: 78,
     width: '25%',
-    marginVertical: Theme.spacing.xTiny,
+    marginVertical: Theme.size.xTiny,
   },
 });
 

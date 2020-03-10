@@ -36,15 +36,15 @@ class MovieBackdropWithTitle extends React.PureComponent {
 const styles = StyleSheet.create({
   image: {
     width: '110%',
-    aspectRatio: Theme.specifications.backdropAspectRation,
+    aspectRatio: Theme.size.backdropAspectRation,
     backgroundColor: Theme.colors.transparent,
   },
   titleWrapper: {
     bottom: 0,
     position: 'absolute',
     width: '100%',
-    paddingHorizontal: Theme.spacing.small,
-    paddingVertical: Theme.spacing.tiny,
+    paddingHorizontal: Theme.size.small,
+    paddingVertical: Theme.size.tiny,
   },
 });
 

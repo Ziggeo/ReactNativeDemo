@@ -13,7 +13,7 @@ const {
   iconSize,
   largeIconSize,
   hugeIconSize,
-} = Theme.specifications;
+} = Theme.size;
 const {primary: primaryColor} = Theme.colors;
 const {
   lightest: lightestColor,
@@ -21,7 +21,7 @@ const {
   light: lightColor,
   darkest: darkestColor,
 } = Theme.gray;
-const {tiny} = Theme.spacing;
+const {tiny} = Theme.size;
 
 // ------------------------------------------------------
 // MovieDetailsButtons
@@ -147,7 +147,7 @@ export const getHeaderBackIcon = () => (
     name="chevron-left"
     color={lightestColor}
     size={iconSize}
-    style={{padding: Theme.spacing.tiny}}
+    style={{padding: Theme.size.tiny}}
   />
 );
 

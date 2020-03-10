@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 96,
-    paddingVertical: Theme.spacing.xTiny,
+    paddingVertical: Theme.size.xTiny,
   },
   poster: {
     height: '100%',
-    aspectRatio: Theme.specifications.posterAspectRation,
-    marginHorizontal: Theme.spacing.tiny,
+    aspectRatio: Theme.size.posterAspectRation,
+    marginHorizontal: Theme.size.tiny,
     backgroundColor: Theme.gray.dark,
   },
   textWrapper: {

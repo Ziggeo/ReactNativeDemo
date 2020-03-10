@@ -1,7 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image';
-import Reinput from 'reinput';
+import {
+  TextField,
+  FilledTextField,
+  OutlinedTextField,
+} from 'react-native-material-textfield';
 import {View, StyleSheet, ScrollView, Text, Linking} from 'react-native';
 import {Button} from 'react-native-elements';
 import {
@@ -71,18 +75,35 @@ class AuthLogin extends React.Component {
             </Text>
             <Text>{Strings.authMessagePart2}</Text>
           </Text>
-          <Button
-            buttonStyle={{
-              backgroundColor: Theme.colors.primary,
-              marginTop: Theme.spacing.authControlsMarginTop,
-            }}
-            title={Strings.btnScanQrText}
-            onPress={this.onScanQrPress}
-          />
+          <View style={styles.controls}>
+            {!this.state.scanQrMode ? (
+              <OutlinedTextField
+                label={Strings.enterManuallyHint}
+                onSubmitEditing={this.onSubmit}
+                textColor={Theme.colors.accent}
+              />
+            ) : null}
+          </View>
           {this.state.scanQrMode ? (
             <Button
+              buttonStyle={styles.actionBtn}
+              title={Strings.btnScanQrText}
+              onPress={this.onScanQrPress}
+            />
+          ) : null}
+          {!this.state.scanQrMode ? (
+            <Button
+              upperCase={true}
+              buttonStyle={styles.actionBtn}
+              title={Strings.btnUseEnteredText}
+              onPress={this.onScanQrPress}
+            />
+          ) : null}
+          {this.state.scanQrMode ? (
+            <Button
+              uppercase={true}
               titleStyle={{color: Theme.colors.secondaryText}}
-              buttonStyle={{backgroundColor: Theme.colors.transparent}}
+              buttonStyle={styles.stateSwitchBtn}
               title={Strings.enterQrManuallyText}
               onPress={this.toggleVisibility}
             />
@@ -90,16 +111,9 @@ class AuthLogin extends React.Component {
           {!this.state.scanQrMode ? (
             <Button
               titleStyle={{color: Theme.colors.secondaryText}}
-              buttonStyle={{backgroundColor: Theme.colors.transparent}}
+              buttonStyle={styles.stateSwitchBtn}
               title={Strings.useScannerText}
               onPress={this.toggleVisibility}
-            />
-          ) : null}
-          {!this.state.scanQrMode ? (
-            <Reinput
-              label={Strings.enterManuallyHint}
-              color={Theme.colors.accent}
-              activeColor={Theme.colors.accent}
             />
           ) : null}
         </ScrollView>
@@ -111,23 +125,39 @@ class AuthLogin extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: Theme.size.commonMargin,
+  },
+  controls: {
+    height: Theme.size.authControlsMarginTop,
+    width: '100%',
+    justifyContent: 'flex-end',
   },
   scrollContentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    margin: Theme.spacing.commonMargin,
+    margin: Theme.size.commonMargin,
   },
   logo: {
     height: 100,
-    width: Theme.spacing.logoWidth,
-    marginTop: Theme.spacing.logoMarginTop,
-    marginBottom: Theme.spacing.logoMarginBottom,
+    width: Theme.size.logoWidth,
+    marginTop: Theme.size.logoMarginTop,
+    marginBottom: Theme.size.logoMarginBottom,
   },
   message: {
     color: Theme.colors.secondaryText,
     textAlign: 'center',
-    marginTop: Theme.spacing.commonMargin,
-    marginBottom: Theme.spacing.commonMargin,
+    marginTop: Theme.size.commonMargin,
+    marginBottom: Theme.size.commonMargin,
+  },
+  actionBtn: {
+    marginTop: Theme.size.commonMargin,
+    backgroundColor: Theme.colors.primary,
+    height: Theme.size.btnQrHeight,
+    width: Theme.size.btnQrWidth,
+  },
+  stateSwitchBtn: {
+    marginTop: Theme.size.commonHalfMargin,
+    backgroundColor: Theme.colors.transparent,
   },
 });
 

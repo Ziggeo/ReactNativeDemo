@@ -7,7 +7,7 @@ class FooterLoading extends React.PureComponent {
     return (
       <View style={styles.container}>
         <ActivityIndicator
-          size={Theme.specifications.activitySmallIndicatorSize}
+          size={Theme.size.activitySmallIndicatorSize}
           color={Theme.gray.lightest}
         />
       </View>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Theme.spacing.small,
+    paddingVertical: Theme.size.small,
   },
 });
 

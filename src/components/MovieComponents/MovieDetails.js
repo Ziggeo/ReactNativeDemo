@@ -105,20 +105,20 @@ class MovieDetails extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: Theme.spacing.small,
+    marginBottom: Theme.size.small,
   },
   recommendationsTitle: {
-    marginTop: Theme.spacing.base,
-    marginBottom: Theme.spacing.tiny,
+    marginTop: Theme.size.base,
+    marginBottom: Theme.size.tiny,
   },
   overview: {
     color: Theme.gray.lighter,
   },
   mb: {
-    marginBottom: Theme.spacing.xTiny,
+    marginBottom: Theme.size.xTiny,
   },
   mh: {
-    marginHorizontal: Theme.spacing.small,
+    marginHorizontal: Theme.size.small,
   },
   noMoviesContainer: {
     width: '100%',

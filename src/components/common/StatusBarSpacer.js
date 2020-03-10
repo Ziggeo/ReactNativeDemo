@@ -7,7 +7,7 @@ const StatusBarSpacer = () => <View style={styles.container} />;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: Theme.specifications.statusBarHeight,
+    height: Theme.size.statusBarHeight,
     backgroundColor: Theme.colors.header,
   },
 });

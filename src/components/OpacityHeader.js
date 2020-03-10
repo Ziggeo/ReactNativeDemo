@@ -19,7 +19,7 @@ class OpacityHeader extends React.PureComponent {
           <InnerShadow
             top
             style={styles.innerShadow}
-            size={Theme.specifications.headerHeight}
+            size={Theme.size.headerHeight}
           />
           <Header
             scene={scene}
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   innerShadow: {
-    marginTop: Theme.specifications.statusBarHeight,
+    marginTop: Theme.size.statusBarHeight,
   },
 });
 

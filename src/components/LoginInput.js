@@ -54,11 +54,11 @@ class LoginInput extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    marginBottom: Theme.spacing.tiny,
+    marginBottom: Theme.size.tiny,
   },
   label: {
     ...getFontStyleObject({weight: 'Bold'}),
-    marginBottom: Theme.spacing.tiny,
+    marginBottom: Theme.size.tiny,
   },
   inputContainer: {
     borderRadius: 4,
@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
     borderColor: Theme.colors.danger,
   },
   input: {
-    marginHorizontal: Theme.spacing.tiny,
+    marginHorizontal: Theme.size.tiny,
     paddingVertical: Config.isAndroid ? 0 : 10,
     color: '#ffffff',
     ...Theme.typography.input,
     ...getFontStyleObject(),
   },
   subtext: {
-    margin: Theme.spacing.xTiny,
+    margin: Theme.size.xTiny,
   },
 });
 

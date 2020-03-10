@@ -41,8 +41,8 @@ class MoviesHorizontalScroll extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Theme.spacing.tiny,
-    marginBottom: Theme.spacing.base,
+    marginTop: Theme.size.tiny,
+    marginBottom: Theme.size.base,
     width: '100%',
   },
   topWrapper: {
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    marginLeft: Theme.spacing.small,
-    marginVertical: Theme.spacing.tiny,
+    marginLeft: Theme.size.small,
+    marginVertical: Theme.size.tiny,
   },
   moreButton: {
-    padding: Theme.spacing.tiny,
+    padding: Theme.size.tiny,
   },
   moreButtonText: {
     fontSize: 15,

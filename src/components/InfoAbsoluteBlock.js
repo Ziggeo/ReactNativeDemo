@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   text: {
-    marginTop: Theme.spacing.small,
+    marginTop: Theme.size.small,
   },
   subtext: {
-    marginTop: Theme.spacing.xTiny,
+    marginTop: Theme.size.xTiny,
     color: Theme.gray.lighter,
   },
 });

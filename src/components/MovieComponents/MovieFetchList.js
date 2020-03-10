@@ -98,7 +98,7 @@ class MoviesFetchList extends React.Component {
 
   renderLoadingIndicator = () => (
     <ActivityIndicator
-      size={Theme.specifications.activityIndicatorSize}
+      size={Theme.size.activityIndicatorSize}
       color={Theme.gray.lightest}
     />
   );

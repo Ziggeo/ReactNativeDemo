@@ -14,8 +14,8 @@ export default {
   authMessageLink: 'demo.ziggeo.com',
   authMessagePart2:
     ' on your desktop or laptop and scan QR code. This will allow you to connect your desktop and mobile demo experience',
-  btnScanQrText: 'Scan QR code',
-  btnUseEnteredText: 'Use entered',
+  btnScanQrText: 'SCAN QR CODE',
+  btnUseEnteredText: 'USE ENTERED',
   enterQrManuallyText: 'or enter manually',
   enterManuallyHint: 'Application token',
   useScannerText: 'or use scanner',

@@ -166,11 +166,11 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     borderRadius: 4,
-    marginHorizontal: Theme.spacing.small,
+    marginHorizontal: Theme.size.small,
     backgroundColor: Theme.gray.lightest,
   },
   touchableInputIcon: {
-    paddingHorizontal: Theme.spacing.tiny,
+    paddingHorizontal: Theme.size.tiny,
     alignItems: 'center',
     justifyContent: 'center',
   },

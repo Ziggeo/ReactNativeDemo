@@ -49,7 +49,7 @@ class Header extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     height:
-      Theme.specifications.headerHeight + Theme.specifications.statusBarHeight,
+      Theme.size.headerHeight + Theme.size.statusBarHeight,
   },
   background: {
     ...StyleSheet.absoluteFillObject,
@@ -60,11 +60,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: Theme.specifications.statusBarHeight,
+    marginTop: Theme.size.statusBarHeight,
   },
   leftContainer: {
     flex: 1,
-    marginLeft: Theme.spacing.tiny,
+    marginLeft: Theme.size.tiny,
     overflow: 'hidden',
     flexDirection: 'row',
   },

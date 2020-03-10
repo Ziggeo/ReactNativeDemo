@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.background,
   },
   sectionTitle: {
-    marginLeft: Theme.spacing.base,
-    marginVertical: Theme.spacing.tiny,
+    marginLeft: Theme.size.base,
+    marginVertical: Theme.size.tiny,
     fontSize: 18,
   },
 });
