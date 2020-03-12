@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     width: '100%',
-    paddingHorizontal: Theme.size.small,
-    paddingVertical: Theme.size.tiny,
+    paddingHorizontal: Theme.size.commonHalfMargin,
+    paddingVertical: Theme.size.commonHalfMargin,
   },
 });
 

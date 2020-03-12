@@ -10,7 +10,8 @@ import Theme from '../../Theme';
 class Explore extends React.Component {
   static navigationOptions = ({navigation}) => {
     const user = navigation.getParam('user', {isGuest: true});
-    return user.isGuest ? {} : {header: null};
+    // return user.isGuest ? {} : {header: null};
+    return {};
   };
 
   componentDidMount() {
@@ -23,13 +24,13 @@ class Explore extends React.Component {
 
     return (
       <View style={styles.container}>
-        {user.isGuest ? (
-          <GuestInfo />
-        ) : (
-          <View style={{flex: 1}}>
-            <StatusBarSpacer />
-            <ExploreMovieDeck />
-          </View>
+        {/*{user.isGuest ? (*/}
+        <GuestInfo />
+        {/*) : (*/}
+        {/*  <View style={{flex: 1}}>*/}
+        {/*    <StatusBarSpacer />*/}
+        {/*    <ExploreMovieDeck />*/}
+        {/*  </View>*/}
         )}
       </View>
     );

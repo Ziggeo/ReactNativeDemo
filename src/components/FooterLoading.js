@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Theme.size.small,
+    paddingVertical: Theme.size.commonHalfMargin,
   },
 });
 

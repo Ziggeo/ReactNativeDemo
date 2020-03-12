@@ -103,10 +103,10 @@ class MovieCard extends React.PureComponent {
             styles.bottomCurved,
             this.getDetailsAnimatedStyle(),
           ]}>
-          <View style={{padding: Theme.size.small}}>
+          <View style={{padding: Theme.size.commonHalfMargin}}>
             <MovieScoreYear
               movie={movie}
-              style={{marginBottom: Theme.size.tiny}}
+              style={{marginBottom: Theme.size.commonHalfMargin}}
             />
             <AppText numberOfLines={12}>{movie.overview}</AppText>
           </View>
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    paddingLeft: Theme.size.tiny,
+    paddingLeft: Theme.size.commonHalfMargin,
   },
   detailsContainer: {
     width: '100%',

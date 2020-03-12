@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.background,
   },
   search: {
-    marginVertical: Theme.size.tiny,
+    marginVertical: Theme.size.commonHalfMargin,
   },
   bottomContainer: {
     flex: 1,

@@ -10,7 +10,7 @@ import {
   requestToCreateNewAuthenticatedUser,
 } from '../api/auth';
 import {getTmdbErrorMessage} from '../api/codes';
-import RouteNames from '../RouteNames';
+import Routes from '../Routes';
 import Config from '../Config';
 
 export const clearLoginFields = () => ({type: Auth.CLEAR_LOGIN_FIELDS});
@@ -30,7 +30,7 @@ export const loginPasswordChanged = text => ({
 export const logOutUser = navigation => dispatch => {
   stRemoveUser();
   stRemoveCurrentMovies();
-  navigation.navigate(RouteNames.AuthStack);
+  navigation.navigate(Routes.AuthStack);
   dispatch({type: Auth.LOG_OUT});
 };
 

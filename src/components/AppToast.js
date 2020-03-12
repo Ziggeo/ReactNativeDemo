@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     ...Theme.typography.body,
     color: Theme.gray.lightest,
     textAlign: 'center',
-    paddingHorizontal: Theme.size.tiny,
-    paddingVertical: Theme.size.xTiny,
+    paddingHorizontal: Theme.size.commonHalfMargin,
+    paddingVertical: Theme.size.commonHalfMargin,
   },
 });
 

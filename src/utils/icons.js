@@ -8,12 +8,7 @@ import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Theme from '../Theme';
 
-const {
-  smallIconSize,
-  iconSize,
-  largeIconSize,
-  hugeIconSize,
-} = Theme.size;
+const {smallIconSize, iconSize, largeIconSize, hugeIconSize} = Theme.size;
 const {primary: primaryColor} = Theme.colors;
 const {
   lightest: lightestColor,
@@ -21,7 +16,7 @@ const {
   light: lightColor,
   darkest: darkestColor,
 } = Theme.gray;
-const {tiny} = Theme.size;
+const {tiny} = Theme.size.iconSize;
 
 // ------------------------------------------------------
 // MovieDetailsButtons
@@ -147,7 +142,7 @@ export const getHeaderBackIcon = () => (
     name="chevron-left"
     color={lightestColor}
     size={iconSize}
-    style={{padding: Theme.size.tiny}}
+    style={{padding: Theme.size.commonHalfMargin}}
   />
 );
 

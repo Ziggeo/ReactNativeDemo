@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import {withNavigation} from 'react-navigation';
 import MoviesHorizontalFlatList from './MoviesHorizontalFlatList';
 import {AppText, AppButton} from '../common';
-import RouteNames from '../../RouteNames';
+import Routes from '../../Routes';
 import {getFontStyleObject} from '../../utils/font';
 import Theme from '../../Theme';
 
 class MoviesHorizontalScroll extends React.PureComponent {
   onMorePress = () => {
     const {title, fetchFunction, navigation} = this.props;
-    navigation.push(RouteNames.MovieListScreen, {title, fetchFunction});
+    navigation.push(Routes.MovieListScreen, {title, fetchFunction});
   };
 
   render() {
@@ -41,8 +41,8 @@ class MoviesHorizontalScroll extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Theme.size.tiny,
-    marginBottom: Theme.size.base,
+    marginTop: Theme.size.commonHalfMargin,
+    marginBottom: Theme.size.commonHalfMargin,
     width: '100%',
   },
   topWrapper: {
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    marginLeft: Theme.size.small,
-    marginVertical: Theme.size.tiny,
+    marginLeft: Theme.size.commonHalfMargin,
+    marginVertical: Theme.size.commonHalfMargin,
   },
   moreButton: {
-    padding: Theme.size.tiny,
+    padding: Theme.size.commonHalfMargin,
   },
   moreButtonText: {
     fontSize: 15,

@@ -1055,11 +1055,6 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.7.tgz#a65ce0702f55cb67fd777995de6fc7b3e5781903"
   integrity sha512-9KbP7LTLFz9dx1heURJbO6nuVMdSjDez8znlrUzaB1nUwKVsTTwlKRuHxGUYIIkReLWrJQeCv9tidy+84z2eCw==
 
-"@react-native-community/netinfo@^5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.5.1.tgz#6433d4d9d5fbe836f019e5a88a6a24b6e2dc50b9"
-  integrity sha512-6NKX/WzzC5FP2RSzoq+7CW/iIiRL2S6yN0JKiGvZ8EWAzJ43dbX5KG4kRa1JiKopAal5Vyh80dymbygeylwekQ==
-
 "@react-navigation/core@^3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.6.1.tgz#1b8922d9b0e6d74bd9d8802d1eaf21271c90a648"
@@ -6339,6 +6334,11 @@ react-native-material-textfield@latest:
   dependencies:
     prop-types "^15.5.9"
 
+react-native-netinfo@latest:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-netinfo/-/react-native-netinfo-1.1.0.tgz#343a4a9413006493f350bc7923688bb3315c3dce"
+  integrity sha512-muGzEvfCm9i+MF1qgPF1LsUmRxaTUWQ9i2TTbBoE/DBfsprv4Ds27iYLQvAgX5QzAMJm+iYKCq+3QN/hvPxrsQ==
+
 react-native-offline@^4.1.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/react-native-offline/-/react-native-offline-4.3.2.tgz#6f83dd61cc6e90ee15dd91cf13ccb134446acdf8"
@@ -6399,6 +6399,11 @@ react-native-vector-icons@^6.2.0:
     lodash "^4.0.0"
     prop-types "^15.6.2"
     yargs "^13.2.2"
+
+react-native-ziggeo-library@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.0.tgz#0c6dd8eb6a83ee61080aa536644d1596186f8a13"
+  integrity sha512-eeCnx32skMaMfRCXb/XHMHnEeWDT0drkt2epr8p+4yWLYr9+1qDqJhqqemuaec49oD8aC8IsFH/Dq4oavAvWkg==
 
 react-native@0.61.5:
   version "0.61.5"

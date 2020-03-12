@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     flex: 1,
-    marginLeft: Theme.size.tiny,
+    marginLeft: Theme.size.commonHalfMargin,
     overflow: 'hidden',
     flexDirection: 'row',
   },

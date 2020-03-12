@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   info: {
     alignSelf: 'center',
-    marginTop: Theme.size.small,
+    marginTop: Theme.size.commonHalfMargin,
   },
 });
 

@@ -18,7 +18,7 @@ class BlockButton extends React.PureComponent {
           <View
             style={[
               styles.textWrapper,
-              Icon && {marginLeft: Theme.size.small},
+              Icon && {marginLeft: Theme.size.commonHalfMargin},
             ]}>
             <AppText style={{color}} type="headline">
               {text}
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 72,
   },
   contentWrapper: {
-    marginLeft: Theme.size.base,
+    marginLeft: Theme.size.commonHalfMargin,
     flexDirection: 'row',
   },
   textWrapper: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   subText: {
-    marginTop: Theme.size.xTiny,
+    marginTop: Theme.size.commonHalfMargin,
     color: Theme.gray.lighter,
   },
 });

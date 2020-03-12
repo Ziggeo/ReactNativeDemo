@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {View, StyleSheet, UIManager} from 'react-native';
 import {loadUserIntoRedux, logOutUser} from '../actions';
 import {stGetUser} from '../utils/storage';
-import RouteNames from '../RouteNames';
+import Routes from '../Routes';
 import Theme from '../Theme';
 
 class Splash extends React.Component {
@@ -17,9 +17,9 @@ class Splash extends React.Component {
 
     if (user) {
       loadUserIntoRedux(user);
-      navigation.navigate(RouteNames.HomeStack);
+      navigation.navigate(Routes.HomeStack);
     } else {
-      navigation.navigate(RouteNames.AuthStack);
+      navigation.navigate(Routes.AuthStack);
     }
   };
 

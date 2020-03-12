@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   score: {
-    marginRight: Theme.size.tiny,
+    marginRight: Theme.size.commonHalfMargin,
   },
   year: {
     color: Theme.gray.lighter,

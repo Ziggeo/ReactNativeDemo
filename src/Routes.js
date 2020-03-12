@@ -35,8 +35,24 @@ import {
 } from './utils/icons';
 import {getFontStyleObject} from './utils/font';
 import {fromRightWithFade} from './utils/navigation';
-import RouteNames from './RouteNames';
+import Routes from './Routes';
 import Theme from './Theme';
+import Main from './screens/Main';
+
+export default {
+  Splash: 'Splash',
+  AuthStack: 'AuthStack',
+  HomeStack: 'HomeStack',
+
+  Auth: 'Auth',
+  Main: 'Main',
+
+  Settings: 'Settings',
+  MovieListScreen: 'MoviesListScreen',
+  MovieDetailsScreen: 'MovieDetailsScreen',
+
+  BottomTabs: 'BottomTabs',
+};
 
 const TabNames = {
   browse: 'Browse',
@@ -65,8 +81,8 @@ const BottomTabs = createBottomTabNavigator(
     [TabNames.browse]: {
       screen: createDefaultStackNavigator({
         Browse,
-        [RouteNames.MovieListScreen]: MoviesListScreen,
-        [RouteNames.MovieDetailsScreen]: MovieDetailsScreen,
+        [Routes.MovieListScreen]: MoviesListScreen,
+        [Routes.MovieDetailsScreen]: MovieDetailsScreen,
       }),
     },
     [TabNames.explore]: {
@@ -75,9 +91,9 @@ const BottomTabs = createBottomTabNavigator(
     [TabNames.library]: {
       screen: createDefaultStackNavigator({
         Library,
-        [RouteNames.Settings]: Settings,
-        [RouteNames.MovieListScreen]: MoviesListScreen,
-        [RouteNames.MovieDetailsScreen]: MovieDetailsScreen,
+        [Routes.Settings]: Settings,
+        [Routes.MovieListScreen]: MoviesListScreen,
+        [Routes.MovieDetailsScreen]: MovieDetailsScreen,
       }),
     },
   },
@@ -120,18 +136,17 @@ const BottomTabs = createBottomTabNavigator(
 );
 
 const AuthStack = createDefaultStackNavigator({
-  [RouteNames.Auth]: {screen: Auth},
+  [Routes.Auth]: {screen: Auth},
 });
 
-const HomeStack = createStackNavigator(
-  {[RouteNames.BottomTabs]: {screen: BottomTabs}},
-  {defaultNavigationOptions: () => ({header: null})},
-);
+const HomeStack = createStackNavigator({
+  [Routes.Main]: {screen: Main},
+});
 
 export const RootStack = createAppContainer(
   createSwitchNavigator({
-    [RouteNames.Splash]: {screen: Splash},
-    [RouteNames.AuthStack]: {screen: AuthStack},
-    [RouteNames.HomeStack]: {screen: HomeStack},
+    [Routes.Splash]: {screen: Splash},
+    [Routes.AuthStack]: {screen: AuthStack},
+    [Routes.HomeStack]: {screen: HomeStack},
   }),
 );

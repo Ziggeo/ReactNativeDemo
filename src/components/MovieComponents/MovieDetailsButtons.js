@@ -67,15 +67,15 @@ class MovieDetailsButtons extends React.PureComponent {
 
   initialMovieFetch() {
     const {movie, user, refetch} = this.props;
-    if (user.isGuest) {
-      return;
-    }
-
-    refetch
-      .fetchUntilSuccess(() => fetchMovieAccountState({movie}))
-      .then(({favorite, watchlist}) => {
-        this.setState({inWatchlist: watchlist, inFavorite: favorite});
-      });
+    // if (user.isGuest) {
+    //   return;
+    // }
+    //
+    // refetch
+    //   .fetchUntilSuccess(() => fetchMovieAccountState({movie}))
+    //   .then(({favorite, watchlist}) => {
+    //     this.setState({inWatchlist: watchlist, inFavorite: favorite});
+    //   });
   }
 
   openImdb = () => {
@@ -91,7 +91,7 @@ class MovieDetailsButtons extends React.PureComponent {
       isFavoriteFetching,
       isWatchlistFetching,
     } = this.state;
-    const isAuthenticated = !user.isGuest;
+    const isAuthenticated = false;
     const imdbDisabled = !detailedMovie;
 
     return (
@@ -131,12 +131,12 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     backgroundColor: Theme.colors.background,
-    marginVertical: Theme.size.tiny,
+    marginVertical: Theme.size.commonHalfMargin,
   },
   iconButton: {
     height: 78,
     width: '25%',
-    marginVertical: Theme.size.xTiny,
+    marginVertical: Theme.size.commonHalfMargin,
   },
 });
 

@@ -1,11 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import FastImage from 'react-native-fast-image';
-import {
-  TextField,
-  FilledTextField,
-  OutlinedTextField,
-} from 'react-native-material-textfield';
+import {OutlinedTextField} from 'react-native-material-textfield';
 import {View, StyleSheet, ScrollView, Text, Linking} from 'react-native';
 import {Button} from 'react-native-elements';
 import {
@@ -13,11 +9,12 @@ import {
   loginPasswordChanged,
   loginUser,
 } from '../actions';
-import RouteNames from '../RouteNames';
+import Routes from '../Routes';
 import Theme from '../Theme';
 import Strings from '../Strings';
+import Ziggeo from 'react-native-ziggeo-library';
 
-class AuthLogin extends React.Component {
+class Auth extends React.Component {
   constructor(props) {
     super(props);
     this.toggleVisibility = this.toggleVisibility.bind(this);
@@ -32,16 +29,21 @@ class AuthLogin extends React.Component {
     });
   }
 
-  onScanQrPress = () => {
-    const {loginUsername, loginPassword, navigation} = this.props;
+  onUseEnteredPressed = () => {
+    let qr = this.state.qr;
+    console.log(qr);
+    Ziggeo.setAppToken(qr);
+    const {navigation} = this.props;
+    navigation.navigate(Routes.HomeStack);
+  };
 
-    this.props.loginUser({
-      username: loginUsername,
-      password: loginPassword,
-      showToast: this.showToast,
-      onSuccess: () => {
-        navigation.navigate(RouteNames.HomeStack);
-      },
+  onScanQrPress = () => {
+    Ziggeo.startQrScanner();
+    const recorderEmitter = Ziggeo.recorderEmitter();
+    const subscription = recorderEmitter.addListener('QrDecoded', data => {
+      Ziggeo.setAppToken(data.qr);
+      const {navigation} = this.props;
+      navigation.navigate(Routes.HomeStack);
     });
   };
 
@@ -81,6 +83,8 @@ class AuthLogin extends React.Component {
                 label={Strings.enterManuallyHint}
                 onSubmitEditing={this.onSubmit}
                 textColor={Theme.colors.accent}
+                onChangeText={value => this.setState({qr: value})}
+                value={this.state.qr}
               />
             ) : null}
           </View>
@@ -93,15 +97,13 @@ class AuthLogin extends React.Component {
           ) : null}
           {!this.state.scanQrMode ? (
             <Button
-              upperCase={true}
               buttonStyle={styles.actionBtn}
               title={Strings.btnUseEnteredText}
-              onPress={this.onScanQrPress}
+              onPress={this.onUseEnteredPressed}
             />
           ) : null}
           {this.state.scanQrMode ? (
             <Button
-              uppercase={true}
               titleStyle={{color: Theme.colors.secondaryText}}
               buttonStyle={styles.stateSwitchBtn}
               title={Strings.enterQrManuallyText}
@@ -170,4 +172,4 @@ export default connect(
     loginPasswordChanged,
     loginUser,
   },
-)(AuthLogin);
+)(Auth);

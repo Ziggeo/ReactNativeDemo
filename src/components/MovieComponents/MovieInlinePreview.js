@@ -6,7 +6,7 @@ import {View, StyleSheet} from 'react-native';
 import MovieScoreYear from './MovieScoreYear';
 import {AppText, TouchableHighlightView} from '../common';
 import {getW185ImageUrl} from '../../api/urls';
-import RouteNames from '../../RouteNames';
+import Routes from '../../Routes';
 import Theme from '../../Theme';
 
 class MovieInlinePreview extends React.Component {
@@ -16,7 +16,7 @@ class MovieInlinePreview extends React.Component {
 
   onPress = () => {
     const {navigation, movie} = this.props;
-    navigation.push(RouteNames.MovieDetailsScreen, {movie});
+    navigation.push(Routes.MovieDetailsScreen, {movie});
   };
 
   render() {
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 96,
-    paddingVertical: Theme.size.xTiny,
+    paddingVertical: Theme.size.commonHalfMargin,
   },
   poster: {
     height: '100%',
     aspectRatio: Theme.size.posterAspectRation,
-    marginHorizontal: Theme.size.tiny,
+    marginHorizontal: Theme.size.commonHalfMargin,
     backgroundColor: Theme.gray.dark,
   },
   textWrapper: {

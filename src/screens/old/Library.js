@@ -5,7 +5,7 @@ import {TouchableScale} from '../../components/common';
 import BlockButton from '../../components/BlockButton';
 import GuestInfo from '../../components/GuestInfo';
 import withDelayedLoading from '../../components/hoc/withDelayedLoading';
-import RouteNames from '../../RouteNames';
+import Routes from '../../Routes';
 import {fetchFavoriteMovies, fetchWatchlistMovies} from '../../api/movies';
 import {
   getLibrarySettingsIcon,
@@ -19,7 +19,7 @@ class Library extends React.Component {
     headerRight: () => (
       <TouchableScale
         onPress={() => {
-          navigation.navigate(RouteNames.Settings);
+          navigation.navigate(Routes.Settings);
         }}>
         {getLibrarySettingsIcon()}
       </TouchableScale>
@@ -28,7 +28,7 @@ class Library extends React.Component {
 
   onWatchlistPressed = () => {
     const {navigation} = this.props;
-    navigation.navigate(RouteNames.MovieListScreen, {
+    navigation.navigate(Routes.MovieListScreen, {
       title: 'Watchlist',
       fetchFunction: fetchWatchlistMovies,
     });
@@ -36,7 +36,7 @@ class Library extends React.Component {
 
   onFavoritesPressed = () => {
     const {navigation} = this.props;
-    navigation.navigate(RouteNames.MovieListScreen, {
+    navigation.navigate(Routes.MovieListScreen, {
       title: 'Favorite Movies',
       fetchFunction: fetchFavoriteMovies,
     });
@@ -47,23 +47,23 @@ class Library extends React.Component {
 
     return (
       <View style={styles.container}>
-        {user.isGuest ? (
-          <GuestInfo />
-        ) : (
-          <View>
-            <BlockButton
-              style={styles.button}
-              Icon={getLibraryWatchlistIcon()}
-              text="My Watchlist"
-              onPress={this.onWatchlistPressed}
-            />
-            <BlockButton
-              style={styles.button}
-              Icon={getLibraryFavoriteIcon()}
-              text="My Favorite Movies"
-              onPress={this.onFavoritesPressed}
-            />
-          </View>
+        {/*{user.isGuest ? (*/}
+        <GuestInfo />
+        {/*) : (*/}
+        {/*  <View>*/}
+        {/*    <BlockButton*/}
+        {/*      style={styles.button}*/}
+        {/*      Icon={getLibraryWatchlistIcon()}*/}
+        {/*      text="My Watchlist"*/}
+        {/*      onPress={this.onWatchlistPressed}*/}
+        {/*    />*/}
+        {/*    <BlockButton*/}
+        {/*      style={styles.button}*/}
+        {/*      Icon={getLibraryFavoriteIcon()}*/}
+        {/*      text="My Favorite Movies"*/}
+        {/*      onPress={this.onFavoritesPressed}*/}
+        {/*    />*/}
+        {/*  </View>*/}
         )}
       </View>
     );

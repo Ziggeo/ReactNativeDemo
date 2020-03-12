@@ -5,7 +5,7 @@ import FastImage from 'react-native-fast-image';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import {TouchableScale} from '../common';
 // import MovieDetailsScreen from '../../screens/Movie/MovieDetailsScreen';
-import RouteNames from '../../RouteNames';
+import Routes from '../../Routes';
 import {getW185ImageUrl} from '../../api/urls';
 import Theme from '../../Theme';
 
@@ -18,8 +18,8 @@ class MoviePreview extends React.PureComponent {
 
   onPress = () => {
     const {navigation, movie} = this.props;
-    navigation.push(RouteNames.MovieDetailsScreen, {movie});
-    // navigation.navigate(RouteNames.MovieDetailsScreen, { movie }, null, id);
+    navigation.push(Routes.MovieDetailsScreen, {movie});
+    // navigation.navigate(Routes.MovieDetailsScreen, { movie }, null, id);
   };
 
   renderMovie() {
@@ -54,7 +54,7 @@ class MoviePreview extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: Theme.size.tiny,
+    paddingHorizontal: Theme.size.commonHalfMargin,
   },
   image: {
     width: PREVIEW_WIDTH,
