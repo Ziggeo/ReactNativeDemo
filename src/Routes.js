@@ -16,6 +16,9 @@ import ContactUs from './screens/ContactUs';
 import Auth from './screens/Auth';
 import RecordingDetails from './screens/recordings/RecordingDetails';
 import Recordings from './screens/recordings/Recordings';
+import Screen1 from './screens/Screen1';
+import Screen3 from './screens/Screen2';
+import Screen2 from './screens/Screen3';
 
 //TODO old screens, should be removed before release
 import Browse from './screens/old/Browse';
@@ -47,17 +50,15 @@ export default {
   Auth: 'Auth',
   Main: 'Main',
 
+  Screen1: 'Screen1',
+  Screen2: 'Screen2',
+  Screen3: 'Screen3',
+
   Settings: 'Settings',
   MovieListScreen: 'MoviesListScreen',
   MovieDetailsScreen: 'MovieDetailsScreen',
 
   BottomTabs: 'BottomTabs',
-};
-
-const TabNames = {
-  browse: 'Browse',
-  explore: 'Explore',
-  library: 'Library',
 };
 
 const defaultHeaderObject = {
@@ -75,72 +76,15 @@ const createDefaultStackNavigator = (screensObject, customOptions) =>
     ...customOptions,
   });
 
-// Navigation
-const BottomTabs = createBottomTabNavigator(
-  {
-    [TabNames.browse]: {
-      screen: createDefaultStackNavigator({
-        Browse,
-        [Routes.MovieListScreen]: MoviesListScreen,
-        [Routes.MovieDetailsScreen]: MovieDetailsScreen,
-      }),
-    },
-    [TabNames.explore]: {
-      screen: createDefaultStackNavigator({Explore}),
-    },
-    [TabNames.library]: {
-      screen: createDefaultStackNavigator({
-        Library,
-        [Routes.Settings]: Settings,
-        [Routes.MovieListScreen]: MoviesListScreen,
-        [Routes.MovieDetailsScreen]: MovieDetailsScreen,
-      }),
-    },
-  },
-  {
-    tabBarOptions: {
-      activeBackgroundColor: Theme.colors.bottomNavbar,
-      inactiveBackgroundColor: Theme.colors.bottomNavbar,
-      activeTintColor: Theme.gray.lightest,
-      inactiveTintColor: Theme.gray.light,
-      labelStyle: {...getFontStyleObject()},
-      style: {
-        borderTopColor: Theme.colors.bottomNavbar,
-        height: Theme.size.bottomNavbarHeight,
-        backgroundColor: Theme.colors.bottomNavbar,
-      },
-    },
-    defaultNavigationOptions: ({navigation}) => ({
-      lazy: false,
-      tabBarIcon: ({tintColor}) => {
-        const {routeName} = navigation.state;
-        switch (routeName) {
-          case TabNames.browse:
-            return getNavbarBrowseIcon({tintColor});
-          case TabNames.explore:
-            return getNavbarExploreIcon({tintColor});
-          case TabNames.library:
-            return getNavbarLibraryIcon({tintColor});
-          default:
-            return null;
-        }
-      },
-      tabBarComponent: NavbarWrapper,
-      tabBarButtonComponent: NavbarButtonWrapper,
-      tabBarOnPress: ({navigation, defaultHandler}) => {
-        navigation.dispatch(StackActions.popToTop());
-        defaultHandler();
-      },
-    }),
-  },
-);
-
 const AuthStack = createDefaultStackNavigator({
   [Routes.Auth]: {screen: Auth},
 });
 
 const HomeStack = createStackNavigator({
   [Routes.Main]: {screen: Main},
+  [Routes.Screen1]: {screen: Screen1},
+  [Routes.Screen2]: {screen: Screen2},
+  [Routes.Screen3]: {screen: Screen3},
 });
 
 export const RootStack = createAppContainer(

@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "latest",
-    "react-native-netinfo": "latest",
     "axios": "^0.18.1",
     "hoist-non-react-statics": "^3.3.0",
     "jetifier": "^1.6.5",
@@ -24,6 +23,7 @@
     "react-native-gesture-handler": "1.6.0",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-material-textfield": "latest",
+    "react-native-netinfo": "latest",
     "react-native-offline": "^4.1.1",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.3",
@@ -32,6 +32,7 @@
     "react-native-vector-icons": "^6.2.0",
     "react-native-ziggeo-library": "^1.4.0",
     "react-navigation": "^4.2.2",
+    "react-navigation-drawer": "^2.4.2",
     "react-navigation-props-mapper": "^0.3.0",
     "react-navigation-stack": "latest",
     "react-navigation-tabs": "^2.8.2",
