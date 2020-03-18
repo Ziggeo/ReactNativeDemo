@@ -10,15 +10,12 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Splash from './screens/Splash';
 import About from './screens/About';
 import AvailableSDKs from './screens/AvailableSDKs';
-import VideoEdit from './screens/VideoEdit';
+import VideoEdit from './screens/VideoEditor';
 import TopClients from './screens/TopClients';
 import ContactUs from './screens/ContactUs';
 import Auth from './screens/Auth';
 import RecordingDetails from './screens/recordings/RecordingDetails';
 import Recordings from './screens/recordings/Recordings';
-import Screen1 from './screens/Screen1';
-import Screen3 from './screens/Screen2';
-import Screen2 from './screens/Screen3';
 
 //TODO old screens, should be removed before release
 import Browse from './screens/old/Browse';
@@ -50,10 +47,6 @@ export default {
   Auth: 'Auth',
   Main: 'Main',
 
-  Screen1: 'Screen1',
-  Screen2: 'Screen2',
-  Screen3: 'Screen3',
-
   Settings: 'Settings',
   MovieListScreen: 'MoviesListScreen',
   MovieDetailsScreen: 'MovieDetailsScreen',
@@ -82,9 +75,6 @@ const AuthStack = createDefaultStackNavigator({
 
 const HomeStack = createStackNavigator({
   [Routes.Main]: {screen: Main},
-  [Routes.Screen1]: {screen: Screen1},
-  [Routes.Screen2]: {screen: Screen2},
-  [Routes.Screen3]: {screen: Screen3},
 });
 
 export const RootStack = createAppContainer(

@@ -1,136 +1,194 @@
-//This is an example code for Navigation Drawer with Custom Side bar//
-import React, {Component} from 'react';
-//import react in our code.
+import React from 'react';
 import {
-  View,
   StyleSheet,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-  Platform,
   Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
 } from 'react-native';
-// import all basic components
-
-//For React Navigation 3+
-//import {
-//  createStackNavigator,
-//  createDrawerNavigator,
-//  createAppContainer,
-//} from 'react-navigation';
-
-//For React Navigation 4+
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
+import Strings from '../Strings';
+// import {Ionicons} from '@expo/vector-icons';
 
-//Import Custom Sidebar
-import CustomSidebarMenu from '../CustomSidebarMenu';
-import Routes from '../Routes';
-import Screen1 from './Screen1';
-import Screen2 from './Screen2';
-import Screen3 from './Screen3';
+const Header = ({name, openDrawer}) => (
+  <View style={styles.header}>
+    <TouchableOpacity onPress={() => openDrawer()}>
+      {/*<Ionicons name="ios-menu" size={32} />*/}
+    </TouchableOpacity>
+    <Text>{name}</Text>
+    <Text style={{width: 50}} />
+  </View>
+);
 
-global.currentScreenIndex = 0;
-//Navigation Drawer Structure for all screen
-class NavigationDrawerStructure extends Component {
-  //Top Navigation Header with Donute Button
-  toggleDrawer = () => {
-    //Props to open/close the drawer
-    this.props.navigationProps.toggleDrawer();
+const Profile = ({navigation}) => (
+  <View style={styles.container}>
+    <Header name="Profile" openDrawer={navigation.openDrawer} />
+    <Image
+      source={require('../assets/banner.png')}
+      style={{width: '80%', height: '30%'}}
+      resizeMode="contain"
+    />
+    <Text style={{padding: 20}}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet
+      dictum sapien, nec viverra orci. Morbi sed maximus purus. Phasellus quis
+      justo mi. Nunc ut tellus lectus.
+    </Text>
+    <Text style={{padding: 20}}>
+      In eleifend, turpis sit amet suscipit tincidunt, felis ex tempor tellus,
+      at commodo nunc massa rhoncus dui. Vestibulum at malesuada elit.
+    </Text>
+  </View>
+);
+
+function Item({item, navigate}) {
+  return (
+    <TouchableOpacity
+      style={styles.listItem}
+      onPress={() => navigate(item.name)}>
+      {/*<Ionicons name={item.icon} size={32} />*/}
+      <Text style={styles.title}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+}
+
+class Sidebar extends React.Component {
+  state = {
+    mainRoutes: [
+      {
+        name: Strings.itemRecordings,
+        icon: 'ios-home',
+      },
+      {
+        name: Strings.itemVideoEditor,
+        icon: 'ios-contact',
+      },
+      {
+        name: Strings.itemSettings,
+        icon: 'ios-settings',
+      },
+    ],
+
+    infoRoutes: [
+      {
+        name: Strings.itemSdks,
+        icon: 'ios-home',
+      },
+      {
+        name: Strings.itemClients,
+        icon: 'ios-contact',
+      },
+      {
+        name: Strings.itemContact,
+        icon: 'ios-settings',
+      },
+      {
+        name: Strings.itemAbout,
+        icon: 'ios-settings',
+      },
+    ],
   };
+
   render() {
     return (
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-          {/*Donute Button Image */}
-          <Image
-            source={require('../assets/img/drawer.png')}
-            style={{width: 25, height: 25, marginLeft: 5}}
-          />
-        </TouchableOpacity>
+      <View style={styles.container}>
+        <Text style={{fontWeight: 'bold', fontSize: 16, marginTop: 10}}>
+          Janna Doe
+        </Text>
+        <Text style={{color: 'gray', marginBottom: 10}}>janna@doe.com</Text>
+        <View style={styles.sidebarDivider} />
+        <FlatList
+          style={{width: '100%', marginLeft: 30}}
+          data={this.state.mainRoutes}
+          renderItem={({item}) => (
+            <Item item={item} navigate={this.props.navigation.navigate} />
+          )}
+          keyExtractor={item => item.name}
+        />
+        <View style={styles.sidebarDivider} />
+
+        <FlatList
+          style={{width: '100%', marginLeft: 30}}
+          data={this.state.infoRoutes}
+          renderItem={({item}) => (
+            <Item item={item} navigate={this.props.navigation.navigate} />
+          )}
+          keyExtractor={item => item.name}
+        />
       </View>
     );
   }
 }
 
-//Stack Navigator for the First Option of Navigation Drawer
-const FirstActivity_StackNavigator = createStackNavigator({
-  //All the screen from the First Option will be indexed here
-  First: {
-    screen: Screen1,
-    navigationOptions: ({navigation}) => ({
-      title: 'Demo Screen 1',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#FF9800',
-      },
-      headerTintColor: '#fff',
-    }),
-  },
-});
-
-//Stack Navigator for the Second Option of Navigation Drawer
-const Screen2_StackNavigator = createStackNavigator({
-  //All the screen from the Second Option will be indexed here
-  Second: {
-    screen: Screen2,
-    navigationOptions: ({navigation}) => ({
-      title: 'Demo Screen 2',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-
-      headerStyle: {
-        backgroundColor: '#FF9800',
-      },
-      headerTintColor: '#fff',
-    }),
-  },
-});
-
-//Stack Navigator for the Third Option of Navigation Drawer
-const Screen3_StackNavigator = createStackNavigator({
-  //All the screen from the Third Option will be indexed here
-  Third: {
-    screen: Screen3,
-    navigationOptions: ({navigation}) => ({
-      title: 'Demo Screen 3',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#FF9800',
-      },
-      headerTintColor: '#fff',
-    }),
-  },
-});
-
-//Drawer Navigator Which will provide the structure of our App
-const DrawerNavigatorExample = createDrawerNavigator(
+const Drawer = createDrawerNavigator(
   {
-    //Drawer Optons and indexing
-    NavScreen1: {
-      screen: FirstActivity_StackNavigator,
-      navigationOptions: {
-        drawerLabel: 'Demo Screen 1',
-      },
-    },
-    NavScreen2: {
-      screen: Screen2_StackNavigator,
-      navigationOptions: {
-        drawerLabel: 'Demo Screen 2',
-      },
-    },
-    NavScreen3: {
-      screen: Screen3_StackNavigator,
-      navigationOptions: {
-        drawerLabel: 'Demo Screen 3',
-      },
-    },
+    Home: {screen: Profile},
+    Profile: {screen: Profile},
+    Settings: {screen: Profile},
   },
   {
-    //For the Custom sidebar menu we have to provide our CustomSidebarMenu
-    contentComponent: CustomSidebarMenu,
-    //Sidebar width
-    drawerWidth: Dimensions.get('window').width - 130,
+    initialRouteName: 'Home',
+    unmountInactiveRoutes: true,
+    headerMode: 'none',
+    contentComponent: props => <Sidebar {...props} />,
   },
 );
-export default createAppContainer(DrawerNavigatorExample);
+
+const AppNavigator = createStackNavigator(
+  {
+    Drawer: {screen: Drawer},
+  },
+  {
+    initialRouteName: 'Drawer',
+    headerMode: 'none',
+    unmountInactiveRoutes: true,
+  },
+);
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    paddingTop: 40,
+    alignItems: 'center',
+    flex: 1,
+  },
+  listItem: {
+    height: 60,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  title: {
+    fontSize: 18,
+    marginLeft: 20,
+  },
+  header: {
+    width: '100%',
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  profileImg: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginTop: 20,
+  },
+  sidebarDivider: {
+    height: 1,
+    width: '100%',
+    backgroundColor: 'lightgray',
+    marginVertical: 10,
+  },
+});
