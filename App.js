@@ -33,6 +33,15 @@ export default class App extends React.Component {
             ' total bytes',
         ),
     );
+    recorderEmitter.addListener('Verified', data =>
+      console.log('Verified:' + data.token),
+    );
+    recorderEmitter.addListener('Processed', data =>
+      console.log('Processed:' + data.token),
+    );
+    recorderEmitter.addListener('Processing', data =>
+      console.log('Processing:' + data.token),
+    );
     try {
       //record and upload the video and return its token
       var token = await Ziggeo.record();
