@@ -11,36 +11,25 @@ import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
 import Strings from '../Strings';
+import Routes from '../Routes';
 // import {Ionicons} from '@expo/vector-icons';
 
-const Header = ({name, openDrawer}) => (
-  <View style={styles.header}>
-    <TouchableOpacity onPress={() => openDrawer()}>
-      {/*<Ionicons name="ios-menu" size={32} />*/}
-    </TouchableOpacity>
-    <Text>{name}</Text>
-    <Text style={{width: 50}} />
-  </View>
-);
-
-const Profile = ({navigation}) => (
-  <View style={styles.container}>
-    <Header name="Profile" openDrawer={navigation.openDrawer} />
-    <Image
-      source={require('../assets/banner.png')}
-      style={{width: '80%', height: '30%'}}
-      resizeMode="contain"
-    />
-    <Text style={{padding: 20}}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet
-      dictum sapien, nec viverra orci. Morbi sed maximus purus. Phasellus quis
-      justo mi. Nunc ut tellus lectus.
-    </Text>
-    <Text style={{padding: 20}}>
-      In eleifend, turpis sit amet suscipit tincidunt, felis ex tempor tellus,
-      at commodo nunc massa rhoncus dui. Vestibulum at malesuada elit.
-    </Text>
-  </View>
+const Drawer = createDrawerNavigator(
+  {
+    Recording: {screen: Routes.Recordings},
+    // VideoEditor: {screen: VideoEditor},
+    // Settings: {screen: Settings},
+    // AvailableSdk: {screen: AvailableSdk},
+    // TopClients: {screen: TopClients},
+    // ContactUs: {screen: ContactUs},
+    // About: {screen: About},
+  },
+  {
+    initialRouteName: 'Recording',
+    unmountInactiveRoutes: true,
+    headerMode: 'none',
+    contentComponent: props => <Sidebar {...props} />,
+  },
 );
 
 function Item({item, navigate}) {
@@ -121,20 +110,6 @@ class Sidebar extends React.Component {
     );
   }
 }
-
-const Drawer = createDrawerNavigator(
-  {
-    Home: {screen: Profile},
-    Profile: {screen: Profile},
-    Settings: {screen: Profile},
-  },
-  {
-    initialRouteName: 'Home',
-    unmountInactiveRoutes: true,
-    headerMode: 'none',
-    contentComponent: props => <Sidebar {...props} />,
-  },
-);
 
 const AppNavigator = createStackNavigator(
   {

@@ -4,9 +4,18 @@ import FastImage from 'react-native-fast-image';
 import {StyleSheet} from 'react-native';
 
 const LABELS = {
-  like: {src: require('../../assets/img/old/swipe_labels/LIKE.png'), ratio: 2.28},
-  save: {src: require('../../assets/img/old/swipe_labels/SAVE.png'), ratio: 2.5},
-  skip: {src: require('../../assets/img/old/swipe_labels/SKIP.png'), ratio: 2.28},
+  like: {
+    src: require('../../assets/img/old/swipe_labels/LIKE.png'),
+    ratio: 2.28,
+  },
+  save: {
+    src: require('../../assets/img/old/swipe_labels/SAVE.png'),
+    ratio: 2.5,
+  },
+  skip: {
+    src: require('../../assets/img/old/swipe_labels/SKIP.png'),
+    ratio: 2.28,
+  },
 };
 
 class MovieSwipeImageLabel extends React.PureComponent {

@@ -13,8 +13,7 @@ const {width} = Dimensions.get('window');
 const PREVIEW_WIDTH = width * 0.27;
 
 class MoviePreview extends React.PureComponent {
-  static getPreviewHeight = () =>
-    PREVIEW_WIDTH / Theme.size.posterAspectRation;
+  static getPreviewHeight = () => PREVIEW_WIDTH / Theme.size.posterAspectRation;
 
   onPress = () => {
     const {navigation, movie} = this.props;

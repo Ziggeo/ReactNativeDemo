@@ -48,8 +48,7 @@ class Header extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    height:
-      Theme.size.headerHeight + Theme.size.statusBarHeight,
+    height: Theme.size.headerHeight + Theme.size.statusBarHeight,
   },
   background: {
     ...StyleSheet.absoluteFillObject,

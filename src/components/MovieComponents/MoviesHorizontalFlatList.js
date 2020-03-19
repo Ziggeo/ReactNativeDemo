@@ -13,7 +13,9 @@ class MoviesHorizontalList extends React.PureComponent {
   renderEmptyContainer = () =>
     _.times(4).map((r, i) => <MoviePreview key={i} />);
   renderHeader = () => (
-    <View style={{width: this.props.paddingLeft - Theme.size.commonHalfMargin}} />
+    <View
+      style={{width: this.props.paddingLeft - Theme.size.commonHalfMargin}}
+    />
   );
 
   render() {
