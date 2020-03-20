@@ -20,28 +20,6 @@ export default class App extends React.Component {
       data: '{"source":"app"}',
     };
     Ziggeo.setExtraArgsForRecorder(argsMap);
-    const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener(
-      'UploadProgress',
-      progress =>
-        console.log(
-          progress.fileName +
-            ' uploaded ' +
-            progress.bytesSent +
-            ' from ' +
-            progress.totalBytes +
-            ' total bytes',
-        ),
-    );
-    recorderEmitter.addListener('Verified', data =>
-      console.log('Verified:' + data.token),
-    );
-    recorderEmitter.addListener('Processed', data =>
-      console.log('Processed:' + data.token),
-    );
-    recorderEmitter.addListener('Processing', data =>
-      console.log('Processing:' + data.token),
-    );
     try {
       //record and upload the video and return its token
       var token = await Ziggeo.record();
@@ -64,19 +42,7 @@ export default class App extends React.Component {
     Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
     Ziggeo.setMaxRecordingDuration(10);
     Ziggeo.setThemeArgsForRecorder({hideRecorderControls: true});
-    const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener(
-      'UploadProgress',
-      progress =>
-        console.log(
-          progress.fileName +
-            ' uploaded ' +
-            progress.bytesSent +
-            ' from ' +
-            progress.totalBytes +
-            ' total bytes',
-        ),
-    );
+
     try {
       //record and upload the video and return its token
       var token = await Ziggeo.record();
@@ -94,19 +60,7 @@ export default class App extends React.Component {
   async upload() {
     var appToken = 'ZIGGEO_APP_TOKEN';
     Ziggeo.setAppToken(appToken);
-    const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener(
-      'UploadProgress',
-      progress =>
-        console.log(
-          progress.fileName +
-            ' uploaded ' +
-            progress.bytesSent +
-            ' from ' +
-            progress.totalBytes +
-            ' total bytes',
-        ),
-    );
+
     try {
       //select and upload the video and return its token
       var argsMap = {
@@ -115,6 +69,30 @@ export default class App extends React.Component {
         tags: 'TEST_TAG',
       };
       var token = await Ziggeo.uploadFromFileSelector(argsMap);
+      console.log('Token:' + token);
+      if (token) {
+        Ziggeo.play(token);
+      }
+    } catch (e) {
+      console.log('Error:' + e);
+      //uploading error or upload was cancelled by user
+      alert(e);
+    }
+  }
+
+  async uploadFile() {
+    var appToken = 'ZIGGEO_APP_TOKEN';
+    Ziggeo.setAppToken(appToken);
+
+    try {
+      //upload some file by its path and return its token
+      var filePath = '';
+      var argsMap = {
+        max_duration: 15,
+        enforce_duration: true,
+        tags: 'TEST_TAG',
+      };
+      var token = await Ziggeo.uploadFromPath(filePath, argsMap);
       console.log('Token:' + token);
       if (token) {
         Ziggeo.play(token);
@@ -151,9 +129,7 @@ export default class App extends React.Component {
     }
   }
 
-  async uploadFile() {
-    var appToken = 'ZIGGEO_APP_TOKEN';
-    Ziggeo.setAppToken(appToken);
+  subscribeForEvents(): string {
     const recorderEmitter = Ziggeo.recorderEmitter();
     const subscription = recorderEmitter.addListener(
       'UploadProgress',
@@ -167,27 +143,21 @@ export default class App extends React.Component {
             ' total bytes',
         ),
     );
-    try {
-      //upload some file by its path and return its token
-      var filePath = '';
-      var argsMap = {
-        max_duration: 15,
-        enforce_duration: true,
-        tags: 'TEST_TAG',
-      };
-      var token = await Ziggeo.uploadFromPath(filePath, argsMap);
-      console.log('Token:' + token);
-      if (token) {
-        Ziggeo.play(token);
-      }
-    } catch (e) {
-      console.log('Error:' + e);
-      //uploading error or upload was cancelled by user
-      alert(e);
-    }
+    recorderEmitter.addListener('Verified', data =>
+      console.log('Verified:' + data.token),
+    );
+    recorderEmitter.addListener('Processed', data =>
+      console.log('Processed:' + data.token),
+    );
+    recorderEmitter.addListener('Processing', data =>
+      console.log('Processing:' + data.token),
+    );
+    return '';
   }
 
   render() {
+    this.subscribeForEvents();
+
     return (
       <View style={styles.container}>
         <Button
