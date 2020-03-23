@@ -22,7 +22,7 @@ export default {
 
   // Drawer
   titleAppToken: 'Application token:',
-  itemRecordings: 'Recording',
+  itemRecordings: 'Recordings',
   itemSettings: 'Settings',
   itemSdks: 'Available SDKs',
   itemClients: 'Top clients',

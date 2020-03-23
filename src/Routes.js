@@ -8,14 +8,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Splash from './screens/Splash';
-import {About} from './screens/About';
-import {AvailableSDKs} from './screens/AvailableSDKs';
-import {VideoEditor} from './screens/VideoEditor';
-import {TopClients} from './screens/TopClients';
-import {ContactUs} from './screens/ContactUs';
 import Auth from './screens/Auth';
-import {RecordingDetails} from './screens/recordings/RecordingDetails';
-import {Recordings} from './screens/recordings/Recordings';
 
 //TODO old screens, should be removed before release
 import Browse from './screens/old/Browse';
@@ -46,7 +39,6 @@ export default {
   Auth: 'Auth',
   Main: 'Main',
 
-  Recordings: Recordings,
   Settings: 'Settings',
   MovieListScreen: 'MoviesListScreen',
   MovieDetailsScreen: 'MovieDetailsScreen',

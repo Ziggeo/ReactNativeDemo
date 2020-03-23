@@ -11,21 +11,27 @@ import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
 import Strings from '../Strings';
-import Routes from '../Routes';
+import {Recordings} from './recordings/Recordings';
+import {Settings} from './Settings';
+import {VideoEditor} from './VideoEditor';
+import {AvailableSDK} from './AvailableSDKs';
+import {TopClients} from './TopClients';
+import {ContactUs} from './ContactUs';
+import {About} from './About';
 // import {Ionicons} from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator(
   {
-    Recording: {screen: Routes.Recordings},
-    // VideoEditor: {screen: VideoEditor},
-    // Settings: {screen: Settings},
-    // AvailableSdk: {screen: AvailableSdk},
-    // TopClients: {screen: TopClients},
-    // ContactUs: {screen: ContactUs},
-    // About: {screen: About},
+    Recordings: {screen: Recordings},
+    VideoEditor: {screen: VideoEditor},
+    Settings: {screen: Settings},
+    AvailableSDK: {screen: AvailableSDK},
+    TopClients: {screen: TopClients},
+    ContactUs: {screen: ContactUs},
+    About: {screen: About},
   },
   {
-    initialRouteName: 'Recording',
+    initialRouteName: 'Recordings',
     unmountInactiveRoutes: true,
     headerMode: 'none',
     contentComponent: props => <Sidebar {...props} />,
@@ -38,7 +44,7 @@ function Item({item, navigate}) {
       style={styles.listItem}
       onPress={() => navigate(item.name)}>
       {/*<Ionicons name={item.icon} size={32} />*/}
-      <Text style={styles.title}>{item.name}</Text>
+      <Text style={styles.title}>{item.title}</Text>
     </TouchableOpacity>
   );
 }
@@ -47,34 +53,41 @@ class Sidebar extends React.Component {
   state = {
     mainRoutes: [
       {
-        name: Strings.itemRecordings,
+        title: Strings.itemRecordings,
+        name: Recordings.name,
         icon: 'ios-home',
       },
       {
-        name: Strings.itemVideoEditor,
+        title: Strings.itemVideoEditor,
+        name: VideoEditor.name,
         icon: 'ios-contact',
       },
       {
-        name: Strings.itemSettings,
+        title: Strings.itemSettings,
+        name: Settings.name,
         icon: 'ios-settings',
       },
     ],
 
     infoRoutes: [
       {
-        name: Strings.itemSdks,
+        title: Strings.itemSdks,
+        name: AvailableSDK.name,
         icon: 'ios-home',
       },
       {
-        name: Strings.itemClients,
+        title: Strings.itemClients,
+        name: TopClients.name,
         icon: 'ios-contact',
       },
       {
-        name: Strings.itemContact,
+        title: Strings.itemContact,
+        name: ContactUs.name,
         icon: 'ios-settings',
       },
       {
-        name: Strings.itemAbout,
+        title: Strings.itemAbout,
+        name: About.name,
         icon: 'ios-settings',
       },
     ],
