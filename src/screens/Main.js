@@ -31,7 +31,7 @@ const Drawer = createDrawerNavigator(
     About: {screen: About},
   },
   {
-    initialRouteName: 'Recordings',
+    initialRouteName: Recordings.name,
     unmountInactiveRoutes: true,
     headerMode: 'none',
     contentComponent: props => <Sidebar {...props} />,
@@ -123,7 +123,7 @@ class Sidebar extends React.Component {
     );
   }
 }
-
+//TODO initialRouteName duplication?
 const AppNavigator = createStackNavigator(
   {
     Drawer: {screen: Drawer},

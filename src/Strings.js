@@ -43,6 +43,8 @@ export default {
 
   // SDKs screen
   titleSdks: 'Available SDKs',
+  mobileCategory: 'Mobile SDKs',
+  serverCategory: 'Server-Side SDKs',
 
   // Clients screen
   titleClients: 'Top Clients',
