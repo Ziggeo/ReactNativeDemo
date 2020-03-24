@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -14,10 +7,10 @@ import Strings from '../Strings';
 import {Recordings} from './recordings/Recordings';
 import {Settings} from './Settings';
 import {VideoEditor} from './VideoEditor';
-import {AvailableSDK} from './AvailableSDKs';
-import {TopClients} from './TopClients';
+import {List} from './List';
 import {ContactUs} from './ContactUs';
 import {About} from './About';
+import {clients, sdks} from '../assets/data';
 // import {Ionicons} from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator(
@@ -25,8 +18,8 @@ const Drawer = createDrawerNavigator(
     Recordings: {screen: Recordings},
     VideoEditor: {screen: VideoEditor},
     Settings: {screen: Settings},
-    AvailableSDK: {screen: AvailableSDK},
-    TopClients: {screen: TopClients},
+    ListSdks: {screen: List(sdks)},
+    ListClients: {screen: List(clients)},
     ContactUs: {screen: ContactUs},
     About: {screen: About},
   },
@@ -72,12 +65,12 @@ class Sidebar extends React.Component {
     infoRoutes: [
       {
         title: Strings.itemSdks,
-        name: AvailableSDK.name,
+        name: 'ListSdks',
         icon: 'ios-home',
       },
       {
         title: Strings.itemClients,
-        name: TopClients.name,
+        name: 'ListClients',
         icon: 'ios-contact',
       },
       {
@@ -123,6 +116,7 @@ class Sidebar extends React.Component {
     );
   }
 }
+
 //TODO initialRouteName duplication?
 const AppNavigator = createStackNavigator(
   {
