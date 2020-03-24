@@ -35,11 +35,7 @@ function Item({item, navigate}) {
           Toast.show(Strings.comingSoon);
         }
       }}>
-      <CardView
-        style={styles.card}
-        cardElevation={2}
-        cardMaxElevation={2}
-        cornerRadius={5}>
+      <CardView style={styles.card} cardElevation={2} cornerRadius={5}>
         <Image style={styles.image} source={item.thumbnail} />
       </CardView>
     </TouchableOpacity>
@@ -47,9 +43,6 @@ function Item({item, navigate}) {
 }
 
 const items = [
-  // {
-  //   title: Strings.mobileCategory,
-  // },
   {
     url: 'https://github.com/Ziggeo/iOS-Client-SDK',
     thumbnail: require('../assets/img/sdks/ic_objc.png'),
