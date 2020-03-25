@@ -60,7 +60,6 @@
     "metro-react-native-babel-preset": "^0.58.0",
     "prop-types": "latest",
     "react-native-easy-toast": "latest",
-    "react-native-fast-image": "latest",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-offline": "latest",
     "react-native-status-bar-height": "latest",

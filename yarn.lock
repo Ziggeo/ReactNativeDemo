@@ -6426,10 +6426,10 @@ react-native-vector-icons@^6.2.0:
     prop-types "^15.6.2"
     yargs "^13.2.2"
 
-react-native-ziggeo-library@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.0.tgz#0c6dd8eb6a83ee61080aa536644d1596186f8a13"
-  integrity sha512-eeCnx32skMaMfRCXb/XHMHnEeWDT0drkt2epr8p+4yWLYr9+1qDqJhqqemuaec49oD8aC8IsFH/Dq4oavAvWkg==
+react-native-ziggeo-library@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.1.tgz#a3fd1c23c8f14db86103f20ffcea487a08d2f5af"
+  integrity sha512-lRCPT0qh/CLKpT/87nmsTHxjrblC9otNvQqTUcnwB+1Uccn1sS2WdFlTHpkUiB+jEsWcMqk3YleAlpQd6yv1Ug==
 
 react-native@0.61.5:
   version "0.61.5"

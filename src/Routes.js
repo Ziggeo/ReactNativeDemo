@@ -11,14 +11,6 @@ import Splash from './screens/Splash';
 import Auth from './screens/Auth';
 
 //TODO old screens, should be removed before release
-import Browse from './screens/old/Browse';
-import Explore from './screens/old/Explore';
-import Library from './screens/old/Library';
-import MoviesListScreen from './screens/old/Movie/MoviesListScreen';
-import MovieDetailsScreen from './screens/old/Movie/MovieDetailsScreen';
-
-import NavbarWrapper from './components/NavbarWrapper';
-import NavbarButtonWrapper from './components/NavbarButtonWrapper';
 import Header from './components/Header';
 import {
   getNavbarBrowseIcon,

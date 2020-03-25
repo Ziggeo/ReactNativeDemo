@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withNavigation} from 'react-navigation';
 import {View, StyleSheet, Animated} from 'react-native';
-import {AppText, TouchableScale} from './common';
 import {getHeaderBackIcon} from '../utils/icons';
 import Theme from '../Theme';
+import AppText from './common/AppText';
+import TouchableScale from './common/TouchableScale';
 
 class Header extends React.PureComponent {
   render() {

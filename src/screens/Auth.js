@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import FastImage from 'react-native-fast-image';
 import {OutlinedTextField} from 'react-native-material-textfield';
-import {View, StyleSheet, ScrollView, Text, Linking} from 'react-native';
+import {View, StyleSheet, ScrollView, Text, Linking, Image} from 'react-native';
 import {Button} from 'react-native-elements';
 import {
   loginUsernameChanged,
@@ -53,12 +52,98 @@ class Auth extends React.Component {
     header: null,
   };
 
+  async upload() {
+    var appToken = 'd541dc6b1351d6424b04fb8415658e0d';
+    Ziggeo.setAppToken(appToken);
+    const recorderEmitter = Ziggeo.recorderEmitter();
+    const subscription = recorderEmitter.addListener(
+      'UploadProgress',
+      progress =>
+        console.log(
+          progress.fileName +
+            ' uploaded ' +
+            progress.bytesSent +
+            ' from ' +
+            progress.totalBytes +
+            ' total bytes',
+        ),
+    );
+    try {
+      //select and upload the video and return its token
+      var argsMap = {
+        max_duration: 15,
+        enforce_duration: true,
+        tags: 'TEST_TAG',
+      };
+      var token = await Ziggeo.uploadFromFileSelector(argsMap);
+      console.log('Token:' + token);
+      if (token) {
+        Ziggeo.play(token);
+      }
+    } catch (e) {
+      console.log('Error:' + e);
+      //uploading error or upload was cancelled by user
+      alert(e);
+    }
+  }
+  async record() {
+    var appToken = 'd541dc6b1351d6424b04fb8415658e0d';
+    Ziggeo.setAppToken(appToken);
+    Ziggeo.setCameraSwitchEnabled(true);
+    Ziggeo.setCoverSelectorEnabled(false);
+    Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
+    Ziggeo.setQuality(Ziggeo.HIGH_QUALITY);
+    Ziggeo.setMaxRecordingDuration(600);
+    var argsMap = {
+      tags: 'test',
+      expiration_days: 1,
+      video_profile: '_video_profile_lightweight',
+      auto_pad: true,
+      data: '{"source":"app"}',
+    };
+    Ziggeo.setExtraArgsForRecorder(argsMap);
+    const recorderEmitter = Ziggeo.recorderEmitter();
+    const subscription = recorderEmitter.addListener(
+      'UploadProgress',
+      progress =>
+        console.log(
+          progress.fileName +
+            ' uploaded ' +
+            progress.bytesSent +
+            ' from ' +
+            progress.totalBytes +
+            ' total bytes',
+        ),
+    );
+    recorderEmitter.addListener('Verified', data =>
+      console.log('Verified:' + data.token),
+    );
+    recorderEmitter.addListener('Processed', data =>
+      console.log('Processed:' + data.token),
+    );
+    recorderEmitter.addListener('Processing', data =>
+      console.log('Processing:' + data.token),
+    );
+    try {
+      //record and upload the video and return its token
+      var token = await Ziggeo.record();
+      console.log('Token:' + token);
+      if (token) {
+        Ziggeo.play(token);
+      }
+    } catch (e) {
+      console.log('Error:' + e);
+      //recorder error or recording was cancelled by user
+      alert(e);
+    }
+  }
+
   render() {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-          <FastImage
+          <Image
             style={styles.logo}
             source={require('../assets/img/logo.png')}
             resizeMode="contain"
