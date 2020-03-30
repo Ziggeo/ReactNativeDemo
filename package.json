@@ -62,6 +62,7 @@
     "react-native-easy-toast": "latest",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-offline": "latest",
+    "react-native-render-html": "latest",
     "react-native-status-bar-height": "latest",
     "react-native-vector-icons": "latest",
     "react-navigation-props-mapper": "latest",
