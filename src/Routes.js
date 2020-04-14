@@ -8,7 +8,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Splash from './screens/Splash';
-import Auth from './screens/Auth';
+import Auth from './screens/auth/Auth';
 
 //TODO old screens, should be removed before release
 import Header from './components/Header';
@@ -21,7 +21,7 @@ import {getFontStyleObject} from './utils/font';
 import {fromRightWithFade} from './utils/navigation';
 import Routes from './Routes';
 import Theme from './Theme';
-import Main from './screens/Main';
+import Main from './screens/main/Main';
 
 export default {
   Splash: 'Splash',
@@ -30,6 +30,7 @@ export default {
 
   Auth: 'Auth',
   Main: 'Main',
+  TestMain: 'TestMain',
 
   Settings: 'Settings',
   MovieListScreen: 'MoviesListScreen',

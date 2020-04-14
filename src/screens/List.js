@@ -8,7 +8,6 @@ import Toast from 'react-native-simple-toast';
 import Strings from '../Strings';
 
 export function List(items) {
-  console.log('Data: ' + items);
   return () => (
     <View style={styles.container}>
       <GridList
@@ -44,7 +43,6 @@ function Item({item, navigate}) {
     </TouchableOpacity>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

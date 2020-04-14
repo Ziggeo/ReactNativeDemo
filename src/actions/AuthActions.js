@@ -5,11 +5,6 @@ import {
   stRemoveUser,
   stRemoveCurrentMovies,
 } from '../utils/storage';
-import {
-  requestToCreateNewGuestUser,
-  requestToCreateNewAuthenticatedUser,
-} from '../api/auth';
-import {getTmdbErrorMessage} from '../api/codes';
 import Routes from '../Routes';
 import Config from '../Config';
 

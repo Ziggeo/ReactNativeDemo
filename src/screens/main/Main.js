@@ -1,21 +1,38 @@
 import React from 'react';
-import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
+import {Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
-import Strings from '../Strings';
-import {Recordings} from './recordings/Recordings';
-import {Settings} from './Settings';
-import {VideoEditor} from './VideoEditor';
-import {List} from './List';
-import {ContactUs} from './ContactUs';
-import {About} from './About';
-import {clients, sdks} from '../assets/data';
+import Strings from '../../Strings';
+import {Recordings} from '../recordings/Recordings';
+import {Settings} from '../Settings';
+import {VideoEditor} from '../VideoEditor';
+import {List} from '../List';
+import {ContactUs} from '../ContactUs';
+import {About} from '../About';
+import {clients, sdks} from '../../assets/data';
+import Ziggeo from 'react-native-ziggeo-library';
 // import {Ionicons} from '@expo/vector-icons';
+import s from './styles';
+import DrawerItem from './DrawerItem';
+
+async function loadRecordings() {
+  try {
+    console.log('Ziggeo. loadRecordings');
+    var value = await Ziggeo.VideosApi.index();
+    //TODO
+    console.log('Ziggeo. Value:' + value);
+    return value;
+  } catch (e) {
+    console.log('Ziggeo. Error:' + e);
+    //recorder error or recording was cancelled by user
+    alert(e);
+  }
+}
 
 const Drawer = createDrawerNavigator(
   {
-    Recordings: {screen: Recordings},
+    Recordings: {screen: Recordings(loadRecordings())},
     VideoEditor: {screen: VideoEditor},
     Settings: {screen: Settings},
     ListSdks: {screen: List(sdks)},
@@ -30,17 +47,6 @@ const Drawer = createDrawerNavigator(
     contentComponent: props => <Sidebar {...props} />,
   },
 );
-
-function Item({item, navigate}) {
-  return (
-    <TouchableOpacity
-      style={styles.listItem}
-      onPress={() => navigate(item.name)}>
-      {/*<Ionicons name={item.icon} size={32} />*/}
-      <Text style={styles.title}>{item.title}</Text>
-    </TouchableOpacity>
-  );
-}
 
 class Sidebar extends React.Component {
   state = {
@@ -88,27 +94,27 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={s.container}>
         <Text style={{fontWeight: 'bold', fontSize: 16, marginTop: 10}}>
           Janna Doe
         </Text>
         <Text style={{color: 'gray', marginBottom: 10}}>janna@doe.com</Text>
-        <View style={styles.sidebarDivider} />
+        <View style={s.sidebarDivider} />
         <FlatList
           style={{width: '100%', marginLeft: 30}}
           data={this.state.mainRoutes}
           renderItem={({item}) => (
-            <Item item={item} navigate={this.props.navigation.navigate} />
+            <DrawerItem item={item} navigate={this.props.navigation.navigate} />
           )}
           keyExtractor={item => item.name}
         />
-        <View style={styles.sidebarDivider} />
+        <View style={s.sidebarDivider} />
 
         <FlatList
           style={{width: '100%', marginLeft: 30}}
           data={this.state.infoRoutes}
           renderItem={({item}) => (
-            <Item item={item} navigate={this.props.navigation.navigate} />
+            <DrawerItem item={item} navigate={this.props.navigation.navigate} />
           )}
           keyExtractor={item => item.name}
         />
@@ -136,41 +142,3 @@ export default class App extends React.Component {
     return <AppContainer />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    paddingTop: 40,
-    alignItems: 'center',
-    flex: 1,
-  },
-  listItem: {
-    height: 60,
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  title: {
-    fontSize: 18,
-    marginLeft: 20,
-  },
-  header: {
-    width: '100%',
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  profileImg: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginTop: 20,
-  },
-  sidebarDivider: {
-    height: 1,
-    width: '100%',
-    backgroundColor: 'lightgray',
-    marginVertical: 10,
-  },
-});
