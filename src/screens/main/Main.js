@@ -13,8 +13,13 @@ import {About} from '../About';
 import {clients, sdks} from '../../assets/data';
 import Ziggeo from 'react-native-ziggeo-library';
 // import {Ionicons} from '@expo/vector-icons';
-import s from './styles';
-import DrawerItem from './DrawerItem';
+import DrawerMenu from './DrawerMenu';
+import {connect} from 'react-redux';
+import {
+  loginPasswordChanged,
+  loginUser,
+  loginUsernameChanged,
+} from '../../actions';
 
 async function loadRecordings() {
   try {
@@ -44,101 +49,8 @@ const Drawer = createDrawerNavigator(
     initialRouteName: Recordings.name,
     unmountInactiveRoutes: true,
     headerMode: 'none',
-    contentComponent: props => <Sidebar {...props} />,
+    contentComponent: props => <DrawerMenu {...props} />,
   },
 );
 
-class Sidebar extends React.Component {
-  state = {
-    mainRoutes: [
-      {
-        title: Strings.itemRecordings,
-        name: Recordings.name,
-        icon: 'ios-home',
-      },
-      {
-        title: Strings.itemVideoEditor,
-        name: VideoEditor.name,
-        icon: 'ios-contact',
-      },
-      {
-        title: Strings.itemSettings,
-        name: Settings.name,
-        icon: 'ios-settings',
-      },
-    ],
-
-    infoRoutes: [
-      {
-        title: Strings.itemSdks,
-        name: 'ListSdks',
-        icon: 'ios-home',
-      },
-      {
-        title: Strings.itemClients,
-        name: 'ListClients',
-        icon: 'ios-contact',
-      },
-      {
-        title: Strings.itemContact,
-        name: ContactUs.name,
-        icon: 'ios-settings',
-      },
-      {
-        title: Strings.itemAbout,
-        name: About.name,
-        icon: 'ios-settings',
-      },
-    ],
-  };
-
-  render() {
-    return (
-      <View style={s.container}>
-        <Text style={{fontWeight: 'bold', fontSize: 16, marginTop: 10}}>
-          Janna Doe
-        </Text>
-        <Text style={{color: 'gray', marginBottom: 10}}>janna@doe.com</Text>
-        <View style={s.sidebarDivider} />
-        <FlatList
-          style={{width: '100%', marginLeft: 30}}
-          data={this.state.mainRoutes}
-          renderItem={({item}) => (
-            <DrawerItem item={item} navigate={this.props.navigation.navigate} />
-          )}
-          keyExtractor={item => item.name}
-        />
-        <View style={s.sidebarDivider} />
-
-        <FlatList
-          style={{width: '100%', marginLeft: 30}}
-          data={this.state.infoRoutes}
-          renderItem={({item}) => (
-            <DrawerItem item={item} navigate={this.props.navigation.navigate} />
-          )}
-          keyExtractor={item => item.name}
-        />
-      </View>
-    );
-  }
-}
-
-//TODO initialRouteName duplication?
-const AppNavigator = createStackNavigator(
-  {
-    Drawer: {screen: Drawer},
-  },
-  {
-    initialRouteName: 'Drawer',
-    headerMode: 'none',
-    unmountInactiveRoutes: true,
-  },
-);
-
-const AppContainer = createAppContainer(AppNavigator);
-
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
-  }
-}
+export default connect()(Drawer);

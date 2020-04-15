@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     flexDirection: 'row',
+    marginLeft: 30,
   },
   title: {
     fontSize: 18,
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     height: 1,
     width: '100%',
     backgroundColor: 'lightgray',
-    marginVertical: 10,
   },
 });
 
