@@ -12,23 +12,9 @@ import {connect} from 'react-redux';
 import {TopClients} from '../TopClients';
 import {Sdks} from '../Sdks';
 
-async function loadRecordings() {
-  try {
-    console.log('Ziggeo. loadRecordings');
-    var value = await Ziggeo.VideosApi.index();
-    //TODO
-    console.log('Ziggeo. Value:' + value);
-    return value;
-  } catch (e) {
-    console.log('Ziggeo. Error:' + e);
-    //recorder error or recording was cancelled by user
-    alert(e);
-  }
-}
-
 const Drawer = createDrawerNavigator(
   {
-    Recordings: {screen: Recordings(loadRecordings())},
+    Recordings: {screen: Recordings},
     VideoEditor: {screen: VideoEditor},
     Settings: {screen: Settings},
     ListSdks: {screen: Sdks},

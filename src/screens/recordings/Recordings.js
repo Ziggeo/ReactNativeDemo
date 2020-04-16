@@ -17,40 +17,53 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import Theme from '../../Theme';
 
-export function Recordings(recordings) {
-  console.log('Ziggeo. init Recordings');
-  return () => (
-    <View style={styles.container}>
-      {/*{!items ? */}
-      {/*: null}*/}
-      {/*<Text>{Strings.messageRecordingsListEmpty}</Text>*/}
-      {/*<GridList*/}
-      {/*  style={{width: '100%'}}*/}
-      {/*  data={recordings}*/}
-      {/*  numColumns={2}*/}
-      {/*  renderItem={({item}) => <Item item={item} />}*/}
-      {/*/>*/}
-      <ActionButton buttonColor="rgba(231,76,60,1)">
-        <ActionButton.Item
-          title="Image"
-          onPress={() => console.log('notes tapped!')}>
-          <Icon name="md-create" style={styles.actionButtonIcon} />
-        </ActionButton.Item>
-        <ActionButton.Item
-          style={styles.actionButtonItem}
-          title="Audio"
-          onPress={() => {}}>
-          <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
-        </ActionButton.Item>
-        <ActionButton.Item title="Screen" onPress={() => {}}>
-          <Icon name="md-done-all" style={styles.actionButtonIcon} />
-        </ActionButton.Item>
-        <ActionButton.Item title="Camera" onPress={() => {}}>
-          <Icon name="md-done-all" style={styles.actionButtonIcon} />
-        </ActionButton.Item>
-      </ActionButton>
-    </View>
-  );
+async function loadRecordings() {
+  try {
+    var value = await Ziggeo.VideosApi.index();
+    return value;
+  } catch (e) {
+    console.log('Ziggeo. Error:' + e);
+    //recorder error or recording was cancelled by user
+    alert(e);
+  }
+}
+
+export class Recordings extends React.Component {
+
+  render() {
+    return (
+      <View style={styles.container}>
+        {/*{!items ? */}
+        {/*: null}*/}
+        {/*<Text>{Strings.messageRecordingsListEmpty}</Text>*/}
+        {/*<GridList*/}
+        {/*  style={{width: '100%'}}*/}
+        {/*  data={recordings}*/}
+        {/*  numColumns={2}*/}
+        {/*  renderItem={({item}) => <Item item={item} />}*/}
+        {/*/>*/}
+        <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item
+            title="Image"
+            onPress={() => console.log('notes tapped!')}>
+            <Icon name="md-create" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item
+            style={styles.actionButtonItem}
+            title="Audio"
+            onPress={() => {}}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item title="Screen" onPress={() => {}}>
+            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item title="Camera" onPress={() => {}}>
+            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      </View>
+    );
+  }
 }
 
 function Item({item}) {
