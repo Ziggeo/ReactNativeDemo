@@ -2,11 +2,16 @@ import {StyleSheet, Text, View} from 'react-native';
 import Strings from '../Strings';
 import React from 'react';
 
-export const Settings = ({navigation}) => (
-  <View style={styles.container}>
-    <Text>{Strings.comingSoon}</Text>
-  </View>
-);
+export class Settings extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>{Strings.comingSoon}</Text>
+      </View>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
