@@ -7,20 +7,24 @@ import CardView from 'react-native-cardview';
 import Toast from 'react-native-simple-toast';
 import Strings from '../Strings';
 
-export function List(items) {
-  return () => (
-    <View style={styles.container}>
-      <GridList
-        style={{width: '100%'}}
-        data={items}
-        numColumns={2}
-        renderItem={({item}) => <Item item={item} />}
-      />
-    </View>
-  );
+export class List extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <GridList
+          style={{width: '100%'}}
+          data={this.getItems()}
+          numColumns={2}
+          renderItem={({item}) => <Item item={item} />}
+        />
+      </View>
+    );
+  }
+
+  getItems() {}
 }
 
-function Item({item, navigate}) {
+function Item({item}) {
   return (
     <TouchableOpacity
       style={styles.listItem}

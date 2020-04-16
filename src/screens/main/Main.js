@@ -1,25 +1,16 @@
 import React from 'react';
-import {Text, View, FlatList, TouchableOpacity} from 'react-native';
-import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import {createStackNavigator} from 'react-navigation-stack';
-import Strings from '../../Strings';
 import {Recordings} from '../recordings/Recordings';
 import {Settings} from '../Settings';
 import {VideoEditor} from '../VideoEditor';
-import {List} from '../List';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
-import {clients, sdks} from '../../assets/data';
 import Ziggeo from 'react-native-ziggeo-library';
 // import {Ionicons} from '@expo/vector-icons';
 import DrawerMenu from './DrawerMenu';
 import {connect} from 'react-redux';
-import {
-  loginPasswordChanged,
-  loginUser,
-  loginUsernameChanged,
-} from '../../actions';
+import {TopClients} from '../TopClients';
+import {Sdks} from '../Sdks';
 
 async function loadRecordings() {
   try {
@@ -40,8 +31,8 @@ const Drawer = createDrawerNavigator(
     Recordings: {screen: Recordings(loadRecordings())},
     VideoEditor: {screen: VideoEditor},
     Settings: {screen: Settings},
-    ListSdks: {screen: List(sdks)},
-    ListClients: {screen: List(clients)},
+    ListSdks: {screen: Sdks},
+    ListClients: {screen: TopClients},
     ContactUs: {screen: ContactUs},
     About: {screen: About},
   },
