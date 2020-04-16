@@ -8,8 +8,15 @@ import {ContactUs} from '../ContactUs';
 import {About} from '../About';
 // import {Ionicons} from '@expo/vector-icons';
 import s from './styles';
-import DrawerItem from './DrawerItem';
-import {divide} from 'react-native-reanimated';
+
+function DrawerItem({item, navigate}) {
+  return (
+    <TouchableOpacity style={s.listItem} onPress={() => navigate(item.name)}>
+      {/*<Ionicons name={item.icon} size={32} />*/}
+      <Text style={s.title}>{item.title}</Text>
+    </TouchableOpacity>
+  );
+}
 
 class DrawerMenu extends React.Component {
   state = {
