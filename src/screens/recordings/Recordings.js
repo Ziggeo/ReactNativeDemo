@@ -17,16 +17,6 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import Theme from '../../Theme';
 
-const sleep = milliseconds => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
-};
-
-async function test() {
-  console.log('Taking a break...');
-  await sleep(2000);
-  console.log('Two seconds later, showing sleep in a loop...');
-}
-
 export function Recordings(recordings) {
   console.log('Ziggeo. init Recordings');
   return () => (
