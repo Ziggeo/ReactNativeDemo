@@ -60,6 +60,7 @@ class Auth extends React.Component {
 
   render() {
     const {appToken} = this.state;
+    const {tokenValidationError} = this.props;
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
@@ -90,6 +91,7 @@ class Auth extends React.Component {
                 textColor={Theme.colors.accent}
                 onChangeText={this.onTokenTextChange}
                 value={appToken}
+                error={tokenValidationError}
               />
             ) : null}
           </View>

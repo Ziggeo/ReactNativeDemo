@@ -19,7 +19,7 @@ export const loginUser = ({appToken, onSuccess}) => async dispatch => {
 
   if (!tokenValidator.isValid) {
     dispatch({
-      type: Auth.TOKEN_INCORRECT,
+      type: Auth.VALIDATION_ERR,
       payload: tokenValidator.message,
     });
     return;
