@@ -13,6 +13,8 @@ import Strings from '../../Strings';
 import GridList from 'react-native-grid-list';
 import CardView from 'react-native-cardview';
 import Ziggeo from 'react-native-ziggeo-library';
+import {connect} from 'react-redux';
+
 import Spinner from 'react-native-loading-spinner-overlay';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import Theme from '../../Theme';
@@ -29,19 +31,12 @@ async function loadRecordings() {
 }
 
 export class Recordings extends React.Component {
-
   render() {
+    const {isLoading, recordings} = this.props;
     return (
       <View style={styles.container}>
-        {/*{!items ? */}
-        {/*: null}*/}
-        {/*<Text>{Strings.messageRecordingsListEmpty}</Text>*/}
-        {/*<GridList*/}
-        {/*  style={{width: '100%'}}*/}
-        {/*  data={recordings}*/}
-        {/*  numColumns={2}*/}
-        {/*  renderItem={({item}) => <Item item={item} />}*/}
-        {/*/>*/}
+        {isLoading && this.renderLoading()}
+        {recordings && this.renderList(recordings)}
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item
             title="Image"
@@ -61,6 +56,21 @@ export class Recordings extends React.Component {
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
+      </View>
+    );
+  }
+
+  renderLoading() {}
+  renderList(recordings) {
+    return (
+      <View>
+        <Text>{Strings.messageRecordingsListEmpty}</Text>
+        <GridList
+          style={{width: '100%'}}
+          data={recordings}
+          numColumns={2}
+          renderItem={({item}) => <Item item={item} />}
+        />
       </View>
     );
   }
@@ -90,3 +100,14 @@ const styles = StyleSheet.create({
   },
   actionButtonItem: {},
 });
+
+function mapStateToProps(state) {
+  const {logining, errors} = state.auth;
+
+  return {
+    logining,
+    errors,
+  };
+}
+
+export default connect(mapStateToProps)(Recordings);

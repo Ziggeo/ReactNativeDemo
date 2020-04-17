@@ -3,11 +3,7 @@ import {connect} from 'react-redux';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import {View, ScrollView, Text, Linking, Image} from 'react-native';
 import {Button} from 'react-native-elements';
-import {
-  loginUsernameChanged,
-  loginPasswordChanged,
-  loginUser,
-} from '../../actions';
+import {loginUser} from '../../actions';
 import Routes from '../../Routes';
 import Theme from '../../Theme';
 import Strings from '../../Strings';
@@ -18,8 +14,10 @@ class Auth extends React.Component {
   constructor(props) {
     super(props);
     this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.onTokenTextChange = this.onTokenTextChange.bind(this);
     this.state = {
       scanQrMode: true,
+      appToken: '',
     };
   }
 
@@ -28,14 +26,22 @@ class Auth extends React.Component {
       scanQrMode: !this.state.scanQrMode,
     });
   }
+  onTokenTextChange(text) {
+    this.setState({
+      appToken: text,
+    });
+  }
 
   onUseEnteredPressed = () => {
-    // let qr = this.state.qr; TODO
-    let qr = 'd541dc6b1351d6424b04fb8415658e0d';
-    console.log(qr);
-    Ziggeo.setAppToken(qr);
-    const {navigation} = this.props;
-    navigation.navigate(Routes.HomeStack);
+    const {appToken} = this.state;
+    this.props.loginUser({
+      appToken,
+      onSuccess: () => {
+        Ziggeo.setAppToken(appToken);
+        const {navigation} = this.props;
+        navigation.navigate(Routes.HomeStack);
+      },
+    });
   };
 
   onScanQrPress = () => {
@@ -48,14 +54,12 @@ class Auth extends React.Component {
     });
   };
 
-  showToast = message => this.toast.show(message, 2000);
-
   static navigationOptions = {
     header: null,
   };
 
   render() {
-    const {navigate} = this.props.navigation;
+    const {appToken} = this.state;
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
@@ -84,8 +88,8 @@ class Auth extends React.Component {
                 label={Strings.enterManuallyHint}
                 onSubmitEditing={this.onSubmit}
                 textColor={Theme.colors.accent}
-                onChangeText={value => this.setState({qr: value})}
-                value={this.state.qr}
+                onChangeText={this.onTokenTextChange}
+                value={appToken}
               />
             ) : null}
           </View>
@@ -130,8 +134,6 @@ const mapStateToProps = ({auth}) => auth;
 export default connect(
   mapStateToProps,
   {
-    loginUsernameChanged,
-    loginPasswordChanged,
     loginUser,
   },
 )(Auth);

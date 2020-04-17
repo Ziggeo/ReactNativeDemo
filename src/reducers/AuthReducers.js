@@ -14,22 +14,22 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case Auth.USERNAME_CHANGED:
       return {...state, loginUsernameError: '', loginUsername: action.payload};
-    case Auth.USERNAME_INCORRECT:
+    case Auth.TOKEN_INCORRECT:
       return {...state, loginUsernameError: action.payload};
     case Auth.PASSWORD_CHANGED:
       return {...state, loginPasswordError: '', loginPassword: action.payload};
     case Auth.PASSWORD_INCORRECT:
       return {...state, loginPasswordError: action.payload};
-    case Auth.LOGIN_USER_ATTEMPT:
+    case Auth.LOGIN_ATTEMPT:
       return {
         ...state,
         loginUsernameError: '',
         loginPasswordError: '',
         loginIsLoading: true,
       };
-    case Auth.LOGIN_USER_SUCCESS:
+    case Auth.LOGIN_SUCCESS:
       return {...INITIAL_STATE, user: action.payload};
-    case Auth.LOGIN_USER_FAIL:
+    case Auth.LOGIN_FAIL:
       return {
         ...state,
         loginPassword: '',

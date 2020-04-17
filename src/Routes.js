@@ -1,26 +1,13 @@
 import React from 'react';
-import {
-  createAppContainer,
-  createSwitchNavigator,
-  StackActions,
-} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Splash from './screens/Splash';
 import Auth from './screens/auth/Auth';
 
 //TODO old screens, should be removed before release
 import Header from './components/Header';
-import {
-  getNavbarBrowseIcon,
-  getNavbarExploreIcon,
-  getNavbarLibraryIcon,
-} from './utils/icons';
-import {getFontStyleObject} from './utils/font';
-import {fromRightWithFade} from './utils/navigation';
 import Routes from './Routes';
-import Theme from './Theme';
 import Main from './screens/main/Main';
 
 export default {
@@ -50,7 +37,6 @@ const createDefaultStackNavigator = (screensObject, customOptions) =>
       backgroundColor: '#000',
     },
     headerMode: 'screen',
-    transitionConfig: () => fromRightWithFade(),
     ...customOptions,
   });
 

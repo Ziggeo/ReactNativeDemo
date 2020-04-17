@@ -1,6 +1,4 @@
 import {getStatusBarHeight} from 'react-native-status-bar-height';
-import {getFontStyleObject} from './utils/font';
-import Config from './Config';
 
 const Theme = {};
 
@@ -53,8 +51,6 @@ Theme.size = {
   smallIconSize: 20,
   largeIconSize: 40,
   hugeIconSize: 120,
-  activityIndicatorSize: Config.isAndroid ? 60 : 'large',
-  activitySmallIndicatorSize: Config.isAndroid ? 30 : 'small',
 
   posterAspectRation: 0.6667,
   backdropAspectRation: 1.78,
@@ -123,26 +119,11 @@ Theme.typography = {
   titleCaption: {
     fontSize: 16,
   },
-  header: {
-    fontSize: 18,
-    letterSpacing: 0.5,
-    ...getFontStyleObject({weight: 'SemiBold'}),
-  },
-  button: {
-    fontSize: 18,
-    letterSpacing: 0.5,
-    ...getFontStyleObject({weight: 'Bold'}),
-  },
   onlyTextButton: {
     fontSize: 16,
   },
   input: {
     fontSize: 18,
-  },
-  headline: {
-    fontSize: 17,
-    letterSpacing: 0.5,
-    ...getFontStyleObject({weight: 'SemiBold'}),
   },
   body: {
     fontSize: 15,

@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withNavigation} from 'react-navigation';
-import {View, StyleSheet, Animated} from 'react-native';
-import {getHeaderBackIcon} from '../utils/icons';
+import {View, StyleSheet, Animated, Text} from 'react-native';
 import Theme from '../Theme';
-import AppText from './common/AppText';
 import TouchableScale from './common/TouchableScale';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+const {
+  lightest: lightestColor,
+  lighter: lighterColor,
+  light: lightColor,
+  darkest: darkestColor,
+} = Theme.gray;
 
 class Header extends React.PureComponent {
   render() {
@@ -29,14 +34,19 @@ class Header extends React.PureComponent {
                     onPress={() => {
                       navigation.goBack();
                     }}>
-                    {getHeaderBackIcon()}
+                    <IconEntypo
+                      name="chevron-left"
+                      color={lightestColor}
+                      size={Theme.size.smallIconSize}
+                      style={{padding: Theme.size.commonHalfMargin}}
+                    />
                   </TouchableScale>
                 )}
           </View>
           <View style={styles.titleContainer}>
-            <AppText numberOfLines={1} type="header">
+            <Text numberOfLines={1} type="header">
               {title || routeName}
-            </AppText>
+            </Text>
           </View>
           <View style={styles.rightContainer}>
             {headerRight && headerRight()}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, StyleSheet, UIManager} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {loadUserIntoRedux, logOutUser} from '../actions';
 import {stGetUser} from '../utils/storage';
 import Routes from '../Routes';
