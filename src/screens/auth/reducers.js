@@ -1,4 +1,4 @@
-import {Auth} from '../actions/types';
+import {Types} from './actions';
 
 const INITIAL_STATE = {
   tokenValidationError: '',
@@ -7,13 +7,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case Auth.VALIDATION_ERR:
+    case Types.VALIDATION_ERR:
       return {...state, tokenValidationError: action.payload};
-    case Auth.LOGIN_SUCCESS:
+    case Types.LOGIN_SUCCESS:
       return {...state, user: action.payload};
-    case Auth.USER_LOADED:
+    case Types.USER_LOADED:
       return {...INITIAL_STATE, user: action.payload};
-    case Auth.LOG_OUT:
+    case Types.LOG_OUT:
       return {...INITIAL_STATE};
     default:
       return {...state};

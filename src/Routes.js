@@ -4,21 +4,27 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import Splash from './screens/Splash';
 import Auth from './screens/auth/Auth';
+import Recordings from './screens/recordings/Recordings';
 
 //TODO old screens, should be removed before release
 import Header from './components/Header';
+import {Settings} from './screens/Settings';
+import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
-import Main from './screens/main/Main';
 
 export default {
   Splash: 'Splash',
   AuthStack: 'AuthStack',
   HomeStack: 'HomeStack',
+  RecStack: 'RecStack',
 
   Auth: 'Auth',
-  Main: 'Main',
-  TestMain: 'TestMain',
+  Drawer: 'Drawer',
 
+  Recordings: 'Recordings',
+  RecordingDetails: 'RecordingDetails',
+
+  //TODO
   Settings: 'Settings',
   MovieListScreen: 'MoviesListScreen',
   MovieDetailsScreen: 'MovieDetailsScreen',
@@ -33,9 +39,6 @@ const defaultHeaderObject = {
 const createDefaultStackNavigator = (screensObject, customOptions) =>
   createStackNavigator(screensObject, {
     defaultNavigationOptions: {...defaultHeaderObject},
-    cardStyle: {
-      backgroundColor: '#000',
-    },
     headerMode: 'screen',
     ...customOptions,
   });
@@ -45,7 +48,11 @@ const AuthStack = createDefaultStackNavigator({
 });
 
 const HomeStack = createStackNavigator({
-  [Routes.Main]: {screen: Main},
+  [Routes.Drawer]: {screen: Drawer},
+});
+
+const RecStack = createStackNavigator({
+  [Routes.Recordings]: {screen: Recordings},
 });
 
 export const RootStack = createAppContainer(
@@ -53,5 +60,7 @@ export const RootStack = createAppContainer(
     [Routes.Splash]: {screen: Splash},
     [Routes.AuthStack]: {screen: AuthStack},
     [Routes.HomeStack]: {screen: HomeStack},
+      //TODO
+    [Routes.RecStack]: {screen: RecStack},
   }),
 );

@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import {View, ScrollView, Text, Linking, Image} from 'react-native';
 import {Button} from 'react-native-elements';
-import {loginUser} from '../../actions';
 import Routes from '../../Routes';
 import Theme from '../../Theme';
 import Strings from '../../Strings';
 import Ziggeo from 'react-native-ziggeo-library';
 import styles from './styles';
+import {loginUser} from './actions';
 
 class Auth extends React.Component {
   constructor(props) {

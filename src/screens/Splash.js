@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, StyleSheet} from 'react-native';
-import {loadUserIntoRedux, logOutUser} from '../actions';
 import {stGetUser} from '../utils/storage';
 import Routes from '../Routes';
 import Theme from '../Theme';
+import {loadUserIntoRedux} from './auth/actions';
 
 class Splash extends React.Component {
   componentDidMount() {
@@ -39,5 +39,5 @@ const mapStateToProps = ({auth: {user}}) => ({user});
 
 export default connect(
   mapStateToProps,
-  {loadUserIntoRedux, logOutUser},
+  {loadUserIntoRedux},
 )(Splash);

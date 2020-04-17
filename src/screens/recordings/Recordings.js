@@ -14,13 +14,14 @@ import GridList from 'react-native-grid-list';
 import CardView from 'react-native-cardview';
 import Ziggeo from 'react-native-ziggeo-library';
 import {connect} from 'react-redux';
-
-import Spinner from 'react-native-loading-spinner-overlay';
-import {OutlinedTextField} from 'react-native-material-textfield';
-import Theme from '../../Theme';
+import styles from './styles';
+import {fetchPosts} from './actions';
+import Toast from 'react-native-simple-toast';
+import Loading from '../../components/common/Loading/Loading';
 
 async function loadRecordings() {
   try {
+    console.log('Ziggeo. loading');
     var value = await Ziggeo.VideosApi.index();
     return value;
   } catch (e) {
@@ -31,28 +32,75 @@ async function loadRecordings() {
 }
 
 export class Recordings extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setState = {
+      isLoading: false,
+      recordings: null,
+    };
+  }
+
+  onImagePressed() {
+    Toast.show(Strings.comingSoon);
+  }
+
+  onAudioPressed() {
+    Toast.show(Strings.comingSoon);
+  }
+
+  onScreenPressed() {
+    Toast.show(Strings.comingSoon);
+  }
+
+  onCameraPressed() {
+    Ziggeo.record();
+  }
+  componentDidMount(): void {
+    const {dispatch} = this.props;
+    dispatch(requestRecs('r/pics'));
+    // const {isLoading, recordings} = this.props;
+    // loadRecordings().then(value => {
+    //   console.log('Ziggeo. then');
+    //   this.props.isLoading = false;
+    //   this.props.recordins = value;
+    // });
+  }
+
   render() {
+    //TODO
+    console.log('Ziggeo. Recordings:' + new Date());
+    console.log(this.props);
     const {isLoading, recordings} = this.props;
     return (
       <View style={styles.container}>
         {isLoading && this.renderLoading()}
-        {recordings && this.renderList(recordings)}
+        {/*{recordings && this.renderList(recordings)}*/}
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item
             title="Image"
-            onPress={() => console.log('notes tapped!')}>
+            onPress={() => this.onImagePressed()}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
             style={styles.actionButtonItem}
             title="Audio"
-            onPress={() => {}}>
+            onPress={() => {
+              this.onAudioPressed();
+            }}>
             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item title="Screen" onPress={() => {}}>
+          <ActionButton.Item
+            title="Screen"
+            onPress={() => {
+              this.onScreenPressed();
+            }}>
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item title="Camera" onPress={() => {}}>
+          <ActionButton.Item
+            title="Camera"
+            onPress={() => {
+              this.onCameraPressed();
+            }}>
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -60,17 +108,19 @@ export class Recordings extends React.Component {
     );
   }
 
-  renderLoading() {}
+  renderLoading() {
+    return <Loading />;
+  }
   renderList(recordings) {
     return (
       <View>
-        <Text>{Strings.messageRecordingsListEmpty}</Text>
-        <GridList
-          style={{width: '100%'}}
-          data={recordings}
-          numColumns={2}
-          renderItem={({item}) => <Item item={item} />}
-        />
+        {/*<Text>{Strings.messageRecordingsListEmpty}</Text>*/}
+        {/*<GridList*/}
+        {/*  style={{width: '100%'}}*/}
+        {/*  data={recordings}*/}
+        {/*  numColumns={2}*/}
+        {/*  renderItem={({item}) => <Item item={item} />}*/}
+        {/*/>*/}
       </View>
     );
   }
@@ -86,28 +136,11 @@ function Item({item}) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    paddingTop: 40,
-    alignItems: 'center',
-    flex: 1,
+const mapStateToProps = ({recs}) => recs;
+
+export default connect(
+  mapStateToProps,
+  {
+    fetchPosts,
   },
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  },
-  actionButtonItem: {},
-});
-
-function mapStateToProps(state) {
-  const {logining, errors} = state.auth;
-
-  return {
-    logining,
-    errors,
-  };
-}
-
-export default connect(mapStateToProps)(Recordings);
+)(Recordings);

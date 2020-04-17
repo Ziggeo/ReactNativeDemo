@@ -1,18 +1,16 @@
-import React from 'react';
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import {Recordings} from '../recordings/Recordings';
-import {Settings} from '../Settings';
+import Recordings from '../recordings/Recordings';
 import {VideoEditor} from '../VideoEditor';
+import {Settings} from '../Settings';
+import {Sdks} from '../Sdks';
+import {TopClients} from '../TopClients';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
-import Ziggeo from 'react-native-ziggeo-library';
-// import {Ionicons} from '@expo/vector-icons';
 import DrawerMenu from './DrawerMenu';
-import {connect} from 'react-redux';
-import {TopClients} from '../TopClients';
-import {Sdks} from '../Sdks';
+import React from 'react';
+import Routes from '../../Routes';
 
-const Drawer = createDrawerNavigator(
+export const Drawer = createDrawerNavigator(
   {
     Recordings: {screen: Recordings},
     VideoEditor: {screen: VideoEditor},
@@ -23,11 +21,6 @@ const Drawer = createDrawerNavigator(
     About: {screen: About},
   },
   {
-    initialRouteName: Recordings.name,
-    unmountInactiveRoutes: true,
-    headerMode: 'none',
     contentComponent: props => <DrawerMenu {...props} />,
   },
 );
-
-export default connect()(Drawer);
