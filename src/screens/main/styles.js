@@ -3,9 +3,7 @@ import Theme from '../../Theme';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    paddingTop: 40,
-    alignItems: 'center',
+    backgroundColor: Theme.colors.primary,
     flex: 1,
   },
   title: {

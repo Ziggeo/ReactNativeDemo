@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
+    fontSize: 25,
     color: 'white',
   },
   actionButtonItem: {},
