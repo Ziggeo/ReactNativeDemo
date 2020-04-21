@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Theme from '../../Theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    marginLeft: 20,
+    padding: Theme.size.commonMargin,
   },
   header: {
     width: '100%',

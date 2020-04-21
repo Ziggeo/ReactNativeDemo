@@ -121,12 +121,12 @@ export class Recordings extends React.Component {
           <View
             style={{
               height: Theme.size.listItemContentHeight,
-              justifyContent: 'space-between',
+              justifyContent: 'center',
             }}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={{width: 160}}>
               {item.token}
             </Text>
-            <Text>{item.tags}</Text>
+            {item.tags && <Text>{item.tags}</Text>}
           </View>
           <View
             style={{
