@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
     case Types.REQUEST_RECS:
       return {...state, isLoading: true};
     case Types.RECEIVE_RECS:
-      return {...state, isLoading: false, data: action.payload};
+      return {...state, isLoading: false, recordings: action.payload};
     default:
       return {...state};
   }

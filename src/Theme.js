@@ -29,7 +29,8 @@ Theme.size = {
   //Recordings screen
   smallFabSize: 40,
   recordingItemHeight: 100,
-  iconSize: 60,
+  iconSize: 50,
+  listItemContentHeight: 50,
 
   //Recording details screen
   previewHeight: 250,

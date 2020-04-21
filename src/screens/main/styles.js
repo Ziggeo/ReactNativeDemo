@@ -7,12 +7,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
-  listItem: {
-    height: 60,
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginLeft: 30,
-  },
   title: {
     fontSize: 18,
     marginLeft: 20,

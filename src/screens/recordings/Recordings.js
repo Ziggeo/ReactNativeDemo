@@ -1,4 +1,5 @@
 import {
+  FlatList,
   Image,
   Linking,
   StyleSheet,
@@ -8,28 +9,17 @@ import {
 } from 'react-native';
 import React from 'react';
 import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Strings from '../../Strings';
-import GridList from 'react-native-grid-list';
 import CardView from 'react-native-cardview';
 import Ziggeo from 'react-native-ziggeo-library';
 import {connect} from 'react-redux';
 import styles from './styles';
-import {fetchPosts} from './actions';
+import {requestRecs} from './actions';
 import Toast from 'react-native-simple-toast';
 import Loading from '../../components/common/Loading/Loading';
-
-async function loadRecordings() {
-  try {
-    console.log('Ziggeo. loading');
-    var value = await Ziggeo.VideosApi.index();
-    return value;
-  } catch (e) {
-    console.log('Ziggeo. Error:' + e);
-    //recorder error or recording was cancelled by user
-    alert(e);
-  }
-}
+import Theme from '../../Theme';
+import {format} from 'date-fns';
 
 export class Recordings extends React.Component {
   constructor(props) {
@@ -56,30 +46,20 @@ export class Recordings extends React.Component {
     Ziggeo.record();
   }
   componentDidMount(): void {
-    const {dispatch} = this.props;
-    dispatch(requestRecs('r/pics'));
-    // const {isLoading, recordings} = this.props;
-    // loadRecordings().then(value => {
-    //   console.log('Ziggeo. then');
-    //   this.props.isLoading = false;
-    //   this.props.recordins = value;
-    // });
+    this.props.requestRecs('r/pics');
   }
 
   render() {
-    //TODO
-    console.log('Ziggeo. Recordings:' + new Date());
-    console.log(this.props);
     const {isLoading, recordings} = this.props;
     return (
       <View style={styles.container}>
         {isLoading && this.renderLoading()}
-        {/*{recordings && this.renderList(recordings)}*/}
+        {recordings && this.renderList(recordings)}
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item
             title="Image"
             onPress={() => this.onImagePressed()}>
-            <Icon name="md-create" style={styles.actionButtonIcon} />
+            <Icon name="image" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
             style={styles.actionButtonItem}
@@ -87,21 +67,21 @@ export class Recordings extends React.Component {
             onPress={() => {
               this.onAudioPressed();
             }}>
-            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+            <Icon name="microphone" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
             title="Screen"
             onPress={() => {
               this.onScreenPressed();
             }}>
-            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+            <Icon name="monitor" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
             title="Camera"
             onPress={() => {
               this.onCameraPressed();
             }}>
-            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+            <Icon name="video" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       </View>
@@ -109,31 +89,60 @@ export class Recordings extends React.Component {
   }
 
   renderLoading() {
-    return <Loading />;
+    return <Loading styles={{padding: Theme.size.commonHalfMargin}} />;
   }
+
   renderList(recordings) {
     return (
-      <View>
-        {/*<Text>{Strings.messageRecordingsListEmpty}</Text>*/}
-        {/*<GridList*/}
-        {/*  style={{width: '100%'}}*/}
-        {/*  data={recordings}*/}
-        {/*  numColumns={2}*/}
-        {/*  renderItem={({item}) => <Item item={item} />}*/}
-        {/*/>*/}
+      <View style={styles.container}>
+        {!recordings && (
+          <Text style={styles.emptyMessage}>
+            {Strings.messageRecordingsListEmpty}
+          </Text>
+        )}
+        {recordings && (
+          <FlatList
+            data={recordings}
+            renderItem={({item}) => this.renderItem(item)}
+          />
+        )}
       </View>
     );
   }
-}
 
-function Item({item}) {
-  return (
-    <TouchableOpacity style={styles.listItem} onPress={() => {}}>
-      <CardView style={styles.card} cardElevation={2} cornerRadius={5}>
-        {/*<Image style={styles.image} source={item.thumbnail} />*/}
-      </CardView>
-    </TouchableOpacity>
-  );
+  renderItem(item) {
+    return (
+      <TouchableOpacity onPress={() => {}}>
+        <CardView
+          style={styles.card}
+          cardElevation={Theme.size.itemElevation}
+          cornerRadius={Theme.size.itemCornerRadius}>
+          <Icon name="video" style={styles.listItemIcon} />
+          <View
+            style={{
+              height: Theme.size.listItemContentHeight,
+              justifyContent: 'space-between',
+            }}>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={{width: 160}}>
+              {item.token}
+            </Text>
+            <Text>{item.tags}</Text>
+          </View>
+          <View
+            style={{
+              height: Theme.size.listItemContentHeight,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <Text>{item.state_string}</Text>
+            <Text>
+              {format(new Date(item.created * 1000), 'dd.MM.yyyy HH:mm')}
+            </Text>
+          </View>
+        </CardView>
+      </TouchableOpacity>
+    );
+  }
 }
 
 const mapStateToProps = ({recs}) => recs;
@@ -141,6 +150,6 @@ const mapStateToProps = ({recs}) => recs;
 export default connect(
   mapStateToProps,
   {
-    fetchPosts,
+    requestRecs,
   },
 )(Recordings);

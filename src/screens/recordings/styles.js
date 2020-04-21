@@ -1,10 +1,8 @@
 import {StyleSheet} from 'react-native';
+import Theme from '../../Theme';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    paddingTop: 40,
-    alignItems: 'center',
-    flex: 1,
   },
   actionButtonIcon: {
     fontSize: 20,
@@ -12,5 +10,21 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   actionButtonItem: {},
+  emptyMessage: {
+    paddingTop: 40,
+    textAlign: 'center',
+  },
+  card: {
+    height: Theme.size.recordingItemHeight,
+    padding: Theme.size.commonHalfMargin,
+    margin: Theme.size.commonHalfMargin,
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  listItemIcon: {
+    fontSize: Theme.size.iconSize,
+  },
 });
 export default styles;
