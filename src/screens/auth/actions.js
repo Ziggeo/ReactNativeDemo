@@ -1,5 +1,5 @@
 import {validateToken} from '../../utils/validators';
-import {stSaveUser} from '../../utils/storage';
+import {saveAppToken} from '../../utils/storage';
 
 export const Types = {
   VALIDATION_ERR: 'auth/VALIDATION_ERR',
@@ -27,14 +27,7 @@ export const loginUser = ({appToken, onSuccess}) => async dispatch => {
 
   dispatch({
     type: Types.LOGIN_SUCCESS,
-    payload: createUser({appToken}),
+    payload: saveAppToken(appToken),
   });
   onSuccess();
-};
-
-// Local functions
-const createUser = ({appToken}) => {
-  const user = {appToken};
-  stSaveUser(user);
-  return user;
 };

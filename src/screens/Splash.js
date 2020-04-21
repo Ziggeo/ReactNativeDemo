@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, StyleSheet} from 'react-native';
-import {stGetUser} from '../utils/storage';
+import {getAppToken} from '../utils/storage';
 import Routes from '../Routes';
 import Theme from '../Theme';
 import {loadUserIntoRedux} from './auth/actions';
@@ -13,7 +13,7 @@ class Splash extends React.Component {
 
   loadUser = async () => {
     const {navigation} = this.props;
-    const user = await stGetUser();
+    const user = await getAppToken();
 
     if (user) {
       loadUserIntoRedux(user);

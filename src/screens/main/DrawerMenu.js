@@ -10,6 +10,8 @@ import s from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../recordings/styles';
 import Theme from '../../Theme';
+import {getAppToken} from '../../utils/storage';
+import Routes from '../../Routes';
 
 export function DrawerItem({item, navigate}) {
   return (
@@ -64,41 +66,16 @@ class DrawerMenu extends React.Component {
     token: '',
   };
 
-  drawHeader(token) {
-    return (
-      <View
-        style={{
-          justifyContent: 'flex-start',
-          padding: Theme.size.commonHalfMargin,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <Text
-            style={{
-              color: Theme.colors.white,
-              alignSelf: 'flex-end',
-            }}>
-            {Strings.titleAppToken}
-          </Text>
-          <Icon name="logout-variant" style={styles.actionButtonIcon} />
-        </View>
-        <Text
-          style={{
-            color: Theme.colors.white,
-          }}>
-          {token}
-        </Text>
-      </View>
-    );
+  componentDidMount(): void {
+    getAppToken().then(value => {
+      this.state.token = value;
+    });
   }
 
   render() {
     return (
       <View style={s.container}>
-        {this.drawHeader(this.state.token)}
+        {this.drawHeader()}
         <View style={s.sidebarDivider} />
         <FlatList
           style={{width: '100%', backgroundColor: Theme.colors.white}}
@@ -117,6 +94,47 @@ class DrawerMenu extends React.Component {
           }}
           keyExtractor={item => item.name}
         />
+      </View>
+    );
+  }
+  drawHeader() {
+    return (
+      <View
+        style={{
+          justifyContent: 'flex-start',
+          padding: Theme.size.commonHalfMargin,
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <Text
+            style={{
+              color: Theme.colors.white,
+              alignSelf: 'flex-end',
+            }}>
+            {Strings.titleAppToken}
+          </Text>
+          <Icon.Button
+            backgroundColor={Theme.colors.primary}
+            name="logout-variant"
+            style={styles.actionButtonIcon}
+            onPress={event => {
+              const {navigation} = this.props;
+              navigation.navigate(Routes.AuthStack);
+            }}
+          />
+        </View>
+        <Text
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          style={{
+            width: 200,
+            color: Theme.colors.white,
+          }}>
+          {this.state.token}
+        </Text>
       </View>
     );
   }
