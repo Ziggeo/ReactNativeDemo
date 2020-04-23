@@ -97,11 +97,10 @@ const colors = {
 
 Theme.colors = {
   ...colors,
-  background: Theme.gray.darker,
-  header: Theme.gray.darkest,
-  bottomNavbar: Theme.gray.darkest,
-  textInputSelection: `${colors.primary}aa`,
+  background: colors.primary,
+  header: colors.primary,
 };
+
 // ------------------------------------------------------------
 // Typography
 // ------------------------------------------------------------

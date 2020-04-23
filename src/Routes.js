@@ -6,7 +6,6 @@ import Splash from './screens/Splash';
 import Auth from './screens/auth/Auth';
 import Recordings from './screens/recordings/Recordings';
 
-import Header from './components/Header';
 import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
 import RecordingDetails from './screens/recordingDetails/RecordingDetails';
@@ -25,9 +24,10 @@ export default {
 
   Settings: 'Settings',
 };
+import {Toolbar} from 'react-native-material-ui';
 
 const defaultHeaderObject = {
-  header: props => <Header scene={props.scene} />,
+  header: props => <Toolbar />,
 };
 
 const createDefaultStackNavigator = (screensObject, customOptions) =>
@@ -41,11 +41,11 @@ const AuthStack = createDefaultStackNavigator({
   [Routes.Auth]: {screen: Auth},
 });
 
-const HomeStack = createStackNavigator({
+const HomeStack = createDefaultStackNavigator({
   [Routes.Drawer]: {screen: Drawer},
 });
 
-const RecStack = createStackNavigator({
+const RecStack = createDefaultStackNavigator({
   [Routes.Recordings]: {screen: Recordings},
   [Routes.RecordingDetails]: {screen: RecordingDetails},
 });
