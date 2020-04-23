@@ -7,6 +7,8 @@ import {OutlinedTextField} from 'react-native-material-textfield';
 import Strings from '../../Strings';
 import Theme from '../../Theme';
 import Loading from '../../components/common/Loading/Loading';
+import Ziggeo from 'react-native-ziggeo-library';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -40,16 +42,20 @@ class RecordingDetails extends React.Component {
         {isLoading && this.renderLoading()}
         {model && (
           <View>
-            <TouchableOpacity>
+            <TouchableOpacity
+              style={{alignContent: 'center'}}
+              onPress={() => Ziggeo.play(model.token)}>
               {imageUrl && (
                 <Image
                   style={styles.preview}
                   source={{
                     uri: imageUrl,
-                    // 'https://dev.by/storage/images/66/10/31/61/original/aa6a88fb6fa70ce561c46b133899845d.jpg',
                   }}
                 />
               )}
+              <View style={styles.overlay}>
+                <Icon size={Theme.size.hugeIconSize} name="play-circle" />
+              </View>
             </TouchableOpacity>
             <OutlinedTextField
               disabled={true}

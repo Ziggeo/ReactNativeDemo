@@ -52,7 +52,7 @@ Theme.size = {
 
   smallIconSize: 20,
   largeIconSize: 40,
-  hugeIconSize: 120,
+  hugeIconSize: 80,
 
   posterAspectRation: 0.6667,
   backdropAspectRation: 1.78,
