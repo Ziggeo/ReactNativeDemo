@@ -1,8 +1,5 @@
 import {
   FlatList,
-  Image,
-  Linking,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -20,6 +17,7 @@ import Toast from 'react-native-simple-toast';
 import Loading from '../../components/common/Loading/Loading';
 import Theme from '../../Theme';
 import {format} from 'date-fns';
+import Routes from '../../Routes';
 
 export class Recordings extends React.Component {
   constructor(props) {
@@ -28,6 +26,10 @@ export class Recordings extends React.Component {
       isLoading: false,
       recordings: null,
     };
+  }
+
+  onError() {
+    Toast.show(Strings.errCommon);
   }
 
   onImagePressed() {
@@ -46,15 +48,16 @@ export class Recordings extends React.Component {
     Ziggeo.record();
   }
   componentDidMount(): void {
-    this.props.requestRecs('r/pics');
+    this.props.requestRecs();
   }
 
   render() {
-    const {isLoading, recordings} = this.props;
+    const {isLoading, recordings, error} = this.props;
     return (
       <View style={styles.container}>
         {isLoading && this.renderLoading()}
         {recordings && this.renderList(recordings)}
+        {error && this.onError()}
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item
             title="Image"
@@ -112,7 +115,11 @@ export class Recordings extends React.Component {
 
   renderItem(item) {
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity
+        onPress={() => {
+          const {navigation} = this.props;
+          navigation.navigate(Routes.RecordingDetails, item);
+        }}>
         <CardView
           style={styles.card}
           cardElevation={Theme.size.itemElevation}
@@ -146,7 +153,6 @@ export class Recordings extends React.Component {
 }
 
 const mapStateToProps = ({recs}) => recs;
-
 export default connect(
   mapStateToProps,
   {

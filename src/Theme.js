@@ -9,6 +9,7 @@ Theme.size = {
   //Common
   commonHalfMargin: 8,
   commonMargin: 16,
+  commonBigMargin: 24,
   dividerHeight: 1,
   listEmptyMessageMarginTop: 200,
   itemElevation: 4,

@@ -6,11 +6,11 @@ import Splash from './screens/Splash';
 import Auth from './screens/auth/Auth';
 import Recordings from './screens/recordings/Recordings';
 
-//TODO old screens, should be removed before release
 import Header from './components/Header';
 import {Settings} from './screens/Settings';
 import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
+import RecordingDetails from './screens/recordingDetails/RecordingDetails';
 
 export default {
   Splash: 'Splash',
@@ -53,6 +53,7 @@ const HomeStack = createStackNavigator({
 
 const RecStack = createStackNavigator({
   [Routes.Recordings]: {screen: Recordings},
+  [Routes.RecordingDetails]: {screen: RecordingDetails},
 });
 
 export const RootStack = createAppContainer(
@@ -60,7 +61,6 @@ export const RootStack = createAppContainer(
     [Routes.Splash]: {screen: Splash},
     [Routes.AuthStack]: {screen: AuthStack},
     [Routes.HomeStack]: {screen: HomeStack},
-      //TODO
     [Routes.RecStack]: {screen: RecStack},
   }),
 );

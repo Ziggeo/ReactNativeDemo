@@ -3,6 +3,7 @@ import Theme from '../../Theme';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    height: '100%',
   },
   actionButtonIcon: {
     fontSize: 25,

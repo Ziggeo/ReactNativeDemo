@@ -59,7 +59,8 @@ export default {
 
   // Recording details screen
   titleDetails: 'Details',
-  hintTokenOrKey: 'Token or key',
+  hintToken: 'Token',
+  hintOrKey: 'Key',
   hintTitle: 'Title for the recording (optional)',
   hintDescription: 'Description for the recording (optional)',
 
