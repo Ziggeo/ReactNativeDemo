@@ -7,7 +7,6 @@ import Auth from './screens/auth/Auth';
 import Recordings from './screens/recordings/Recordings';
 
 import Header from './components/Header';
-import {Settings} from './screens/Settings';
 import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
 import RecordingDetails from './screens/recordingDetails/RecordingDetails';
@@ -24,12 +23,7 @@ export default {
   Recordings: 'Recordings',
   RecordingDetails: 'RecordingDetails',
 
-  //TODO
   Settings: 'Settings',
-  MovieListScreen: 'MoviesListScreen',
-  MovieDetailsScreen: 'MovieDetailsScreen',
-
-  BottomTabs: 'BottomTabs',
 };
 
 const defaultHeaderObject = {
