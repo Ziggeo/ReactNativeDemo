@@ -6579,10 +6579,10 @@ react-native-webview@latest:
     invariant "2.2.4"
     uuid "^7.0.3"
 
-react-native-ziggeo-library@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.1.tgz#a3fd1c23c8f14db86103f20ffcea487a08d2f5af"
-  integrity sha512-lRCPT0qh/CLKpT/87nmsTHxjrblC9otNvQqTUcnwB+1Uccn1sS2WdFlTHpkUiB+jEsWcMqk3YleAlpQd6yv1Ug==
+react-native-ziggeo-library@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.7.tgz#e27ac945e3cc36f79a6e691a484f2f6b9fba867b"
+  integrity sha512-S5Zd+1EqfRRhRUyooVan1EsndNQhQx43ifSFfeQ7ThFEytw8SzF16u/pCIHee666ypYmGad6dKWdulLZfaJsTg==
 
 react-native@0.61.5:
   version "0.61.5"

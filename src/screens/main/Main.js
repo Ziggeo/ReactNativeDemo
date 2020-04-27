@@ -8,7 +8,6 @@ import {ContactUs} from '../ContactUs';
 import {About} from '../About';
 import DrawerMenu from './DrawerMenu';
 import React from 'react';
-import Routes from '../../Routes';
 
 export const Drawer = createDrawerNavigator(
   {
@@ -21,6 +20,9 @@ export const Drawer = createDrawerNavigator(
     About: {screen: About},
   },
   {
+    navigationOptions: {
+      headerShown: false,
+    },
     contentComponent: props => <DrawerMenu {...props} />,
   },
 );

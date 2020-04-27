@@ -98,6 +98,7 @@ class DrawerMenu extends React.Component {
       </View>
     );
   }
+
   drawHeader() {
     return (
       <View
