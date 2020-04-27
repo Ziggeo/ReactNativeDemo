@@ -9,6 +9,7 @@ import Theme from '../../Theme';
 import Loading from '../../components/common/Loading/Loading';
 import Ziggeo from 'react-native-ziggeo-library';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Toolbar from 'react-native-material-ui/src/Toolbar/Toolbar.react';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -35,61 +36,79 @@ class RecordingDetails extends React.Component {
     return <Loading styles={{padding: Theme.size.commonHalfMargin}} />;
   }
 
+  static navigationOptions = {
+    headerShown: false,
+  };
+
+  renderToolbar() {
+    return (
+      <Toolbar
+        style={{container: {backgroundColor: Theme.colors.primary}}}
+        onLeftElementPress={() => this.props.navigation.goBack()}
+        leftElement="arrow-back"
+        centerElement={Strings.titleDetails}
+      />
+    );
+  }
+
   render() {
     const {model, imageUrl, isLoading, isEditMode} = this.props;
     return (
-      <View style={styles.container}>
-        {isLoading && this.renderLoading()}
-        {model && (
-          <View>
-            <TouchableOpacity
-              style={{alignContent: 'center'}}
-              onPress={() => Ziggeo.play(model.token)}>
-              {imageUrl && (
-                <Image
-                  style={styles.preview}
-                  source={{
-                    uri: imageUrl,
-                  }}
-                />
-              )}
-              <View style={styles.overlay}>
-                <Icon size={Theme.size.hugeIconSize} name="play-circle" />
-              </View>
-            </TouchableOpacity>
-            <OutlinedTextField
-              disabled={true}
-              label={Strings.hintToken}
-              onSubmitEditing={this.onSubmit}
-              textColor={Theme.colors.accent}
-              value={model.token}
-            />
-            <OutlinedTextField
-              disabled={!isEditMode}
-              label={Strings.hintOrKey}
-              onSubmitEditing={this.onSubmit}
-              textColor={Theme.colors.accent}
-              onChangeText={this.onKeyChanged}
-              value={model.key}
-            />
-            <OutlinedTextField
-              disabled={!isEditMode}
-              label={Strings.hintTitle}
-              onSubmitEditing={this.onSubmit}
-              textColor={Theme.colors.accent}
-              onChangeText={this.onTitleChanged}
-              value={model.title}
-            />
-            <OutlinedTextField
-              disabled={!isEditMode}
-              label={Strings.hintDescription}
-              onSubmitEditing={this.onSubmit}
-              textColor={Theme.colors.accent}
-              onChangeText={this.onDescriptionChanged}
-              value={model.description}
-            />
-          </View>
-        )}
+      <View>
+        {this.renderToolbar()}
+        <View style={styles.container}>
+          {isLoading && this.renderLoading()}
+          {model && (
+            <View>
+              <TouchableOpacity
+                style={{alignContent: 'center'}}
+                onPress={() => Ziggeo.play(model.token)}>
+                {imageUrl && (
+                  <Image
+                    style={styles.preview}
+                    source={{
+                      uri: imageUrl,
+                    }}
+                  />
+                )}
+                <View style={styles.overlay}>
+                  <Icon size={Theme.size.hugeIconSize} name="play-circle" />
+                </View>
+              </TouchableOpacity>
+              <OutlinedTextField
+                disabled={true}
+                label={Strings.hintToken}
+                onSubmitEditing={this.onSubmit}
+                textColor={Theme.colors.accent}
+                value={model.token}
+              />
+              <OutlinedTextField
+                disabled={!isEditMode}
+                label={Strings.hintOrKey}
+                onSubmitEditing={this.onSubmit}
+                textColor={Theme.colors.accent}
+                onChangeText={this.onKeyChanged}
+                value={model.key}
+              />
+              <OutlinedTextField
+                disabled={!isEditMode}
+                label={Strings.hintTitle}
+                onSubmitEditing={this.onSubmit}
+                textColor={Theme.colors.accent}
+                onChangeText={this.onTitleChanged}
+                value={model.title}
+              />
+              <OutlinedTextField
+                disabled={!isEditMode}
+                label={Strings.hintDescription}
+                onSubmitEditing={this.onSubmit}
+                textColor={Theme.colors.accent}
+                onChangeText={this.onDescriptionChanged}
+                value={model.description}
+              />
+            </View>
+          )}
+        </View>
       </View>
     );
   }

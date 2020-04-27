@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import Splash from './screens/Splash';
 import Auth from './screens/auth/Auth';
+import RecordingDetails from './screens/recordingDetails/RecordingDetails';
 
 import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
@@ -28,6 +29,7 @@ const AuthStack = createStackNavigator({
 
 const HomeStack = createStackNavigator({
   [Routes.Drawer]: {screen: Drawer},
+  [Routes.RecordingDetails]: {screen: RecordingDetails},
 });
 
 export const RootStack = createAppContainer(
