@@ -9,11 +9,11 @@ import {connect} from 'react-redux';
 import styles from './styles';
 import {requestRecs} from './actions';
 import Toast from 'react-native-simple-toast';
-import Loading from '../../components/common/Loading/Loading';
 import Theme from '../../Theme';
 import {format} from 'date-fns';
 import Routes from '../../Routes';
 import Toolbar from 'react-native-material-ui/src/Toolbar';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export class Recordings extends React.Component {
   constructor(props) {
@@ -22,6 +22,16 @@ export class Recordings extends React.Component {
       isLoading: false,
       recordings: null,
     };
+  }
+
+  componentDidMount(): void {
+    this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
+      this.props.requestRecs();
+    });
+  }
+
+  componentWillUnmount(): void {
+    this._unsubscribe();
   }
 
   onError() {
@@ -42,10 +52,6 @@ export class Recordings extends React.Component {
 
   onCameraPressed() {
     Ziggeo.record();
-  }
-
-  componentDidMount(): void {
-    this.props.requestRecs();
   }
 
   render() {
@@ -101,7 +107,7 @@ export class Recordings extends React.Component {
   }
 
   renderLoading() {
-    return <Loading styles={{padding: Theme.size.commonHalfMargin}} />;
+    return <Spinner visible={true} />;
   }
 
   renderList(recordings) {
