@@ -12,6 +12,7 @@ import styles from '../recordings/styles';
 import Theme from '../../Theme';
 import {getAppToken} from '../../utils/storage';
 import Routes from '../../Routes';
+import {removeAppToken} from '../../utils/storage';
 
 export function DrawerItem({item, navigate}) {
   return (
@@ -121,8 +122,7 @@ class DrawerMenu extends React.Component {
             name="logout-variant"
             style={styles.actionButtonIcon}
             onPress={event => {
-              const {navigation} = this.props;
-              navigation.navigate(Routes.AuthStack);
+              this.logout();
             }}
           />
         </View>
@@ -137,6 +137,13 @@ class DrawerMenu extends React.Component {
         </Text>
       </View>
     );
+  }
+
+  logout() {
+    removeAppToken().then(value => {
+      const {navigation} = this.props;
+      navigation.navigate(Routes.AuthStack);
+    });
   }
 }
 
