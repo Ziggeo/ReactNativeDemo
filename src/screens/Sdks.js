@@ -1,6 +1,11 @@
 import {List} from './List';
+import Strings from '../Strings';
 
 export class Sdks extends List {
+  getTitle() {
+    return Strings.titleSdks;
+  }
+
   getItems() {
     return sdks;
   }

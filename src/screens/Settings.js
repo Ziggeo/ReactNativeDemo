@@ -15,6 +15,7 @@ export class Settings extends React.Component {
       </View>
     );
   }
+
   renderToolbar() {
     return (
       <Toolbar

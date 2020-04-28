@@ -1,6 +1,11 @@
 import {List} from './List';
+import Strings from '../Strings';
 
 export class TopClients extends List {
+  getTitle() {
+    return Strings.titleClients;
+  }
+
   getItems() {
     return clients;
   }

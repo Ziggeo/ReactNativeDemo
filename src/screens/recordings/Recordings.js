@@ -31,7 +31,7 @@ export class Recordings extends React.Component {
   }
 
   componentWillUnmount(): void {
-    this._unsubscribe();
+    this._unsubscribe.remove();
   }
 
   onError() {

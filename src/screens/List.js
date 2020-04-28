@@ -6,17 +6,36 @@ import Theme from '../Theme';
 import CardView from 'react-native-cardview';
 import Toast from 'react-native-simple-toast';
 import Strings from '../Strings';
+import {Toolbar} from 'react-native-material-ui';
 
 export class List extends React.Component {
+  getTitle() {
+    return null;
+  }
+
+  renderToolbar() {
+    return (
+      <Toolbar
+        style={{container: {backgroundColor: Theme.colors.primary}}}
+        onLeftElementPress={() => this.props.navigation.openDrawer()}
+        leftElement="menu"
+        centerElement={this.getTitle()}
+      />
+    );
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <GridList
-          style={{width: '100%'}}
-          data={this.getItems()}
-          numColumns={2}
-          renderItem={({item}) => <Item item={item} />}
-        />
+      <View style={{height: '100%'}}>
+        {this.renderToolbar()}
+        <View style={styles.container}>
+          <GridList
+            style={{width: '100%'}}
+            data={this.getItems()}
+            numColumns={2}
+            renderItem={({item}) => <Item item={item} />}
+          />
+        </View>
       </View>
     );
   }
