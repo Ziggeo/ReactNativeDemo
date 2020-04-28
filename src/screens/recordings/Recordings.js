@@ -55,13 +55,12 @@ export class Recordings extends React.Component {
   }
 
   render() {
-    const {isLoading, recordings, error} = this.props;
+    const {isLoading, recordings} = this.props;
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
         {isLoading && this.renderLoading()}
         {recordings && this.renderList(recordings)}
-        {error && this.onError()}
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item
             title="Image"
