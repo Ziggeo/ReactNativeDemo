@@ -27,7 +27,7 @@ import Toolbar from 'react-native-material-ui/src/Toolbar/Toolbar.react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import styles from './styles';
 import {OutlinedTextField} from 'react-native-material-textfield';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -97,9 +97,9 @@ class RecordingDetails extends React.Component {
   render() {
     const {model, imageUrl, isLoading, isEditMode} = this.props;
     return (
-      <View>
-        {this.renderToolbar(isEditMode, model)}
-        <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView>
+        <View>
+          {this.renderToolbar(isEditMode, model)}
           <ScrollView style={styles.container}>
             {isLoading && this.renderLoading()}
             {model && (
@@ -153,8 +153,8 @@ class RecordingDetails extends React.Component {
               </View>
             )}
           </ScrollView>
-        </KeyboardAwareScrollView>
-      </View>
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
