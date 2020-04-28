@@ -5,7 +5,12 @@ export const Types = {
   LOADED: 'recd/LOADED',
   EDIT: 'recd/EDIT',
   CANCEL: 'recd/CANCEL',
+  ERROR: 'recd/ERROR',
 };
+
+const error = () => ({
+  type: Types.ERROR,
+});
 
 const loading = () => ({
   type: Types.LOADING,
@@ -26,9 +31,11 @@ const cancel = () => ({
 
 export const loadInfo = model => async dispatch => {
   dispatch(loading());
-  Ziggeo.VideosApi.getImageUrl(model.token).then(imageUrl => {
-    dispatch(loaded(model, imageUrl));
-  });
+  Ziggeo.VideosApi.getImageUrl(model.token)
+    .then(imageUrl => {
+      dispatch(loaded(model, imageUrl));
+    })
+    .catch(dispatch(error()));
 };
 
 export const cancelEditing = () => async dispatch => {

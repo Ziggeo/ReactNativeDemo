@@ -20,6 +20,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, isEditMode: true};
     case Types.CANCEL:
       return {...state, isEditMode: false};
+    case Types.ERROR:
+      return {INITIAL_STATE};
     default:
       return {...state};
   }
