@@ -269,7 +269,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.7.5", "@babel/parser@^7.8.6", "@babel/parser@^7.9.6":
+"@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.8.6", "@babel/parser@^7.9.6":
   version "7.9.6"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.9.6.tgz#3b1bbb30dabe600cd72db58720998376ff653bc7"
   integrity sha512-AoeIEJn8vt+d/6+PXDRPaksYhnlbMIiejioBZvvMQsOjW/JYK6k/0dKnvvP3EhK5GfMBWDPtrxRtegWdAcdq9Q==
@@ -897,7 +897,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/template@^7.0.0", "@babel/template@^7.3.3", "@babel/template@^7.7.4", "@babel/template@^7.8.3", "@babel/template@^7.8.6":
+"@babel/template@^7.0.0", "@babel/template@^7.3.3", "@babel/template@^7.8.3", "@babel/template@^7.8.6":
   version "7.8.6"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.8.6.tgz#86b22af15f828dfb086474f964dcc3e39c43ce2b"
   integrity sha512-zbMsPMy/v0PWFZEhQJ66bqjhH+z0JgMoBWuikXybgG3Gkd/3t5oQ1Rw2WQhnSrsOmsKXnZOx15tkC4qON/+JPg==
@@ -906,7 +906,7 @@
     "@babel/parser" "^7.8.6"
     "@babel/types" "^7.8.6"
 
-"@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0", "@babel/traverse@^7.7.4", "@babel/traverse@^7.8.3", "@babel/traverse@^7.9.6":
+"@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0", "@babel/traverse@^7.8.3", "@babel/traverse@^7.9.6":
   version "7.9.6"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.9.6.tgz#5540d7577697bf619cc57b92aa0f1c231a94f442"
   integrity sha512-b3rAHSjbxy6VEAvlxM8OV/0X4XrG72zoxme6q1MOoe2vd0bEc+TwayhuC1+Dfgqh1QEG+pj7atQqvUprHIccsg==
@@ -1716,9 +1716,9 @@ acorn@^6.0.1:
   integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 acorn@^7.1.0, acorn@^7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
-  integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.2.0.tgz#17ea7e40d7c8640ff54a694c889c26f31704effe"
+  integrity sha512-apwXVmYVpQ34m/i71vrApRrRKCWQnZZF1+npOD0WV5xZFfwWOmKGQ2RWlfdy9vWITsenisM8M0Qeq8agcFHNiQ==
 
 ajv-keywords@^1.0.0:
   version "1.5.1"
@@ -3159,9 +3159,9 @@ domhandler@^3.0.0:
     domelementtype "^2.0.1"
 
 domutils@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.0.0.tgz#15b8278e37bfa8468d157478c58c367718133c08"
-  integrity sha512-n5SelJ1axbO636c2yUtOGia/IcJtVtlhQbFiVDBZHKV5ReJO1ViX7sFEemtuyoAnBxk5meNSYgA8V4s0271efg==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.1.0.tgz#7ade3201af43703fde154952e3a868eb4b635f16"
+  integrity sha512-CD9M0Dm1iaHfQ1R/TI+z3/JWp/pgub0j4jIQKH89ARR4ATAV2nbaOQS5XxU9maJP5jHaPdDDQSEHuE2UmpUTKg==
   dependencies:
     dom-serializer "^0.2.1"
     domelementtype "^2.0.1"
@@ -3181,9 +3181,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.413:
-  version "1.3.431"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.431.tgz#705dd8ef46200415ba837b31d927cdc1e43db303"
-  integrity sha512-2okqkXCIda7qDwjYhUFxPcQdZDIZZ/zBLDzVOif7WW/TSNfEhdT6SO07O1x/sFteEHX189Z//UwjbZKKCOn2Fg==
+  version "1.3.432"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.432.tgz#3bf7b191978ff2e8bc3caf811bb52b1e9f9eab25"
+  integrity sha512-/GdNhXyLP5Yl2322CUX/+Xi8NhdHBqL6lD9VJVKjH6CjoPGakvwZ5CpKgj/oOlbzuWWjOvMjDw1bBuAIRCNTlw==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -3215,9 +3215,9 @@ end-of-stream@^1.1.0:
     once "^1.4.0"
 
 entities@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.0.tgz#68d6084cab1b079767540d80e56a39b423e4abf4"
-  integrity sha512-D9f7V0JSRwIxlRI2mjMqufDrRDnx8p+eEOz7aUM9SuvF8gsBzra0/6tbjl1m8eQHrZlYj6PxqE00hZ1SAIKPLw==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.2.tgz#ac74db0bba8d33808bbf36809c3a5c3683531436"
+  integrity sha512-dmD3AvJQBUjKpcNkoqr+x+IF0SdRtPz9Vk0uTy4yWqga9ibB6s4v++QFWNohjiUGoMlF552ZvNyXDxz5iW0qmw==
 
 envinfo@^7.1.0:
   version "7.5.1"
@@ -3830,6 +3830,15 @@ expo-linear-gradient@~8.1.0:
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-8.1.0.tgz#6933765cf1e76ef2928fd8495e779929699ac4c6"
   integrity sha512-AIy2pOXQRcgk2XE5IgAzd1S2jTFLutiDfveNm6m3fPAk00Rw4qFe98qzte1ayNrGYLJvQ2xq/Y7C0BmBP051mg==
 
+expo-linking@~1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/expo-linking/-/expo-linking-1.0.1.tgz#2c1b6e68f8d5f4e54add5670290a4eacb263199d"
+  integrity sha512-PZNT/1dJv7ZBAXxUFzcvQ5MN74E/yOPrk4UwnxvLoNOmo5fyXcP3BJJPQSIKFGLvVtzl71KJJxYtb+KsR4JvNQ==
+  dependencies:
+    expo-constants "~9.0.0"
+    qs "^6.5.0"
+    url-parse "^1.4.4"
+
 expo-location@~8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-8.1.0.tgz#6a71ad9a8b78d5f016a30a02013c3b28f46d0b1b"
@@ -3858,7 +3867,7 @@ expo-updates@~0.1.0:
   dependencies:
     fbemitter "^2.1.1"
 
-expo-web-browser@~8.2.0:
+expo-web-browser@~8.2.1:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.2.1.tgz#993ba53371862ed85cfd277ba59a7004ed412905"
   integrity sha512-cENMuq6nhHRdJlEt0Fk1cPDK5aid8+znJeO6rFoIs7+PokMKtcVYBpzQI/TJlxRP3pjMm0qOISnLlMbDlZ+bfg==
@@ -3866,9 +3875,9 @@ expo-web-browser@~8.2.0:
     compare-urls "^2.0.0"
 
 expo@~37.0.3:
-  version "37.0.8"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-37.0.8.tgz#83643f329d734e331a1c419ac9a85670628271bb"
-  integrity sha512-0dt8F1yC/tNINL5Cy76OY4VYc4nwLsdyVELWk4mHRJAEEurYTn/hT/zayDAtTKV3uDykpQ8gALgP4QQprs5cwQ==
+  version "37.0.9"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-37.0.9.tgz#17c2644c859b8e5d8b9e8c33a59a6f696f89b478"
+  integrity sha512-3fCYyErOD0IJJoOJ0Dg7n3ExJ006bLkL8EDvGHwl/lvZxUQOXw31BG8vVPp8GcIqJeRYadk2MRl+Z1vzTURxZA==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@expo/vector-icons" "^10.0.2"
@@ -3888,10 +3897,11 @@ expo@~37.0.3:
     expo-font "~8.1.0"
     expo-keep-awake "~8.1.0"
     expo-linear-gradient "~8.1.0"
+    expo-linking "~1.0.0"
     expo-location "~8.1.0"
     expo-permissions "~8.1.0"
     expo-sqlite "~8.1.0"
-    expo-web-browser "~8.2.0"
+    expo-web-browser "~8.2.1"
     fbemitter "^2.1.1"
     invariant "^2.2.2"
     lodash "^4.6.0"
@@ -5040,14 +5050,11 @@ istanbul-lib-coverage@^3.0.0:
   integrity sha512-UiUIqxMgRDET6eR+o5HbfRYP1l0hqkWOs7vNxC/mggutCMUIhWMm8gAHb8tHlyfD3/l6rlgNA5cKdDzEAf6hEg==
 
 istanbul-lib-instrument@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-4.0.1.tgz#61f13ac2c96cfefb076fe7131156cc05907874e6"
-  integrity sha512-imIchxnodll7pvQBYOqUu88EufLCU56LMeFPZZM/fJZ1irYcYdqroaV+ACK1Ila8ls09iEYArp+nqyC6lW1Vfg==
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-4.0.3.tgz#873c6fff897450118222774696a3f28902d77c1d"
+  integrity sha512-BXgQl9kf4WTCPCCpmFGoJkz/+uhvm7h7PFKUYxh7qarQd3ER33vHG//qaE8eN25l07YqZPpHXU9I09l/RD5aGQ==
   dependencies:
     "@babel/core" "^7.7.5"
-    "@babel/parser" "^7.7.5"
-    "@babel/template" "^7.7.4"
-    "@babel/traverse" "^7.7.4"
     "@istanbuljs/schema" "^0.1.2"
     istanbul-lib-coverage "^3.0.0"
     semver "^6.3.0"
@@ -9264,9 +9271,9 @@ ws@^3.3.1:
     ultron "~1.1.0"
 
 ws@^7.0.0:
-  version "7.2.5"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.2.5.tgz#abb1370d4626a5a9cd79d8de404aa18b3465d10d"
-  integrity sha512-C34cIU4+DB2vMyAbmEKossWq2ZQDr6QEyuuCzWrM9zfw1sGc0mYiJ0UnG9zzNykt49C2Fi34hvr2vssFQRS6EA==
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.0.tgz#4b2f7f219b3d3737bc1a2fbf145d825b94d38ffd"
+  integrity sha512-iFtXzngZVXPGgpTlP1rBqsUK82p9tKqsWRPg5L56egiljujJT3vGAYnHANvFxBieXrTFavhzhxW52jnaWV+w2w==
 
 xcode@^2.0.0:
   version "2.1.0"
