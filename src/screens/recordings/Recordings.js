@@ -47,14 +47,41 @@ export class Recordings extends React.Component {
   }
 
   onScreenPressed() {
-    Toast.show(Strings.comingSoon);
+    Ziggeo.startScreenRecorder();
   }
 
   onCameraPressed() {
     Ziggeo.record();
   }
 
+  subscribeForEvents(): string {
+    const recorderEmitter = Ziggeo.recorderEmitter();
+    const subscription = recorderEmitter.addListener(
+      'UploadProgress',
+      progress =>
+        console.log(
+          progress.fileName +
+            ' uploaded ' +
+            progress.bytesSent +
+            ' from ' +
+            progress.totalBytes +
+            ' total bytes',
+        ),
+    );
+    recorderEmitter.addListener('Verified', data =>
+      console.log('Verified:' + data.token),
+    );
+    recorderEmitter.addListener('Processed', data =>
+      console.log('Processed:' + data.token),
+    );
+    recorderEmitter.addListener('Processing', data =>
+      console.log('Processing:' + data.token),
+    );
+    return '';
+  }
+
   render() {
+    this.subscribeForEvents();
     const {isLoading, recordings} = this.props;
     return (
       <View style={styles.container}>
