@@ -1,4 +1,4 @@
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const appTokenKey = 'appToken';
 export const getAppToken = () => AsyncStorage.getItem(appTokenKey);

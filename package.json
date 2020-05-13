@@ -54,6 +54,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/runtime": "^7.8.4",
+    "@react-native-community/async-storage": "^1.10.0",
     "@react-native-community/eslint-config": "^0.0.7",
     "axios": "latest",
     "babel-jest": "^25.1.0",
