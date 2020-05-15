@@ -31,6 +31,7 @@
 		6A5BF8D40653CB14934D635A /* libPods-ReactNativeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4C00567841C208EAADCD294 /* libPods-ReactNativeDemo.a */; };
 		6FD97670F6AD64E194530FBF /* libPods-ReactNativeDemo-ReactNativeDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0F257FB865B92AAFA3D6B6 /* libPods-ReactNativeDemo-ReactNativeDemoTests.a */; };
 		D9B6425B246D81F60014F7ED /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B6425A246D81F60014F7ED /* Dummy.swift */; };
+		D9B64283246D982C0014F7ED /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D9B64282246D982B0014F7ED /* main.jsbundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +350,7 @@
 		D50981604C1844A887610C17 /* Pods-ReactNativeDemo-ReactNativeDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeDemo-ReactNativeDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeDemo-ReactNativeDemoTests/Pods-ReactNativeDemo-ReactNativeDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D9B64259246D81F60014F7ED /* ReactNativeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		D9B6425A246D81F60014F7ED /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		D9B64282246D982B0014F7ED /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ReactNativeDemo/main.jsbundle; sourceTree = "<group>"; };
 		F82EF76CBA0E867521C05F42 /* Pods-ReactNativeDemo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeDemo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeDemo-tvOS/Pods-ReactNativeDemo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -577,6 +579,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D9B64282246D982B0014F7ED /* main.jsbundle */,
 				13B07FAE1A68108700A75B9A /* ReactNativeDemo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNativeDemoTests */,
@@ -1089,6 +1092,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B64283246D982C0014F7ED /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
