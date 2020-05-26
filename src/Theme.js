@@ -14,6 +14,9 @@ Theme.size = {
   listEmptyMessageMarginTop: 200,
   itemElevation: 4,
   itemCornerRadius: 4,
+  smallIconSize: 20,
+  largeIconSize: 40,
+  hugeIconSize: 80,
 
   //Auth screen
   logoWidth: 250,
@@ -45,14 +48,13 @@ Theme.size = {
   //Video Editor screen
   btnSelectFileMarginTop: 250,
 
+  //Video Editor screen
+  btnStartStopTextSize: 15,
+
   //TODO OLD
   statusBarHeight: getStatusBarHeight(),
   headerHeight: 54,
   bottomNavbarHeight: 50,
-
-  smallIconSize: 20,
-  largeIconSize: 40,
-  hugeIconSize: 80,
 
   posterAspectRation: 0.6667,
   backdropAspectRation: 1.78,

@@ -13,6 +13,7 @@ import Theme from '../../Theme';
 import {getAppToken} from '../../utils/storage';
 import Routes from '../../Routes';
 import {removeAppToken} from '../../utils/storage';
+import {CustomRecorder} from '../CustomRecorder';
 
 export function DrawerItem({item, navigate}) {
   return (
@@ -34,6 +35,11 @@ class DrawerMenu extends React.Component {
         type: 'item',
         title: Strings.itemVideoEditor,
         name: VideoEditor.name,
+      },
+      {
+        type: 'item',
+        title: Strings.itemCustomRecorder,
+        name: CustomRecorder.name,
       },
       {
         type: 'item',
