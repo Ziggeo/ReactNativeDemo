@@ -5,12 +5,10 @@ import {Toolbar} from 'react-native-material-ui';
 import Theme from '../Theme';
 import ZiggeoCamera from 'react-native-ziggeo-library/CameraView';
 import ActionButton from 'react-native-action-button';
-import {
-  requestMultiple,
-  PERMISSIONS,
-  RESULTS,
-} from 'react-native-permissions';
+import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {Platform} from 'react-native';
+import RNFetchBlob from 'rn-fetch-blob';
+
 const ANDROID_PERMISSIONS = [
   PERMISSIONS.ANDROID.CAMERA,
   PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
@@ -59,10 +57,13 @@ export class CustomRecorder extends React.Component {
   onBtnPress = () => {
     if (this.camera) {
       if (this.state.isRecordingStarted) {
-        //TODO use real values
-        this.camera.stopRecording("", 10000);
+        this.camera.stopRecording();
       } else {
-        this.camera.startRecording();
+        let path = IS_ANDROID
+          ? RNFetchBlob.fs.dirs.DownloadDir + 'temp.mp4'
+          : //TODO handle iOs path
+            '';
+        this.camera.startRecording(path, 10000);
       }
       this.setState({isRecordingStarted: !this.state.isRecordingStarted});
     }
@@ -85,6 +86,10 @@ export class CustomRecorder extends React.Component {
             this.setState({
               isPermissionsGranted: newState,
             });
+          }
+
+          if (!this.state.isPermissionsGranted) {
+            console.log('Permission denied.');
           }
         }
       },
