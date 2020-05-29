@@ -1,7 +1,6 @@
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import Recordings from '../recordings/Recordings';
 import {VideoEditor} from '../VideoEditor';
-import {CustomRecorder} from '../CustomRecorder';
 import {Settings} from '../Settings';
 import {Sdks} from '../Sdks';
 import {TopClients} from '../TopClients';
@@ -14,7 +13,6 @@ export const Drawer = createDrawerNavigator(
   {
     Recordings: {screen: Recordings},
     VideoEditor: {screen: VideoEditor},
-    CustomRecorder: {screen: CustomRecorder},
     Settings: {screen: Settings},
     ListSdks: {screen: Sdks},
     ListClients: {screen: TopClients},
