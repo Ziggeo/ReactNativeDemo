@@ -5,12 +5,26 @@ import {Toolbar} from 'react-native-material-ui';
 import Theme from '../Theme';
 import ZiggeoCamera from 'react-native-ziggeo-library/CameraView';
 import ActionButton from 'react-native-action-button';
+import {
+  requestMultiple,
+  PERMISSIONS,
+  RESULTS,
+} from 'react-native-permissions';
+import {Platform} from 'react-native';
+const ANDROID_PERMISSIONS = [
+  PERMISSIONS.ANDROID.CAMERA,
+  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
+  PERMISSIONS.ANDROID.RECORD_AUDIO,
+];
+const IOS_PERMISSIONS = [];
+const IS_ANDROID = Platform.OS === 'android';
 
 export class CustomRecorder extends React.Component {
   constructor() {
     super();
     this.state = {
       isRecordingStarted: false,
+      isPermissionsGranted: false,
     };
   }
 
@@ -18,11 +32,15 @@ export class CustomRecorder extends React.Component {
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
-        <ZiggeoCamera
-          ref={camRef => {
-            this.camera = camRef;
-          }}
-        />
+        {this.state.isPermissionsGranted ? (
+          <ZiggeoCamera
+            ref={camRef => {
+              this.camera = camRef;
+            }}
+          />
+        ) : (
+          this.requestPermissions()
+        )}
         <ActionButton
           degrees={0}
           buttonTextStyle={{fontSize: Theme.size.btnStartStopTextSize}}
@@ -49,6 +67,29 @@ export class CustomRecorder extends React.Component {
       this.setState({isRecordingStarted: !this.state.isRecordingStarted});
     }
   };
+
+  requestPermissions() {
+    requestMultiple(IS_ANDROID ? ANDROID_PERMISSIONS : IOS_PERMISSIONS).then(
+      statuses => {
+        if (IS_ANDROID) {
+          let camera = statuses[PERMISSIONS.ANDROID.CAMERA];
+          let write = statuses[PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE];
+          let audio = statuses[PERMISSIONS.ANDROID.RECORD_AUDIO];
+
+          let newState =
+            camera === RESULTS.GRANTED &&
+            write === RESULTS.GRANTED &&
+            audio === RESULTS.GRANTED;
+
+          if (newState !== this.state.isPermissionsGranted) {
+            this.setState({
+              isPermissionsGranted: newState,
+            });
+          }
+        }
+      },
+    );
+  }
 
   renderToolbar() {
     return (
