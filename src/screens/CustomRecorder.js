@@ -26,18 +26,22 @@ export class CustomRecorder extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (!this.state.isPermissionsGranted) {
+      this.requestPermissions();
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
-        {this.state.isPermissionsGranted ? (
+        {this.state.isPermissionsGranted && (
           <ZiggeoCamera
             ref={camRef => {
               this.camera = camRef;
             }}
           />
-        ) : (
-          this.requestPermissions()
         )}
         <ActionButton
           degrees={0}
