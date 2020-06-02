@@ -77,7 +77,7 @@ class Auth extends React.Component {
                 textDecorationLine: 'underline',
               }}
               onPress={() => {
-                Linking.openURL('demo.ziggeo.com');
+                Linking.openURL('https://demo.ziggeo.com');
               }}>
               {Strings.authMessageLink}
             </Text>
