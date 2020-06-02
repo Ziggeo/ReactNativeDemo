@@ -28,7 +28,7 @@ class Auth extends React.Component {
   }
   onTokenTextChange(text) {
     this.setState({
-      appToken: text,
+      appToken: text.trim(),
     });
   }
 

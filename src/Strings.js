@@ -29,7 +29,6 @@ export default {
   itemContact: 'Contact us',
   itemAbout: 'About',
   itemVideoEditor: 'Video Editor',
-  itemCustomRecorder: 'Custom Recorder',
 
   // Logout confirmation
   logoutMessage: 'Are you sure you want to log out?',
@@ -41,9 +40,6 @@ export default {
 
   // Settings screen
   titleSettings: 'Settings',
-
-  // Custom recorder screen
-  titleCustomRecorder: 'Custom recorder',
 
   // SDKs screen
   titleSdks: 'Available SDKs',
