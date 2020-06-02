@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import Strings from '../Strings';
 import HTML from 'react-native-render-html';
@@ -31,8 +31,6 @@ export class About extends React.Component {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    paddingTop: 40,
     alignItems: 'center',
     flex: 1,
   },

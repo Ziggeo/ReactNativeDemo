@@ -67,7 +67,7 @@ export default {
   //TODO refactor to use color from one place
   aboutSubtitle: '<h2>Thanks for trying our demo!<h2>',
   aboutText: `
-  Visit <a href=https://github.com/Ziggeo/Android-Client-SDK>GitHub</a> if you want to star us or just to see the sources
+  Visit <a style="color:#DC5163;" href=https://github.com/Ziggeo/Android-Client-SDK>GitHub</a> if you want to star us or just to see the sources
   
   You might also want to take a look at other sections.
   
