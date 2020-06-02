@@ -21,6 +21,7 @@ export class Recordings extends React.Component {
     this.setState = {
       isLoading: false,
       recordings: null,
+      error: null,
     };
   }
 
@@ -32,10 +33,6 @@ export class Recordings extends React.Component {
 
   componentWillUnmount(): void {
     this._unsubscribe.remove();
-  }
-
-  onError() {
-    Toast.show(Strings.errCommon);
   }
 
   onImagePressed() {
@@ -54,7 +51,7 @@ export class Recordings extends React.Component {
     Ziggeo.record();
   }
 
-  subscribeForEvents(): string {
+  subscribeForEvents() {
     const recorderEmitter = Ziggeo.recorderEmitter();
     const subscription = recorderEmitter.addListener(
       'UploadProgress',
@@ -77,17 +74,17 @@ export class Recordings extends React.Component {
     recorderEmitter.addListener('Processing', data =>
       console.log('Processing:' + data.token),
     );
-    return '';
   }
 
   render() {
     this.subscribeForEvents();
-    const {isLoading, recordings} = this.props;
+    const {isLoading, recordings, error} = this.props;
     return (
       <View style={styles.container}>
         {this.renderToolbar()}
         {isLoading && this.renderLoading()}
         {recordings && this.renderList(recordings)}
+        {error && this.renderError(error.message)}
         <ActionButton buttonColor={Theme.colors.accent}>
           <ActionButton.Item
             size={Theme.size.smallFabSize}
@@ -151,6 +148,10 @@ export class Recordings extends React.Component {
         )}
       </View>
     );
+  }
+
+  renderError(message) {
+    return <Text style={styles.emptyMessage}>{message}</Text>;
   }
 
   renderItem(item) {
