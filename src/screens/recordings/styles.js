@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
   },
-  actionButtonItem: {},
   emptyMessage: {
     paddingTop: 40,
     textAlign: 'center',

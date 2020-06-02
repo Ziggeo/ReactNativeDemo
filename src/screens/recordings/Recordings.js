@@ -88,29 +88,28 @@ export class Recordings extends React.Component {
         {this.renderToolbar()}
         {isLoading && this.renderLoading()}
         {recordings && this.renderList(recordings)}
-        <ActionButton buttonColor="rgba(231,76,60,1)">
+        <ActionButton buttonColor={Theme.colors.accent}>
           <ActionButton.Item
-            title="Image"
+            size={Theme.size.smallFabSize}
             onPress={() => this.onImagePressed()}>
             <Icon name="image" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            style={styles.actionButtonItem}
-            title="Audio"
+            size={Theme.size.smallFabSize}
             onPress={() => {
               this.onAudioPressed();
             }}>
             <Icon name="microphone" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            title="Screen"
+            size={Theme.size.smallFabSize}
             onPress={() => {
               this.onScreenPressed();
             }}>
             <Icon name="monitor" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            title="Camera"
+            size={Theme.size.smallFabSize}
             onPress={() => {
               this.onCameraPressed();
             }}>
@@ -171,7 +170,10 @@ export class Recordings extends React.Component {
               height: Theme.size.listItemContentHeight,
               justifyContent: 'center',
             }}>
-            <Text numberOfLines={1} ellipsizeMode="tail" style={{width: 160}}>
+            <Text
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              style={{width: Theme.size.tokenLineWidth}}>
               {item.token}
             </Text>
             {item.tags && <Text>{item.tags}</Text>}

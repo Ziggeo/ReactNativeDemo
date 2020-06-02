@@ -33,6 +33,7 @@ Theme.size = {
   recordingItemHeight: 100,
   iconSize: 50,
   listItemContentHeight: 50,
+  tokenLineWidth: 160,
 
   //Recording details screen
   previewHeight: 250,
