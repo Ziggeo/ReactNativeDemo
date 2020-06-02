@@ -8,6 +8,7 @@ import ActionButton from 'react-native-action-button';
 import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {Platform} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import Ziggeo from 'react-native-ziggeo-library';
 
 const ANDROID_PERMISSIONS = [
   PERMISSIONS.ANDROID.CAMERA,
@@ -30,6 +31,30 @@ export class CustomRecorder extends React.Component {
     if (!this.state.isPermissionsGranted) {
       this.requestPermissions();
     }
+    this.subscribeForEvents();
+  }
+
+  subscribeForEvents() {
+    const cameraEmitter = Ziggeo.cameraEmitter();
+    cameraEmitter.addListener('CameraOpened', data =>
+      console.log('CameraOpened'),
+    );
+    cameraEmitter.addListener('CameraClosed', data =>
+      console.log('CameraClosed'),
+    );
+    cameraEmitter.addListener('RecordingStarted', data =>
+      console.log('RecordingStarted'),
+    );
+    cameraEmitter.addListener('RecordingStopped', data =>
+      console.log('RecordingStopped'),
+    );
+    cameraEmitter.addListener('StreamingStarted', data =>
+      console.log('StreamingStarted'),
+    );
+    cameraEmitter.addListener('StreamingStopped', data =>
+      console.log('StreamingStopped'),
+    );
+    cameraEmitter.addListener('error', data => console.log('error: ' + data));
   }
 
   render() {

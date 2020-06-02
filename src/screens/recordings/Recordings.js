@@ -28,6 +28,7 @@ export class Recordings extends React.Component {
     this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
       this.props.requestRecs();
     });
+    this.subscribeForEvents();
   }
 
   componentWillUnmount(): void {
@@ -54,7 +55,7 @@ export class Recordings extends React.Component {
     Ziggeo.record();
   }
 
-  subscribeForEvents(): string {
+  subscribeForEvents() {
     const recorderEmitter = Ziggeo.recorderEmitter();
     const subscription = recorderEmitter.addListener(
       'UploadProgress',
@@ -77,11 +78,9 @@ export class Recordings extends React.Component {
     recorderEmitter.addListener('Processing', data =>
       console.log('Processing:' + data.token),
     );
-    return '';
   }
 
   render() {
-    this.subscribeForEvents();
     const {isLoading, recordings} = this.props;
     return (
       <View style={styles.container}>
