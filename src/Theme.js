@@ -1,5 +1,3 @@
-import {getStatusBarHeight} from 'react-native-status-bar-height';
-
 const Theme = {};
 
 // ------------------------------------------------------------
@@ -50,28 +48,11 @@ Theme.size = {
 
   //Video Editor screen
   btnStartStopTextSize: 15,
-
-  //TODO OLD
-  statusBarHeight: getStatusBarHeight(),
-  headerHeight: 54,
-  bottomNavbarHeight: 50,
-
-  posterAspectRation: 0.6667,
-  backdropAspectRation: 1.78,
 };
 
 // ------------------------------------------------------------
 // Colors
 // ------------------------------------------------------------
-Theme.gray = {
-  darkest: '#121212',
-  darker: '#1a1a1a',
-  dark: '#353535',
-  light: '#828282',
-  lighter: '#cfcfcf',
-  lightest: '#f8f8f8',
-};
-
 const colors = {
   primary: '#DC5163',
   primaryDark: '#AA3E4B',
@@ -101,52 +82,6 @@ Theme.colors = {
   ...colors,
   background: colors.primary,
   header: colors.primary,
-};
-
-// ------------------------------------------------------------
-// Typography
-// ------------------------------------------------------------
-Theme.typography = {
-  largeTitle: {
-    fontSize: 34,
-  },
-  title1: {
-    fontSize: 28,
-  },
-  title2: {
-    fontSize: 22,
-  },
-  title3: {
-    fontSize: 18,
-  },
-  titleCaption: {
-    fontSize: 16,
-  },
-  onlyTextButton: {
-    fontSize: 16,
-  },
-  input: {
-    fontSize: 18,
-  },
-  body: {
-    fontSize: 15,
-  },
-  caption1: {
-    fontSize: 14,
-  },
-  caption2: {
-    fontSize: 12,
-  },
-  caption3: {
-    fontSize: 10,
-  },
-
-  // //About screen
-  // aboutSubtitleTextSize:20sp</dimen>
-  // aboutContentTextSize:18sp</dimen>
-  //
-  // //Available SDKs screen
-  // categoryTextSize:20sp</dimen>
 };
 
 export default Theme;
