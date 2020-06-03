@@ -35,6 +35,10 @@ export class Recordings extends React.Component {
     this._unsubscribe.remove();
   }
 
+  onFolderPressed() {
+    Ziggeo.uploadFromFileSelector(null);
+  }
+
   onImagePressed() {
     Toast.show(Strings.comingSoon);
   }
@@ -86,6 +90,11 @@ export class Recordings extends React.Component {
         {recordings && this.renderList(recordings)}
         {error && this.renderError(error.message)}
         <ActionButton buttonColor={Theme.colors.accent}>
+          <ActionButton.Item
+            size={Theme.size.smallFabSize}
+            onPress={() => this.onFolderPressed()}>
+            <Icon name="folder" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
           <ActionButton.Item
             size={Theme.size.smallFabSize}
             onPress={() => this.onImagePressed()}>
