@@ -1,3 +1,7 @@
+import Theme from './Theme';
+
+const primaryColor = Theme.colors.primary;
+
 export default {
   // Common
   appName: 'Ziggeo demo (React Native)',
@@ -67,33 +71,33 @@ export default {
   //TODO refactor to use color from one place
   aboutSubtitle: '<h2>Thanks for trying our demo!<h2>',
   aboutText: `
-  Visit <a style="color:#DC5163;" href=https://github.com/Ziggeo/Android-Client-SDK>GitHub</a> if you want to star us or just to see the sources
+  Visit <a style="color:${primaryColor}" href=https://github.com/Ziggeo/Android-Client-SDK>GitHub</a> if you want to star us or just to see the sources
   
   You might also want to take a look at other sections.
   
   Learn:
-  - <a style="color:#DC5163;" href=https://ziggeo.com/quickstart>Quick start</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/screencasts>Screencasts</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/webinars>Webinars</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/quickstart>Quick start</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/screencasts>Screencasts</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/webinars>Webinars</a>
   
   Reference:
-  - <a style="color:#DC5163;" href=https://ziggeo.com/docs>Documentation</a>
-  - <a style="color:#DC5163;" href=https://support.ziggeo.com/>FAQs</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/integrations>Integrations</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/docs>Documentation</a>
+  - <a style="color:${primaryColor}" href=https://support.ziggeo.com/>FAQs</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/integrations>Integrations</a>
   
   Sandboxes
-  - <a style="color:#DC5163;" href=https://ziggeo.com/sandbox/configuration>Configuration</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/sandbox/serverside>Server-Side</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/sandbox/authorization-tokens>Authorization Tokens</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/sandbox/webhooks>Webhooks Builder</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/configuration>Configuration</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/serverside>Server-Side</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/authorization-tokens>Authorization Tokens</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/webhooks>Webhooks Builder</a>
   
   Community
-  - <a style="color:#DC5163;" href=https://support.ziggeo.com/hc/en-us/community/posts>Forum</a>
-  - <a style="color:#DC5163;" href=https://stackoverflow.com/search?q=ziggeo>StackOverflow</a>
+  - <a style="color:${primaryColor}" href=https://support.ziggeo.com/hc/en-us/community/posts>Forum</a>
+  - <a style="color:${primaryColor}" href=https://stackoverflow.com/search?q=ziggeo>StackOverflow</a>
   
   Support
-  - <a style="color:#DC5163;" href=mailto:support@ziggeo.com>Support</a>
-  - <a style="color:#DC5163;" href=https://ziggeo.com/dev-updates>Dev Updates</a>`,
+  - <a style="color:${primaryColor}" href=mailto:support@ziggeo.com>Support</a>
+  - <a style="color:${primaryColor}" href=https://ziggeo.com/dev-updates>Dev Updates</a>`,
 
   // Contact us
   btnStartNowText: 'Click here to \nSTART RIGHT NOW.',
