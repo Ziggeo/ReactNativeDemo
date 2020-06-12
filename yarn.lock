@@ -5128,10 +5128,10 @@ react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-ziggeo-library@1.4.9:
-  version "1.4.9"
-  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.9.tgz#b54191bfba764c9ca0145e6982aea8354bba0f8f"
-  integrity sha512-n0x5tcH8zec/CVkRZRqQicjFoaWRsjIt8Q+2TyCWtprTy4Iz1vM+4GdpjiEwDAgrCB3ZghNxD8iluno7vgycXw==
+react-native-ziggeo-library@1.4.10:
+  version "1.4.10"
+  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.10.tgz#a639074c8af09ef6aafcb3f48e150bf23488bdd6"
+  integrity sha512-4AOrD2/0DFekQPzUvVXqAK/sC9ce7atomnrq9hSOpyCRbJYSpwfA8ZiQPWWkxWoMD4uOtobGHZPMxaFWSiz5TQ==
 
 react-native@0.62.2:
   version "0.62.2"
