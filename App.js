@@ -68,6 +68,13 @@ export default class App extends React.Component {
         enforce_duration: true,
         tags: 'TEST_TAG',
       };
+
+      let recorderCacheConfig = {
+        cache_size: 1024 * 1024,
+        // cache_root: "",
+      };
+      Ziggeo.setRecorderCacheConfig(recorderCacheConfig);
+
       var token = await Ziggeo.uploadFromFileSelector(argsMap);
       console.log('Token:' + token);
       if (token) {
