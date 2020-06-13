@@ -70,7 +70,7 @@ export default class App extends React.Component {
       };
 
       let recorderCacheConfig = {
-        cache_size: 1024 * 1024,
+        cache_size: 1024 * 1024 * 50, // 50Mb is the default value
         // cache_root: "",
       };
       Ziggeo.setRecorderCacheConfig(recorderCacheConfig);
