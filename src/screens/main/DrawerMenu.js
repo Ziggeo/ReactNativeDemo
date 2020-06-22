@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, FlatList, TouchableOpacity} from 'react-native';
+import {View, FlatList, TouchableOpacity} from 'react-native';
 import Strings from '../../Strings';
 import {Recordings} from '../recordings/Recordings';
 import {Settings} from '../Settings';
@@ -13,6 +13,7 @@ import Theme from '../../Theme';
 import {getAppToken} from '../../utils/storage';
 import Routes from '../../Routes';
 import {removeAppToken} from '../../utils/storage';
+import Text from '../../ui/Text';
 
 export function DrawerItem({item, navigate}) {
   return (

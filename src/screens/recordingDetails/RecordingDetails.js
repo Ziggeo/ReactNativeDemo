@@ -1,15 +1,4 @@
-import {
-  View,
-  KeyboardAvoidingView,
-  Platform,
-  TouchableWithoutFeedback,
-  Text,
-  TextInput,
-  Keyboard,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import React from 'react';
 import {connect} from 'react-redux';
 import {
@@ -28,6 +17,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import styles from './styles';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Text from '../../ui/Text';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -89,7 +79,15 @@ class RecordingDetails extends React.Component {
           }
         }}
         leftElement={!isEditMode ? 'arrow-back' : 'close'}
-        centerElement={Strings.titleDetails}
+        centerElement={
+          <Text
+            style={{
+              fontSize: Theme.size.toolbarTextSize,
+              color: Theme.colors.white,
+            }}>
+            {Strings.titleDetails}
+          </Text>
+        }
       />
     );
   }

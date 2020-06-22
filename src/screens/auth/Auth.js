@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {OutlinedTextField} from 'react-native-material-textfield';
-import {View, ScrollView, Text, Linking, Image} from 'react-native';
+import {Image, Linking, ScrollView, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import Routes from '../../Routes';
 import Theme from '../../Theme';
@@ -9,6 +9,7 @@ import Strings from '../../Strings';
 import Ziggeo from 'react-native-ziggeo-library';
 import styles from './styles';
 import {loginUser} from './actions';
+import Text from '../../ui/Text';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Auth extends React.Component {
       scanQrMode: !this.state.scanQrMode,
     });
   }
+
   onTokenTextChange(text) {
     this.setState({
       appToken: text.trim(),

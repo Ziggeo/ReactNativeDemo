@@ -1,4 +1,4 @@
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,6 +14,8 @@ import {format} from 'date-fns';
 import Routes from '../../Routes';
 import Toolbar from 'react-native-material-ui/src/Toolbar';
 import Spinner from 'react-native-loading-spinner-overlay';
+import Text from '../../ui/Text';
+import toolbar from '../../ui/Toolbar';
 
 export class Recordings extends React.Component {
   constructor(props) {
@@ -85,7 +87,7 @@ export class Recordings extends React.Component {
     const {isLoading, recordings, error} = this.props;
     return (
       <View style={styles.container}>
-        {this.renderToolbar()}
+        {toolbar(Strings.titleRecordings, this.props)}
         {isLoading && this.renderLoading()}
         {recordings && this.renderList(recordings)}
         {error && this.renderError(error.message)}
@@ -123,17 +125,6 @@ export class Recordings extends React.Component {
           </ActionButton.Item>
         </ActionButton>
       </View>
-    );
-  }
-
-  renderToolbar() {
-    return (
-      <Toolbar
-        style={{container: {backgroundColor: Theme.colors.primary}}}
-        onLeftElementPress={() => this.props.navigation.openDrawer()}
-        leftElement="menu"
-        centerElement={Strings.titleRecordings}
-      />
     );
   }
 

@@ -15,6 +15,7 @@ Theme.size = {
   smallIconSize: 20,
   largeIconSize: 40,
   hugeIconSize: 80,
+  toolbarTextSize: 18,
 
   //Auth screen
   logoWidth: 250,
@@ -46,9 +47,10 @@ Theme.size = {
 
   //Video Editor screen
   btnSelectFileMarginTop: 250,
-
-  //Video Editor screen
   btnStartStopTextSize: 15,
+
+  //About screen
+  aboutTextSize: 16,
 };
 
 // ------------------------------------------------------------
