@@ -9,7 +9,10 @@ export default class Text extends React.Component {
 
   render() {
     return (
-      <TextRN style={[styles.textStyle, this.props.style]}>
+      <TextRN
+        ellipsizeMode={this.props.ellipsizeMode}
+        numberOfLines={this.props.numberOfLines}
+        style={[styles.textStyle, this.props.style]}>
         {this.props.children}
       </TextRN>
     );
