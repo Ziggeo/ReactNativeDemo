@@ -2,7 +2,7 @@ import React from 'react';
 import Toolbar from 'react-native-material-ui/src/Toolbar';
 import Theme from '../Theme';
 import Text from './Text';
-import {styles} from './style';
+import {textFontStyle} from './textFontStyle';
 
 export default function createToolbar(text, props) {
   return (
@@ -15,7 +15,11 @@ export default function createToolbar(text, props) {
       onLeftElementPress={() => props.navigation.openDrawer()}
       leftElement="menu"
       centerElement={
-        <Text style={[styles.textStyle, {color: Theme.colors.white}]}>
+        <Text
+          style={[
+            textFontStyle.textStyle,
+            {color: Theme.colors.white, fontSize: Theme.size.toolbarTextSize},
+          ]}>
           {text}
         </Text>
       }

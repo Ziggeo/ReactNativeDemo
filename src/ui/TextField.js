@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextField} from 'react-native-material-textfield';
-import {styles} from './style';
+import {textFontStyle} from './textFontStyle';
 
 export default function createTextField({
   disabled,
@@ -18,7 +18,7 @@ export default function createTextField({
       onSubmitEditing={onSubmitEditing}
       textColor={textColor}
       value={value}
-      titleTextStyle={styles.textStyle}
+      titleTextStyle={textFontStyle.textStyle}
       onChangeText={onChangeText}
       error={error}
     />

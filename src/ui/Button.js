@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'react-native-elements';
 import Theme from '../Theme';
-import {styles} from './style';
+import {textFontStyle} from './textFontStyle';
 
 export default function createButton(text, onPress, buttonStyle, textStyle) {
   return (
@@ -10,7 +10,7 @@ export default function createButton(text, onPress, buttonStyle, textStyle) {
       textStyle={{color: Theme.colors.secondaryText}}
       title={text}
       onPress={onPress}
-      titleStyle={[styles.textStyle, textStyle]}
+      titleStyle={[textFontStyle.textStyle, textStyle]}
     />
   );
 }

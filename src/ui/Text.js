@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text as TextRN} from 'react-native';
-import {styles} from './style';
+import {textFontStyle} from './textFontStyle';
 
 export default class Text extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Text extends React.Component {
       <TextRN
         ellipsizeMode={this.props.ellipsizeMode}
         numberOfLines={this.props.numberOfLines}
-        style={[styles.textStyle, this.props.style]}>
+        style={[textFontStyle.textStyle, this.props.style]}>
         {this.props.children}
       </TextRN>
     );

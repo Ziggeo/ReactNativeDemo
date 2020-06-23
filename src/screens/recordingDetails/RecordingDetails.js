@@ -18,6 +18,7 @@ import styles from './styles';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Text from '../../ui/Text';
 import createTextField from '../../ui/TextField';
+import {textFontStyle} from '../../ui/textFontStyle';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -81,10 +82,13 @@ class RecordingDetails extends React.Component {
         leftElement={!isEditMode ? 'arrow-back' : 'close'}
         centerElement={
           <Text
-            style={{
-              fontSize: Theme.size.toolbarTextSize,
-              color: Theme.colors.white,
-            }}>
+            style={[
+              textFontStyle.textStyle,
+              {
+                color: Theme.colors.white,
+                fontSize: Theme.size.toolbarTextSize,
+              },
+            ]}>
             {Strings.titleDetails}
           </Text>
         }

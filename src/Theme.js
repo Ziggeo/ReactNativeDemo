@@ -15,7 +15,7 @@ Theme.size = {
   smallIconSize: 20,
   largeIconSize: 40,
   hugeIconSize: 80,
-  toolbarTextSize: 18,
+  toolbarTextSize: 20,
 
   //Auth screen
   logoWidth: 250,
