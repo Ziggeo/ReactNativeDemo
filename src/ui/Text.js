@@ -8,7 +8,7 @@ export default class Text extends React.Component {
 
   render() {
     return (
-      <TextRN style={[styles.defaultStyle, this.props.style]}>
+      <TextRN style={[styles.textStyle, this.props.style]}>
         {this.props.children}
       </TextRN>
     );
@@ -16,7 +16,7 @@ export default class Text extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  defaultStyle: {
+  textStyle: {
     fontFamily: 'quicksand_regular',
   },
 });

@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {OutlinedTextField} from 'react-native-material-textfield';
 import {Image, Linking, ScrollView, View} from 'react-native';
-import {Button} from 'react-native-elements';
 import Routes from '../../Routes';
 import Theme from '../../Theme';
 import Strings from '../../Strings';
@@ -10,6 +9,7 @@ import Ziggeo from 'react-native-ziggeo-library';
 import styles from './styles';
 import {loginUser} from './actions';
 import Text from '../../ui/Text';
+import createButton from '../../ui/Button';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -97,36 +97,33 @@ class Auth extends React.Component {
               />
             ) : null}
           </View>
-          {this.state.scanQrMode ? (
-            <Button
-              buttonStyle={styles.actionBtn}
-              title={Strings.btnScanQrText}
-              onPress={this.onScanQrPress}
-            />
-          ) : null}
-          {!this.state.scanQrMode ? (
-            <Button
-              buttonStyle={styles.actionBtn}
-              title={Strings.btnUseEnteredText}
-              onPress={this.onUseEnteredPressed}
-            />
-          ) : null}
-          {this.state.scanQrMode ? (
-            <Button
-              titleStyle={{color: Theme.colors.secondaryText}}
-              buttonStyle={styles.stateSwitchBtn}
-              title={Strings.enterQrManuallyText}
-              onPress={this.toggleVisibility}
-            />
-          ) : null}
-          {!this.state.scanQrMode ? (
-            <Button
-              titleStyle={{color: Theme.colors.secondaryText}}
-              buttonStyle={styles.stateSwitchBtn}
-              title={Strings.useScannerText}
-              onPress={this.toggleVisibility}
-            />
-          ) : null}
+          {this.state.scanQrMode
+            ? createButton(
+                Strings.btnScanQrText,
+                this.onScanQrPress,
+                styles.actionBtn,
+              )
+            : null}
+          {!this.state.scanQrMode
+            ? createButton(
+                Strings.btnUseEnteredText,
+                this.onUseEnteredPressed,
+                styles.actionBtn,
+              )
+            : null}
+          {this.state.scanQrMode
+            ? createButton(
+                Strings.enterQrManuallyText,
+                this.toggleVisibility,
+                styles.stateSwitchBtn,
+                {color: Theme.colors.secondaryText},
+              )
+            : createButton(
+                Strings.useScannerText,
+                this.toggleVisibility,
+                styles.stateSwitchBtn,
+                {color: Theme.colors.secondaryText},
+              )}
         </ScrollView>
       </View>
     );

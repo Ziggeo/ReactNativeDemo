@@ -1,9 +1,9 @@
 import React from 'react';
 import Strings from '../Strings';
-import {Button} from 'react-native-elements';
 import {StyleSheet, View} from 'react-native';
 import Theme from '../Theme';
 import toolbar from '../ui/Toolbar';
+import createButton from '../ui/Button';
 
 export class ContactUs extends React.Component {
   render() {
@@ -11,11 +11,11 @@ export class ContactUs extends React.Component {
       <View style={{height: '100%'}}>
         {toolbar(Strings.titleContact, this.props)}
         <View style={styles.container}>
-          <Button
-            buttonStyle={styles.btn}
-            title={Strings.btnStartNowText}
-            onPress={this.onStartBtnPressed}
-          />
+          {createButton(
+            Strings.btnStartNowText,
+            this.onStartBtnPressed,
+            styles.btn,
+          )}
         </View>
       </View>
     );
