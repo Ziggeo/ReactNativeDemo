@@ -64,11 +64,10 @@ export default {
   // Recording details screen
   titleDetails: 'Details',
   hintToken: 'Token',
-  hintOrKey: 'Key',
+  hintKey: 'Key',
   hintTitle: 'Title for the recording (optional)',
   hintDescription: 'Description for the recording (optional)',
 
-  //TODO refactor to use color from one place
   aboutSubtitle: '<h2>Thanks for trying our demo!<h2>',
   aboutText: `
   Visit <a style="color:${primaryColor}" href=https://github.com/Ziggeo/Android-Client-SDK>GitHub</a> if you want to star us or just to see the sources

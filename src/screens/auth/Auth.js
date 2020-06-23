@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {OutlinedTextField} from 'react-native-material-textfield';
 import {Image, Linking, ScrollView, View} from 'react-native';
 import Routes from '../../Routes';
 import Theme from '../../Theme';
@@ -10,6 +9,7 @@ import styles from './styles';
 import {loginUser} from './actions';
 import Text from '../../ui/Text';
 import createButton from '../../ui/Button';
+import createTextField from '../../ui/TextField';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -86,16 +86,16 @@ class Auth extends React.Component {
             <Text>{Strings.authMessagePart2}</Text>
           </Text>
           <View style={styles.controls}>
-            {!this.state.scanQrMode ? (
-              <OutlinedTextField
-                label={Strings.enterManuallyHint}
-                onSubmitEditing={this.onSubmit}
-                textColor={Theme.colors.accent}
-                onChangeText={this.onTokenTextChange}
-                value={appToken}
-                error={tokenValidationError}
-              />
-            ) : null}
+            {!this.state.scanQrMode
+              ? createTextField({
+                  label: Strings.enterManuallyHint,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: appToken,
+                  onChangeText: this.onTokenTextChange,
+                  error: tokenValidationError,
+                })
+              : null}
           </View>
           {this.state.scanQrMode
             ? createButton(

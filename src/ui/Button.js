@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'react-native-elements';
 import Theme from '../Theme';
-import {StyleSheet} from 'react-native';
+import {styles} from './style';
 
 export default function createButton(text, onPress, buttonStyle, textStyle) {
   return (
@@ -14,9 +14,3 @@ export default function createButton(text, onPress, buttonStyle, textStyle) {
     />
   );
 }
-
-const styles = StyleSheet.create({
-  textStyle: {
-    fontFamily: 'quicksand_regular',
-  },
-});

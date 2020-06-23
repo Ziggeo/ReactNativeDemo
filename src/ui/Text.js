@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text as TextRN} from 'react-native';
+import {Text as TextRN} from 'react-native';
+import {styles} from './style';
 
 export default class Text extends React.Component {
   constructor(props) {
@@ -14,9 +15,3 @@ export default class Text extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  textStyle: {
-    fontFamily: 'quicksand_regular',
-  },
-});
