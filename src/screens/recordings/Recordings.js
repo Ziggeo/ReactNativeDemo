@@ -15,7 +15,7 @@ import Routes from '../../Routes';
 import Toolbar from 'react-native-material-ui/src/Toolbar';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Text from '../../ui/Text';
-import toolbar from '../../ui/Toolbar';
+import createToolbar from '../../ui/Toolbar';
 
 export class Recordings extends React.Component {
   constructor(props) {
@@ -87,7 +87,7 @@ export class Recordings extends React.Component {
     const {isLoading, recordings, error} = this.props;
     return (
       <View style={styles.container}>
-        {toolbar(Strings.titleRecordings, this.props)}
+        {createToolbar(Strings.titleRecordings, this.props)}
         {isLoading && this.renderLoading()}
         {recordings && this.renderList(recordings)}
         {error && this.renderError(error.message)}

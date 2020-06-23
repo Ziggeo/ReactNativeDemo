@@ -2,13 +2,13 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import Strings from '../Strings';
 import Text from '../ui/Text';
-import toolbar from '../ui/Toolbar';
+import createToolbar from '../ui/Toolbar';
 
 export class VideoEditor extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {toolbar(Strings.titleVideoEditor, this.props)}
+        {createToolbar(Strings.titleVideoEditor, this.props)}
         <View style={styles.textContainer}>
           <Text>{Strings.comingSoon}</Text>
         </View>

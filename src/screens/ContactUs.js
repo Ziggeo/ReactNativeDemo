@@ -2,14 +2,14 @@ import React from 'react';
 import Strings from '../Strings';
 import {StyleSheet, View} from 'react-native';
 import Theme from '../Theme';
-import toolbar from '../ui/Toolbar';
+import createToolbar from '../ui/Toolbar';
 import createButton from '../ui/Button';
 
 export class ContactUs extends React.Component {
   render() {
     return (
       <View style={{height: '100%'}}>
-        {toolbar(Strings.titleContact, this.props)}
+        {createToolbar(Strings.titleContact, this.props)}
         <View style={styles.container}>
           {createButton(
             Strings.btnStartNowText,

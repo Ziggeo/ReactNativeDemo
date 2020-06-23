@@ -7,7 +7,7 @@ import CardView from 'react-native-cardview';
 import Toast from 'react-native-simple-toast';
 import Strings from '../Strings';
 import {Toolbar} from 'react-native-material-ui';
-import toolbar from '../ui/Toolbar';
+import createToolbar from '../ui/Toolbar';
 
 export class List extends React.Component {
   getTitle() {
@@ -17,7 +17,7 @@ export class List extends React.Component {
   render() {
     return (
       <View style={{height: '100%'}}>
-        {toolbar(this.getTitle(), this.props)}
+        {createToolbar(this.getTitle(), this.props)}
         <View style={styles.container}>
           <GridList
             style={{width: '100%'}}

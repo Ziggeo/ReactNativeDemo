@@ -2,13 +2,13 @@ import {StyleSheet, View} from 'react-native';
 import Strings from '../Strings';
 import React from 'react';
 import Text from '../ui/Text';
-import toolbar from '../ui/Toolbar';
+import createToolbar from '../ui/Toolbar';
 
 export class Settings extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {toolbar(Strings.titleSettings, this.props)}
+        {createToolbar(Strings.titleSettings, this.props)}
         <View style={styles.textContainer}>
           <Text>{Strings.comingSoon}</Text>
         </View>

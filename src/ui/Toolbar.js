@@ -3,7 +3,7 @@ import Toolbar from 'react-native-material-ui/src/Toolbar';
 import Theme from '../Theme';
 import Text from './Text';
 
-export default function toolbar(text, props) {
+export default function createToolbar(text, props) {
   return (
     <Toolbar
       style={{
