@@ -6,7 +6,6 @@ import Theme from '../Theme';
 import CardView from 'react-native-cardview';
 import Toast from 'react-native-simple-toast';
 import Strings from '../Strings';
-import {Toolbar} from 'react-native-material-ui';
 import createToolbar from '../ui/Toolbar';
 
 export class List extends React.Component {

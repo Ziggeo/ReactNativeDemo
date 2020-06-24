@@ -32,6 +32,7 @@ export const sdks = [
     thumbnail: require('../assets/img/sdks/ic_reactnative.png'),
   },
   {
+    url: 'https://github.com/Ziggeo/Flutter-SDK',
     thumbnail: require('../assets/img/sdks/ic_flutter.png'),
   },
   {
