@@ -53,9 +53,7 @@ export class About extends React.Component {
                     return url;
                 }
               }}>
-              <Text style={{fontSize: Theme.size.messageTextSize}}>
-                {Strings.aboutText}
-              </Text>
+              <Text style={Theme.styles.message}>{Strings.aboutText}</Text>
             </Hyperlink>
           </View>
         </ScrollView>
