@@ -55,6 +55,11 @@ export default {
 
   // Contact screen
   titleContact: 'Contact us',
+  subtitleContact: 'Stay in touch',
+  messageContact:
+    'Do you have a question about Ziggeo?\nWondering how you can start using Ziggeo?\nWish to get in touch with someone to see how you can start using Ziggeo tomorrow?\nIf you are ready to start a video revolution of your website / service / app or system, click on the Contact Us button to send us an email, or visit our support base to find answers or ask us there.',
+  btnContactUs: 'Contact Us',
+  btnVisitSupport: 'Visit Support',
 
   // Recordings screen
   titleAbout: 'About',
@@ -68,38 +73,35 @@ export default {
   hintTitle: 'Title for the recording (optional)',
   hintDescription: 'Description for the recording (optional)',
 
-  aboutSubtitle: '<h2>Thanks for trying our demo!<h2>',
+  aboutSubtitle: 'Thanks for trying our demo!',
   aboutText: `
-  Visit <a style="color:${primaryColor}" href=https://github.com/Ziggeo/Android-Client-SDK>GitHub</a> if you want to star us or just to see the sources
+  Visit https://github.com/Ziggeo/Android-Client-SDK if you want to star us or just to see the sources
   
   You might also want to take a look at other sections.
   
   Learn:
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/quickstart>Quick start</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/screencasts>Screencasts</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/webinars>Webinars</a>
+  - https://ziggeo.com/quickstart 
+  - https://ziggeo.com/screencasts 
+  - https://ziggeo.com/webinars 
   
   Reference:
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/docs>Documentation</a>
-  - <a style="color:${primaryColor}" href=https://support.ziggeo.com/>FAQs</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/integrations>Integrations</a>
+  - https://ziggeo.com/docs 
+  - https://support.ziggeo.com 
+  - https://ziggeo.com/integrations 
   
   Sandboxes
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/configuration>Configuration</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/serverside>Server-Side</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/authorization-tokens>Authorization Tokens</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/sandbox/webhooks>Webhooks Builder</a>
+  - https://ziggeo.com/sandbox/configuration 
+  - https://ziggeo.com/sandbox/serverside 
+  - https://ziggeo.com/sandbox/authorization-tokens 
+  - https://ziggeo.com/sandbox/webhooks 
   
   Community
-  - <a style="color:${primaryColor}" href=https://support.ziggeo.com/hc/en-us/community/posts>Forum</a>
-  - <a style="color:${primaryColor}" href=https://stackoverflow.com/search?q=ziggeo>StackOverflow</a>
+  - https://support.ziggeo.com/hc/en-us/community/posts 
+  - https://stackoverflow.com/search?q=ziggeo 
   
   Support
-  - <a style="color:${primaryColor}" href=mailto:support@ziggeo.com>Support</a>
-  - <a style="color:${primaryColor}" href=https://ziggeo.com/dev-updates>Dev Updates</a>`,
-
-  // Contact us
-  btnStartNowText: 'Click here to \nSTART RIGHT NOW.',
+  - mailto:support@ziggeo.com 
+  - https://ziggeo.com/dev-updates`,
 
   // Video Editor
   titleVideoEditor: 'Video editor',

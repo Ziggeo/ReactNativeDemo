@@ -16,6 +16,8 @@ Theme.size = {
   largeIconSize: 40,
   hugeIconSize: 80,
   toolbarTextSize: 20,
+  subtitleTextSize: 20,
+  messageTextSize: 18,
 
   //Auth screen
   logoWidth: 250,
@@ -48,9 +50,6 @@ Theme.size = {
   //Video Editor screen
   btnSelectFileMarginTop: 250,
   btnStartStopTextSize: 15,
-
-  //About screen
-  aboutTextSize: 16,
 };
 
 // ------------------------------------------------------------
@@ -85,6 +84,18 @@ Theme.colors = {
   ...colors,
   background: colors.primary,
   header: colors.primary,
+};
+
+Theme.styles = {
+  subtitle: {
+    fontSize: Theme.size.subtitleTextSize,
+    fontWeight: 'bold',
+    marginTop: Theme.size.commonMargin,
+  },
+  message: {
+    fontSize: Theme.size.messageTextSize,
+    marginTop: Theme.size.commonMargin,
+  },
 };
 
 export default Theme;
