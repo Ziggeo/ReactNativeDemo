@@ -1,4 +1,4 @@
-package com.reactnativedemo;
+package com.ziggeo.reactnativesdk.demo;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

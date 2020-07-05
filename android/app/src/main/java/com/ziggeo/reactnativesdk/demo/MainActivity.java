@@ -1,4 +1,4 @@
-package com.reactnativedemo;
+package com.ziggeo.reactnativesdk.demo;
 
 import com.facebook.react.ReactActivity;
 
