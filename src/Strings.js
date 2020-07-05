@@ -15,7 +15,7 @@ export default {
 
   // Auth screen
   authMessagePart1: 'Please go to ',
-  authMessageLink: 'demo.ziggeo.com',
+  authMessageLink: 'ziggeo.com/quickstart',
   authMessagePart2:
     ' on your desktop or laptop and scan QR code. This will allow you to connect your desktop and mobile demo experience',
   btnScanQrText: 'SCAN QR CODE',
