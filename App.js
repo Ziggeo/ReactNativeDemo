@@ -20,6 +20,16 @@ export default class App extends React.Component {
       data: '{"source":"app"}',
     };
     Ziggeo.setExtraArgsForRecorder(argsMap);
+
+    // customization of recorder buttons. iOS support is confirmed.
+    /*
+    Ziggeo.setRecorderInterfaceConfig({
+      recordButton: {scale: 1},
+      closeButton: {scale: 1},
+      cameraFlipButton: {scale: 1},
+    });
+    */
+
     try {
       //record and upload the video and return its token
       var token = await Ziggeo.record();
