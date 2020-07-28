@@ -10,10 +10,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: 'white',
     },
-    emptyMessage: {
-        paddingTop: 40,
-        textAlign: 'center',
-    },
     card: {
         height: Theme.size.recordingItemHeight,
         padding: Theme.size.commonHalfMargin,

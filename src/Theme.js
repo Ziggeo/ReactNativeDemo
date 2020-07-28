@@ -87,6 +87,10 @@ Theme.colors = {
 };
 
 Theme.styles = {
+    emptyMessage: {
+        paddingTop: Theme.size.listEmptyMessageMarginTop,
+        textAlign: 'center',
+    },
     subtitle: {
         fontSize: Theme.size.subtitleTextSize,
         fontWeight: 'bold',

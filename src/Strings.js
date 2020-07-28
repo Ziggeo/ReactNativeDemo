@@ -37,6 +37,8 @@ export default {
 
     // Logout confirmation
     logoutMessage: 'Are you sure you want to log out?',
+    messageLogsEmpty:
+        'There are no logs.',
 
     // Recordings screen
     titleRecordings: 'Recordings',

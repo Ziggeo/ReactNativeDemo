@@ -136,7 +136,7 @@ export class Recordings extends React.Component {
         return (
             <View style={styles.container}>
                 {!recordings && (
-                    <Text style={styles.emptyMessage}>
+                    <Text style={Theme.styles.emptyMessage}>
                         {Strings.messageRecordingsListEmpty}
                     </Text>
                 )}
