@@ -18,188 +18,188 @@ import Text from '../../ui/Text';
 import createToolbar from '../../ui/Toolbar';
 
 export class Recordings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setState = {
-      isLoading: false,
-      recordings: null,
-      error: null,
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.setState = {
+            isLoading: false,
+            recordings: null,
+            error: null,
+        };
+    }
 
-  componentDidMount(): void {
-    this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
-      this.props.requestRecs();
-    });
-  }
+    componentDidMount(): void {
+        this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
+            this.props.requestRecs();
+        });
+    }
 
-  componentWillUnmount(): void {
-    this._unsubscribe.remove();
-  }
+    componentWillUnmount(): void {
+        this._unsubscribe.remove();
+    }
 
-  onFolderPressed() {
-    Ziggeo.uploadFromFileSelector(null);
-  }
+    onFolderPressed() {
+        Ziggeo.uploadFromFileSelector(null);
+    }
 
-  onImagePressed() {
-    Toast.show(Strings.comingSoon);
-  }
+    onImagePressed() {
+        Toast.show(Strings.comingSoon);
+    }
 
-  onAudioPressed() {
-    Toast.show(Strings.comingSoon);
-  }
+    onAudioPressed() {
+        Toast.show(Strings.comingSoon);
+    }
 
-  onScreenPressed() {
-    Ziggeo.startScreenRecorder();
-  }
+    onScreenPressed() {
+        Ziggeo.startScreenRecorder();
+    }
 
-  onCameraPressed() {
-    Ziggeo.record();
-  }
+    onCameraPressed() {
+        Ziggeo.record();
+    }
 
-  subscribeForEvents() {
-    const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener(
-      'UploadProgress',
-      progress =>
-        console.log(
-          progress.fileName +
-            ' uploaded ' +
-            progress.bytesSent +
-            ' from ' +
-            progress.totalBytes +
-            ' total bytes',
-        ),
-    );
-    recorderEmitter.addListener('Verified', data =>
-      console.log('Verified:' + data.token),
-    );
-    recorderEmitter.addListener('Processed', data =>
-      console.log('Processed:' + data.token),
-    );
-    recorderEmitter.addListener('Processing', data =>
-      console.log('Processing:' + data.token),
-    );
-  }
+    subscribeForEvents() {
+        const recorderEmitter = Ziggeo.recorderEmitter();
+        const subscription = recorderEmitter.addListener(
+            'UploadProgress',
+            progress =>
+                console.log(
+                    progress.fileName +
+                    ' uploaded ' +
+                    progress.bytesSent +
+                    ' from ' +
+                    progress.totalBytes +
+                    ' total bytes',
+                ),
+        );
+        recorderEmitter.addListener('Verified', data =>
+            console.log('Verified:' + data.token),
+        );
+        recorderEmitter.addListener('Processed', data =>
+            console.log('Processed:' + data.token),
+        );
+        recorderEmitter.addListener('Processing', data =>
+            console.log('Processing:' + data.token),
+        );
+    }
 
-  render() {
-    this.subscribeForEvents();
-    const {isLoading, recordings, error} = this.props;
-    return (
-      <View style={styles.container}>
-        {createToolbar(Strings.titleRecordings, this.props)}
-        {isLoading && this.renderLoading()}
-        {recordings && this.renderList(recordings)}
-        {error && this.renderError(error.message)}
-        <ActionButton buttonColor={Theme.colors.accent}>
-          <ActionButton.Item
-            size={Theme.size.smallFabSize}
-            onPress={() => this.onFolderPressed()}>
-            <Icon name="folder" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            size={Theme.size.smallFabSize}
-            onPress={() => this.onImagePressed()}>
-            <Icon name="image" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            size={Theme.size.smallFabSize}
-            onPress={() => {
-              this.onAudioPressed();
-            }}>
-            <Icon name="microphone" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            size={Theme.size.smallFabSize}
-            onPress={() => {
-              this.onScreenPressed();
-            }}>
-            <Icon name="monitor" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            size={Theme.size.smallFabSize}
-            onPress={() => {
-              this.onCameraPressed();
-            }}>
-            <Icon name="video" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-        </ActionButton>
-      </View>
-    );
-  }
+    render() {
+        this.subscribeForEvents();
+        const {isLoading, recordings, error} = this.props;
+        return (
+            <View style={styles.container}>
+                {createToolbar(Strings.titleRecordings, this.props)}
+                {isLoading && this.renderLoading()}
+                {recordings && this.renderList(recordings)}
+                {error && this.renderError(error.message)}
+                <ActionButton buttonColor={Theme.colors.accent}>
+                    <ActionButton.Item
+                        size={Theme.size.smallFabSize}
+                        onPress={() => this.onFolderPressed()}>
+                        <Icon name="folder" style={styles.actionButtonIcon}/>
+                    </ActionButton.Item>
+                    <ActionButton.Item
+                        size={Theme.size.smallFabSize}
+                        onPress={() => this.onImagePressed()}>
+                        <Icon name="image" style={styles.actionButtonIcon}/>
+                    </ActionButton.Item>
+                    <ActionButton.Item
+                        size={Theme.size.smallFabSize}
+                        onPress={() => {
+                            this.onAudioPressed();
+                        }}>
+                        <Icon name="microphone" style={styles.actionButtonIcon}/>
+                    </ActionButton.Item>
+                    <ActionButton.Item
+                        size={Theme.size.smallFabSize}
+                        onPress={() => {
+                            this.onScreenPressed();
+                        }}>
+                        <Icon name="monitor" style={styles.actionButtonIcon}/>
+                    </ActionButton.Item>
+                    <ActionButton.Item
+                        size={Theme.size.smallFabSize}
+                        onPress={() => {
+                            this.onCameraPressed();
+                        }}>
+                        <Icon name="video" style={styles.actionButtonIcon}/>
+                    </ActionButton.Item>
+                </ActionButton>
+            </View>
+        );
+    }
 
-  renderLoading() {
-    return <Spinner visible={true} />;
-  }
+    renderLoading() {
+        return <Spinner visible={true}/>;
+    }
 
-  renderList(recordings) {
-    return (
-      <View style={styles.container}>
-        {!recordings && (
-          <Text style={styles.emptyMessage}>
-            {Strings.messageRecordingsListEmpty}
-          </Text>
-        )}
-        {recordings && (
-          <FlatList
-            data={recordings}
-            renderItem={({item}) => this.renderItem(item)}
-          />
-        )}
-      </View>
-    );
-  }
+    renderList(recordings) {
+        return (
+            <View style={styles.container}>
+                {!recordings && (
+                    <Text style={styles.emptyMessage}>
+                        {Strings.messageRecordingsListEmpty}
+                    </Text>
+                )}
+                {recordings && (
+                    <FlatList
+                        data={recordings}
+                        renderItem={({item}) => this.renderItem(item)}
+                    />
+                )}
+            </View>
+        );
+    }
 
-  renderError(message) {
-    return <Text style={styles.emptyMessage}>{message}</Text>;
-  }
+    renderError(message) {
+        return <Text style={styles.emptyMessage}>{message}</Text>;
+    }
 
-  renderItem(item) {
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          const {navigation} = this.props;
-          navigation.navigate(Routes.RecordingDetails, item);
-        }}>
-        <CardView
-          style={styles.card}
-          cardElevation={Theme.size.itemElevation}
-          cornerRadius={Theme.size.itemCornerRadius}>
-          <Icon name="video" style={styles.listItemIcon} />
-          <View
-            style={{
-              height: Theme.size.listItemContentHeight,
-              justifyContent: 'center',
-            }}>
-            <Text
-              numberOfLines={1}
-              ellipsizeMode="tail"
-              style={{width: Theme.size.tokenLineWidth}}>
-              {item.token}
-            </Text>
-            {item.tags && <Text>{item.tags}</Text>}
-          </View>
-          <View
-            style={{
-              height: Theme.size.listItemContentHeight,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
-            <Text>{item.state_string}</Text>
-            <Text>
-              {format(new Date(item.created * 1000), 'dd.MM.yyyy HH:mm')}
-            </Text>
-          </View>
-        </CardView>
-      </TouchableOpacity>
-    );
-  }
+    renderItem(item) {
+        return (
+            <TouchableOpacity
+                onPress={() => {
+                    const {navigation} = this.props;
+                    navigation.navigate(Routes.RecordingDetails, item);
+                }}>
+                <CardView
+                    style={styles.card}
+                    cardElevation={Theme.size.itemElevation}
+                    cornerRadius={Theme.size.itemCornerRadius}>
+                    <Icon name="video" style={styles.listItemIcon}/>
+                    <View
+                        style={{
+                            height: Theme.size.listItemContentHeight,
+                            justifyContent: 'center',
+                        }}>
+                        <Text
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={{width: Theme.size.tokenLineWidth}}>
+                            {item.token}
+                        </Text>
+                        {item.tags && <Text>{item.tags}</Text>}
+                    </View>
+                    <View
+                        style={{
+                            height: Theme.size.listItemContentHeight,
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                        }}>
+                        <Text>{item.state_string}</Text>
+                        <Text>
+                            {format(new Date(item.created * 1000), 'dd.MM.yyyy HH:mm')}
+                        </Text>
+                    </View>
+                </CardView>
+            </TouchableOpacity>
+        );
+    }
 }
 
 const mapStateToProps = ({recs}) => recs;
 export default connect(
-  mapStateToProps,
-  {
-    requestRecs,
-  },
+    mapStateToProps,
+    {
+        requestRecs,
+    },
 )(Recordings);

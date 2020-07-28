@@ -5,8 +5,8 @@ import DrawerReducer from './screens/main/reducers';
 import RecordingDetailsReducer from './screens/recordingDetails/reducers';
 
 export default combineReducers({
-  auth: AuthReducer,
-  recs: RecordingsReducer,
-  drawer: DrawerReducer,
-  recd: RecordingDetailsReducer,
+    auth: AuthReducer,
+    recs: RecordingsReducer,
+    drawer: DrawerReducer,
+    recd: RecordingDetailsReducer,
 });

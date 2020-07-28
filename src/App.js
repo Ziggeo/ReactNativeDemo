@@ -5,15 +5,15 @@ import {RootStack} from './Routes';
 import store from './store';
 
 class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <View style={{flex: 1}}>
-          <RootStack />
-        </View>
-      </Provider>
-    );
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <View style={{flex: 1}}>
+                    <RootStack/>
+                </View>
+            </Provider>
+        );
+    }
 }
 
 export default App;

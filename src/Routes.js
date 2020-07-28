@@ -9,33 +9,33 @@ import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
 
 export default {
-  Splash: 'Splash',
-  AuthStack: 'AuthStack',
-  HomeStack: 'HomeStack',
-  RecStack: 'RecStack',
+    Splash: 'Splash',
+    AuthStack: 'AuthStack',
+    HomeStack: 'HomeStack',
+    RecStack: 'RecStack',
 
-  Auth: 'Auth',
-  Drawer: 'Drawer',
+    Auth: 'Auth',
+    Drawer: 'Drawer',
 
-  Recordings: 'Recordings',
-  RecordingDetails: 'RecordingDetails',
+    Recordings: 'Recordings',
+    RecordingDetails: 'RecordingDetails',
 
-  Settings: 'Settings',
+    Settings: 'Settings',
 };
 
 const AuthStack = createStackNavigator({
-  [Routes.Auth]: {screen: Auth},
+    [Routes.Auth]: {screen: Auth},
 });
 
 const HomeStack = createStackNavigator({
-  [Routes.Drawer]: {screen: Drawer},
-  [Routes.RecordingDetails]: {screen: RecordingDetails},
+    [Routes.Drawer]: {screen: Drawer},
+    [Routes.RecordingDetails]: {screen: RecordingDetails},
 });
 
 export const RootStack = createAppContainer(
-  createSwitchNavigator({
-    [Routes.Splash]: {screen: Splash},
-    [Routes.AuthStack]: {screen: AuthStack},
-    [Routes.HomeStack]: {screen: HomeStack},
-  }),
+    createSwitchNavigator({
+        [Routes.Splash]: {screen: Splash},
+        [Routes.AuthStack]: {screen: AuthStack},
+        [Routes.HomeStack]: {screen: HomeStack},
+    }),
 );
