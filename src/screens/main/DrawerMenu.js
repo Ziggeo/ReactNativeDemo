@@ -6,7 +6,7 @@ import {Settings} from '../Settings';
 import {VideoEditor} from '../VideoEditor';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
-import {Log} from '../Log';
+import {Logs} from '../logs/Logs';
 import s from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../recordings/styles';
@@ -68,7 +68,7 @@ class DrawerMenu extends React.Component {
             {
                 type: 'item',
                 title: Strings.itemLog,
-                name: Log.name,
+                name: Logs.name,
             },
         ],
         token: '',

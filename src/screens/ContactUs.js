@@ -49,8 +49,8 @@ export class ContactUs extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: Theme.size.commonMargin,
         alignItems: 'center',
+        padding: Theme.size.commonMargin,
         marginBottom: Theme.size.commonMargin,
     },
     btnContactUs: {

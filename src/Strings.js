@@ -69,6 +69,9 @@ export default {
     messageRecordingsListEmpty:
         'There are no recordings.\nPress plus button to add some.',
 
+    // Logs screen
+    titleLogs: 'Logs',
+
     // Recording details screen
     titleDetails: 'Details',
     hintToken: 'Token',
@@ -77,6 +80,7 @@ export default {
     hintDescription: 'Description for the recording (optional)',
 
     // About screen
+    btnSendReport: 'Send report',
     aboutSubtitle: 'Thanks for trying our demo!',
     aboutText: `
   Visit https://github.com/Ziggeo/Android-Client-SDK if you want to star us or just to see the sources
@@ -114,10 +118,56 @@ export default {
     cutVideoSavedTo: 'Video saved to: %s',
     videoChooserTitle: 'Select video',
 
-    // About screen
-    btnSendReport: 'Send report',
-
     // Custom recorder
     btnStartText: 'Start',
     btnStopText: 'Stop',
+
+    // Recorder events 
+    evRecLoaded: 'Recorder: loaded',
+    evRecManuallySubmitted: 'Recorder: manually submitted',
+    evRecRecordingStarted: 'Recorder: recording started',
+    evRecRecordingStopped: 'Recording stopped',
+    evRecCountdown: 'Recorder: countdown',
+    evRecRecordingProgress: 'Recorder: recording progress',
+    evRecReadyToRecord: 'Recorder: ready to record',
+    evRecAccessForbidden: 'Recorder: access forbidden',
+    evRecAccessGranted: 'Recorder: access granted',
+    evRecNoCamera: 'Recorder: no camera',
+    evRecNoMicrophone: 'Recorder: no microphone',
+    evRecHasCamera: 'Recorder: has camera',
+    evRecHasMicrophone: 'Recorder: has microphone',
+    evRecMicrophoneHealth: 'Recorder: microphone health',
+    evRecCanceledByUser: 'Recorder: canceled by user',
+    evRecError: 'Recorder: error',
+    evRecStreamingStarted: 'Recorder: streaming started',
+    evRecStreamingStopped: 'Recorder: streaming stopped',
+
+    // Player events 
+    evPlLoaded: 'Player: loaded',
+    evPlAccessForbidden: 'Player: access forbidden',
+    evPlAccessGranted: 'Player: access granted',
+    evPlCanceledByUser: 'Player: canceled by user',
+    evPlError: 'Player: error',
+    evPlPlaying: 'Player: playing',
+    evPlPaused: 'Player: paused',
+    evPlEnded: 'Player: ended',
+    evPlSeek: 'Player: seek',
+    evPlReadyToPlay: 'Player: ready to play',
+
+    // Uploader events 
+    evUplUploaded: 'Uploader: uploaded',
+    evUplUploadingStarted: 'Uploader: uploading started',
+    evUplUploadProgress: 'Uploader: upload progress',
+    evUplProcessing: 'Uploader: processing',
+    evUplProcessed: 'Uploader: processed',
+    evUplVerified: 'Uploader: verified',
+    evUplError: 'Uploader: error',
+
+    // Uploader events 
+    evFsLoaded: 'FileSelector: loaded',
+    evFsAccessForbidden: 'FileSelector: access forbidden',
+    evFsAccessGranted: 'FileSelector: access granted',
+    evFsCanceledByUser: 'FileSelector: canceled by user',
+    evFsUploadSelected: 'FileSelector: upload selected',
+    evFsError: 'FileSelector: error',
 };

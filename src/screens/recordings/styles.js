@@ -3,7 +3,6 @@ import Theme from '../../Theme';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
         height: '100%',
     },
     actionButtonIcon: {
@@ -14,7 +13,6 @@ const styles = StyleSheet.create({
         height: Theme.size.recordingItemHeight,
         padding: Theme.size.commonHalfMargin,
         margin: Theme.size.commonHalfMargin,
-        flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',

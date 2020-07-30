@@ -6,7 +6,7 @@ import {Sdks} from '../Sdks';
 import {TopClients} from '../TopClients';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
-import {Log} from '../Log';
+import {Logs} from '../logs/Logs';
 import DrawerMenu from './DrawerMenu';
 import React from 'react';
 
@@ -19,7 +19,7 @@ export const Drawer = createDrawerNavigator(
         ListClients: {screen: TopClients},
         ContactUs: {screen: ContactUs},
         About: {screen: About},
-        Log: {screen: Log},
+        Logs: {screen: Logs},
     },
     {
         navigationOptions: {

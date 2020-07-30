@@ -50,6 +50,9 @@ Theme.size = {
     //Video Editor screen
     btnSelectFileMarginTop: 250,
     btnStartStopTextSize: 15,
+
+    //Logs
+    btnSendReportWidth: 150,
 };
 
 // ------------------------------------------------------------

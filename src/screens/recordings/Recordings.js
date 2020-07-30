@@ -16,11 +16,13 @@ import Toolbar from 'react-native-material-ui/src/Toolbar';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Text from '../../ui/Text';
 import createToolbar from '../../ui/Toolbar';
+import {addLog} from '../logs/storage';
 
 export class Recordings extends React.Component {
     constructor(props) {
         super(props);
-        this.setState = {
+        this.state = {
+            subscriptions: [],
             isLoading: false,
             recordings: null,
             error: null,
@@ -28,13 +30,11 @@ export class Recordings extends React.Component {
     }
 
     componentDidMount(): void {
-        this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
-            this.props.requestRecs();
-        });
+        this.subscribeForEvents();
     }
 
     componentWillUnmount(): void {
-        this._unsubscribe.remove();
+        this.unsubscribeFromEvents();
     }
 
     onFolderPressed() {
@@ -59,9 +59,10 @@ export class Recordings extends React.Component {
 
     subscribeForEvents() {
         const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener(
+        let subscription = recorderEmitter.addListener(
             'UploadProgress',
-            progress =>
+            progress => {
+                addLog(Strings.evUplUploadProgress, progress.token + ' ' + progress.bytesSent + '/' + progress.totalBytes);
                 console.log(
                     progress.fileName +
                     ' uploaded ' +
@@ -69,21 +70,44 @@ export class Recordings extends React.Component {
                     ' from ' +
                     progress.totalBytes +
                     ' total bytes',
-                ),
+                );
+            },
         );
-        recorderEmitter.addListener('Verified', data =>
-            console.log('Verified:' + data.token),
+        this.addSubscription(subscription);
+        subscription = recorderEmitter.addListener('Verified', data => {
+                addLog(Strings.evUplVerified, data.token);
+                console.log('Verified:' + data.token);
+            },
         );
-        recorderEmitter.addListener('Processed', data =>
-            console.log('Processed:' + data.token),
-        );
-        recorderEmitter.addListener('Processing', data =>
-            console.log('Processing:' + data.token),
-        );
+        this.addSubscription(subscription);
+        subscription = recorderEmitter.addListener('Processed', data => {
+            addLog(Strings.evUplProcessed, data.token);
+            console.log('Processed:' + data.token);
+        });
+        this.addSubscription(subscription);
+        subscription = recorderEmitter.addListener('Processing', data => {
+            addLog(Strings.evUplProcessing, data.token);
+            console.log('Processing:' + data.token);
+        });
+        this.addSubscription(subscription);
+        subscription = this.props.navigation.addListener('willFocus', () => {
+            this.props.requestRecs();
+        });
+        this.addSubscription(subscription);
+    }
+
+    addSubscription(subscription) {
+        this.state.subscriptions.push(subscription);
+    }
+
+    unsubscribeFromEvents() {
+        for (let i = 0; i < this.state.subscriptions.length; i++) {
+            let subs = this.state.subscriptions[i];
+            subs.remove();
+        }
     }
 
     render() {
-        this.subscribeForEvents();
         const {isLoading, recordings, error} = this.props;
         return (
             <View style={styles.container}>
@@ -134,7 +158,7 @@ export class Recordings extends React.Component {
 
     renderList(recordings) {
         return (
-            <View style={styles.container}>
+            <View>
                 {!recordings && (
                     <Text style={Theme.styles.emptyMessage}>
                         {Strings.messageRecordingsListEmpty}
