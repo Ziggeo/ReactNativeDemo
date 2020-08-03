@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "694785469736",
+    "firebase_url": "https://ziggeo-reactnative-demo.firebaseio.com",
+    "project_id": "ziggeo-reactnative-demo",
+    "storage_bucket": "ziggeo-reactnative-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694785469736:android:e8693db57d6c9e9ea1741d",
+        "android_client_info": {
+          "package_name": "com.ziggeo.reactnativesdk.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694785469736-dsf69n85m9be46t4cqcv2qn8e3gj46o9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmYIzEbRTBO-gmhdEd-P-EhwmvrczWK78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694785469736-dsf69n85m9be46t4cqcv2qn8e3gj46o9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
