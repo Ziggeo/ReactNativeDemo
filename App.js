@@ -160,6 +160,11 @@ export default class App extends React.Component {
             ' total bytes',
         ),
     );
+
+    recorderEmitter.addListener('RecordingStopped', data =>
+      console.log('RecordingStopped'),
+    );
+
     recorderEmitter.addListener('Verified', data =>
       console.log('Verified:' + data.token),
     );
