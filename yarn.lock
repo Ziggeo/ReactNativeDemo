@@ -711,6 +711,14 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@callstack/react-theme-provider@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@callstack/react-theme-provider/-/react-theme-provider-3.0.5.tgz#a173e455e9603c9c45357a3b6ace1273086527ca"
+  integrity sha512-Iec+ybWN0FvNj87sD3oWo/49edGUP0UOSdMnzCJEFJIDYr992ECIuOV89burAAh2/ibPCxgLiK6dmgv2mO/8Tg==
+  dependencies:
+    deepmerge "^3.2.0"
+    hoist-non-react-statics "^3.3.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -1194,6 +1202,13 @@
   integrity sha512-892K+kWUUi3cl+LlqEWIDrhvLgdL79tECi8JZUyq6IviKy/DNhuzCRlbHUjxK89f4ypPMMaFnFuR9Ie6DoIMsw==
   dependencies:
     type-detect "4.0.8"
+
+"@softmedialab/react-native-material-textfield@latest":
+  version "0.16.21"
+  resolved "https://registry.yarnpkg.com/@softmedialab/react-native-material-textfield/-/react-native-material-textfield-0.16.21.tgz#7617d8c4694b3c62e7d1124065b270ff740529aa"
+  integrity sha512-AhjrhMPqdo3jAZr5dQB2FtYNTesRZdvFlTXlAk1sboZ75Yv+5f6GM6d4QfkCGCo+p3kuJCXjx5Qo4Tx08vLDVQ==
+  dependencies:
+    prop-types "^15.5.9"
 
 "@types/babel__core@^7.1.7":
   version "7.1.9"
@@ -6686,13 +6701,6 @@ react-native-material-design-styles@^0.2.6:
   resolved "https://registry.yarnpkg.com/react-native-material-design-styles/-/react-native-material-design-styles-0.2.7.tgz#428560ef4d0659db1163c9f9b5476d886ed22d57"
   integrity sha512-dEtVROG1zqso3fiElJulOU+8/HwWh2TVIyDICrddlyAuDt5dpowelLpmamkRW1CV8VHRdHY5ZhxGWUOiPvROgw==
 
-react-native-material-textfield@latest:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/react-native-material-textfield/-/react-native-material-textfield-0.16.1.tgz#649e71344bb8a7225d5cea7c7b51cd38bcb2bbfc"
-  integrity sha512-pcV/ic3i6vYEODS7pvAMUYJ+evkzIB8cjXtSzkab9rBtYNGRpAlM0Yp8QNnjZ7foZqkj9Ynav0nguWcuJST10A==
-  dependencies:
-    prop-types "^15.5.9"
-
 react-native-material-ui@^1.30.1:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/react-native-material-ui/-/react-native-material-ui-1.30.1.tgz#42b44f1f4dedeeb4f599c64b9f0adfde5a2ea5ea"
@@ -6718,6 +6726,15 @@ react-native-offline@^4.1.1:
     react-redux "^6.0.0 || ^7.0.0"
     redux "4.x"
     redux-saga "^1.0.2"
+
+react-native-paper@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.2.0.tgz#534c0f9dbeecfd73d20f1f7b1ef3df32aa2ca4b0"
+  integrity sha512-+pM8olBygXP5cdUcPRC++BPb5DvdYPN2LJFIt2eXbT0GXs7kU7nG+hFRnsxu8awt6em6gcHVVw3ajvQGEl+CIg==
+  dependencies:
+    "@callstack/react-theme-provider" "^3.0.5"
+    color "^3.1.2"
+    react-native-safe-area-view "^0.14.9"
 
 react-native-permissions@^2.1.5:
   version "2.1.5"
@@ -6798,10 +6815,10 @@ react-native-webview@latest:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
-react-native-ziggeo-library@^1.4.22:
-  version "1.4.22"
-  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.22.tgz#d9605ff664133bc5c71110db5eb84aea3af2f08a"
-  integrity sha512-9CVmY23C1MuVyMemr4/zosUNaBsiSY+LxRUCqACKUc6jmKHCNRhWBe10y8JE4xK65yHEEUVNWvXCruBAdTemTg==
+react-native-ziggeo-library@^1.4.24:
+  version "1.4.24"
+  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.24.tgz#2925f3c0775443e53362ead94d82e30cc7693a3a"
+  integrity sha512-goKM5H9CdgIYgXRsrlopPHGXHuUYOu23IO4daonPH+PyDs7x6kHwZVV79oQj+UqNdQGrfE6neps2uctB95znKA==
 
 react-native@0.61.5:
   version "0.61.5"

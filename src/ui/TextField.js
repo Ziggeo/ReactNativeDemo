@@ -1,18 +1,19 @@
 import React from 'react';
-import {TextField} from 'react-native-material-textfield';
+import {TextInput} from 'react-native-paper';
 import {textFontStyle} from './textFontStyle';
 
-export default function createTextField({
-                                            disabled,
-                                            label,
-                                            onSubmitEditing,
-                                            textColor,
-                                            value,
-                                            onChangeText,
-                                            error,
-                                        } = {}) {
+export default function createTextField(
+    {
+        disabled,
+        label,
+        onSubmitEditing,
+        textColor,
+        value,
+        onChangeText,
+        error,
+    } = {}) {
     return (
-        <TextField
+        <TextInput
             disabled={disabled}
             label={label}
             onSubmitEditing={onSubmitEditing}
