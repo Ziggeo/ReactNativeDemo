@@ -6798,10 +6798,10 @@ react-native-webview@latest:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
-react-native-ziggeo-library@^1.4.21:
-  version "1.4.21"
-  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.21.tgz#c47748fea32628769c7f8e2134dfafedd3ee4770"
-  integrity sha512-f2nGXmqJ7hif6y0T/hGw3meJoXuReaLSRqo53dX64ASwn/J/O1FD5Tnq1oOcOdLs/sDALd+3vUZStpNJAA5TeQ==
+react-native-ziggeo-library@^1.4.22:
+  version "1.4.22"
+  resolved "https://registry.yarnpkg.com/react-native-ziggeo-library/-/react-native-ziggeo-library-1.4.22.tgz#d9605ff664133bc5c71110db5eb84aea3af2f08a"
+  integrity sha512-9CVmY23C1MuVyMemr4/zosUNaBsiSY+LxRUCqACKUc6jmKHCNRhWBe10y8JE4xK65yHEEUVNWvXCruBAdTemTg==
 
 react-native@0.61.5:
   version "0.61.5"
