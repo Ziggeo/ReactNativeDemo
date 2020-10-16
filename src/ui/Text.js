@@ -10,6 +10,7 @@ export default class Text extends React.Component {
     render() {
         return (
             <TextRN
+                onPress={this.props.onPress}
                 ellipsizeMode={this.props.ellipsizeMode}
                 numberOfLines={this.props.numberOfLines}
                 style={[textFontStyle.textStyle, this.props.style]}>
