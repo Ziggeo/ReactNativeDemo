@@ -12,6 +12,7 @@ export default class App extends React.Component {
     Ziggeo.setCamera(Ziggeo.REAR_CAMERA);
     Ziggeo.setQuality(Ziggeo.HIGH_QUALITY);
     Ziggeo.setMaxRecordingDuration(600);
+    Ziggeo.setStartDelay(0);
     var argsMap = {
       tags: 'test',
       expiration_days: 1,
