@@ -11,20 +11,20 @@ import DrawerMenu from './DrawerMenu';
 import React from 'react';
 
 export const Drawer = createDrawerNavigator(
-    {
-        Recordings: {screen: Recordings},
-        VideoEditor: {screen: VideoEditor},
-        Settings: {screen: Settings},
-        ListSdks: {screen: Sdks},
-        ListClients: {screen: TopClients},
-        ContactUs: {screen: ContactUs},
-        About: {screen: About},
-        Logs: {screen: Logs},
+  {
+    Recordings: {screen: Recordings},
+    VideoEditor: {screen: VideoEditor},
+    Settings: {screen: Settings},
+    ListSdks: {screen: Sdks},
+    ListClients: {screen: TopClients},
+    ContactUs: {screen: ContactUs},
+    About: {screen: About},
+    Logs: {screen: Logs},
+  },
+  {
+    navigationOptions: {
+      headerShown: false,
     },
-    {
-        navigationOptions: {
-            headerShown: false,
-        },
-        contentComponent: props => <DrawerMenu {...props} />,
-    },
+    contentComponent: props => <DrawerMenu {...props} />,
+  },
 );

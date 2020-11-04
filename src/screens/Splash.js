@@ -8,38 +8,38 @@ import {loadUserIntoRedux} from './auth/actions';
 import Ziggeo from 'react-native-ziggeo-library';
 
 class Splash extends React.Component {
-    componentDidMount() {
-        this.loadUser();
+  componentDidMount() {
+    this.loadUser();
+  }
+
+  loadUser = async () => {
+    const {navigation} = this.props;
+    const user = await getAppToken();
+
+    if (user) {
+      loadUserIntoRedux(user);
+      Ziggeo.setAppToken(user);
+      navigation.navigate(Routes.HomeStack);
+    } else {
+      navigation.navigate(Routes.AuthStack);
     }
+  };
 
-    loadUser = async () => {
-        const {navigation} = this.props;
-        const user = await getAppToken();
-
-        if (user) {
-            loadUserIntoRedux(user);
-            Ziggeo.setAppToken(user);
-            navigation.navigate(Routes.HomeStack);
-        } else {
-            navigation.navigate(Routes.AuthStack);
-        }
-    };
-
-    render() {
-        return <View style={styles.container}/>;
-    }
+  render() {
+    return <View style={styles.container} />;
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Theme.colors.background,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: Theme.colors.background,
+  },
 });
 
 const mapStateToProps = ({auth: {user}}) => ({user});
 
 export default connect(
-    mapStateToProps,
-    {loadUserIntoRedux},
+  mapStateToProps,
+  {loadUserIntoRedux},
 )(Splash);

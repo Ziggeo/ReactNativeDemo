@@ -2,11 +2,11 @@ import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-    cancelEditing,
-    deleteVideo,
-    editInfo,
-    loadInfo,
-    updateInfo,
+  cancelEditing,
+  deleteVideo,
+  editInfo,
+  loadInfo,
+  updateInfo,
 } from './actions';
 import Strings from '../../Strings';
 import Theme from '../../Theme';
@@ -21,156 +21,156 @@ import createTextField from '../../ui/TextField';
 import {textFontStyle} from '../../ui/textFontStyle';
 
 class RecordingDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onTitleChanged = this.onTitleChanged.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.onTitleChanged = this.onTitleChanged.bind(this);
+  }
 
-    componentDidMount(): void {
-        this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
-            this.props.loadInfo(this.props.navigation.state.params);
-        });
-    }
+  componentDidMount(): void {
+    this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
+      this.props.loadInfo(this.props.navigation.state.params);
+    });
+  }
 
-    componentWillUnmount(): void {
-        this._unsubscribe.remove();
-    }
+  componentWillUnmount(): void {
+    this._unsubscribe.remove();
+  }
 
-    onKeyChanged(text) {
-        this.props.model.key = text;
-    }
+  onKeyChanged(text) {
+    this.props.model.key = text;
+  }
 
-    onTitleChanged(text) {
-        this.props.model.title = text;
-    }
+  onTitleChanged(text) {
+    this.props.model.title = text;
+  }
 
-    onDescriptionChanged(text) {
-        this.props.model.description = text;
-    }
+  onDescriptionChanged(text) {
+    this.props.model.description = text;
+  }
 
-    renderLoading() {
-        return <Spinner visible={true}/>;
-    }
+  renderLoading() {
+    return <Spinner visible={true} />;
+  }
 
-    static navigationOptions = {
-        headerShown: false,
-    };
+  static navigationOptions = {
+    headerShown: false,
+  };
 
-    renderToolbar(isEditMode, model) {
-        return (
-            <Toolbar
-                style={{container: {backgroundColor: Theme.colors.primary}}}
-                onLeftElementPress={() => {
-                    !isEditMode
-                        ? this.props.navigation.goBack()
-                        : this.props.cancelEditing();
-                }}
-                rightElement={{
-                    actions: !isEditMode ? ['edit', 'delete'] : ['save'],
-                }}
-                onRightElementPress={element => {
-                    if (element.action === 'edit') {
-                        this.props.editInfo();
-                    } else if (element.action === 'delete') {
-                        this.props.deleteVideo(model, () => {
-                            this.props.navigation.goBack();
-                        });
-                    } else if (element.action === 'save') {
-                        this.props.updateInfo(model);
-                    }
-                }}
-                leftElement={!isEditMode ? 'arrow-back' : 'close'}
-                centerElement={
-                    <Text
-                        style={[
-                            textFontStyle.textStyle,
-                            {
-                                color: Theme.colors.white,
-                                fontSize: Theme.size.toolbarTextSize,
-                            },
-                        ]}>
-                        {Strings.titleDetails}
-                    </Text>
-                }
-            />
-        );
-    }
+  renderToolbar(isEditMode, model) {
+    return (
+      <Toolbar
+        style={{container: {backgroundColor: Theme.colors.primary}}}
+        onLeftElementPress={() => {
+          !isEditMode
+            ? this.props.navigation.goBack()
+            : this.props.cancelEditing();
+        }}
+        rightElement={{
+          actions: !isEditMode ? ['edit', 'delete'] : ['save'],
+        }}
+        onRightElementPress={element => {
+          if (element.action === 'edit') {
+            this.props.editInfo();
+          } else if (element.action === 'delete') {
+            this.props.deleteVideo(model, () => {
+              this.props.navigation.goBack();
+            });
+          } else if (element.action === 'save') {
+            this.props.updateInfo(model);
+          }
+        }}
+        leftElement={!isEditMode ? 'arrow-back' : 'close'}
+        centerElement={
+          <Text
+            style={[
+              textFontStyle.textStyle,
+              {
+                color: Theme.colors.white,
+                fontSize: Theme.size.toolbarTextSize,
+              },
+            ]}>
+            {Strings.titleDetails}
+          </Text>
+        }
+      />
+    );
+  }
 
-    render() {
-        const {model, imageUrl, isLoading, isEditMode} = this.props;
-        return (
-            <KeyboardAwareScrollView>
-                <View>
-                    {this.renderToolbar(isEditMode, model)}
-                    <ScrollView style={styles.container}>
-                        {isLoading && this.renderLoading()}
-                        {model && (
-                            <View>
-                                <TouchableOpacity
-                                    style={{alignContent: 'center'}}
-                                    onPress={() => Ziggeo.play(model.token)}>
-                                    {imageUrl && (
-                                        <Image
-                                            style={styles.preview}
-                                            source={{
-                                                uri: imageUrl,
-                                            }}
-                                        />
-                                    )}
-                                    <View style={styles.overlay}>
-                                        <Icon size={Theme.size.hugeIconSize} name="play-circle"/>
-                                    </View>
-                                </TouchableOpacity>
-                                {createTextField({
-                                    disabled: true,
-                                    label: Strings.hintToken,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.token,
-                                    onChangeText: this.onTitleChanged,
-                                })}
-                                {createTextField({
-                                    disabled: !isEditMode,
-                                    label: Strings.hintKey,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.key,
-                                    onChangeText: this.onKeyChanged,
-                                })}
-                                {createTextField({
-                                    disabled: !isEditMode,
-                                    label: Strings.hintTitle,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.title,
-                                    onChangeText: this.onTitleChanged,
-                                })}
-                                {createTextField({
-                                    disabled: !isEditMode,
-                                    label: Strings.hintDescription,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.description,
-                                    onChangeText: this.onDescriptionChanged,
-                                })}
-                            </View>
-                        )}
-                    </ScrollView>
-                </View>
-            </KeyboardAwareScrollView>
-        );
-    }
+  render() {
+    const {model, imageUrl, isLoading, isEditMode} = this.props;
+    return (
+      <KeyboardAwareScrollView>
+        <View>
+          {this.renderToolbar(isEditMode, model)}
+          <ScrollView style={styles.container}>
+            {isLoading && this.renderLoading()}
+            {model && (
+              <View>
+                <TouchableOpacity
+                  style={{alignContent: 'center'}}
+                  onPress={() => Ziggeo.play(model.token)}>
+                  {imageUrl && (
+                    <Image
+                      style={styles.preview}
+                      source={{
+                        uri: imageUrl,
+                      }}
+                    />
+                  )}
+                  <View style={styles.overlay}>
+                    <Icon size={Theme.size.hugeIconSize} name="play-circle" />
+                  </View>
+                </TouchableOpacity>
+                {createTextField({
+                  disabled: true,
+                  label: Strings.hintToken,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.token,
+                  onChangeText: this.onTitleChanged,
+                })}
+                {createTextField({
+                  disabled: !isEditMode,
+                  label: Strings.hintKey,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.key,
+                  onChangeText: this.onKeyChanged,
+                })}
+                {createTextField({
+                  disabled: !isEditMode,
+                  label: Strings.hintTitle,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.title,
+                  onChangeText: this.onTitleChanged,
+                })}
+                {createTextField({
+                  disabled: !isEditMode,
+                  label: Strings.hintDescription,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.description,
+                  onChangeText: this.onDescriptionChanged,
+                })}
+              </View>
+            )}
+          </ScrollView>
+        </View>
+      </KeyboardAwareScrollView>
+    );
+  }
 }
 
 const mapStateToProps = ({recd}) => recd;
 
 export default connect(
-    mapStateToProps,
-    {
-        loadInfo,
-        cancelEditing,
-        editInfo,
-        updateInfo,
-        deleteVideo,
-    },
+  mapStateToProps,
+  {
+    loadInfo,
+    cancelEditing,
+    editInfo,
+    updateInfo,
+    deleteVideo,
+  },
 )(RecordingDetails);

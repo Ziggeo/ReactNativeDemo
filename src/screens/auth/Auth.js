@@ -12,129 +12,129 @@ import createButton from '../../ui/Button';
 import createTextField from '../../ui/TextField';
 
 class Auth extends React.Component {
-    constructor(props) {
-        super(props);
-        this.toggleVisibility = this.toggleVisibility.bind(this);
-        this.onTokenTextChange = this.onTokenTextChange.bind(this);
-        this.state = {
-            scanQrMode: true,
-            appToken: '',
-        };
-    }
-
-    toggleVisibility() {
-        this.setState({
-            scanQrMode: !this.state.scanQrMode,
-        });
-    }
-
-    onTokenTextChange(text) {
-        this.setState({
-            appToken: text.trim(),
-        });
-    }
-
-    onUseEnteredPressed = () => {
-        const {appToken} = this.state;
-        this.props.loginUser({
-            appToken,
-            onSuccess: () => {
-                Ziggeo.setAppToken(appToken);
-                const {navigation} = this.props;
-                navigation.navigate(Routes.HomeStack);
-            },
-        });
+  constructor(props) {
+    super(props);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.onTokenTextChange = this.onTokenTextChange.bind(this);
+    this.state = {
+      scanQrMode: true,
+      appToken: '',
     };
+  }
 
-    onScanQrPress = () => {
-        Ziggeo.startQrScanner();
-        const recorderEmitter = Ziggeo.recorderEmitter();
-        const subscription = recorderEmitter.addListener('QrDecoded', data => {
-            Ziggeo.setAppToken(data.qr);
-            const {navigation} = this.props;
-            navigation.navigate(Routes.HomeStack);
-        });
-    };
+  toggleVisibility() {
+    this.setState({
+      scanQrMode: !this.state.scanQrMode,
+    });
+  }
 
-    static navigationOptions = {
-        headerShown: false,
-    };
+  onTokenTextChange(text) {
+    this.setState({
+      appToken: text.trim(),
+    });
+  }
 
-    render() {
-        const {appToken} = this.state;
-        const {tokenValidationError} = this.props;
-        return (
-            <View style={styles.container}>
-                <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-                    <Image
-                        style={styles.logo}
-                        source={require('../../assets/img/logo.png')}
-                        resizeMode="contain"
-                    />
-                    <Text style={styles.message}>
-                        {Strings.authMessagePart1}
-                        <Text
-                            style={{
-                                color: Theme.colors.accent,
-                                textDecorationLine: 'underline',
-                            }}
-                            onPress={() => {
-                                Linking.openURL('https://demo.ziggeo.com');
-                            }}>
-                            {Strings.authMessageLink}
-                        </Text>
-                        <Text>{Strings.authMessagePart2}</Text>
-                    </Text>
-                    <View style={styles.controls}>
-                        {!this.state.scanQrMode
-                            ? createTextField({
-                                label: Strings.enterManuallyHint,
-                                onSubmitEditing: this.onSubmit,
-                                textColor: Theme.colors.accent,
-                                value: appToken,
-                                onChangeText: this.onTokenTextChange,
-                                error: tokenValidationError,
-                            })
-                            : null}
-                    </View>
-                    {this.state.scanQrMode
-                        ? createButton(
-                            Strings.btnScanQrText,
-                            this.onScanQrPress,
-                            styles.actionBtn,
-                        )
-                        : null}
-                    {!this.state.scanQrMode
-                        ? createButton(
-                            Strings.btnUseEnteredText,
-                            this.onUseEnteredPressed,
-                            styles.actionBtn,
-                        )
-                        : null}
-                    {this.state.scanQrMode
-                        ? createButton(
-                            Strings.enterQrManuallyText,
-                            this.toggleVisibility,
-                            styles.stateSwitchBtn,
-                            {color: Theme.colors.secondaryText},
-                        )
-                        : createButton(
-                            Strings.useScannerText,
-                            this.toggleVisibility,
-                            styles.stateSwitchBtn,
-                            {color: Theme.colors.secondaryText},
-                        )}
-                </ScrollView>
-            </View>
-        );
-    }
+  onUseEnteredPressed = () => {
+    const {appToken} = this.state;
+    this.props.loginUser({
+      appToken,
+      onSuccess: () => {
+        Ziggeo.setAppToken(appToken);
+        const {navigation} = this.props;
+        navigation.navigate(Routes.HomeStack);
+      },
+    });
+  };
+
+  onScanQrPress = () => {
+    Ziggeo.startQrScanner();
+    const recorderEmitter = Ziggeo.recorderEmitter();
+    const subscription = recorderEmitter.addListener('QrDecoded', data => {
+      Ziggeo.setAppToken(data.qr);
+      const {navigation} = this.props;
+      navigation.navigate(Routes.HomeStack);
+    });
+  };
+
+  static navigationOptions = {
+    headerShown: false,
+  };
+
+  render() {
+    const {appToken} = this.state;
+    const {tokenValidationError} = this.props;
+    return (
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollContentContainer}>
+          <Image
+            style={styles.logo}
+            source={require('../../assets/img/logo.png')}
+            resizeMode="contain"
+          />
+          <Text style={styles.message}>
+            {Strings.authMessagePart1}
+            <Text
+              style={{
+                color: Theme.colors.accent,
+                textDecorationLine: 'underline',
+              }}
+              onPress={() => {
+                Linking.openURL('https://demo.ziggeo.com');
+              }}>
+              {Strings.authMessageLink}
+            </Text>
+            <Text>{Strings.authMessagePart2}</Text>
+          </Text>
+          <View style={styles.controls}>
+            {!this.state.scanQrMode
+              ? createTextField({
+                  label: Strings.enterManuallyHint,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: appToken,
+                  onChangeText: this.onTokenTextChange,
+                  error: tokenValidationError,
+                })
+              : null}
+          </View>
+          {this.state.scanQrMode
+            ? createButton(
+                Strings.btnScanQrText,
+                this.onScanQrPress,
+                styles.actionBtn,
+              )
+            : null}
+          {!this.state.scanQrMode
+            ? createButton(
+                Strings.btnUseEnteredText,
+                this.onUseEnteredPressed,
+                styles.actionBtn,
+              )
+            : null}
+          {this.state.scanQrMode
+            ? createButton(
+                Strings.enterQrManuallyText,
+                this.toggleVisibility,
+                styles.stateSwitchBtn,
+                {color: Theme.colors.secondaryText},
+              )
+            : createButton(
+                Strings.useScannerText,
+                this.toggleVisibility,
+                styles.stateSwitchBtn,
+                {color: Theme.colors.secondaryText},
+              )}
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const mapStateToProps = ({auth}) => auth;
 
 export default connect(
-    mapStateToProps,
-    {
-        loginUser,
-    },
+  mapStateToProps,
+  {
+    loginUser,
+  },
 )(Auth);
