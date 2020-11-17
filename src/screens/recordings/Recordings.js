@@ -196,12 +196,21 @@ export class Recordings extends React.Component {
               height: Theme.size.listItemContentHeight,
               justifyContent: 'center',
             }}>
-            <Text
-              numberOfLines={1}
-              ellipsizeMode="tail"
-              style={{width: Theme.size.tokenLineWidth}}>
-              {item.token}
-            </Text>
+            {item.key ? (
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{width: Theme.size.tokenLineWidth}}>
+                {item.key}
+              </Text>
+            ) : (
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{width: Theme.size.tokenLineWidth}}>
+                {item.token}
+              </Text>
+            )}
             {item.tags && <Text>{item.tags}</Text>}
           </View>
           <View
