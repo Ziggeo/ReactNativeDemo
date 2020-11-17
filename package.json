@@ -44,7 +44,7 @@
     "react-native-simple-toast": "^1.0.0",
     "react-native-status-bar-height": "^2.2.0",
     "react-native-vector-icons": "^6.2.0",
-    "react-native-ziggeo-library": "^1.4.24",
+    "react-native-ziggeo-library": "^1.4.26",
     "react-navigation": "^4.2.2",
     "react-navigation-drawer": "^2.4.2",
     "react-navigation-props-mapper": "^0.3.0",
