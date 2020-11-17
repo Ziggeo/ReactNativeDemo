@@ -1,4 +1,4 @@
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import React from 'react';
 import Strings from '../../Strings';
 import styles from './styles';
@@ -85,6 +85,7 @@ export class Logs extends React.Component {
   }
 
   onBtnSendReportPressed = () => {
-    Ziggeo.sendReport(getLogs());
+    const logs = getLogs().map(item => JSON.stringify(item));
+    Ziggeo.sendReport(logs);
   };
 }
