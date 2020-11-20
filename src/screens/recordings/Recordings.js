@@ -114,7 +114,7 @@ export class Recordings extends React.Component {
       <View style={styles.container}>
         {createToolbar(Strings.titleRecordings, this.props)}
         {isLoading && this.renderLoading()}
-        {recordings && this.renderList(recordings)}
+        {this.renderList(recordings)}
         {error && this.renderError(error.message)}
         <ActionButton buttonColor={Theme.colors.accent}>
           <ActionButton.Item
@@ -160,12 +160,12 @@ export class Recordings extends React.Component {
   renderList(recordings) {
     return (
       <View>
-        {!recordings && (
+        {recordings.length === 0 && (
           <Text style={Theme.styles.emptyMessage}>
             {Strings.messageRecordingsListEmpty}
           </Text>
         )}
-        {recordings && (
+        {recordings.length > 0 && (
           <FlatList
             data={recordings}
             renderItem={({item}) => this.renderItem(item)}
