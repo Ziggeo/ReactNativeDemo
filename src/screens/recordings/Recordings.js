@@ -160,12 +160,13 @@ export class Recordings extends React.Component {
   renderList(recordings) {
     return (
       <View>
-        {recordings.length === 0 && (
-          <Text style={Theme.styles.emptyMessage}>
-            {Strings.messageRecordingsListEmpty}
-          </Text>
-        )}
-        {recordings.length > 0 && (
+        {!recordings ||
+          (recordings.length === 0 && (
+            <Text style={Theme.styles.emptyMessage}>
+              {Strings.messageRecordingsListEmpty}
+            </Text>
+          ))}
+        {recordings && recordings.length > 0 && (
           <FlatList
             data={recordings}
             renderItem={({item}) => this.renderItem(item)}
