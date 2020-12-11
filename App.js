@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import {NativeEventEmitter, NativeModules} from 'react-native';
 import Ziggeo from 'react-native-ziggeo-library';
+import VideosApi from "react-native-ziggeo-library/videos";
 
 export default class App extends React.Component {
   async record() {
@@ -147,6 +148,18 @@ export default class App extends React.Component {
     }
   }
 
+  async deleteVideo() {
+    var appToken = 'ZIGGEO_APP_TOKEN';
+    var videoToken = 'ZIGGEO_VIDEO_TOKEN';
+    Ziggeo.setAppToken(appToken);
+    try {
+      await VideosApi.destroy(videoToken);
+    } catch (e) {
+      console.log('Error:' + e);
+      alert(e);
+    }
+  }
+
   subscribeForEvents(): string {
     const recorderEmitter = Ziggeo.recorderEmitter();
     const subscription = recorderEmitter.addListener(
@@ -212,6 +225,11 @@ export default class App extends React.Component {
           onPress={this.playNoControls}
           title="Play video without controls"
           accessibilityLabel="Play video without controls"
+        />
+        <Button
+          onPress={this.deleteVideo}
+          title="Delete video"
+          accessibilityLabel="Delete Video"
         />
       </View>
     );
