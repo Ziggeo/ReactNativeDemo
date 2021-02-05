@@ -10,6 +10,7 @@ export class Sdks extends List {
     return sdks;
   }
 }
+
 export const sdks = [
   {
     url: 'https://github.com/Ziggeo/iOS-Client-SDK',
@@ -32,6 +33,7 @@ export const sdks = [
     thumbnail: require('../assets/img/sdks/ic_reactnative.png'),
   },
   {
+    url: 'https://github.com/Ziggeo/Flutter-SDK',
     thumbnail: require('../assets/img/sdks/ic_flutter.png'),
   },
   {

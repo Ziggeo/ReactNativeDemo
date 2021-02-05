@@ -10,6 +10,7 @@ export class TopClients extends List {
     return clients;
   }
 }
+
 export const clients = [
   {
     url: 'https://sap.com',

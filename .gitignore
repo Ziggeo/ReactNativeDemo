@@ -28,6 +28,7 @@ build/
 release/
 .idea
 .gradle
+key.properties
 local.properties
 *.iml
 

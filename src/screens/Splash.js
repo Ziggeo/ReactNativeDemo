@@ -5,6 +5,7 @@ import {getAppToken} from '../utils/storage';
 import Routes from '../Routes';
 import Theme from '../Theme';
 import {loadUserIntoRedux} from './auth/actions';
+import Ziggeo from 'react-native-ziggeo-library';
 
 class Splash extends React.Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class Splash extends React.Component {
 
     if (user) {
       loadUserIntoRedux(user);
+      Ziggeo.setAppToken(user);
       navigation.navigate(Routes.HomeStack);
     } else {
       navigation.navigate(Routes.AuthStack);

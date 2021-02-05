@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {OutlinedTextField} from 'react-native-material-textfield';
-import {View, ScrollView, Text, Linking, Image} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Image, Linking, ScrollView, View} from 'react-native';
 import Routes from '../../Routes';
 import Theme from '../../Theme';
 import Strings from '../../Strings';
 import Ziggeo from 'react-native-ziggeo-library';
 import styles from './styles';
 import {loginUser} from './actions';
+import Text from '../../ui/Text';
+import createButton from '../../ui/Button';
+import createTextField from '../../ui/TextField';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Auth extends React.Component {
       scanQrMode: !this.state.scanQrMode,
     });
   }
+
   onTokenTextChange(text) {
     this.setState({
       appToken: text.trim(),
@@ -77,54 +79,51 @@ class Auth extends React.Component {
                 textDecorationLine: 'underline',
               }}
               onPress={() => {
-                Linking.openURL('demo.ziggeo.com');
+                Linking.openURL('https://demo.ziggeo.com');
               }}>
               {Strings.authMessageLink}
             </Text>
             <Text>{Strings.authMessagePart2}</Text>
           </Text>
           <View style={styles.controls}>
-            {!this.state.scanQrMode ? (
-              <OutlinedTextField
-                label={Strings.enterManuallyHint}
-                onSubmitEditing={this.onSubmit}
-                textColor={Theme.colors.accent}
-                onChangeText={this.onTokenTextChange}
-                value={appToken}
-                error={tokenValidationError}
-              />
-            ) : null}
+            {!this.state.scanQrMode
+              ? createTextField({
+                  label: Strings.enterManuallyHint,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: appToken,
+                  onChangeText: this.onTokenTextChange,
+                  error: tokenValidationError,
+                })
+              : null}
           </View>
-          {this.state.scanQrMode ? (
-            <Button
-              buttonStyle={styles.actionBtn}
-              title={Strings.btnScanQrText}
-              onPress={this.onScanQrPress}
-            />
-          ) : null}
-          {!this.state.scanQrMode ? (
-            <Button
-              buttonStyle={styles.actionBtn}
-              title={Strings.btnUseEnteredText}
-              onPress={this.onUseEnteredPressed}
-            />
-          ) : null}
-          {this.state.scanQrMode ? (
-            <Button
-              titleStyle={{color: Theme.colors.secondaryText}}
-              buttonStyle={styles.stateSwitchBtn}
-              title={Strings.enterQrManuallyText}
-              onPress={this.toggleVisibility}
-            />
-          ) : null}
-          {!this.state.scanQrMode ? (
-            <Button
-              titleStyle={{color: Theme.colors.secondaryText}}
-              buttonStyle={styles.stateSwitchBtn}
-              title={Strings.useScannerText}
-              onPress={this.toggleVisibility}
-            />
-          ) : null}
+          {this.state.scanQrMode
+            ? createButton(
+                Strings.btnScanQrText,
+                this.onScanQrPress,
+                styles.actionBtn,
+              )
+            : null}
+          {!this.state.scanQrMode
+            ? createButton(
+                Strings.btnUseEnteredText,
+                this.onUseEnteredPressed,
+                styles.actionBtn,
+              )
+            : null}
+          {this.state.scanQrMode
+            ? createButton(
+                Strings.enterQrManuallyText,
+                this.toggleVisibility,
+                styles.stateSwitchBtn,
+                {color: Theme.colors.secondaryText},
+              )
+            : createButton(
+                Strings.useScannerText,
+                this.toggleVisibility,
+                styles.stateSwitchBtn,
+                {color: Theme.colors.secondaryText},
+              )}
         </ScrollView>
       </View>
     );

@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View, FlatList, TouchableOpacity} from 'react-native';
+import {View, FlatList, TouchableOpacity} from 'react-native';
 import Strings from '../../Strings';
 import {Recordings} from '../recordings/Recordings';
 import {Settings} from '../Settings';
 import {VideoEditor} from '../VideoEditor';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
+import {Logs} from '../logs/Logs';
 import s from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../recordings/styles';
@@ -13,6 +14,7 @@ import Theme from '../../Theme';
 import {getAppToken} from '../../utils/storage';
 import Routes from '../../Routes';
 import {removeAppToken} from '../../utils/storage';
+import Text from '../../ui/Text';
 
 export function DrawerItem({item, navigate}) {
   return (
@@ -62,6 +64,11 @@ class DrawerMenu extends React.Component {
         type: 'item',
         title: Strings.itemAbout,
         name: About.name,
+      },
+      {
+        type: 'item',
+        title: Strings.itemLog,
+        name: Logs.name,
       },
     ],
     token: '',

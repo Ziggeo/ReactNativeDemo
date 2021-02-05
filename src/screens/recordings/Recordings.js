@@ -1,4 +1,4 @@
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,31 +12,32 @@ import Toast from 'react-native-simple-toast';
 import Theme from '../../Theme';
 import {format} from 'date-fns';
 import Routes from '../../Routes';
-import Toolbar from 'react-native-material-ui/src/Toolbar';
 import Spinner from 'react-native-loading-spinner-overlay';
+import Text from '../../ui/Text';
+import createToolbar from '../../ui/Toolbar';
+import {addLog} from '../logs/storage';
 
 export class Recordings extends React.Component {
   constructor(props) {
     super(props);
-    this.setState = {
+    this.state = {
+      subscriptions: [],
       isLoading: false,
       recordings: null,
+      error: null,
     };
   }
 
   componentDidMount(): void {
-    this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
-      this.props.requestRecs();
-    });
     this.subscribeForEvents();
   }
 
   componentWillUnmount(): void {
-    this._unsubscribe.remove();
+    this.unsubscribeFromEvents();
   }
 
-  onError() {
-    Toast.show(Strings.errCommon);
+  onFolderPressed() {
+    Ziggeo.uploadFromFileSelector(null);
   }
 
   onImagePressed() {
@@ -57,9 +58,13 @@ export class Recordings extends React.Component {
 
   subscribeForEvents() {
     const recorderEmitter = Ziggeo.recorderEmitter();
-    const subscription = recorderEmitter.addListener(
+    let subscription = recorderEmitter.addListener(
       'UploadProgress',
-      progress =>
+      progress => {
+        addLog(
+          Strings.evUplUploadProgress,
+          progress.token + ' ' + progress.bytesSent + '/' + progress.totalBytes,
+        );
         console.log(
           progress.fileName +
             ' uploaded ' +
@@ -67,49 +72,77 @@ export class Recordings extends React.Component {
             ' from ' +
             progress.totalBytes +
             ' total bytes',
-        ),
+        );
+      },
     );
-    recorderEmitter.addListener('Verified', data =>
-      console.log('Verified:' + data.token),
-    );
-    recorderEmitter.addListener('Processed', data =>
-      console.log('Processed:' + data.token),
-    );
-    recorderEmitter.addListener('Processing', data =>
-      console.log('Processing:' + data.token),
-    );
+    this.addSubscription(subscription);
+    subscription = recorderEmitter.addListener('Verified', data => {
+      addLog(Strings.evUplVerified, data.token);
+      console.log('Verified:' + data.token);
+    });
+    this.addSubscription(subscription);
+    subscription = recorderEmitter.addListener('Processed', data => {
+      addLog(Strings.evUplProcessed, data.token);
+      console.log('Processed:' + data.token);
+    });
+    this.addSubscription(subscription);
+    subscription = recorderEmitter.addListener('Processing', data => {
+      addLog(Strings.evUplProcessing, data.token);
+      console.log('Processing:' + data.token);
+    });
+    this.addSubscription(subscription);
+    subscription = this.props.navigation.addListener('willFocus', () => {
+      this.props.requestRecs();
+    });
+    this.addSubscription(subscription);
+  }
+
+  addSubscription(subscription) {
+    this.state.subscriptions.push(subscription);
+  }
+
+  unsubscribeFromEvents() {
+    for (let i = 0; i < this.state.subscriptions.length; i++) {
+      let subs = this.state.subscriptions[i];
+      subs.remove();
+    }
   }
 
   render() {
-    const {isLoading, recordings} = this.props;
+    const {isLoading, recordings, error} = this.props;
     return (
       <View style={styles.container}>
-        {this.renderToolbar()}
+        {createToolbar(Strings.titleRecordings, this.props)}
         {isLoading && this.renderLoading()}
-        {recordings && this.renderList(recordings)}
-        <ActionButton buttonColor="rgba(231,76,60,1)">
+        {this.renderList(recordings)}
+        {error && this.renderError(error.message)}
+        <ActionButton buttonColor={Theme.colors.accent}>
           <ActionButton.Item
-            title="Image"
+            size={Theme.size.smallFabSize}
+            onPress={() => this.onFolderPressed()}>
+            <Icon name="folder" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item
+            size={Theme.size.smallFabSize}
             onPress={() => this.onImagePressed()}>
             <Icon name="image" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            style={styles.actionButtonItem}
-            title="Audio"
+            size={Theme.size.smallFabSize}
             onPress={() => {
               this.onAudioPressed();
             }}>
             <Icon name="microphone" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            title="Screen"
+            size={Theme.size.smallFabSize}
             onPress={() => {
               this.onScreenPressed();
             }}>
             <Icon name="monitor" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item
-            title="Camera"
+            size={Theme.size.smallFabSize}
             onPress={() => {
               this.onCameraPressed();
             }}>
@@ -120,30 +153,20 @@ export class Recordings extends React.Component {
     );
   }
 
-  renderToolbar() {
-    return (
-      <Toolbar
-        style={{container: {backgroundColor: Theme.colors.primary}}}
-        onLeftElementPress={() => this.props.navigation.openDrawer()}
-        leftElement="menu"
-        centerElement={Strings.titleRecordings}
-      />
-    );
-  }
-
   renderLoading() {
     return <Spinner visible={true} />;
   }
 
   renderList(recordings) {
     return (
-      <View style={styles.container}>
-        {!recordings && (
-          <Text style={styles.emptyMessage}>
-            {Strings.messageRecordingsListEmpty}
-          </Text>
-        )}
-        {recordings && (
+      <View>
+        {!recordings ||
+          (recordings.length === 0 && (
+            <Text style={Theme.styles.emptyMessage}>
+              {Strings.messageRecordingsListEmpty}
+            </Text>
+          ))}
+        {recordings && recordings.length > 0 && (
           <FlatList
             data={recordings}
             renderItem={({item}) => this.renderItem(item)}
@@ -151,6 +174,10 @@ export class Recordings extends React.Component {
         )}
       </View>
     );
+  }
+
+  renderError(message) {
+    return <Text style={styles.emptyMessage}>{message}</Text>;
   }
 
   renderItem(item) {
@@ -170,9 +197,21 @@ export class Recordings extends React.Component {
               height: Theme.size.listItemContentHeight,
               justifyContent: 'center',
             }}>
-            <Text numberOfLines={1} ellipsizeMode="tail" style={{width: 160}}>
-              {item.token}
-            </Text>
+            {item.key ? (
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{width: Theme.size.tokenLineWidth}}>
+                {item.key}
+              </Text>
+            ) : (
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{width: Theme.size.tokenLineWidth}}>
+                {item.token}
+              </Text>
+            )}
             {item.tags && <Text>{item.tags}</Text>}
           </View>
           <View

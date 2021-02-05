@@ -1,5 +1,3 @@
-import {getStatusBarHeight} from 'react-native-status-bar-height';
-
 const Theme = {};
 
 // ------------------------------------------------------------
@@ -17,6 +15,9 @@ Theme.size = {
   smallIconSize: 20,
   largeIconSize: 40,
   hugeIconSize: 80,
+  toolbarTextSize: 20,
+  subtitleTextSize: 20,
+  messageTextSize: 18,
 
   //Auth screen
   logoWidth: 250,
@@ -35,6 +36,7 @@ Theme.size = {
   recordingItemHeight: 100,
   iconSize: 50,
   listItemContentHeight: 50,
+  tokenLineWidth: 160,
 
   //Recording details screen
   previewHeight: 250,
@@ -47,31 +49,15 @@ Theme.size = {
 
   //Video Editor screen
   btnSelectFileMarginTop: 250,
-
-  //Video Editor screen
   btnStartStopTextSize: 15,
 
-  //TODO OLD
-  statusBarHeight: getStatusBarHeight(),
-  headerHeight: 54,
-  bottomNavbarHeight: 50,
-
-  posterAspectRation: 0.6667,
-  backdropAspectRation: 1.78,
+  //Logs
+  btnSendReportWidth: 150,
 };
 
 // ------------------------------------------------------------
 // Colors
 // ------------------------------------------------------------
-Theme.gray = {
-  darkest: '#121212',
-  darker: '#1a1a1a',
-  dark: '#353535',
-  light: '#828282',
-  lighter: '#cfcfcf',
-  lightest: '#f8f8f8',
-};
-
 const colors = {
   primary: '#DC5163',
   primaryDark: '#AA3E4B',
@@ -103,50 +89,20 @@ Theme.colors = {
   header: colors.primary,
 };
 
-// ------------------------------------------------------------
-// Typography
-// ------------------------------------------------------------
-Theme.typography = {
-  largeTitle: {
-    fontSize: 34,
+Theme.styles = {
+  emptyMessage: {
+    paddingTop: Theme.size.listEmptyMessageMarginTop,
+    textAlign: 'center',
   },
-  title1: {
-    fontSize: 28,
+  subtitle: {
+    fontSize: Theme.size.subtitleTextSize,
+    fontWeight: 'bold',
+    marginTop: Theme.size.commonMargin,
   },
-  title2: {
-    fontSize: 22,
+  message: {
+    fontSize: Theme.size.messageTextSize,
+    marginTop: Theme.size.commonMargin,
   },
-  title3: {
-    fontSize: 18,
-  },
-  titleCaption: {
-    fontSize: 16,
-  },
-  onlyTextButton: {
-    fontSize: 16,
-  },
-  input: {
-    fontSize: 18,
-  },
-  body: {
-    fontSize: 15,
-  },
-  caption1: {
-    fontSize: 14,
-  },
-  caption2: {
-    fontSize: 12,
-  },
-  caption3: {
-    fontSize: 10,
-  },
-
-  // //About screen
-  // aboutSubtitleTextSize:20sp</dimen>
-  // aboutContentTextSize:18sp</dimen>
-  //
-  // //Available SDKs screen
-  // categoryTextSize:20sp</dimen>
 };
 
 export default Theme;
