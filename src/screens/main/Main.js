@@ -9,10 +9,12 @@ import {About} from '../About';
 import {Logs} from '../logs/Logs';
 import DrawerMenu from './DrawerMenu';
 import React from 'react';
+import {CustomRecorder} from '../CustomRecorder';
 
 export const Drawer = createDrawerNavigator(
   {
     Recordings: {screen: Recordings},
+    CustomRecorder: {screen: CustomRecorder},
     VideoEditor: {screen: VideoEditor},
     Settings: {screen: Settings},
     ListSdks: {screen: Sdks},

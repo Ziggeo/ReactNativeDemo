@@ -30,10 +30,12 @@ export default {
   itemSettings: 'Settings',
   itemSdks: 'Available SDKs',
   itemClients: 'Top clients',
-  itemContact: 'Contact us',
+  itemContact: 'Contact Us',
   itemAbout: 'About',
   itemLog: 'Log',
   itemVideoEditor: 'Video Editor',
+  itemCustomRecorder: 'Custom Recorder',
+  itemCustomPlayer: 'Custom Player',
 
   // Logout confirmation
   logoutMessage: 'Are you sure you want to log out?',

@@ -1,9 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {NativeModules, StyleSheet, Text, View} from 'react-native';
 import Strings from '../Strings';
 import React from 'react';
 import {Toolbar} from 'react-native-material-ui';
 import Theme from '../Theme';
-import ZiggeoCamera from 'react-native-ziggeo-library/CameraView';
+import ZiggeoCameraView from 'react-native-ziggeo-library/camera_view';
 import ActionButton from 'react-native-action-button';
 import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {Platform} from 'react-native';
@@ -35,26 +35,26 @@ export class CustomRecorder extends React.Component {
   }
 
   subscribeForEvents() {
-    const cameraEmitter = Ziggeo.cameraEmitter();
-    cameraEmitter.addListener('CameraOpened', data =>
-      console.log('CameraOpened'),
-    );
-    cameraEmitter.addListener('CameraClosed', data =>
-      console.log('CameraClosed'),
-    );
-    cameraEmitter.addListener('RecordingStarted', data =>
-      console.log('RecordingStarted'),
-    );
-    cameraEmitter.addListener('RecordingStopped', data =>
-      console.log('RecordingStopped'),
-    );
-    cameraEmitter.addListener('StreamingStarted', data =>
-      console.log('StreamingStarted'),
-    );
-    cameraEmitter.addListener('StreamingStopped', data =>
-      console.log('StreamingStopped'),
-    );
-    cameraEmitter.addListener('error', data => console.log('error: ' + data));
+    // const cameraEmitter = Ziggeo.cameraEmitter();
+    // cameraEmitter.addListener('CameraOpened', data =>
+    //   console.log('CameraOpened'),
+    // );
+    // cameraEmitter.addListener('CameraClosed', data =>
+    //   console.log('CameraClosed'),
+    // );
+    // cameraEmitter.addListener('RecordingStarted', data =>
+    //   console.log('RecordingStarted'),
+    // );
+    // cameraEmitter.addListener('RecordingStopped', data =>
+    //   console.log('RecordingStopped'),
+    // );
+    // cameraEmitter.addListener('StreamingStarted', data =>
+    //   console.log('StreamingStarted'),
+    // );
+    // cameraEmitter.addListener('StreamingStopped', data =>
+    //   console.log('StreamingStopped'),
+    // );
+    // cameraEmitter.addListener('error', data => console.log('error: ' + data));
   }
 
   render() {
@@ -62,7 +62,8 @@ export class CustomRecorder extends React.Component {
       <View style={styles.container}>
         {this.renderToolbar()}
         {this.state.isPermissionsGranted && (
-          <ZiggeoCamera
+          <ZiggeoCameraView
+            style={styles.container}
             ref={camRef => {
               this.camera = camRef;
             }}
