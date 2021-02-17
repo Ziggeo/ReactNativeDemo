@@ -5,6 +5,7 @@ import {Recordings} from '../recordings/Recordings';
 import {Settings} from '../Settings';
 import {VideoEditor} from '../VideoEditor';
 import {CustomRecorder} from '../CustomRecorder';
+import {CustomVideoPlayer} from '../CustomVideoPlayer';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
 import {Logs} from '../logs/Logs';
@@ -37,6 +38,11 @@ class DrawerMenu extends React.Component {
         type: 'item',
         title: Strings.itemCustomRecorder,
         name: CustomRecorder.name,
+      },
+      {
+        type: 'item',
+        title: Strings.itemCustomPlayer,
+        name: CustomVideoPlayer.name,
       },
       {
         type: 'item',

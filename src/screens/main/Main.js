@@ -10,11 +10,13 @@ import {Logs} from '../logs/Logs';
 import DrawerMenu from './DrawerMenu';
 import React from 'react';
 import {CustomRecorder} from '../CustomRecorder';
+import {CustomVideoPlayer} from '../CustomVideoPlayer';
 
 export const Drawer = createDrawerNavigator(
   {
     Recordings: {screen: Recordings},
     CustomRecorder: {screen: CustomRecorder},
+    CustomVideoPlayer: {screen: CustomVideoPlayer},
     VideoEditor: {screen: VideoEditor},
     Settings: {screen: Settings},
     ListSdks: {screen: Sdks},
