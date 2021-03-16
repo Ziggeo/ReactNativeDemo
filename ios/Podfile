@@ -48,6 +48,9 @@ target 'ReactNativeDemo' do
   # Pods for ReactNativeDemo
   pod 'iOS-Client-SDK', :git => 'https://github.com/Ziggeo/iOS-Client-SDK.git'
 
+  # Dependencies of Ziggeo
+  pod 'GoogleAds-IMA-iOS-SDK', '3.11.3'
+
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
