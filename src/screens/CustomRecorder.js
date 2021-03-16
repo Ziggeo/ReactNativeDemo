@@ -1,14 +1,13 @@
-import {NativeModules, StyleSheet, Text, View} from 'react-native';
-import Strings from '../Strings';
+import {StyleSheet, View, Platform} from 'react-native';
 import React from 'react';
 import {Toolbar} from 'react-native-material-ui';
-import Theme from '../Theme';
-import ZiggeoCameraView from 'react-native-ziggeo-library/camera_view';
-import ActionButton from 'react-native-action-button';
-import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
-import {Platform} from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
 import Ziggeo from 'react-native-ziggeo-library';
+import ZiggeoCameraView from 'react-native-ziggeo-library/camera_view';
+import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import RNFetchBlob from 'rn-fetch-blob';
+import RecorderControlPanel from '../ui/RecorderControlPanel';
+import Strings from '../Strings';
+import Theme from '../Theme';
 
 const ANDROID_PERMISSIONS = [
   PERMISSIONS.ANDROID.CAMERA,
@@ -70,17 +69,14 @@ export class CustomRecorder extends React.Component {
             }}
           />
         )}
-        <ActionButton
-          degrees={0}
-          buttonTextStyle={{fontSize: Theme.size.btnStartStopTextSize}}
-          buttonText={
-            this.state.isRecordingStarted
-              ? Strings.btnStopText
-              : Strings.btnStartText
-          }
-          buttonColor="rgba(231,76,60,1)"
-          onPress={this.onBtnPress}
-        />
+        <View style={styles.controlPanelContainer}>
+          <View style={styles.containerInner}>
+            <RecorderControlPanel
+              isRecording={false}
+              onFlipCamera={this.onFlipPress}
+            />
+          </View>
+        </View>
       </View>
     );
   }
@@ -142,5 +138,24 @@ export class CustomRecorder extends React.Component {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    position: 'relative',
+  },
+  controlPanelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 72,
+    paddingHorizontal: 16,
+    position: 'absolute',
+    bottom: 16,
+  },
+  containerInner: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 16,
+    position: 'relative',
+    borderTopWidth: 2,
+    borderTopColor: 'white',
   },
 });

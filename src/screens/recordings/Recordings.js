@@ -28,11 +28,11 @@ export class Recordings extends React.Component {
     };
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.subscribeForEvents();
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     this.unsubscribeFromEvents();
   }
 
