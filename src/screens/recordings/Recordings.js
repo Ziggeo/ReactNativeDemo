@@ -234,7 +234,7 @@ export class Recordings extends React.Component {
 const mapStateToProps = ({recs}) => recs;
 export default connect(
   mapStateToProps,
-  {
-    requestRecs,
-  },
+  // {
+  //   requestRecs,
+  // },
 )(Recordings);

@@ -1,9 +1,8 @@
-/**
- * @format
- */
-
-import {AppRegistry} from 'react-native';
+import React from "react";
+import {AppRegistry, SafeAreaView} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+const SafeAreaApp = () => <SafeAreaView style={{ flex: 1 }}><App/></SafeAreaView>
+
+AppRegistry.registerComponent(appName, () => SafeAreaApp);
