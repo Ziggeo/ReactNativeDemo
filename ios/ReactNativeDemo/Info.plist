@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>This permission is required for demo purposes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -70,8 +70,12 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>quicksand_bold.ttf</string>
+		<string>quicksand_light.ttf</string>
+		<string>quicksand_medium.ttf</string>
+		<string>quicksand_regular.ttf</string>
+		<string>quicksand_semibold.ttf</string>
 	</array>
-
 	<key>NSAppleMusicUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
@@ -95,8 +99,6 @@
 		<key>YOUR-PURPOSE-KEY</key>
 		<string>This permission is required for demo purposes</string>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This permission is required for demo purposes</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
 	<key>NSMotionUsageDescription</key>

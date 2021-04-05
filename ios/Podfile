@@ -59,6 +59,8 @@ target 'ReactNativeDemo' do
   pod 'iOS-Client-SDK', :path => '../../ZigiOSClientSDK'
   pod 'ZiggeoRN', :path => '../../ZigReactNativeSDK'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'ReactNativeDemoTests' do
     inherit! :search_paths
     # Pods for testing
