@@ -122,6 +122,10 @@ export class CustomRecorder extends React.Component {
           if (!this.state.isPermissionsGranted) {
             console.log('Permission denied.');
           }
+        } else {
+          this.setState({
+            isPermissionsGranted: true, // todo check if we can get permission status in ios
+          })
         }
       },
     );
