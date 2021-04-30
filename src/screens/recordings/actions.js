@@ -25,8 +25,13 @@ export const requestRecs = () => async dispatch => {
             .then(images => imageList = images)
             .then(data => {
                 // result = videoList + imageList + audioList)
-                let comb = videoList.concat(audioList).concat(imageList);
-                comb.sort(function(a,b) { return parseInt(a.created)-parseInt(b.created)});
+                let videos = JSON.parse(videoList);
+                let audios = JSON.parse(audioList);
+                let images = JSON.parse(imageList);
+                let comb = videos.concat(audios).concat(images);
+                comb.sort(function(a,b) {
+                    return parseInt(a.created) - parseInt(b.created);
+                });
                 dispatch(receiveRecs(JSON.parse(videoList), JSON.parse(audioList), JSON.parse(imageList)));
             })
             .catch(reason => dispatch(error(reason)));
