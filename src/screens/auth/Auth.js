@@ -50,9 +50,15 @@ class Auth extends React.Component {
     Ziggeo.startQrScanner();
     const recorderEmitter = Ziggeo.recorderEmitter();
     const subscription = recorderEmitter.addListener('QrDecoded', data => {
-      Ziggeo.setAppToken(data.qr);
-      const {navigation} = this.props;
-      navigation.navigate(Routes.HomeStack);
+      let appToken = data.qr;
+      this.props.loginUser({
+        appToken,
+        onSuccess: () => {
+          Ziggeo.setAppToken(appToken);
+          const {navigation} = this.props;
+          navigation.navigate(Routes.HomeStack);
+        },
+      });
     });
   };
 
