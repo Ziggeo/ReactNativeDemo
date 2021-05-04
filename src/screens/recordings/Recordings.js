@@ -175,17 +175,12 @@ export class Recordings extends React.Component {
                         <ScrollView showsVerticalScrollIndicator={true}>
                             <View style={styles.ListView}>
                                 {recordings.map((item) => {
-                                    return this.renderItem(item, "video");
-                                })}
-                            </View>
-                            <View style={styles.ListView}>
-                                {audioRecordings && audioRecordings.map((item) => {
-                                    return this.renderItem(item, "audio");
-                                })}
-                            </View>
-                            <View style={styles.ListView}>
-                                {images && images.map((item) => {
-                                    return this.renderItem(item, "image");
+                                    if (item.type === "ApiVideo") {
+                                        return this.renderItem(item, "video");
+                                    } else if (item.type === "ApiAudio") {
+                                        return this.renderItem(item, "audio");
+                                    } else
+                                        return this.renderItem(item, "image");
                                 })}
                             </View>
                         </ScrollView>
