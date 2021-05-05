@@ -46,9 +46,10 @@ export const editInfo = () => async dispatch => {
   dispatch(edit());
 };
 
-export const updateInfo = model => async dispatch => {
+export const updateInfo = model => async dispatch => {``
   dispatch(loading());
-  Ziggeo.VideosApi.update(model.token, model).then(upd => {
+  Ziggeo.VideosApi.update(model.token, JSON.stringify(model)).then(upd => {
+    console.log('updated')
     loadInfo();
   });
 };
