@@ -1,7 +1,5 @@
 import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {connect} from 'react-redux';
-import {cancelEditing, deleteVideo, editInfo, loadInfo, updateInfo,} from './actions';
 import Strings from '../../Strings';
 import Theme from '../../Theme';
 import Ziggeo from 'react-native-ziggeo-library';
@@ -13,6 +11,8 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Text from '../../ui/Text';
 import createTextField from '../../ui/TextField';
 import {textFontStyle} from '../../ui/textFontStyle';
+import connect from "react-redux/lib/connect/connect";
+import {cancelEditing, deleteVideo, editInfo, loadInfo, updateInfo} from "./actions";
 
 class RecordingDetails extends React.Component {
     constructor(props) {
@@ -112,15 +112,25 @@ class RecordingDetails extends React.Component {
                                                 uri: imageUrl,
                                             }}
                                         />
-                                    )) || (!imageUrl && (
-                                        <Image
-                                            style={styles.preview}
-                                            source={"image.png"}
+                                    )) || (model.fileType === "audio" && (
+                                        <Icon
+                                            style={{alignSelf: 'center'}}
+                                            size={Theme.size.previewHeight}
+                                            name={'microphone'}
+                                            color={'grey'}
+                                        />
+                                    ))
+                                    || (model.fileType === "image" && (
+                                        <Icon
+                                            style={{alignSelf: 'center'}}
+                                            size={Theme.size.previewHeight}
+                                            name={'image'}
+                                            color={'grey'}
                                         />
                                     ))}
-
                                     <View style={styles.overlay}>
-                                        <Icon size={Theme.size.hugeIconSize} name="play-circle"/>
+                                        {(imageUrl) && <Icon
+                                            size={Theme.size.hugeIconSize} name="play-circle"/>}
                                     </View>
                                 </TouchableOpacity>
                                 {createTextField({

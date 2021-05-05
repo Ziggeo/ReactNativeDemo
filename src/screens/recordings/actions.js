@@ -23,24 +23,23 @@ export const requestRecs = () => async dispatch => {
                 return Ziggeo.ImagesApi.index();
             })
             .then(images => imageList = images)
-            .then(data => {
-                // result = videoList + imageList + audioList)
+            .then(() => {
                 let videos = JSON.parse(videoList);
                 let audios = JSON.parse(audioList);
                 let images = JSON.parse(imageList);
                 let comb = videos.concat(audios).concat(images);
-                comb.sort(function(a,b) {
-                    return parseInt(a.created) - parseInt(b.created);
+                comb.sort(function (a, b) {
+                    return parseInt(b.created) - parseInt(a.created);
                 });
-                dispatch(receiveRecs(JSON.parse(videoList), JSON.parse(audioList), JSON.parse(imageList)));
+                dispatch(receiveRecs(comb));
             })
             .catch(reason => dispatch(error(reason)));
     }
 ;
 
-export const receiveRecs = (videos, audios, images) => ({
+export const receiveRecs = (videos) => ({
     type: Types.RECEIVE_RECS,
-    payload: {videos, audios, images},
+    payload: {videos},
 });
 
 export const error = reason => ({
