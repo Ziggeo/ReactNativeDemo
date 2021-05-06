@@ -15,10 +15,15 @@ import connect from "react-redux/lib/connect/connect";
 import {cancelEditing, deleteVideo, editInfo, loadInfo, updateInfo} from "./actions";
 
 class RecordingDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onTitleChanged = this.onTitleChanged.bind(this);
+  constructor(props) {
+    super(props);
+    this.onKeyChanged = this.onKeyChanged.bind(this);
+    this.onTitleChanged = this.onTitleChanged.bind(this);
+    this.onDescriptionChanged = this.onDescriptionChanged.bind(this);
+    this.state = {
+      model:this.props.navigation.state.params
     }
+  }
 
     componentDidMount(): void {
         this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
@@ -30,17 +35,29 @@ class RecordingDetails extends React.Component {
         this._unsubscribe.remove();
     }
 
-    onKeyChanged(text) {
-        this.props.model.model.key = text;
-    }
+  onKeyChanged(text) {
+    let updModel = this.state.model;
+    updModel.key = text
+    this.setState({
+      model:updModel
+    })
+  }
 
-    onTitleChanged(text) {
-        this.props.model.model.title = text;
-    }
+  onTitleChanged(text) {
+    let updModel = this.state.model;
+    updModel.title = text
+    this.setState({
+      model:updModel
+    })
+  }
 
-    onDescriptionChanged(text) {
-        this.props.model.model.description = text;
-    }
+  onDescriptionChanged(text) {
+    let updModel = this.state.model;
+    updModel.description = text
+    this.setState({
+      model:updModel
+    })
+  }
 
     renderLoading() {
         return <Spinner visible={true}/>;
@@ -90,88 +107,88 @@ class RecordingDetails extends React.Component {
         );
     }
 
-    render() {
-        const {model, imageUrl, isLoading, isEditMode} = this.props;
-        return (
-            <KeyboardAwareScrollView>
-                <View>
-                    {this.renderToolbar(isEditMode, model)}
-                    <ScrollView style={styles.container}>
-                        {isLoading && this.renderLoading()}
-                        {model && (
-                            <View>
-                                <TouchableOpacity
-                                    style={{alignContent: 'center'}}
-                                    onPress={() => (imageUrl && Ziggeo.play(model.model.token)) ||
-                                        (model.fileType === "audio" && Ziggeo.startAudioPlayer(model.model.token)) ||
-                                        (model.fileType === "image" && Ziggeo.showImage(model.model.token))}>
-                                    {(imageUrl && (
-                                        <Image
-                                            style={styles.preview}
-                                            source={{
-                                                uri: imageUrl,
-                                            }}
-                                        />
-                                    )) || (model.fileType === "audio" && (
-                                        <Icon
-                                            style={{alignSelf: 'center'}}
-                                            size={Theme.size.previewHeight}
-                                            name={'microphone'}
-                                            color={'grey'}
-                                        />
-                                    ))
-                                    || (model.fileType === "image" && (
-                                        <Icon
-                                            style={{alignSelf: 'center'}}
-                                            size={Theme.size.previewHeight}
-                                            name={'image'}
-                                            color={'grey'}
-                                        />
-                                    ))}
-                                    <View style={styles.overlay}>
-                                        {(imageUrl) && <Icon
-                                            size={Theme.size.hugeIconSize} name="play-circle"/>}
-                                    </View>
-                                </TouchableOpacity>
-                                {createTextField({
-                                    disabled: true,
-                                    label: Strings.hintToken,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.model.token,
-                                    onChangeText: this.onTitleChanged,
-                                })}
-                                {createTextField({
-                                    disabled: !isEditMode,
-                                    label: Strings.hintKey,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.model.key,
-                                    onChangeText: this.onKeyChanged,
-                                })}
-                                {createTextField({
-                                    disabled: !isEditMode,
-                                    label: Strings.hintTitle,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.model.title,
-                                    onChangeText: this.onTitleChanged,
-                                })}
-                                {createTextField({
-                                    disabled: !isEditMode,
-                                    label: Strings.hintDescription,
-                                    onSubmitEditing: this.onSubmit,
-                                    textColor: Theme.colors.accent,
-                                    value: model.model.description,
-                                    onChangeText: this.onDescriptionChanged,
-                                })}
-                            </View>
-                        )}
-                    </ScrollView>
-                </View>
-            </KeyboardAwareScrollView>
-        );
-    }
+  render() {
+    const {imageUrl, isLoading, isEditMode} = this.props;
+    const {model} = this.state;
+    return (
+      <KeyboardAwareScrollView>
+        <View>
+          {this.renderToolbar(isEditMode, model)}
+          <ScrollView style={styles.container}>
+            {isLoading && this.renderLoading()}
+            {model && (
+              <View>
+                <TouchableOpacity
+                  style={{alignContent: 'center'}}
+                  onPress={() => (imageUrl && Ziggeo.play(model.model.token)) ||
+                      (model.fileType === "audio" && Ziggeo.startAudioPlayer(model.model.token)) ||
+                      (model.fileType === "image" && Ziggeo.showImage(model.model.token))}>
+                  {imageUrl && (
+                    <Image
+                      style={styles.preview}
+                      source={{
+                        uri: imageUrl,
+                      }}
+                    />
+                  )) || (model.fileType === "audio" && (
+                    <Icon
+                    style={{alignSelf: 'center'}}
+                    size={Theme.size.previewHeight}
+                    name={'microphone'}
+                    color={'grey'}
+                    />
+                    ))
+                    || (model.fileType === "image" && (
+                    <Icon
+                    style={{alignSelf: 'center'}}
+                    size={Theme.size.previewHeight}
+                    name={'image'}
+                    color={'grey'}
+                    />
+                    ))}
+                  <View style={styles.overlay}>
+                    <Icon size={Theme.size.hugeIconSize} name="play-circle" />
+                  </View>
+                </TouchableOpacity>
+                {createTextField({
+                  disabled: true,
+                  label: Strings.hintToken,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.token,
+                  onChangeText: this.onTitleChanged,
+                })}
+                {createTextField({
+                  disabled: !isEditMode,
+                  label: Strings.hintKey,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.key,
+                  onChangeText: this.onKeyChanged,
+                })}
+                {createTextField({
+                  disabled: !isEditMode,
+                  label: Strings.hintTitle,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.title,
+                  onChangeText: this.onTitleChanged,
+                })}
+                {createTextField({
+                  disabled: !isEditMode,
+                  label: Strings.hintDescription,
+                  onSubmitEditing: this.onSubmit,
+                  textColor: Theme.colors.accent,
+                  value: model.description,
+                  onChangeText: this.onDescriptionChanged,
+                })}
+              </View>
+            )}
+          </ScrollView>
+        </View>
+      </KeyboardAwareScrollView>
+    );
+  }
 }
 
 const mapStateToProps = ({recd}) => recd;

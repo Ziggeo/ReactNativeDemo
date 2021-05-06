@@ -54,18 +54,18 @@ export const editInfo = () => async dispatch => {
 export const updateInfo = (model) => async dispatch => {
     dispatch(loading());
     if (model.fileType === "video") {
-        Ziggeo.VideosApi.update(model.model.token, model).then(upd => {
-            loadInfo();
+        Ziggeo.VideosApi.update(model.model.token, JSON.stringify(model)).then(upd => {
+          dispatch(loadInfo(model));
         });
     }
     if (model.fileType === "audio") {
-        Ziggeo.AudiosApi.update(model.model.token, model).then(upd => {
-            loadInfo();
+        Ziggeo.AudiosApi.update(model.model.token, JSON.stringify(model)).then(upd => {
+          dispatch(loadInfo(model));
         });
     }
     if (model.fileType === "image") {
-        Ziggeo.ImagesApi.update(model.model.token, model).then(upd => {
-            loadInfo();
+        Ziggeo.ImagesApi.update(model.model.token, JSON.stringify(model)).then(upd => {
+          dispatch(loadInfo(model));
         });
     }
 };
