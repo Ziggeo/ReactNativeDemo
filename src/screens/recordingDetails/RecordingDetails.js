@@ -23,7 +23,12 @@ import {textFontStyle} from '../../ui/textFontStyle';
 class RecordingDetails extends React.Component {
   constructor(props) {
     super(props);
+    this.onKeyChanged = this.onKeyChanged.bind(this);
     this.onTitleChanged = this.onTitleChanged.bind(this);
+    this.onDescriptionChanged = this.onDescriptionChanged.bind(this);
+    this.state = {
+      model:this.props.navigation.state.params
+    }
   }
 
   componentDidMount(): void {
@@ -37,15 +42,27 @@ class RecordingDetails extends React.Component {
   }
 
   onKeyChanged(text) {
-    this.props.model.key = text;
+    let updModel = this.state.model;
+    updModel.key = text
+    this.setState({
+      model:updModel
+    })
   }
 
   onTitleChanged(text) {
-    this.props.model.title = text;
+    let updModel = this.state.model;
+    updModel.title = text
+    this.setState({
+      model:updModel
+    })
   }
 
   onDescriptionChanged(text) {
-    this.props.model.description = text;
+    let updModel = this.state.model;
+    updModel.description = text
+    this.setState({
+      model:updModel
+    })
   }
 
   renderLoading() {
@@ -97,7 +114,8 @@ class RecordingDetails extends React.Component {
   }
 
   render() {
-    const {model, imageUrl, isLoading, isEditMode} = this.props;
+    const {imageUrl, isLoading, isEditMode} = this.props;
+    const {model} = this.state;
     return (
       <KeyboardAwareScrollView>
         <View>
