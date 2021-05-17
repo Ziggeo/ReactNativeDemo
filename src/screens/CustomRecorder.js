@@ -35,29 +35,28 @@ export class CustomRecorder extends React.Component {
   }
 
   subscribeForEvents() {
-//     todo implement this in iOS module and uncomment:
-
-//     const cameraEmitter = Ziggeo.cameraViewEmitter();
-//     cameraEmitter.addListener('CameraOpened', data =>
-//       console.log('CameraOpened'),
-//     );
-//     cameraEmitter.addListener('CameraClosed', data =>
-//       console.log('CameraClosed'),
-//     );
-//
-//     cameraEmitter.addListener('RecordingStarted', data =>
-//       console.log('RecordingStarted'),
-//     );
-//     cameraEmitter.addListener('RecordingStopped', data =>
-//       console.log('RecordingStopped'),
-//     );
-//     cameraEmitter.addListener('StreamingStarted', data =>
-//       console.log('StreamingStarted'),
-//     );
-//     cameraEmitter.addListener('StreamingStopped', data =>
-//       console.log('StreamingStopped'),
-//     );
-//     cameraEmitter.addListener('error', data => console.log('error: ' + data));*/
+    //     todo implement this in iOS module and uncomment:
+    //     const cameraEmitter = Ziggeo.cameraViewEmitter();
+    //     cameraEmitter.addListener('CameraOpened', data =>
+    //       console.log('CameraOpened'),
+    //     );
+    //     cameraEmitter.addListener('CameraClosed', data =>
+    //       console.log('CameraClosed'),
+    //     );
+    //
+    //     cameraEmitter.addListener('RecordingStarted', data =>
+    //       console.log('RecordingStarted'),
+    //     );
+    //     cameraEmitter.addListener('RecordingStopped', data =>
+    //       console.log('RecordingStopped'),
+    //     );
+    //     cameraEmitter.addListener('StreamingStarted', data =>
+    //       console.log('StreamingStarted'),
+    //     );
+    //     cameraEmitter.addListener('StreamingStopped', data =>
+    //       console.log('StreamingStopped'),
+    //     );
+    //     cameraEmitter.addListener('error', data => console.log('error: ' + data));*/
   }
 
   render() {
@@ -127,7 +126,7 @@ export class CustomRecorder extends React.Component {
         } else {
           this.setState({
             isPermissionsGranted: true, // todo check if we can get permission status in ios
-          })
+          });
         }
       },
     );

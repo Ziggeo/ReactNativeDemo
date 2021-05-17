@@ -19,6 +19,8 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Text from '../../ui/Text';
 import createTextField from '../../ui/TextField';
 import {textFontStyle} from '../../ui/textFontStyle';
+import {getCustomVideoMode} from '../../utils/storage';
+import Routes from '../../Routes';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -27,8 +29,8 @@ class RecordingDetails extends React.Component {
     this.onTitleChanged = this.onTitleChanged.bind(this);
     this.onDescriptionChanged = this.onDescriptionChanged.bind(this);
     this.state = {
-      model:this.props.navigation.state.params
-    }
+      model: this.props.navigation.state.params,
+    };
   }
 
   componentDidMount(): void {
@@ -43,26 +45,26 @@ class RecordingDetails extends React.Component {
 
   onKeyChanged(text) {
     let updModel = this.state.model;
-    updModel.key = text
+    updModel.key = text;
     this.setState({
-      model:updModel
-    })
+      model: updModel,
+    });
   }
 
   onTitleChanged(text) {
     let updModel = this.state.model;
-    updModel.title = text
+    updModel.title = text;
     this.setState({
-      model:updModel
-    })
+      model: updModel,
+    });
   }
 
   onDescriptionChanged(text) {
     let updModel = this.state.model;
-    updModel.description = text
+    updModel.description = text;
     this.setState({
-      model:updModel
-    })
+      model: updModel,
+    });
   }
 
   renderLoading() {
@@ -126,7 +128,15 @@ class RecordingDetails extends React.Component {
               <View>
                 <TouchableOpacity
                   style={{alignContent: 'center'}}
-                  onPress={() => Ziggeo.play(model.token)}>
+                  onPress={async () => {
+                    let isCustomMode = await getCustomVideoMode();
+                    if (isCustomMode === 'true') {
+                      const {navigation} = this.props;
+                      navigation.navigate(Routes.CustomVideo);
+                    } else {
+                      Ziggeo.play(model.token);
+                    }
+                  }}>
                   {imageUrl && (
                     <Image
                       style={styles.preview}

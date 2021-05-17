@@ -7,6 +7,9 @@ import RecordingDetails from './screens/recordingDetails/RecordingDetails';
 
 import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
+import {Settings} from './screens/Settings';
+import {CustomRecorder} from './screens/CustomRecorder';
+import {CustomVideoPlayer} from './screens/CustomVideoPlayer';
 
 export default {
   Splash: 'Splash',
@@ -21,6 +24,8 @@ export default {
   RecordingDetails: 'RecordingDetails',
 
   Settings: 'Settings',
+  CustomVideo: 'CustomVideo',
+  CustomCamera: 'CustomCamera',
 };
 
 const AuthStack = createStackNavigator({
@@ -30,6 +35,8 @@ const AuthStack = createStackNavigator({
 const HomeStack = createStackNavigator({
   [Routes.Drawer]: {screen: Drawer},
   [Routes.RecordingDetails]: {screen: RecordingDetails},
+  [Routes.CustomVideo]: {screen: CustomVideoPlayer},
+  [Routes.CustomCamera]: {screen: CustomRecorder},
 });
 
 export const RootStack = createAppContainer(

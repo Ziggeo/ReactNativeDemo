@@ -16,6 +16,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import Text from '../../ui/Text';
 import createToolbar from '../../ui/Toolbar';
 import {addLog} from '../logs/storage';
+import {getCustomCameraMode, getCustomVideoMode} from '../../utils/storage';
 
 export class Recordings extends React.Component {
   constructor(props) {
@@ -52,8 +53,14 @@ export class Recordings extends React.Component {
     Ziggeo.startScreenRecorder();
   }
 
-  onCameraPressed() {
-    Ziggeo.record();
+  async onCameraPressed() {
+    let isCustomMode = await getCustomCameraMode();
+    if (isCustomMode === 'true') {
+      const {navigation} = this.props;
+      navigation.navigate(Routes.CustomCamera);
+    } else {
+      await Ziggeo.record();
+    }
   }
 
   subscribeForEvents() {
