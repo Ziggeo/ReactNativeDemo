@@ -1,13 +1,12 @@
-import {NativeModules, StyleSheet, Text, View} from 'react-native';
-import Strings from '../Strings';
+import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {Toolbar} from 'react-native-material-ui';
-import Theme from '../Theme';
 import ZiggeoCameraView from 'react-native-ziggeo-library/camera_view';
-import ActionButton from 'react-native-action-button';
-import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
-import {Platform} from 'react-native';
+import {PERMISSIONS, requestMultiple, RESULTS} from 'react-native-permissions';
 import RNFetchBlob from 'rn-fetch-blob';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Theme from '../Theme';
+import {getCustomVideoMode} from '../utils/storage';
+import Routes from '../Routes';
 import Ziggeo from 'react-native-ziggeo-library';
 
 const ANDROID_PERMISSIONS = [
@@ -19,6 +18,8 @@ const IOS_PERMISSIONS = [];
 const IS_ANDROID = Platform.OS === 'android';
 
 export class CustomRecorder extends React.Component {
+  path: '';
+
   constructor() {
     super();
     this.state = {
@@ -62,7 +63,6 @@ export class CustomRecorder extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.renderToolbar()}
         {this.state.isPermissionsGranted && (
           <ZiggeoCameraView
             style={styles.container}
@@ -71,31 +71,62 @@ export class CustomRecorder extends React.Component {
             }}
           />
         )}
-        <ActionButton
-          degrees={0}
-          buttonTextStyle={{fontSize: Theme.size.btnStartStopTextSize}}
-          buttonText={
-            this.state.isRecordingStarted
-              ? Strings.btnStopText
-              : Strings.btnStartText
-          }
-          buttonColor="rgba(231,76,60,1)"
-          onPress={this.onBtnPress}
-        />
+        <View style={styles.btnContainer}>
+          <View style={styles.btnPlayVideo}>
+            <TouchableOpacity onPress={this.onPlayBtnPress}>
+              <Icon
+                size={Theme.size.iconSize}
+                name={'play'}
+                style={styles.overlay}
+                color={
+                  this.state.isRecordingStarted
+                    ? Theme.colors.transparent
+                    : Theme.colors.white
+                }
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.btnPlayVideo}>
+            <TouchableOpacity onPress={this.onBtnPress}>
+              <Icon
+                size={Theme.size.iconSize}
+                name={(this.state.isRecordingStarted && 'pause') || 'video'}
+                style={styles.overlay}
+                color={Theme.colors.white}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }
+
+  onPlayBtnPress = async () => {
+    if (this.camera) {
+      let isCustomMode = await getCustomVideoMode();
+      if (isCustomMode === 'true') {
+        const {navigation} = this.props;
+        navigation.navigate(Routes.CustomVideo, {
+          videoToken: null,
+          videoPath: this.path,
+        });
+      } else {
+        Ziggeo.playFromUri(this.path);
+      }
+    }
+  };
 
   onBtnPress = () => {
     if (this.camera) {
       if (this.state.isRecordingStarted) {
         this.camera.stopRecording();
       } else {
-        let path = IS_ANDROID
-          ? RNFetchBlob.fs.dirs.DownloadDir + 'temp.mp4'
+        this.path = IS_ANDROID
+          ? RNFetchBlob.fs.dirs.DownloadDir + Date.now() + 'temp.mp4'
           : //TODO handle iOs path
             '';
-        this.camera.startRecording(path, 10000);
+        this.camera.startRecording(this.path, 10000);
       }
       this.setState({isRecordingStarted: !this.state.isRecordingStarted});
     }
@@ -131,21 +162,28 @@ export class CustomRecorder extends React.Component {
       },
     );
   }
-
-  renderToolbar() {
-    return (
-      <Toolbar
-        style={{container: {backgroundColor: Theme.colors.primary}}}
-        onLeftElementPress={() => this.props.navigation.openDrawer()}
-        leftElement="menu"
-        centerElement={Strings.titleCustomRecorder}
-      />
-    );
-  }
 }
 
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    justifyContent: 'center',
+  },
+  btnContainer: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: Theme.size.commonMargin,
+  },
+  btnPlayVideo: {
+    marginRight: Theme.size.commonMargin,
+    marginLeft: Theme.size.commonMargin,
+    marginBottom: Theme.size.commonMargin,
+    backgroundColor: Theme.colors.transparent,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -24,14 +24,17 @@ export class Settings extends React.Component {
   }
 
   loadCustomModeData = async () => {
+    let isCustomCamMode = await getCustomCameraMode();
+    let isCustomPlayMode = await getCustomCameraMode();
+
     this.setState({
-      isCustomCamera: await getCustomCameraMode(),
-      isCustomVideo: await getCustomVideoMode(),
+      isCustomCamera: isCustomCamMode === 'true',
+      isCustomVideo: isCustomPlayMode === 'true',
     });
   };
 
   render() {
-    if (this.isCustomCamera === null || this.isCustomVideo === null) {
+    if (this.isCustomCamera === 'false' || this.isCustomVideo === 'false') {
       this.loadCustomModeData();
     }
     return (
@@ -49,9 +52,8 @@ export class Settings extends React.Component {
               {Strings.customVideoMode}
             </Text>
             <Switch
-              value={Boolean(this.state.isCustomVideo)}
+              value={this.state.isCustomVideo}
               onValueChange={c => {
-                // this.isCustomVideo = c;
                 this.setState({isCustomVideo: c});
               }}
             />
@@ -67,11 +69,9 @@ export class Settings extends React.Component {
               {Strings.customCameraMode}
             </Text>
             <Switch
-              value={Boolean(this.state.isCustomCamera)}
+              value={this.state.isCustomCamera}
               onValueChange={c => {
-                // this.isCustomCamera = c;
                 this.setState({isCustomCamera: c});
-                // this.setState({checked: c});
               }}
             />
           </View>
@@ -86,8 +86,8 @@ export class Settings extends React.Component {
   }
 
   onBtnSaveSettingsPressed() {
-    saveCustomCameraMode(this.state.isCustomCamera.toString());
-    saveCustomVideoMode(this.state.isCustomVideo.toString());
+    saveCustomCameraMode(this.state.isCustomCamera?.toString());
+    saveCustomVideoMode(this.state.isCustomVideo?.toString());
   }
 }
 

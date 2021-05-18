@@ -132,7 +132,10 @@ class RecordingDetails extends React.Component {
                     let isCustomMode = await getCustomVideoMode();
                     if (isCustomMode === 'true') {
                       const {navigation} = this.props;
-                      navigation.navigate(Routes.CustomVideo);
+                      navigation.navigate(Routes.CustomVideo, {
+                        videoToken: model.token,
+                        videoPath: null,
+                      });
                     } else {
                       Ziggeo.play(model.token);
                     }

@@ -1,12 +1,7 @@
-import {NativeModules, StyleSheet, Text, View} from 'react-native';
-import Strings from '../Strings';
+import {Platform, StyleSheet, View} from 'react-native';
 import React from 'react';
-import {Toolbar} from 'react-native-material-ui';
-import Theme from '../Theme';
 import ZiggeoVideoView from 'react-native-ziggeo-library/video_view';
-import ActionButton from 'react-native-action-button';
-import {requestMultiple, PERMISSIONS, RESULTS} from 'react-native-permissions';
-import {Platform} from 'react-native';
+import {PERMISSIONS, requestMultiple, RESULTS} from 'react-native-permissions';
 import Ziggeo from 'react-native-ziggeo-library';
 
 const ANDROID_PERMISSIONS = [PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE];
@@ -14,10 +9,11 @@ const IOS_PERMISSIONS = [];
 const IS_ANDROID = Platform.OS === 'android';
 
 export class CustomVideoPlayer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isPermissionsGranted: false,
+      model: this.props.navigation.state.params,
     };
   }
 
@@ -35,44 +31,44 @@ export class CustomVideoPlayer extends React.Component {
     videoViewEmitter.addListener('Paused', data => console.log('Paused'));
     videoViewEmitter.addListener('Ended', data => console.log('Ended'));
     videoViewEmitter.addListener('Seek', data => console.log('Seek'));
-    videoViewEmitter.addListener('ReadyToPlay', data =>
-      console.log('ReadyToPlay'),
-    );
+    videoViewEmitter.addListener('ReadyToPlay', data => {
+      console.log('ReadyToPlay');
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {this.renderToolbar()}
-        {this.state.isPermissionsGranted && (
+        {this.state.isPermissionsGranted && this.state.model.videoPath && (
           <ZiggeoVideoView
-            // uris={['local_uri', 'remote_url']}
-            tokens={['video_token1']}
+            uris={[this.state.model.videoPath]}
             style={styles.player}
             ref={playerRef => {
               this.player = playerRef;
+              this.onBtnPress();
             }}
           />
         )}
-        <ActionButton
-          degrees={0}
-          buttonTextStyle={{fontSize: Theme.size.btnStartStopTextSize}}
-          buttonText={
-            this.state.isRecordingStarted
-              ? Strings.btnStopText
-              : Strings.btnStartText
-          }
-          buttonColor="rgba(231,76,60,1)"
-          onPress={this.onBtnPress}
-        />
+        {this.state.isPermissionsGranted && this.state.model.videoToken && (
+          <ZiggeoVideoView
+            tokens={[this.state.model.videoToken]}
+            style={styles.player}
+            ref={playerRef => {
+              this.player = playerRef;
+              this.onBtnPress();
+            }}
+          />
+        )}
       </View>
     );
   }
 
   onBtnPress = () => {
-    if (this.player) {
-      this.player.startPlaying();
-    }
+    setTimeout(() => {
+      if (this.player) {
+        this.player.startPlaying();
+      }
+    }, 1000);
   };
 
   requestPermissions() {
@@ -94,17 +90,6 @@ export class CustomVideoPlayer extends React.Component {
           }
         }
       },
-    );
-  }
-
-  renderToolbar() {
-    return (
-      <Toolbar
-        style={{container: {backgroundColor: Theme.colors.primary}}}
-        onLeftElementPress={() => this.props.navigation.openDrawer()}
-        leftElement="menu"
-        centerElement={Strings.titleCustomRecorder}
-      />
     );
   }
 }
