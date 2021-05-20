@@ -18,23 +18,23 @@ export class Settings extends React.Component {
     super(props);
     this.onBtnSaveSettingsPressed = this.onBtnSaveSettingsPressed.bind(this);
     this.state = {
-      isCustomCamera: false,
-      isCustomVideo: false,
+      isCustomCamera: undefined,
+      isCustomVideo: undefined,
     };
   }
 
   loadCustomModeData = async () => {
-    let isCustomCamMode = await getCustomCameraMode();
-    let isCustomPlayMode = await getCustomCameraMode();
-
     this.setState({
-      isCustomCamera: isCustomCamMode === 'true',
-      isCustomVideo: isCustomPlayMode === 'true',
+      isCustomCamera: await getCustomCameraMode(),
+      isCustomVideo: await getCustomVideoMode(),
     });
   };
 
   render() {
-    if (this.isCustomCamera === 'false' || this.isCustomVideo === 'false') {
+    if (
+      this.state.isCustomCamera === undefined ||
+      this.state.isCustomVideo === undefined
+    ) {
       this.loadCustomModeData();
     }
     return (
@@ -52,7 +52,7 @@ export class Settings extends React.Component {
               {Strings.customVideoMode}
             </Text>
             <Switch
-              value={this.state.isCustomVideo}
+              value={this.state.isCustomVideo === 'true'}
               onValueChange={c => {
                 this.setState({isCustomVideo: c});
               }}
@@ -69,7 +69,7 @@ export class Settings extends React.Component {
               {Strings.customCameraMode}
             </Text>
             <Switch
-              value={this.state.isCustomCamera}
+              value={this.state.isCustomCamera === 'true'}
               onValueChange={c => {
                 this.setState({isCustomCamera: c});
               }}
