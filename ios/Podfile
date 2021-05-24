@@ -1,6 +1,14 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+pre_install do |installer|
+  puts("Image fix for ios14: remove this when upgrading to >= 0.63.3")
+  find = "_currentFrame.CGImage;"
+  replace = "_currentFrame.CGImage ;} else { [super displayLayer:layer];"
+  op = `sed -ie "s/#{find}/#{replace}/" ../node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m`
+  puts("Image fix for ios14 done")
+end
+
 target 'ReactNativeDemo' do
   # Pods for ReactNativeDemo
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
