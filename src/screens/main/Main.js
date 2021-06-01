@@ -11,6 +11,7 @@ import DrawerMenu from './DrawerMenu';
 import React from 'react';
 import {CustomRecorder} from '../CustomRecorder';
 import {CustomVideoPlayer} from '../CustomVideoPlayer';
+import {BackToBackUploads} from "../backToBackUploads/BackToBackUploads";
 
 export const Drawer = createDrawerNavigator(
   {
@@ -18,6 +19,7 @@ export const Drawer = createDrawerNavigator(
     CustomRecorder: {screen: CustomRecorder},
     CustomVideoPlayer: {screen: CustomVideoPlayer},
     VideoEditor: {screen: VideoEditor},
+    BackToBackUploads: {screen: BackToBackUploads},
     Settings: {screen: Settings},
     ListSdks: {screen: Sdks},
     ListClients: {screen: TopClients},

@@ -22,7 +22,7 @@ PODS:
     - glog
   - glog (0.3.5)
   - GoogleAds-IMA-iOS-SDK (3.11.3)
-  - iOS-Client-SDK (1.1.24):
+  - iOS-Client-SDK (1.1.25):
     - GoogleAds-IMA-iOS-SDK (= 3.11.3)
   - Permission-AppTrackingTransparency (2.2.2):
     - RNPermissions
@@ -480,7 +480,7 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   GoogleAds-IMA-iOS-SDK: 134b35758455576aaa6b3d2d3146699dcf8af4f1
-  iOS-Client-SDK: ca17ea9451e861cd500f03cb7c7577af4308ebc1
+  iOS-Client-SDK: fdf4e82e3ae286b916d0e6c1c8736f32d4993314
   Permission-AppTrackingTransparency: 1ee09b6406106e3799e52dde59d6d7ff3269d9bc
   Permission-BluetoothPeripheral: 2a5d2f9a9910c70fdbff58c41a67b19c9a1c322a
   Permission-Calendars: d673b8b0ab11195318d7db78ee841df53f7b2fe1
@@ -533,6 +533,6 @@ SPEC CHECKSUMS:
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
   ZiggeoRN: 486ef88c9ed521cac187b2a7d9d5ae6724a61b73
 
-PODFILE CHECKSUM: 839a541cc033bbec45a8841409806083e73e733f
+PODFILE CHECKSUM: 493697075cd9d5fae9068431e56193322aaff9d8
 
 COCOAPODS: 1.10.1

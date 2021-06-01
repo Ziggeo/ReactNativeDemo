@@ -1,3 +1,4 @@
+
 import {NativeModules, StyleSheet, Text, View} from 'react-native';
 import Strings from '../Strings';
 import React from 'react';

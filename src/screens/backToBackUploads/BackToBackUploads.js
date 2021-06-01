@@ -6,7 +6,7 @@ import RNFetchBlob from "rn-fetch-blob";
 import {requestRecs} from './actions';
 import {connect} from 'react-redux';
 
-export class MultipleUploads extends React.Component {
+export class BackToBackUploads extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -74,4 +74,4 @@ export default connect(
     {
       requestRecs,
     },
-)(MultipleUploads);
+)(BackToBackUploads);
