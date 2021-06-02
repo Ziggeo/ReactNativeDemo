@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, TouchableOpacity} from 'react-native';
+import {FlatList, TouchableOpacity, View} from 'react-native';
 import Strings from '../../Strings';
 import {Recordings} from '../recordings/Recordings';
 import {Settings} from '../Settings';
@@ -14,9 +14,8 @@ import s from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../recordings/styles';
 import Theme from '../../Theme';
-import {getAppToken} from '../../utils/storage';
+import {getAppToken, removeAppToken} from '../../utils/storage';
 import Routes from '../../Routes';
-import {removeAppToken} from '../../utils/storage';
 import Text from '../../ui/Text';
 
 export function DrawerItem({item, navigate}) {
@@ -34,16 +33,6 @@ class DrawerMenu extends React.Component {
         type: 'item',
         title: Strings.itemRecordings,
         name: Recordings.name,
-      },
-      {
-        type: 'item',
-        title: Strings.itemCustomRecorder,
-        name: CustomRecorder.name,
-      },
-      {
-        type: 'item',
-        title: Strings.itemCustomPlayer,
-        name: CustomVideoPlayer.name,
       },
       {
         type: 'item',

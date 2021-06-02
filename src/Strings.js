@@ -71,6 +71,11 @@ export default {
   messageRecordingsListEmpty:
     'There are no recordings.\nPress plus button to add some.',
 
+  //Settings
+  customCameraMode: 'Custom camera mode',
+  customVideoMode: 'Custom video mode',
+  saveSettings: 'Save',
+
   // Logs screen
   titleLogs: 'Logs',
 
