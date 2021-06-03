@@ -1,1 +1,1 @@
-../../../../../../ZigReactNativeSDK/ios/RCTVideos.h
+../../../../../../ZigReactNativeSDK/ios/Videos/RCTVideos.h

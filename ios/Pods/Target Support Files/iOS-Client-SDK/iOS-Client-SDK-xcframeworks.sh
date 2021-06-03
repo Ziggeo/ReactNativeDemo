@@ -149,5 +149,5 @@ install_xcframework() {
   echo "Copied $source to $destination"
 }
 
-install_xcframework "${PODS_ROOT}/../../../ZigiOSClientSDK/Ziggeo/Output/Ziggeo.xcframework" "Ziggeo" "framework" "ios-i386_x86_64-simulator" "ios-arm64_armv7"
+install_xcframework "${PODS_ROOT}/../../../ZigiOSClientSDK/Ziggeo/Output/Ziggeo.xcframework" "Ziggeo" "framework" "ios-arm64_armv7" "ios-i386_x86_64-simulator"
 
