@@ -34,6 +34,7 @@ export default {
   itemAbout: 'About',
   itemLog: 'Log',
   itemVideoEditor: 'Video Editor',
+  itemBackToBackUploads: 'Back to Back Uploads',
   itemCustomRecorder: 'Custom Recorder',
   itemCustomPlayer: 'Custom Player',
 

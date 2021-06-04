@@ -1,1 +1,1 @@
-../../../../../../ZigReactNativeSDK/ios/ButtonConfig+parse.h
+../../../../../../ZigReactNativeSDK/ios/Recorder/ButtonConfig+parse.h

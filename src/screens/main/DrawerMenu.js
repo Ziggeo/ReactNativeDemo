@@ -4,6 +4,9 @@ import Strings from '../../Strings';
 import {Recordings} from '../recordings/Recordings';
 import {Settings} from '../Settings';
 import {VideoEditor} from '../VideoEditor';
+import {CustomRecorder} from '../CustomRecorder';
+import {CustomVideoPlayer} from '../CustomVideoPlayer';
+import {BackToBackUploads} from "../backToBackUploads/BackToBackUploads";
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
 import {Logs} from '../logs/Logs';
@@ -35,6 +38,11 @@ class DrawerMenu extends React.Component {
         type: 'item',
         title: Strings.itemVideoEditor,
         name: VideoEditor.name,
+      },
+      {
+        type: 'item',
+        title: Strings.itemBackToBackUploads,
+        name: BackToBackUploads.name,
       },
       {
         type: 'item',

@@ -37,45 +37,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This permission is required for demo purposes</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>AntDesign.ttf</string>
-		<string>Entypo.ttf</string>
-		<string>EvilIcons.ttf</string>
-		<string>Feather.ttf</string>
-		<string>FontAwesome.ttf</string>
-		<string>FontAwesome5_Brands.ttf</string>
-		<string>FontAwesome5_Regular.ttf</string>
-		<string>FontAwesome5_Solid.ttf</string>
-		<string>Foundation.ttf</string>
-		<string>Ionicons.ttf</string>
-		<string>MaterialIcons.ttf</string>
-		<string>MaterialCommunityIcons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Octicons.ttf</string>
-		<string>Zocial.ttf</string>
-		<string>quicksand_bold.ttf</string>
-		<string>quicksand_light.ttf</string>
-		<string>quicksand_medium.ttf</string>
-		<string>quicksand_regular.ttf</string>
-		<string>quicksand_semibold.ttf</string>
-	</array>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
@@ -99,21 +60,60 @@
 		<key>YOUR-PURPOSE-KEY</key>
 		<string>This permission is required for demo purposes</string>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
 	<key>NSMotionUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This permission is required for demo purposes</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>This permission is required for demo purposes</string>
 	<key>NSSiriUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This permission is required for demo purposes</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>quicksand_bold.ttf</string>
+		<string>quicksand_light.ttf</string>
+		<string>quicksand_medium.ttf</string>
+		<string>quicksand_regular.ttf</string>
+		<string>quicksand_semibold.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

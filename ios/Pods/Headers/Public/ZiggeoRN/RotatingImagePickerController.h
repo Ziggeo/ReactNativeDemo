@@ -1,1 +1,1 @@
-../../../../../../ZigReactNativeSDK/ios/RotatingImagePickerController.h
+../../../../../../ZigReactNativeSDK/ios/Recorder/RotatingImagePickerController.h
