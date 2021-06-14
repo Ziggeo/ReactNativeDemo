@@ -11,8 +11,14 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Text from '../../ui/Text';
 import createTextField from '../../ui/TextField';
 import {textFontStyle} from '../../ui/textFontStyle';
-import connect from "react-redux/lib/connect/connect";
-import {cancelEditing, deleteVideo, editInfo, loadInfo, updateInfo} from "./actions";
+import connect from 'react-redux/lib/connect/connect';
+import {
+  cancelEditing,
+  deleteVideo,
+  editInfo,
+  loadInfo,
+  updateInfo,
+} from './actions';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -21,91 +27,91 @@ class RecordingDetails extends React.Component {
     this.onTitleChanged = this.onTitleChanged.bind(this);
     this.onDescriptionChanged = this.onDescriptionChanged.bind(this);
     this.state = {
-      model:this.props.navigation.state.params
-    }
+      model: this.props.navigation.state.params,
+    };
   }
 
-    componentDidMount(): void {
-        this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
-            this.props.loadInfo(this.props.navigation.state.params);
-        });
-    }
+  componentDidMount(): void {
+    this._unsubscribe = this.props.navigation.addListener('willFocus', () => {
+      this.props.loadInfo(this.props.navigation.state.params);
+    });
+  }
 
-    componentWillUnmount(): void {
-        this._unsubscribe.remove();
-    }
+  componentWillUnmount(): void {
+    this._unsubscribe.remove();
+  }
 
   onKeyChanged(text) {
     let updModel = this.state.model;
-    updModel.key = text
+    updModel.key = text;
     this.setState({
-      model:updModel
-    })
+      model: updModel,
+    });
   }
 
   onTitleChanged(text) {
     let updModel = this.state.model;
-    updModel.title = text
+    updModel.title = text;
     this.setState({
-      model:updModel
-    })
+      model: updModel,
+    });
   }
 
   onDescriptionChanged(text) {
     let updModel = this.state.model;
-    updModel.description = text
+    updModel.description = text;
     this.setState({
-      model:updModel
-    })
+      model: updModel,
+    });
   }
 
-    renderLoading() {
-        return <Spinner visible={true}/>;
-    }
+  renderLoading() {
+    return <Spinner visible={true} />;
+  }
 
-    static navigationOptions = {
-        headerShown: false,
-    };
+  static navigationOptions = {
+    headerShown: false,
+  };
 
-    renderToolbar(isEditMode, model) {
-        return (
-            <Toolbar
-                style={{container: {backgroundColor: Theme.colors.primary}}}
-                onLeftElementPress={() => {
-                    !isEditMode
-                        ? this.props.navigation.goBack()
-                        : this.props.cancelEditing();
-                }}
-                rightElement={{
-                    actions: !isEditMode ? ['edit', 'delete'] : ['save'],
-                }}
-                onRightElementPress={element => {
-                    if (element.action === 'edit') {
-                        this.props.editInfo();
-                    } else if (element.action === 'delete') {
-                        this.props.deleteVideo(model, () => {
-                            this.props.navigation.goBack();
-                        });
-                    } else if (element.action === 'save') {
-                        this.props.updateInfo(model);
-                    }
-                }}
-                leftElement={!isEditMode ? 'arrow-back' : 'close'}
-                centerElement={
-                    <Text
-                        style={[
-                            textFontStyle.textStyle,
-                            {
-                                color: Theme.colors.white,
-                                fontSize: Theme.size.toolbarTextSize,
-                            },
-                        ]}>
-                        {Strings.titleDetails}
-                    </Text>
-                }
-            />
-        );
-    }
+  renderToolbar(isEditMode, model) {
+    return (
+      <Toolbar
+        style={{container: {backgroundColor: Theme.colors.primary}}}
+        onLeftElementPress={() => {
+          !isEditMode
+            ? this.props.navigation.goBack()
+            : this.props.cancelEditing();
+        }}
+        rightElement={{
+          actions: !isEditMode ? ['edit', 'delete'] : ['save'],
+        }}
+        onRightElementPress={element => {
+          if (element.action === 'edit') {
+            this.props.editInfo();
+          } else if (element.action === 'delete') {
+            this.props.deleteVideo(model, () => {
+              this.props.navigation.goBack();
+            });
+          } else if (element.action === 'save') {
+            this.props.updateInfo(model);
+          }
+        }}
+        leftElement={!isEditMode ? 'arrow-back' : 'close'}
+        centerElement={
+          <Text
+            style={[
+              textFontStyle.textStyle,
+              {
+                color: Theme.colors.white,
+                fontSize: Theme.size.toolbarTextSize,
+              },
+            ]}>
+            {Strings.titleDetails}
+          </Text>
+        }
+      />
+    );
+  }
 
   render() {
     const {imageUrl, isLoading, isEditMode} = this.props;
@@ -120,31 +126,29 @@ class RecordingDetails extends React.Component {
               <View>
                 <TouchableOpacity
                   style={{alignContent: 'center'}}
-                  onPress={() => (imageUrl && Ziggeo.play(model.model.token)) ||
-                      (model.fileType === "audio" && Ziggeo.startAudioPlayer(model.model.token)) ||
-                      (model.fileType === "image" && Ziggeo.showImage(model.model.token))}>
-                  {imageUrl && (
+                  onPress={() =>
+                    (model.fileType === 'video' &&
+                      Ziggeo.play(model.model.token)) ||
+                    (model.fileType === 'audio' &&
+                      Ziggeo.startAudioPlayer(model.model.token)) ||
+                    (model.fileType === 'image' &&
+                      Ziggeo.showImage(model.model.token))
+                  }>
+                  {(imageUrl && (
                     <Image
                       style={styles.preview}
                       source={{
                         uri: imageUrl,
                       }}
                     />
-                  )) || (model.fileType === "audio" && (
-                    <Icon
-                    style={{alignSelf: 'center'}}
-                    size={Theme.size.previewHeight}
-                    name={'microphone'}
-                    color={'grey'}
-                    />
-                    ))
-                    || (model.fileType === "image" && (
-                    <Icon
-                    style={{alignSelf: 'center'}}
-                    size={Theme.size.previewHeight}
-                    name={'image'}
-                    color={'grey'}
-                    />
+                  )) ||
+                    (model.fileType === 'audio' && (
+                      <Icon
+                        style={{alignSelf: 'center'}}
+                        size={Theme.size.previewHeight}
+                        name={'microphone'}
+                        color={'grey'}
+                      />
                     ))}
                   <View style={styles.overlay}>
                     <Icon size={Theme.size.hugeIconSize} name="play-circle" />
@@ -194,12 +198,12 @@ class RecordingDetails extends React.Component {
 const mapStateToProps = ({recd}) => recd;
 
 export default connect(
-    mapStateToProps,
-    {
-        loadInfo,
-        cancelEditing,
-        editInfo,
-        updateInfo,
-        deleteVideo,
-    },
+  mapStateToProps,
+  {
+    loadInfo,
+    cancelEditing,
+    editInfo,
+    updateInfo,
+    deleteVideo,
+  },
 )(RecordingDetails);
