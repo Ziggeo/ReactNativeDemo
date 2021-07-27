@@ -18,25 +18,28 @@ export class Settings extends React.Component {
     super(props);
     this.onBtnSaveSettingsPressed = this.onBtnSaveSettingsPressed.bind(this);
     this.state = {
-      isCustomCamera: undefined,
-      isCustomVideo: undefined,
+      isCustomCamera: false,
+      isCustomVideo: false,
     };
   }
 
+  componentDidMount() {
+      this.loadCustomModeData();
+  }
+
   loadCustomModeData = async () => {
-    this.setState({
-      isCustomCamera: await getCustomCameraMode(),
-      isCustomVideo: await getCustomVideoMode(),
-    });
+    let isCustomCamera = await getCustomCameraMode();
+    let isCustomVideo = await getCustomVideoMode();
+
+    if (isCustomCamera !== null) {
+      this.setState({isCustomCamera});
+    }
+    if(isCustomVideo !== null) {
+      this.setState({isCustomVideo});
+    }
   };
 
   render() {
-    if (
-      this.state.isCustomCamera === undefined ||
-      this.state.isCustomVideo === undefined
-    ) {
-      this.loadCustomModeData();
-    }
     return (
       <View style={styles.container}>
         {createToolbar(Strings.titleSettings, this.props)}
@@ -52,9 +55,9 @@ export class Settings extends React.Component {
               {Strings.customVideoMode}
             </Text>
             <Switch
-              value={this.state.isCustomVideo === 'true'}
-              onValueChange={c => {
-                this.setState({isCustomVideo: c});
+              value={this.state.isCustomVideo}
+              onValueChange={isCustomVideo => {
+                this.setState({isCustomVideo});
               }}
             />
           </View>
@@ -69,9 +72,9 @@ export class Settings extends React.Component {
               {Strings.customCameraMode}
             </Text>
             <Switch
-              value={this.state.isCustomCamera === 'true'}
-              onValueChange={c => {
-                this.setState({isCustomCamera: c});
+              value={this.state.isCustomCamera}
+              onValueChange={isCustomCamera => {
+                this.setState({isCustomCamera});
               }}
             />
           </View>
@@ -86,8 +89,8 @@ export class Settings extends React.Component {
   }
 
   onBtnSaveSettingsPressed() {
-    saveCustomCameraMode(this.state.isCustomCamera?.toString());
-    saveCustomVideoMode(this.state.isCustomVideo?.toString());
+    saveCustomCameraMode(this.state.isCustomCamera);
+    saveCustomVideoMode(this.state.isCustomVideo);
   }
 }
 
