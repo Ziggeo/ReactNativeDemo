@@ -33,11 +33,6 @@ class DrawerMenu extends React.Component {
       },
       {
         type: 'item',
-        title: Strings.itemVideoEditor,
-        name: VideoEditor.name,
-      },
-      {
-        type: 'item',
         title: Strings.itemSettings,
         name: Settings.name,
       },
