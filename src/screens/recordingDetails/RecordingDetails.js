@@ -1,13 +1,5 @@
 import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {connect} from 'react-redux';
-import {
-  cancelEditing,
-  deleteVideo,
-  editInfo,
-  loadInfo,
-  updateInfo,
-} from './actions';
 import Strings from '../../Strings';
 import Theme from '../../Theme';
 import Ziggeo from 'react-native-ziggeo-library';
@@ -21,6 +13,14 @@ import createTextField from '../../ui/TextField';
 import {textFontStyle} from '../../ui/textFontStyle';
 import {getCustomVideoMode} from '../../utils/storage';
 import Routes from '../../Routes';
+import connect from 'react-redux/lib/connect/connect';
+import {
+  cancelEditing,
+  deleteVideo,
+  editInfo,
+  loadInfo,
+  updateInfo,
+} from './actions';
 
 class RecordingDetails extends React.Component {
   constructor(props) {
@@ -128,26 +128,41 @@ class RecordingDetails extends React.Component {
               <View>
                 <TouchableOpacity
                   style={{alignContent: 'center'}}
-                  onPress={async () => {
-                    let isCustomMode = await getCustomVideoMode();
-                    if (isCustomMode === 'true') {
-                      const {navigation} = this.props;
-                      navigation.navigate(Routes.CustomVideo, {
-                        videoToken: model.token,
-                        videoPath: null,
-                      });
-                    } else {
-                      Ziggeo.play(model.token);
-                    }
-                  }}>
-                  {imageUrl && (
+                  onPress={() =>
+                    (model.fileType === 'video' &&
+                        (async () => {
+                          let isCustomMode = await getCustomVideoMode();
+                          if (isCustomMode === 'true') {
+                            const {navigation} = this.props;
+                            navigation.navigate(Routes.CustomVideo, {
+                              videoToken: model.token,
+                              videoPath: null,
+                            });
+                          } else {
+                            Ziggeo.play(model.token);
+                          }
+                        })) ||
+                    (model.fileType === 'audio' &&
+                      Ziggeo.startAudioPlayer(model.model.token)) ||
+                    (model.fileType === 'image' &&
+                      Ziggeo.showImage(model.model.token))
+                  }>
+                  {(imageUrl && (
                     <Image
                       style={styles.preview}
                       source={{
                         uri: imageUrl,
                       }}
                     />
-                  )}
+                  )) ||
+                    (model.fileType === 'audio' && (
+                      <Icon
+                        style={{alignSelf: 'center'}}
+                        size={Theme.size.previewHeight}
+                        name={'microphone'}
+                        color={'grey'}
+                      />
+                    ))}
                   <View style={styles.overlay}>
                     <Icon size={Theme.size.hugeIconSize} name="play-circle" />
                   </View>
