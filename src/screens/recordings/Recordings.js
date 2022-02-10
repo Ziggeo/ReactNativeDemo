@@ -1,4 +1,4 @@
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, RefreshControl, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -168,6 +168,12 @@ export class Recordings extends React.Component {
           ))}
         {recordings && recordings.length > 0 && (
           <FlatList
+            refreshControl={
+              <RefreshControl
+                refreshing={this.props.isLoading}
+                onRefresh={() => this.props.requestRecs()}
+              />
+            }
             data={recordings}
             renderItem={({item}) => this.renderItem(item)}
           />
