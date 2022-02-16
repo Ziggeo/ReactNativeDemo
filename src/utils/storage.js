@@ -25,3 +25,15 @@ export const getCustomCameraMode = () => AsyncStorage.getItem(customCameraMode).
 
 export const saveCustomCameraMode = value =>
     AsyncStorage.setItem(customCameraMode, JSON.stringify(value));
+
+const isBlurMode = 'isBlurMode';
+export const getBlurMode = () =>
+  AsyncStorage.getItem(isBlurMode).then(value => {
+    if (value == null) {
+      value = false;
+    }
+    return JSON.parse(value);
+  });
+
+export const saveBlurMode = value =>
+  AsyncStorage.setItem(isBlurMode, JSON.stringify(value));

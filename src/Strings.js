@@ -73,6 +73,7 @@ export default {
   //Settings
   customCameraMode: 'Custom camera mode',
   customVideoMode: 'Custom video mode',
+  blurMode: 'Use blur mode',
   saveSettings: 'Save',
 
   // Logs screen

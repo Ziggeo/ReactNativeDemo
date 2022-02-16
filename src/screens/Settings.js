@@ -6,8 +6,9 @@ import Theme from '../Theme';
 import createButton from '../ui/Button';
 import Text from '../ui/Text';
 import {
+  getBlurMode,
   getCustomCameraMode,
-  getCustomVideoMode,
+  getCustomVideoMode, saveBlurMode,
   saveCustomCameraMode,
   saveCustomVideoMode,
 } from '../utils/storage';
@@ -20,22 +21,27 @@ export class Settings extends React.Component {
     this.state = {
       isCustomCamera: false,
       isCustomVideo: false,
+      isBlurMode: false,
     };
   }
 
   componentDidMount() {
-      this.loadCustomModeData();
+    this.loadCustomModeData();
   }
 
   loadCustomModeData = async () => {
     let isCustomCamera = await getCustomCameraMode();
     let isCustomVideo = await getCustomVideoMode();
+    let isBlurMode = await getBlurMode();
 
     if (isCustomCamera !== null) {
       this.setState({isCustomCamera});
     }
-    if(isCustomVideo !== null) {
+    if (isCustomVideo !== null) {
       this.setState({isCustomVideo});
+    }
+    if (isBlurMode !== null) {
+      this.setState({isBlurMode});
     }
   };
 
@@ -78,6 +84,23 @@ export class Settings extends React.Component {
               }}
             />
           </View>
+          <View style={styles.textContainer}>
+            <Text
+              style={[
+                textFontStyle.textStyle,
+                {
+                  fontSize: Theme.size.toolbarTextSize,
+                },
+              ]}>
+              {Strings.blurMode}
+            </Text>
+            <Switch
+              value={this.state.isBlurMode}
+              onValueChange={isBlurMode => {
+                this.setState({isBlurMode});
+              }}
+            />
+          </View>
         </ScrollView>
         {createButton(
           Strings.saveSettings,
@@ -91,6 +114,7 @@ export class Settings extends React.Component {
   onBtnSaveSettingsPressed() {
     saveCustomCameraMode(this.state.isCustomCamera);
     saveCustomVideoMode(this.state.isCustomVideo);
+    saveBlurMode(this.state.isBlurMode);
   }
 }
 
