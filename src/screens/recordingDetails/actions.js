@@ -31,11 +31,23 @@ const cancel = () => ({
 
 export const loadInfo = model => async dispatch => {
   dispatch(loading());
-  Ziggeo.VideosApi.getImageUrl(model.token)
-    .then(imageUrl => {
-      dispatch(loaded(model, imageUrl));
-    })
-    .catch(dispatch(error()));
+  if (model.fileType === 'video') {
+    Ziggeo.VideosApi.getImageUrl(model.model.token)
+      .then(imageUrl => {
+        dispatch(loaded(model, imageUrl));
+      })
+      .catch(dispatch(error()));
+  }
+  if (model.fileType === 'audio') {
+    dispatch(loaded(model, null));
+  }
+  if (model.fileType === 'image') {
+    Ziggeo.ImagesApi.getImagesUrl(model.model.token)
+      .then(imageUrl => {
+        dispatch(loaded(model, imageUrl));
+      })
+      .catch(dispatch(error()));
+  }
 };
 
 export const cancelEditing = () => async dispatch => {
@@ -46,16 +58,46 @@ export const editInfo = () => async dispatch => {
   dispatch(edit());
 };
 
-export const updateInfo = model => async dispatch => {``
+export const updateInfo = model => async dispatch => {
   dispatch(loading());
-  Ziggeo.VideosApi.update(model.token, JSON.stringify(model)).then(upd => {
-    dispatch(loadInfo(model));
-  });
+  if (model.fileType === 'video') {
+    Ziggeo.VideosApi.update(model.model.token, JSON.stringify(model)).then(
+      upd => {
+        dispatch(loadInfo(model));
+      },
+    );
+  }
+  if (model.fileType === 'audio') {
+    Ziggeo.AudiosApi.update(model.model.token, JSON.stringify(model)).then(
+      upd => {
+        dispatch(loadInfo(model));
+      },
+    );
+  }
+  if (model.fileType === 'image') {
+    Ziggeo.ImagesApi.update(model.model.token, JSON.stringify(model)).then(
+      upd => {
+        dispatch(loadInfo(model));
+      },
+    );
+  }
 };
 
 export const deleteVideo = (model, onSuccess) => async dispatch => {
   dispatch(loading());
-  Ziggeo.VideosApi.destroy(model.token).then(() => {
-    onSuccess();
-  });
+  if (model.fileType === 'video') {
+    Ziggeo.VideosApi.destroy(model.model.token).then(() => {
+      onSuccess();
+    });
+  }
+  if (model.fileType === 'audio') {
+    Ziggeo.AudiosApi.destroy(model.model.token).then(() => {
+      onSuccess();
+    });
+  }
+  if (model.fileType === 'image') {
+    Ziggeo.ImagesApi.destroy(model.model.token).then(() => {
+      onSuccess();
+    });
+  }
 };
