@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Application will use camera for video recording</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Application will use microphone for audio recording</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,11 +26,19 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsLocalNetworking</key>
+		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>This permission is required for demo purposes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -49,5 +53,67 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>quicksand_bold.ttf</string>
+		<string>quicksand_light.ttf</string>
+		<string>quicksand_medium.ttf</string>
+		<string>quicksand_regular.ttf</string>
+		<string>quicksand_semibold.ttf</string>
+	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>YOUR-PURPOSE-KEY</key>
+		<string>This permission is required for demo purposes</string>
+	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSSiriUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This permission is required for demo purposes</string>
 </dict>
 </plist>

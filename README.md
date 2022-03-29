@@ -16,8 +16,8 @@ To use this SDK demo, there are few simple steps
 	npm install
 	```
 4. (Optional) Make your changes to the demo app
-5. Modify App.js by replacing all entries of `ZIGGEP_APP_TOKEN` with your application token.
-6. Modify App.js by replacing all entries of `ZIGGEO_VIDEO_TOKEN` with your video token from same application.
+5. Modify App_old_old.js by replacing all entries of `ZIGGEP_APP_TOKEN` with your application token.
+6. Modify App.jsd.js by replacing all entries of `ZIGGEO_VIDEO_TOKEN` with your video token from same application.
 
 That is it for global requirements.
 

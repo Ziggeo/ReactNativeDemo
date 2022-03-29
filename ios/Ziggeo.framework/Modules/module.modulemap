@@ -1,6 +1,0 @@
-framework module Ziggeo {
-  umbrella header "Ziggeo.h"
-
-  export *
-  module * { export * }
-}

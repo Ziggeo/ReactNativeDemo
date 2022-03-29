@@ -1,4 +1,6 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 import com.android.build.OutputFile
 
@@ -119,6 +121,12 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -128,12 +136,13 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.reactnativedemo"
+        applicationId "com.ziggeo.reactnativesdk.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
         multiDexEnabled true
+        setProperty("archivesBaseName", "androidRN-v" + versionName + "_" + getDate())
     }
     splits {
         abi {
@@ -150,16 +159,23 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
     }
     buildTypes {
         debug {
+            manifestPlaceholders = [crashlyticsCollectionEnabled:"false"]
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
-            minifyEnabled enableProguardInReleaseBuilds
+            manifestPlaceholders = [crashlyticsCollectionEnabled:"true"]
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
@@ -177,11 +193,14 @@ android {
 
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.google.firebase:firebase-analytics:17.4.4'
+    implementation 'com.google.firebase:firebase-crashlytics:17.1.1'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
@@ -192,6 +211,10 @@ dependencies {
     }
 }
 
+static def getDate() {
+    return new Date().format('HH.mm.ss_dd-MM-YYYY')
+}
+
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
@@ -200,3 +223,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
