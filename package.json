@@ -14,7 +14,7 @@
     "@react-native-community/masked-view": "latest",
     "@react-native-community/toolbar-android": "latest",
     "@softmedialab/react-native-material-textfield": "latest",
-    "axios": "^0.18.1",
+    "axios": "^0.26.1",
     "date-fns": "^2.12.0",
     "fbjs": "^3.0.4",
     "hoist-non-react-statics": "^3.3.0",
