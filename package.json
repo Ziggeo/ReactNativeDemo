@@ -19,7 +19,7 @@
     "fbjs": "^3.0.4",
     "hoist-non-react-statics": "^3.3.0",
     "jetifier": "^1.6.5",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "prop-types": "^15.6.2",
     "qs": "^6.9.4",
     "react": "17.0.1",
