@@ -10,7 +10,9 @@ export default function TestScreen() {
   const [clientAuthToken, setClientAuthToken] = useState(null);
   const [serverAuthToken, setServerAuthToken] = useState(null);
   const [adsURL, setAdsURL] = useState(null);
+
   const [blurMode, setBlurMode] = useState(null);
+  const [pausableMode, setPausableMode] = useState(null);
   const [videoWidth, setVideoWidth] = useState(null);
   const [videoBitrate, setVideoBitrate] = useState(null);
   const [audioSampleRate, setAudioSampleRate] = useState(null);
@@ -98,6 +100,11 @@ export default function TestScreen() {
     Ziggeo.setBlurMode(true);
     Ziggeo.getBlurMode().then(data => {
       setBlurMode(data);
+    });
+
+    Ziggeo.setPausableMode(false);
+    Ziggeo.getPausableMode().then(data => {
+      setPausableMode(data);
     });
 
     Ziggeo.setVideoWidth(1090);
@@ -327,6 +334,13 @@ export default function TestScreen() {
           {blurMode != null && (
             <WrappedText ref={generateTestHook('blurMode')} style={styles.item}>
               {blurMode.toString()}
+            </WrappedText>
+          )}
+          {pausableMode != null && (
+            <WrappedText
+              ref={generateTestHook('pausableMode')}
+              style={styles.item}>
+              {pausableMode.toString()}
             </WrappedText>
           )}
           <WrappedText ref={generateTestHook('videoWidth')} style={styles.item}>

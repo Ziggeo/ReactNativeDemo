@@ -46,6 +46,7 @@ export default function(spec) {
       await spec.exists('camera');
       await spec.exists('quality');
       await spec.exists('blurMode');
+      await spec.exists('pausableMode');
 
       await spec.containsText('videoWidth', '1090x13');
       await spec.containsText('videoBitrate', '10');
@@ -62,6 +63,7 @@ export default function(spec) {
       await spec.containsText('sendImmediately', 'true');
       await spec.containsText('camera', '1');
       await spec.containsText('quality', '1');
+      await spec.containsText('pausableMode', 'false');
     });
   });
 
