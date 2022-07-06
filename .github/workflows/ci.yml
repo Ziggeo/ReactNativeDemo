@@ -33,4 +33,4 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           profile: Nexus 4
-          script: "cavy run-android --file index.test.js"
+          script: "cavy run-android --file index.js"
