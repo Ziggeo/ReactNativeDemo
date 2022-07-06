@@ -1,0 +1,37 @@
+name: Ziggeo Integration Tests
+on: [ push, pull_request ]
+
+jobs:
+  drive_android:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        api-level: [ 23 ]
+        target: [ default ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@master
+      - uses: c-hive/gha-yarn-cache@v1
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+
+      - name: Install node modules
+        run: |
+          yarn install
+
+      - name: Install cavy
+        run: yarn global add cavy-cli
+
+      - name: Build and test
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          profile: Nexus 4
+          script: "cavy run-android --file index.test.js"
