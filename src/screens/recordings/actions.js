@@ -18,19 +18,16 @@ export const requestRecs = () => async dispatch => {
         dispatch(error(reason));
     });
 
-    audioList = await Ziggeo.AudiosApi.index().then((videos) => {
-        console.log("aaaaaaaa0");
-        return JSON.parse(videos);
+    audioList = await Ziggeo.AudiosApi.index().then((audios) => {
+        return JSON.parse(audios);
     }).catch(reason => {
-        console.log("aaaaaaaa" );
         console.log( reason );
         dispatch(error(reason));
     });
 
-    imageList = await Ziggeo.ImagesApi.index().then((videos) => {
-        return JSON.parse(videos);
+    imageList = await Ziggeo.ImagesApi.index().then((images) => {
+        return JSON.parse(images);
     }).catch(reason => {
-        console.log("aaaaaaaa" + reason);
         dispatch(error(reason));
     });
 
