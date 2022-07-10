@@ -6,36 +6,40 @@ export const Types = {
     ERROR: 'recs/ERROR',
 };
 export const requestRecs = () => async dispatch => {
-        dispatch({type: Types.REQUEST_RECS});
+    dispatch({type: Types.REQUEST_RECS});
 
-        let videoList;
-        let audioList;
-        let imageList;
+    let videoList;
+    let audioList;
+    let imageList;
 
-        await Ziggeo.VideosApi.index()
-            .then(videos => {
-                    videoList = videos;
-                    return Ziggeo.AudiosApi.index();
-                }
-            )
-            .then(audios => {
-                audioList = audios;
-                return Ziggeo.ImagesApi.index();
-            })
-            .then(images => imageList = images)
-            .then(() => {
-                let videos = JSON.parse(videoList);
-                let audios = JSON.parse(audioList);
-                let images = JSON.parse(imageList);
-                let comb = videos.concat(audios).concat(images);
-                comb.sort(function (a, b) {
-                    return parseInt(b.created) - parseInt(a.created);
-                });
-                dispatch(receiveRecs(comb));
-            })
-            .catch(reason => dispatch(error(reason)));
-    }
-;
+    videoList = await Ziggeo.VideosApi.index().then((videos) => {
+        return JSON.parse(videos);
+    }).catch(reason => {
+        dispatch(error(reason));
+    });
+
+    audioList = await Ziggeo.AudiosApi.index().then((videos) => {
+        console.log("aaaaaaaa0");
+        return JSON.parse(videos);
+    }).catch(reason => {
+        console.log("aaaaaaaa" );
+        console.log( reason );
+        dispatch(error(reason));
+    });
+
+    imageList = await Ziggeo.ImagesApi.index().then((videos) => {
+        return JSON.parse(videos);
+    }).catch(reason => {
+        console.log("aaaaaaaa" + reason);
+        dispatch(error(reason));
+    });
+
+    let comb = videoList.concat(audioList).concat(imageList);
+    comb.sort(function (a, b) {
+        return parseInt(b.created) - parseInt(a.created);
+    });
+    dispatch(receiveRecs(videoList));
+};
 
 export const receiveRecs = (videos) => ({
     type: Types.RECEIVE_RECS,

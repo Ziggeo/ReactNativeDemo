@@ -13,22 +13,23 @@ import {CustomRecorder} from '../CustomRecorder';
 import {CustomVideoPlayer} from '../CustomVideoPlayer';
 
 export const Drawer = createDrawerNavigator(
-  {
-    Recordings: {screen: Recordings},
-    CustomRecorder: {screen: CustomRecorder},
-    CustomVideoPlayer: {screen: CustomVideoPlayer},
-    VideoEditor: {screen: VideoEditor},
-    Settings: {screen: Settings},
-    ListSdks: {screen: Sdks},
-    ListClients: {screen: TopClients},
-    ContactUs: {screen: ContactUs},
-    About: {screen: About},
-    Logs: {screen: Logs},
-  },
-  {
-    navigationOptions: {
-      headerShown: false,
+    {
+        Recordings: {screen: Recordings},
+        CustomRecorder: {screen: CustomRecorder},
+        CustomVideoPlayer: {screen: CustomVideoPlayer},
+        VideoEditor: {screen: VideoEditor},
+        Settings: {screen: Settings},
+        ListSdks: {screen: Sdks},
+        ListClients: {screen: TopClients},
+        ContactUs: {screen: ContactUs},
+        About: {screen: About},
+        Logs: {screen: Logs},
     },
-    contentComponent: props => <DrawerMenu {...props} />,
-  },
+    {
+        useLegacyImplementation: true,
+        navigationOptions: {
+            headerShown: false,
+        },
+        contentComponent: props => <DrawerMenu {...props} />,
+    },
 );
