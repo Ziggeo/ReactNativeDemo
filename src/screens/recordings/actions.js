@@ -35,7 +35,7 @@ export const requestRecs = () => async dispatch => {
     comb.sort(function (a, b) {
         return parseInt(b.created) - parseInt(a.created);
     });
-    dispatch(receiveRecs(videoList));
+    dispatch(receiveRecs(comb));
 };
 
 export const receiveRecs = (videos) => ({
