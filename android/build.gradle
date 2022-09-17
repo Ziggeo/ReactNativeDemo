@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-//def githubProperties = new Properties()
-//githubProperties.load(new FileInputStream(file("github.properties")))
+def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(file("github.properties")))
 
 buildscript {
     ext {
@@ -36,8 +36,8 @@ allprojects {
         jcenter()
         maven {url = "https://maven.pkg.github.com/ZiggeoJitpackService/androidsdk"
             credentials {
-                username = '3akat'
-//                password = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN') ?: githubProperties['GITHUB_PERSONAL_ACCESS_TOKEN']
+                username = System.getenv('GITHUB_USER') ?: githubProperties['GITHUB_USER']
+                password = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN') ?: githubProperties['GITHUB_PERSONAL_ACCESS_TOKEN']
             }
         }
     }

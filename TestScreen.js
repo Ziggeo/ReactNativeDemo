@@ -34,6 +34,7 @@ export default function TestScreen() {
   const [useWifiOnly, setUseWifiOnly] = useState(null);
   const [syncInterval, setSyncInterval] = useState(null);
   const [turnOffUploader, setTurnOffUploader] = useState(null);
+  const [lostConnectionAction, setLostConnectionAction] = useState(null);
 
   const [hidePlayerControls, setHidePlayerControls] = useState(null);
   const [controllerStyle, setControllerStyle] = useState(null);
@@ -200,6 +201,7 @@ export default function TestScreen() {
       use_wifi_only: true,
       sync_interval: 6,
       turn_off_uploader: true,
+      lost_connection_action: 552,
     });
     Ziggeo.getUploadingConfig().then(dataMap => {
       Object.keys(dataMap).map(key => {
@@ -211,6 +213,9 @@ export default function TestScreen() {
         }
         if (key === 'turn_off_uploader') {
           setTurnOffUploader(dataMap[key]);
+        }
+        if (key === 'lost_connection_action') {
+          setLostConnectionAction(dataMap[key]);
         }
       });
     });
@@ -480,6 +485,13 @@ export default function TestScreen() {
               ref={generateTestHook('turn_off_uploader')}
               style={styles.item}>
               {turnOffUploader.toString()}
+            </WrappedText>
+          )}
+          {lostConnectionAction != null && (
+            <WrappedText
+              ref={generateTestHook('lost_connection_action')}
+              style={styles.item}>
+              {lostConnectionAction.toString()}
             </WrappedText>
           )}
         </View>
