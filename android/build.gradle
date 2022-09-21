@@ -34,7 +34,7 @@ allprojects {
             url("$rootDir/../node_modules/jsc-android/dist")
         }
         jcenter()
-        maven {url = "https://maven.pkg.github.com/ZiggeoJitpackService/androidsdk"
+        maven {url = "https://maven.pkg.github.com/ZiggeoJitpackService/AndroidSDK"
             credentials {
                 username = System.getenv('GITHUB_USER') ?: githubProperties['GITHUB_USER']
                 password = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN') ?: githubProperties['GITHUB_PERSONAL_ACCESS_TOKEN']
