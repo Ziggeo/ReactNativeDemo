@@ -50,7 +50,7 @@ jobs:
           cache: 'gradle'
 
       - name: clean
-        run:  yarn clean
+        run: yarn cache clean
 
       - name: Install node modules
         run: |
