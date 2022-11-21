@@ -58,7 +58,7 @@ jobs:
 
       - name: Build Android Release
         run: |
-          cd android && ./gradlew assembleRelease
+          cd android && ./gradlew assembleDebug
 
       - name: Sign APK
         id: sign_app
