@@ -2,7 +2,7 @@ name: Ziggeo Integration Tests
 on: [ push, pull_request ]
 
 jobs:
-  drive_android:
+  run_tests:
     runs-on: macos-latest
 
     strategy:
@@ -34,3 +34,31 @@ jobs:
           target: ${{ matrix.target }}
           profile: Nexus 4
           script: "cavy run-android --file index.js"
+
+  publish_release:
+    runs-on: macos-latest
+    needs: run_tests
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@master
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+
+      - name: Install node modules
+        run: |
+          yarn install
+
+      - name: Build Android Release
+        run: |
+          cd android && ./gradlew assembleRelease
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
+
