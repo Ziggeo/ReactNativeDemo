@@ -49,6 +49,9 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
+      - name: clean
+        run:  yarn clean
+
       - name: Install node modules
         run: |
           yarn install
