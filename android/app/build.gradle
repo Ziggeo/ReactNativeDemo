@@ -130,6 +130,9 @@ if (keystorePropertiesFile.exists()) {
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    aaptOptions {
+        cruncherEnabled = false
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -175,8 +178,8 @@ android {
             manifestPlaceholders = [crashlyticsCollectionEnabled:"true"]
             signingConfig signingConfigs.release
             minifyEnabled false
-//            shrinkResources true
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            shrinkResources false
+//            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
     // applicationVariants are e.g. debug, release
